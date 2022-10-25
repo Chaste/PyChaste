@@ -330,14 +330,6 @@ py::class_<MeshBasedCellPopulation2_2 , MeshBasedCellPopulation2_2_Overloads , b
             (bool(MeshBasedCellPopulation2_2::*)()) &MeshBasedCellPopulation2_2::GetWriteVtkAsPoints, 
             " "  )
         .def(
-            "SetOutputMeshInVtk", 
-            (void(MeshBasedCellPopulation2_2::*)(bool)) &MeshBasedCellPopulation2_2::SetOutputMeshInVtk, 
-            " " , py::arg("outputMeshInVtk") )
-        .def(
-            "GetOutputMeshInVtk", 
-            (bool(MeshBasedCellPopulation2_2::*)()) &MeshBasedCellPopulation2_2::GetOutputMeshInVtk, 
-            " "  )
-        .def(
             "GetNeighbouringNodeIndices", 
             (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(MeshBasedCellPopulation2_2::*)(unsigned int)) &MeshBasedCellPopulation2_2::GetNeighbouringNodeIndices, 
             " " , py::arg("index") )

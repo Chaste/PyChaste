@@ -101,16 +101,6 @@ concreteMove);
             ConstructFromMeshReader,
             rMeshReader);
     }
-    void SetUpBoxCollection(double cutOffLength, ::boost::numeric::ublas::c_vector<double, 4> domainSize, int numLocalRows, bool isPeriodic) override {
-        PYBIND11_OVERLOAD(
-            void,
-            NodesOnlyMesh2,
-            SetUpBoxCollection,
-            cutOffLength, 
-domainSize, 
-numLocalRows, 
-isPeriodic);
-    }
 
 };
 void register_NodesOnlyMesh2_class(py::module &m){

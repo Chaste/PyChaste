@@ -70,14 +70,6 @@ point);
             pNodeA, 
 pNodeB);
     }
-    void HandleHighOrderJunctions(::Node<2> * pNodeA, ::Node<2> * pNodeB) override {
-        PYBIND11_OVERLOAD(
-            void,
-            MutableVertexMesh2_2,
-            HandleHighOrderJunctions,
-            pNodeA, 
-pNodeB);
-    }
 
 };
 void register_MutableVertexMesh2_2_class(py::module &m){
