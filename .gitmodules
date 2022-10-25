@@ -1,0 +1,4 @@
+[submodule "dynamic/pybind11"]
+	path = dynamic/pybind11
+	url = https://github.com/pybind/pybind11.git
+	branch = stable
