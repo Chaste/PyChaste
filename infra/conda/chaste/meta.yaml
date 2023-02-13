@@ -1,41 +1,65 @@
+{% set version = "2023.1" %}
+
 package:
   name: chaste
-  version: 3.4.2
+  version: {{ version }}
 
 source:
-  path: /home/grogan/Software/Chaste
+  path: /tmp/Chaste
 
 build:
-  number: 5
+  number: 0
 
 requirements:
   build:
-    - python
-    - xsd ==4.0.0
-    - xerces-c ==3.1.4
-    - vtk
-    - petsc
-    - boost
-    - setuptools
-    - distribute
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
     - pip
-    - numpy
-    - petsc4py ==3.7
+    - python>=3.7
+    - setuptools
+
+  host:
+    - python>=3.7
+
+    - boost-cpp>=1.68,<1.75
+    - hdf5>=1.10=mpi_mpich_*
+    - metis>=5.0
+    - mpich>=3.0
+    - parmetis>=4.0
+    - petsc>=3.7,<3.11
+    - petsc4py>=3.7,<3.11
+    - sundials>=3.0,<6.0
+    - tbb-devel
+    - vtk>=8.0,<9.0
+    - xerces-c>=3.0
+    - xorg-libxext>=1.3
+    - xsd==4.*
+    
     - matplotlib
+    - numpy
 
   run:
-    - python
-    - xsd ==4.0.0
-    - xerces-c ==3.1.4
-    - vtk
-    - petsc
-    - boost
+    - python>=3.7
+
+    - boost-cpp>=1.68,<1.75
+    - hdf5>=1.10=mpi_mpich_*
+    - metis>=5.0
+    - mpich>=3.0
+    - parmetis>=4.0
+    - petsc>=3.7,<3.11
+    - petsc4py>=3.7,<3.11
+    - sundials>=3.0,<6.0
+    - tbb-devel
+    - vtk>=8.0,<9.0
+    - xerces-c>=3.0
+    - xorg-libxext>=1.3
+    - xsd==4.*
+    
+    - jupyterlab
     - matplotlib
-    - petsc4py ==3.7
-    - jupyter
     - numpy
 
 about:
   home: http://www.cs.ox.ac.uk/chaste/
   license: 3-clause BSD
-

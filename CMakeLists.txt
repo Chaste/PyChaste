@@ -33,7 +33,7 @@
 find_package(Chaste COMPONENTS cell_based)
 
 # PyChaste needs some additional VTK libraries
-if(VTK_MAJOR_VERSION EQUAL 5)
+if(VTK_MAJOR_VERSION LESS_EQUAL 5)
     find_package(VTK COMPONENTS vtkIOImage vtkIOMovie vtkRenderingAnnotation vtkRenderingFreeType 
                 vtkRenderingFreeTypeOpenGL vtkRenderingCore vtkRenderingOpenGL vtkInteractionStyle  REQUIRED)
 elseif( (VTK_MAJOR_VERSION EQUAL 6) AND (VTK_MINOR_VERSION LESS 3) )
@@ -43,9 +43,12 @@ elseif( (VTK_MAJOR_VERSION EQUAL 6) AND (VTK_MINOR_VERSION LESS 3) )
 elseif( (VTK_MAJOR_VERSION EQUAL 7))
     find_package(VTK COMPONENTS vtkWrappingPythonCore vtkParallelCore vtkParallelMPI vtkIOImage vtkIOMovie vtkRenderingAnnotation
             vtkRenderingFreeType vtkRenderingOpenGL2 vtkRenderingCore vtkFiltersProgrammable vtkFiltersVerdict vtkInteractionStyle REQUIRED)
+elseif( (VTK_MAJOR_VERSION EQUAL 8))
+    find_package(VTK COMPONENTS vtkWrappingPythonCore vtkParallelCore vtkIOImage vtkIOMovie vtkRenderingAnnotation
+            vtkRenderingFreeType vtkRenderingOpenGL2 vtkRenderingCore vtkFiltersProgrammable vtkFiltersVerdict vtkInteractionStyle REQUIRED)
 else()
     find_package(VTK COMPONENTS vtkWrappingPythonCore vtkParallelCore vtkParallelMPI vtkIOImage vtkIOMovie vtkRenderingAnnotation
-            vtkRenderingFreeType vtkRenderingOpenGL vtkRenderingCore vtkFiltersProgrammable vtkFiltersVerdict vtkInteractionStyle REQUIRED)
+            vtkRenderingFreeType vtkRenderingOpenGL2 vtkRenderingCore vtkFiltersProgrammable vtkFiltersVerdict vtkInteractionStyle REQUIRED)
 endif()
 
 list(APPEND Chaste_INCLUDES ${VTK_INCLUDE_DIRS})
