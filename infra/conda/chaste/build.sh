@@ -1,19 +1,20 @@
-export PIP_NO_DEPENDENCIES="False"
-export PIP_NO_INDEX="False"
-
 export LIBRARY_PATH=${PREFIX}/lib
 export INCLUDE_PATH=${PREFIX}/include
 
+# Fix pip environment for chaste_codegen
+export PIP_NO_DEPENDENCIES="False"
+export PIP_NO_INDEX="False"
+
+# Fix paths in some conda-forge vtk builds
 sed -i 's#/home/conda/feedstock_root/build_artifacts/vtk_.*_build_env/x86_64-conda_cos6-linux-gnu/sysroot/usr/lib.*;##g' ${PREFIX}/lib/cmake/vtk-8.2/Modules/vtkhdf5.cmake 
 sed -i 's#/home/conda/feedstock_root/build_artifacts/vtk_.*_build_env/x86_64-conda_cos6-linux-gnu/sysroot/usr/lib.*;##g' ${PREFIX}/lib/cmake/vtk-8.2/VTKTargets-release.cmake 
 
 sed -i "s#/usr/lib64/libXext\.so;#${PREFIX}/lib/libXext\.so;#g" ${PREFIX}/lib/cmake/vtk-8.2/VTKTargets-release.cmake
 sed -i "s#/usr/lib64/libXext\.so;#${PREFIX}/lib/libXext\.so;#g" ${PREFIX}/lib/cmake/vtk-8.2/VTKTargets.cmake
 
+# Build
 mkdir ${PREFIX}/build
 cd ${PREFIX}/build
-
-echo "source: ${SRC_DIR}"
 
 cmake \
     -DCMAKE_BUILD_TYPE=RELEASE \
@@ -53,6 +54,7 @@ make install -j ${CPU_COUNT}
 cd ${PREFIX}/build/projects/PyChaste/python
 python setup.py install --prefix=${PREFIX}
 
+# Cleanup
 cd ${PREFIX}/build
 rm -rf cell_based/CMakeFiles
 rm -rf global/CMakeFiles
@@ -65,5 +67,6 @@ rm -rf python
 rm -rf projects/PyChaste/CMakeFiles
 rm -rf projects/PyChaste/python
 
+# Revert to conda-build pip environment settings
 export PIP_NO_DEPENDENCIES="True"
 export PIP_NO_INDEX="True"
