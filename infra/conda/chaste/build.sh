@@ -23,9 +23,12 @@ cmake \
     -DCMAKE_PREFIX_PATH=${PREFIX} \
     -DHDF5_C_COMPILER_EXECUTABLE:FILEPATH=${PREFIX}/bin/h5pcc \
     -DBUILD_SHARED_LIBS:BOOL=ON \
-    -DBUILD_TESTING:BOOL=OFF \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DBOOST_ROOT=${PREFIX} \
+    -DVTK_DIR=${PREFIX} \
+    -DXERCESC_LIBRARY=${LIBRARY_PATH}/libxerces-c.so \
+    -DXERCESC_INCLUDE=${INCLUDE_PATH} \
+    -DXSD_EXECUTABLE=${PREFIX}/bin/xsd \
     -DChaste_ENABLE_TESTING=ON \
     -DChaste_UPDATE_PROVENANCE=OFF \
     -DChaste_ENABLE_heart_TESTING=OFF \
@@ -41,10 +44,6 @@ cmake \
     -DChaste_ENABLE_continuum_mechanics_TESTING=OFF \
     -DChaste_ENABLE_project_PyChaste_TESTING=OFF \
     -DChaste_ERROR_ON_WARNING=OFF \
-    -DVTK_DIR=${PREFIX} \
-    -DXERCESC_LIBRARY=${LIBRARY_PATH}/libxerces-c.so \
-    -DXERCESC_INCLUDE=${INCLUDE_PATH} \
-    -DXSD_EXECUTABLE=${PREFIX}/bin/xsd \
     ${SRC_DIR}
     
 make chaste_project_PyChaste -j ${CPU_COUNT}
@@ -52,7 +51,7 @@ make project_PyChaste_Python -j ${CPU_COUNT}
 make install -j ${CPU_COUNT}
 
 cd ${PREFIX}/build/projects/PyChaste/python
-python setup.py install --prefix=${PREFIX}
+${PYTHON} -m pip install . --prefix=${PREFIX}
 
 # Cleanup
 cd ${PREFIX}/build

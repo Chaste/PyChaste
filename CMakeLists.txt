@@ -33,10 +33,7 @@
 find_package(Chaste COMPONENTS cell_based)
 
 # PyChaste needs some additional VTK libraries
-if(VTK_MAJOR_VERSION LESS_EQUAL 5)
-    find_package(VTK COMPONENTS vtkIOImage vtkIOMovie vtkRenderingAnnotation vtkRenderingFreeType 
-                vtkRenderingFreeTypeOpenGL vtkRenderingCore vtkRenderingOpenGL vtkInteractionStyle  REQUIRED)
-elseif( (VTK_MAJOR_VERSION EQUAL 6) AND (VTK_MINOR_VERSION LESS 3) )
+if( VTK_MAJOR_VERSION EQUAL 6 )
     find_package(VTK COMPONENTS vtkWrappingPythonCore vtkIOImage vtkIOMovie vtkRenderingAnnotation vtkRenderingFreeType 
                 vtkRenderingFreeTypeOpenGL vtkRenderingCore 
                 vtkRenderingOpenGL vtkInteractionStyle  REQUIRED)
