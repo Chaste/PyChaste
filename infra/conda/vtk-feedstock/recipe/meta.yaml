@@ -29,7 +29,7 @@ source:
     # https://gitlab.kitware.com/vtk/vtk/-/merge_requests/9987
     # - patches/9987_try_except_python_import.patch  # [not win]
     - 110_python-371.patch
-    - 99-hdf5-1.10-compatibility
+    - 99-hdf5-1.10-compatibility.patch
     - 113_fix_python_equal.patch
     - 30_matplotlib.patch
     - gcc11-support.patch
