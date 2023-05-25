@@ -1,7 +1,7 @@
 boost_cpp:
-- 1.78.0
+- 1.74.0
 build_variant:
-- egl
+- osmesa
 cdt_name:
 - cos7
 channel_sources:
@@ -27,21 +27,23 @@ freetype:
 glew:
 - '2.1'
 hdf5:
-- 1.14.0
+- '1.10'
 jsoncpp:
-- 1.9.5
+- '1.9'
 libjpeg_turbo:
-- 2.1.5
+- '2'
 libnetcdf:
-- 4.9.2
+- '4'
 libpng:
 - '1.6'
 libtiff:
 - '4.5'
 libxml2:
-- '2.11'
+- '2'
 lz4_c:
-- 1.9.3
+- '1.9'
+mpich:
+- '4.1'
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
@@ -49,7 +51,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 proj:
-- 9.2.0
+- '9.2'
 python:
 - 3.10.* *_cpython
 qt_main:
@@ -58,16 +60,12 @@ sqlite:
 - '3'
 target_platform:
 - linux-64
-tbb:
-- '2021'
-tbb_devel:
-- '2021'
 tk:
 - '8.6'
 vtk:
-- 9.2.5
+- 7.0.0
 zip_keys:
 - - cxx_compiler_version
   - fortran_compiler_version
 zlib:
-- '1.2'
+- '1'
