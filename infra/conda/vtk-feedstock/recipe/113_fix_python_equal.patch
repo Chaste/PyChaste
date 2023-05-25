@@ -1,0 +1,14 @@
+Description: Fix comparison with literal
+Author: Gert Wollny <gewo@debian.org>
+Debian-Bug: https://bugs.debian.org/950539
+--- a/Wrapping/Python/vtk/numpy_interface/algorithms.py
++++ b/Wrapping/Python/vtk/numpy_interface/algorithms.py
+@@ -197,7 +197,7 @@
+                 return dsa.NoneArray;
+ 
+             if res is dsa.NoneArray:
+-                if max_dims is 1:
++                if max_dims == 1:
+                     # Weird trick to make the array look like a scalar
+                     max_dims = ()
+                 res = numpy.empty(max_dims)

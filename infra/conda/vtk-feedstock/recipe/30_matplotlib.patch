@@ -1,0 +1,16 @@
+Description: _matplotlib
+Index: VTK-6.3.0/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h
+===================================================================
+--- VTK-6.3.0.orig/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h
++++ VTK-6.3.0/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h
+@@ -143,6 +143,10 @@ private:
+   // is called internally when matplotlib rendering is first needed and is used
+   // to implement IsAvailable.
+   static Availability CheckMPLAvailability();
++  static void DisableMPL()
++    {
++    MPLMathTextAvailable = UNAVAILABLE;
++    };
+ 
+   // Description:
+   // Cache the availability of matplotlib in the current python session.

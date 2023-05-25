@@ -1,0 +1,25 @@
+From dae1718d50bec1b40b860280acafbdd94fc4cd5d Mon Sep 17 00:00:00 2001
+From: Ben Boeckel <ben.boeckel@kitware.com>
+Date: Sat, 21 Nov 2020 13:37:34 -0500
+Subject: [PATCH] vtkFreeTypeTools: avoid using an internal macro
+
+This macro has been removed upstream as it was always intended to be
+private.
+---
+ Rendering/FreeType/vtkFreeTypeTools.cxx | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+Index: vtk7/Rendering/FreeType/vtkFreeTypeTools.cxx
+===================================================================
+--- vtk7.orig/Rendering/FreeType/vtkFreeTypeTools.cxx
++++ vtk7/Rendering/FreeType/vtkFreeTypeTools.cxx
+@@ -273,8 +273,7 @@
+ }
+ 
+ //----------------------------------------------------------------------------
+-FT_CALLBACK_DEF(FT_Error)
+-vtkFreeTypeToolsFaceRequester(FTC_FaceID face_id,
++static FT_Error vtkFreeTypeToolsFaceRequester(FTC_FaceID face_id,
+                               FT_Library lib,
+                               FT_Pointer request_data,
+                               FT_Face* face)
