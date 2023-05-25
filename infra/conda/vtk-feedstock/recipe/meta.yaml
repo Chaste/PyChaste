@@ -1,5 +1,5 @@
-{% set version = "9.2.6" %}
-{% set build = 6 %}
+{% set version = "7.0.0" %}
+{% set build = 1 %}
 
 {% set minor_version = ".".join(version.split(".")[:2]) %}
 
@@ -21,13 +21,19 @@ package:
 
 source:
   url: http://www.vtk.org/files/release/{{ minor_version }}/VTK-{{ version }}.tar.gz
-  sha256: 06fc8d49c4e56f498c40fcb38a563ed8d4ec31358d0101e8988f0bb4d539dd12
+  sha256: 78a990a15ead79cdc752e86b83cfab7dbf5b7ef51ba409db02570dbdd9ec32c3
   patches:
-    - fix-threads-windows.patch  # [win]
+    # - fix-threads-windows.patch  # [win]
     # https://github.com/conda-forge/vtk-feedstock/pull/282
     # https://gitlab.kitware.com/vtk/vtk/-/issues/18365#note_1079278
     # https://gitlab.kitware.com/vtk/vtk/-/merge_requests/9987
-    - patches/9987_try_except_python_import.patch  # [not win]
+    # - patches/9987_try_except_python_import.patch  # [not win]
+    - 110_python-371.patch
+    - 99-hdf5-1.10-compatibility
+    - 113_fix_python_equal.patch
+    - 30_matplotlib.patch
+    - gcc11-support.patch
+    - 3edc0de2b04ae1e100c229e592d6b9fa94f2915a.patch
 
 build:
   number: {{ build }}
@@ -82,18 +88,17 @@ outputs:
         - zlib
         - freetype
         - hdf5
-        - hdf5 * nompi_*
+        - hdf5 * mpi_mpich*
         - libxml2
         - libpng
         - libjpeg-turbo
         - libtiff
+        - mpich
         - jsoncpp
         - expat
-        - tbb
-        - tbb-devel
         - mesalib >=21.0  # [build_variant == "osmesa"]
         - libnetcdf
-        - libnetcdf * nompi_*
+        - libnetcdf * mpi_mpich*
         - lz4-c
         - xorg-libxt  # [linux]
         - boost-cpp
@@ -125,7 +130,6 @@ outputs:
         - libtiff
         - jsoncpp
         - expat
-        - tbb
         - mesalib >=21.0  # [build_variant == "osmesa"]
         - libnetcdf
         - lz4-c
@@ -187,6 +191,8 @@ outputs:
         - vtkmodules.vtkWebCore
         - vtkmodules.web
         - vtkmodules.web.utils
+        # - vtkmodules.vtkParallelMPI
+        # - vtkmodules.vtkParallelCore
 
       requires:
         - pip
