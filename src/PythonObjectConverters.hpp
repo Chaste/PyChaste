@@ -151,7 +151,7 @@ namespace pybind11 { namespace detail {                                 \
   protected:                                                            \
 VTK_OBJ *value;                                                         \
 public:                                                                 \
-static PYBIND11_DESCR name() { return type_descr(_(#VTK_OBJ)); }        \
+static constexpr auto name =_(#VTK_OBJ);        \
 operator VTK_OBJ *() { return value; }                                  \
 operator VTK_OBJ &() { return *value; }                                 \
 template <typename _T> using cast_op_type =                             \

@@ -151,7 +151,7 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
                     writer.SetWriteToMemory(1)
                     writer.SetInputConnection(windowToImageFilter.GetOutputPort())
                     writer.Write()
-                    data = str(buffer(writer.GetResult()))
+                    data = memoryview(writer.GetResult())
                      
                     return Image(data)
                 
