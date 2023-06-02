@@ -1,13 +1,9 @@
-boost_cpp:
-- 1.74.0
-build_variant:
-- egl
 cdt_name:
 - cos7
 channel_sources:
 - conda-forge
 channel_targets:
-- conda-forge main
+- pychaste main
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -16,52 +12,34 @@ docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 expat:
 - '2'
-ffmpeg:
-- '5'
 fortran_compiler:
 - gfortran
 fortran_compiler_version:
 - '12'
 freetype:
 - '2'
-glew:
-- '2.1'
 hdf5:
 - '1.10'
 jsoncpp:
 - '1.9'
-libjpeg_turbo:
-- '2'
-libnetcdf:
-- '4'
+jpeg:
+- '9'
 libpng:
 - '1.6'
 libtiff:
-- '4.5'
+- '4'
 libxml2:
 - '2'
-lz4_c:
-- '1.9'
 mpich:
 - '3'
 pin_run_as_build:
-  boost-cpp:
-    max_pin: x.x.x
   python:
     min_pin: x.x
     max_pin: x.x
-proj:
-- '9.2'
 python:
 - 3.10.* *_cpython
-qt_main:
-- '5.15'
-sqlite:
-- '3'
 target_platform:
 - linux-64
-tk:
-- '8.6'
 vtk:
 - 7.1.1
 zip_keys:
