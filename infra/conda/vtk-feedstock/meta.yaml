@@ -28,7 +28,7 @@ source:
     # https://gitlab.kitware.com/vtk/vtk/-/issues/18365#note_1079278
     # https://gitlab.kitware.com/vtk/vtk/-/merge_requests/9987
     # - patches/9987_try_except_python_import.patch  # [not win]
-    - vtk7.1.1.patch
+    - patches/vtk7.1.1.patch
 
 build:
   number: {{ build }}
@@ -39,7 +39,6 @@ outputs:
     build:
       string: {{ build_string }}
       script: ${RECIPE_DIR}/build-base.sh  # [not win]
-      script: "%RECIPE_DIR%\\bld-base.bat"  # [win]
       ignore_run_exports_from:
         - ffmpeg  # [not win]
       run_exports:
