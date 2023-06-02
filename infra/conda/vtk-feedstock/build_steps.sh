@@ -47,7 +47,7 @@ conda info
 conda config --env --show-sources
 conda list --show-channel-urls
 
-/usr/bin/sudo -n yum install -y mesa-libGL-devel
+/usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel
 
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     conda debug "${RECIPE_ROOT}" -m "${CONFIG_FILE}"
