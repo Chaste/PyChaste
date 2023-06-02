@@ -15,7 +15,7 @@ mkdir -p "$ARTIFACTS"
 export UPLOAD_PACKAGES="${UPLOAD_PACKAGES:-False}"
 
 docker pull "${DOCKER_IMAGE}"
-docker run --rm -it --cpus="${CPU_COUNT}" \
+docker run --rm -it \
            -v "${RECIPE_ROOT}":/home/conda/recipe_root:rw,z,delegated \
            -e CONFIG \
            -e UPLOAD_PACKAGES \

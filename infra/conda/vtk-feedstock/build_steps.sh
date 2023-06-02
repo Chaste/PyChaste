@@ -6,7 +6,6 @@ export PYTHONUNBUFFERED=1
 export RECIPE_ROOT='/home/conda/recipe_root'
 export CONFIG_FILE="${RECIPE_ROOT}/${CONFIG}.yaml"
 export CONDA_BLD_PATH=${RECIPE_ROOT}/build_artifacts
-export CPU_COUNT=${CPU_COUNT:-$(nproc)}
 
 cat >~/.condarc <<CONDARC
 
@@ -38,8 +37,8 @@ cat ${CONFIG_FILE}
 mkdir -p "${CONDA_PREFIX}/etc/conda/activate.d"
 
 cat >${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh <<CONDAACTIVATE
-export CONDA_BLD_PATH='/home/conda/recipe_root/build_artifacts'
-export CPU_COUNT='${CPU_COUNT}'
+export CONDA_BLD_PATH='${RECIPE_ROOT}/build_artifacts'
+export CPU_COUNT='${CPU_COUNT:-}'
 export PYTHONUNBUFFERED='1'
 
 CONDAACTIVATE
@@ -58,8 +57,9 @@ else
     conda mambabuild "${RECIPE_ROOT}" -m "${CONFIG_FILE}"
 
     # if [[ "${UPLOAD_PACKAGES}" != 'False' ]]; then
-    #     anaconda login
-    #     anaconda upload ${RECIPE_ROOT}/build_artifacts/linux-64/${CONFIG}.conda
+    #   anaconda -q --show-traceback -t ${anaconda_token} upload \
+    #   -u 'pychaste' \
+    #   ${RECIPE_ROOT}/build_artifacts/linux-64/${CONFIG}.conda
     # fi
 fi
 
