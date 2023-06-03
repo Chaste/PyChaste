@@ -59,6 +59,7 @@ requirements:
     - mpich
     - jsoncpp
     - expat
+    - glew
     
   run:
     - python
@@ -71,8 +72,11 @@ requirements:
     - libpng
     - jpeg
     - libtiff
+    - mpi4py
+    - mpich
     - jsoncpp
     - expat
+    - glew
 
 test:
   imports:
