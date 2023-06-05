@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '12'
+- '11'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 expat:
@@ -15,7 +15,7 @@ expat:
 fortran_compiler:
 - gfortran
 fortran_compiler_version:
-- '12'
+- '11'
 freetype:
 - '2'
 hdf5:
@@ -24,6 +24,8 @@ jsoncpp:
 - '1.9'
 jpeg:
 - '9'
+libnetcdf:
+- '4'
 libpng:
 - '1.6'
 libtiff:
