@@ -24,8 +24,6 @@ jsoncpp:
 - '1.9'
 jpeg:
 - '9'
-libnetcdf:
-- '4'
 libpng:
 - '1.6'
 libtiff:
