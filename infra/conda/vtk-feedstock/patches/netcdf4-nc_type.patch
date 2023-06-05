@@ -1,0 +1,11 @@
+--- a/ThirdParty/netcdf/vtknetcdf/libsrc4/nc4internal.c
++++ b/ThirdParty/netcdf/vtknetcdf/libsrc4/nc4internal.c
+@@ -380,7 +380,7 @@
+ 
+ /* Recursively hunt for a netCDF type id. */
+ NC_TYPE_INFO_T *
+-nc4_rec_find_nc_type(NC_GRP_INFO_T *start_grp, nc_type target_nc_typeid)
++nc4_rec_find_nc_type(NC_GRP_INFO_T *start_grp, hid_t target_nc_typeid)
+ {
+    NC_GRP_INFO_T *g;
+    NC_TYPE_INFO_T *type, *res;
