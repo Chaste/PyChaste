@@ -7,7 +7,10 @@ BUILD_CONFIG=Release
 mkdir build
 cd build || exit
 
-cmake -LAH .. -G "Ninja" \
+export CFLAGS="${CFLAGS} -isystem ${PREFIX}/lib/python${PY_VER}/site-packages/mpi4py/include"
+export CXXFLAGS="${CXXFLAGS} -isystem ${PREFIX}/lib/python${PY_VER}/site-packages/mpi4py/include"
+
+cmake .. \
     -Wno-dev \
     -DCMAKE_BUILD_TYPE=$BUILD_CONFIG \
     -DCMAKE_PREFIX_PATH:PATH="${PREFIX}" \
@@ -38,7 +41,8 @@ cmake -LAH .. -G "Ninja" \
     -DVTK_Group_MPI=ON \
     -DMPIEXEC="${PREFIX}/bin/mpiexec"
 
-ninja install -v
+make -j$(CPU_COUNT)
+make install
 
 # The egg-info file is necessary because some packages,
 # like mayavi, have a __requires__ in their __invtkRenderWindow::New()it__.py,

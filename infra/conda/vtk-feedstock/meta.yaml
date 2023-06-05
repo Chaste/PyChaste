@@ -25,7 +25,7 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
     - cmake
-    - ninja
+    - make
     - python
     - {{ cdt('libxcb') }}
     - {{ cdt('libxau') }}
@@ -38,6 +38,7 @@ requirements:
     - {{ cdt('libsm-devel') }}
     - {{ cdt('libice-devel') }}
     - {{ cdt('libx11-devel') }}
+    - {{ cdt('libxt-devel') }}
     - {{ cdt('mesa-libgl-devel') }}
     - {{ cdt('mesa-dri-drivers') }}
     - {{ cdt('xorg-x11-proto-devel') }}
@@ -60,6 +61,7 @@ requirements:
     - jsoncpp
     - expat
     - glew
+    - libnetcdf
     
   run:
     - python
@@ -77,6 +79,7 @@ requirements:
     - jsoncpp
     - expat
     - glew
+    - libnetcdf
 
 test:
   imports:
