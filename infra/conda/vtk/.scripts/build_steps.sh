@@ -3,15 +3,19 @@
 set -xeuo pipefail
 export PYTHONUNBUFFERED=1
 
+export FEEDSTOCK_ROOT='/home/conda/feedstock_root'
 export RECIPE_ROOT='/home/conda/recipe_root'
-export CONFIG_FILE="${RECIPE_ROOT}/${CONFIG}.yaml"
-export CONDA_BLD_PATH=${RECIPE_ROOT}/build_artifacts
+
+export CI_SUPPORT="${FEEDSTOCK_ROOT}/.ci_support"
+export CONFIG_FILE="${CI_SUPPORT}/${CONFIG}.yaml"
+
+export CONDA_BLD_PATH="${FEEDSTOCK_ROOT}/build_artifacts"
 
 cat > ~/.condarc <<CONDARC
 conda-build:
-  root-dir: ${RECIPE_ROOT}/build_artifacts
+  root-dir: ${CONDA_BLD_PATH}
 pkgs_dirs:
-  - ${RECIPE_ROOT}/build_artifacts/pkg_cache
+  - ${CONDA_BLD_PATH}/pkg_cache
   - /opt/conda/pkgs
 CONDARC
 
@@ -35,7 +39,7 @@ cat ${CONFIG_FILE}
 mkdir -p "${CONDA_PREFIX}/etc/conda/activate.d"
 
 cat > ${CONDA_PREFIX}/etc/conda/activate.d/conda-forge-ci-setup-activate.sh <<CONDAACTIVATE
-export CONDA_BLD_PATH='${RECIPE_ROOT}/build_artifacts'
+export CONDA_BLD_PATH='${CONDA_BLD_PATH}'
 export CPU_COUNT='${CPU_COUNT:-}'
 export PYTHONUNBUFFERED='1'
 CONDAACTIVATE
@@ -45,6 +49,8 @@ conda config --env --show-sources
 conda list --show-channel-urls
 
 /usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel
+
+cp "${FEEDSTOCK_ROOT}/LICENSE.txt" "${RECIPE_ROOT}/recipe-scripts-license.txt"
 
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     conda debug "${RECIPE_ROOT}" -m "${CONFIG_FILE}"
@@ -56,8 +62,8 @@ else
     # if [[ "${UPLOAD_PACKAGES}" != 'False' ]]; then
     #   anaconda -q --show-traceback -t ${anaconda_token} upload \
     #   -u 'pychaste' \
-    #   ${RECIPE_ROOT}/build_artifacts/linux-64/${CONFIG}.conda
+    #   ${CONDA_BLD_PATH}/linux-64/${CONFIG}.conda
     # fi
 fi
 
-touch "${RECIPE_ROOT}/build_artifacts/conda-forge-build-done-${CONFIG}"
+touch "${CONDA_BLD_PATH}/conda-forge-build-done-${CONFIG}"
