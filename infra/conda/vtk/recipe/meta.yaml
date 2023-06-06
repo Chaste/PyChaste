@@ -55,8 +55,6 @@ requirements:
     - libpng
     - jpeg
     - libtiff
-    - mpi4py
-    - mpich
     - jsoncpp
     - expat
     - glew
@@ -64,7 +62,8 @@ requirements:
     - hdf5 >=1.10, <1.11
     - hdf5 * mpi_mpich*
     - metis >=4
-    - mpich >=3
+    - mpich 4.0.*
+    - mpi4py
     - parmetis >=4
     - petsc >=3.12, <3.17
     - petsc4py
@@ -81,8 +80,6 @@ requirements:
     - libpng
     - jpeg
     - libtiff
-    - mpi4py
-    - mpich
     - jsoncpp
     - expat
     - glew
@@ -90,7 +87,8 @@ requirements:
     - hdf5 >=1.10, <1.11
     - hdf5 * mpi_mpich*
     - metis >=4
-    - mpich >=3
+    - mpich 4.0.*
+    - mpi4py
     - parmetis >=4
     - petsc >=3.12, <3.17
     - petsc4py

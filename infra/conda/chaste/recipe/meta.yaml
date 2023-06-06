@@ -20,6 +20,8 @@ requirements:
     - cmake
     - make
     - python
+    - git
+    - {{ cdt('libsm-devel') }}
     - {{ cdt('libxext') }}
 
   host:
@@ -28,7 +30,7 @@ requirements:
     - hdf5 >=1.10, <1.11
     - hdf5 * mpi_mpich*
     - metis >=4
-    - mpich >=3
+    - mpich 4.0.*
     - parmetis >=4
     - petsc >=3.12, <3.17
     - petsc4py
@@ -43,7 +45,7 @@ requirements:
     - hdf5 >=1.10, <1.11
     - hdf5 * mpi_mpich*
     - metis >=4
-    - mpich >=3
+    - mpich 4.0.*
     - parmetis >=4
     - petsc >=3.12, <3.17
     - petsc4py
