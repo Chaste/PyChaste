@@ -1,7 +1,9 @@
 cdt_name:
 - cos7
 channel_sources:
+- pychaste
 - conda-forge
+- bioconda
 channel_targets:
 - pychaste main
 cxx_compiler:
