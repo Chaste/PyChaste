@@ -4,12 +4,17 @@ set -ex
 
 BUILD_CONFIG=Release
 
-mkdir build
-cd build || exit
+# Ignore PETSc MPICH version warning (4.1.* installed but expected 4.0.*)
+cd ${PREFIX}/include
+patch -t -p1 < ${RECIPE_ROOT}/patches/petsc.patch
 
 # Modify pip environment for chaste_codegen
 export PIP_NO_DEPENDENCIES="False"
 export PIP_NO_INDEX="False"
+
+cd ${SRC_DIR}
+mkdir build
+cd build || exit
 
 cmake .. \
     -DCMAKE_BUILD_TYPE=RELEASE \
