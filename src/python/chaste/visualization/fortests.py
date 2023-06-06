@@ -76,7 +76,7 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
             container_id = 0
             
             def __init__(self):
-                pass
+                self.renderWindow = vtk.vtkRenderWindow()
             
             def interactive_plot_init(self):
                 
@@ -129,22 +129,21 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
                 
                 scene.ResetRenderer(0)
                 
-                renderWindow = vtk.vtkRenderWindow()
-                renderWindow.SetOffScreenRendering(1)
-                renderWindow.AddRenderer(scene.GetRenderer())
-                renderWindow.SetSize(width, height)
-                renderWindow.Render()
+                self.renderWindow.SetOffScreenRendering(1)
+                self.renderWindow.AddRenderer(scene.GetRenderer())
+                self.renderWindow.SetSize(width, height)
+                self.renderWindow.Render()
                 
                 if output_format == "wrl":
                     exporter = vtk.vtkVRMLExporter()
-                    exporter.SetInput(renderWindow)
+                    exporter.SetInput(self.renderWindow)
                     exporter.SetFileName(os.getcwd() + "/temp_scene.wrl")
                     exporter.Write()
                     self.interactive_plot_show(width, height, "temp_scene.wrl", increment)
                  
                 else:
                     windowToImageFilter = vtk.vtkWindowToImageFilter()
-                    windowToImageFilter.SetInput(renderWindow)
+                    windowToImageFilter.SetInput(self.renderWindow)
                     windowToImageFilter.Update()
                       
                     writer = vtk.vtkPNGWriter()
