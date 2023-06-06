@@ -1,25 +1,17 @@
-{% set version = "7.1.1" %}
+{% set version = "3.4.4" %}
 {% set build = 0 %}
-
-{% set minor_version = ".".join(version.split(".")[:2]) %}
 
 {% set build_string = "py{}h{}_{}".format(CONDA_PY, PKG_HASH, build) %}
 
 package:
-  name: vtk
+  name: chaste
   version: {{ version }}
 
 source:
-  url: http://www.vtk.org/files/release/{{ minor_version }}/VTK-{{ version }}.tar.gz
-  fn:  VTK-{{ version }}.tar.gz
-  sha256: 2d5cdd048540144d821715c718932591418bb48f5b6bb19becdae62339efa75a
-  patches:
-    - patches/vtk7.1.1.patch
-    - patches/netcdf4-nc_type.patch
+  path: /tmp/Chaste
 
 build:
   number: {{ build }}
-  string: {{ build_string }}
 
 requirements:
   build:
@@ -28,80 +20,48 @@ requirements:
     - cmake
     - make
     - python
-    - {{ cdt('libxcb') }}
-    - {{ cdt('libxau') }}
-    - {{ cdt('libuuid') }}
     - {{ cdt('libxext') }}
-    - {{ cdt('libxfixes') }}
-    - {{ cdt('libxxf86vm') }}
-    - {{ cdt('libxdamage') }}
-    - {{ cdt('libselinux') }}
-    - {{ cdt('libsm-devel') }}
-    - {{ cdt('libice-devel') }}
-    - {{ cdt('libx11-devel') }}
-    - {{ cdt('libxt-devel') }}
-    - {{ cdt('mesa-libgl-devel') }}
-    - {{ cdt('mesa-dri-drivers') }}
-    - {{ cdt('xorg-x11-proto-devel') }}
-    - {{ cdt('libglvnd-egl') }}
-    - {{ cdt('mesa-libegl-devel') }}
-    - {{ cdt('mesa-libgbm') }}
 
   host:
     - python
-    - zlib
-    - freetype
-    - hdf5
+    - boost-cpp >=1.68, <1.76
+    - hdf5 >=1.10, <1.11
     - hdf5 * mpi_mpich*
-    - libxml2
-    - libpng
-    - jpeg
-    - libtiff
-    - mpi4py
-    - mpich
-    - jsoncpp
-    - expat
-    - glew
-    
+    - metis >=4
+    - mpich >=3
+    - parmetis >=4
+    - petsc >=3.12, <3.17
+    - petsc4py
+    - sundials >=3.0,<6.0
+    - vtk 7.1.1
+    - xerces-c >=3
+    - xsd 4.*
+
   run:
     - python
-    - future
-    - zlib
-    - freetype
-    - hdf5
+    - boost-cpp >=1.68, <1.76
+    - hdf5 >=1.10, <1.11
     - hdf5 * mpi_mpich*
-    - libxml2
-    - libpng
-    - jpeg
-    - libtiff
-    - mpi4py
-    - mpich
-    - jsoncpp
-    - expat
-    - glew
+    - metis >=4
+    - mpich >=3
+    - parmetis >=4
+    - petsc >=3.12, <3.17
+    - petsc4py
+    - sundials >=3.0,<6.0
+    - vtk 7.1.1
+    - xerces-c >=3
+    - xsd 4.*
+    - matplotlib
+    - numpy
 
 test:
   imports:
-    - vtk
-    - vtk.vtkChartsCore
-    - vtk.vtkCommonCore
-    - vtk.vtkFiltersCore
-    - vtk.vtkFiltersGeneric
-    - vtk.vtkGeovisCore
-    - vtk.vtkFiltersHybrid
-    - vtk.vtkIOCore
-    - vtk.vtkImagingCore
-    - vtk.vtkInfovisCore
-    - vtk.vtkRenderingCore
-    - vtk.vtkViewsCore
-    - vtk.vtkRenderingVolume
-    - vtk.vtkInteractionWidgets
+    - chaste
 
 about:
-  home: http://www.vtk.org/
+  home: http://www.cs.ox.ac.uk/chaste/
   license: BSD-3-Clause
-  license_file: Copyright.txt
   summary: >
-    The Visualization Toolkit (VTK) is an open-source, freely available software system for 3D computer graphics, modeling, image processing, volume rendering, scientific visualization, and information visualization.
-  dev_url: https://gitlab.kitware.com/vtk/vtk
-  doc_url: https://vtk.org/documentation
+    Chaste is a general purpose simulation package for computational biology.
+  dev_url: https://github.com/Chaste/Chaste
+  doc_url: https://chaste.github.io
