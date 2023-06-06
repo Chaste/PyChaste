@@ -1,0 +1,2251 @@
+unchanged:
+--- VTK-6.2.0.orig/Wrapping/Tcl/vtkTkAppInit.cxx
++++ VTK-6.2.0/Wrapping/Tcl/vtkTkAppInit.cxx
+@@ -165,6 +165,8 @@ int Tcl_AppInit(Tcl_Interp *interp)
+   // Help Tcl find the Tcl/Tk helper files.
+   const char* relative_dirs[] =
+     {
++      "../share/tcltk",
++      "../../share/tcltk",
+       "TclTk/lib",
+       ".." VTK_INSTALL_TCL_DIR,
+       0
+unchanged:
+--- a/CMake/vtkModuleMacros.cmake
++++ b/CMake/vtkModuleMacros.cmake
+@@ -417,8 +417,8 @@
+ function(vtk_target_name _name)
+   get_property(_type TARGET ${_name} PROPERTY TYPE)
+   if(NOT "${_type}" STREQUAL EXECUTABLE AND NOT VTK_JAVA_INSTALL)
+-    set_property(TARGET ${_name} PROPERTY VERSION 1)
+-    set_property(TARGET ${_name} PROPERTY SOVERSION 1)
++    set_property(TARGET ${_name} PROPERTY VERSION ${VTK_MAJOR_VERSION}.${VTK_MINOR_VERSION}p.${VTK_BUILD_VERSION})
++    set_property(TARGET ${_name} PROPERTY SOVERSION ${VTK_MAJOR_VERSION}.${VTK_MINOR_VERSION}p)
+   endif()
+   if("${_name}" MATCHES "^[Vv][Tt][Kk]")
+     set(_vtk "")
+unchanged:
+--- a/Rendering/Tk/CMakeLists.txt
++++ b/Rendering/Tk/CMakeLists.txt
+@@ -118,7 +118,7 @@
+     vtk_target_install(vtkRenderingPythonTkWidgets)
+ 
+     set_property(TARGET vtkRenderingPythonTkWidgets PROPERTY OUTPUT_NAME
+-         vtkRenderingPythonTkWidgets-${VTK_MAJOR_VERSION}.${VTK_MINOR_VERSION})
++         vtkRenderingPythonTkWidgets)
+ 
+     set(Module_PYTHON_LIBS ${VTK_TK_LIBRARIES})
+     if(VTK_USE_X)
+unchanged:
+--- a/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h
++++ b/Rendering/Matplotlib/vtkMatplotlibMathTextUtilities.h
+@@ -156,6 +156,10 @@
+    * to implement IsAvailable.
+    */
+   static Availability CheckMPLAvailability();
++  static void DisableMPL()
++    {
++    MPLMathTextAvailable = UNAVAILABLE;
++    };
+ 
+   //@{
+   /**
+unchanged:
+--- a/IO/SQL/vtkSQLiteDatabase.cxx
++++ b/IO/SQL/vtkSQLiteDatabase.cxx
+@@ -29,7 +29,7 @@
+ #include <fstream>
+ #include <sstream>
+ 
+-#include <vtksqlite/vtk_sqlite3.h>
++#include <sqlite3.h>
+ 
+ vtkStandardNewMacro(vtkSQLiteDatabase);
+ 
+@@ -307,15 +307,15 @@
+     }
+   }
+ 
+-  int result = vtk_sqlite3_open(this->DatabaseFileName, & (this->SQLiteInstance));
++  int result = sqlite3_open(this->DatabaseFileName, & (this->SQLiteInstance));
+ 
+-  if (result != VTK_SQLITE_OK)
++  if (result != SQLITE_OK)
+   {
+     vtkDebugMacro(<<"SQLite open() failed.  Error code is "
+                   << result << " and message is "
+-                  << vtk_sqlite3_errmsg(this->SQLiteInstance) );
++                  << sqlite3_errmsg(this->SQLiteInstance) );
+ 
+-    vtk_sqlite3_close(this->SQLiteInstance);
++    sqlite3_close(this->SQLiteInstance);
+     return false;
+   }
+   else
+@@ -334,8 +334,8 @@
+   }
+   else
+   {
+-    int result = vtk_sqlite3_close(this->SQLiteInstance);
+-    if (result != VTK_SQLITE_OK)
++    int result = sqlite3_close(this->SQLiteInstance);
++    if (result != SQLITE_OK)
+     {
+       vtkWarningMacro(<< "Close(): SQLite returned result code " << result);
+     }
+@@ -368,13 +368,13 @@
+   }
+ 
+   vtkSQLQuery *query = this->GetQueryInstance();
+-  query->SetQuery("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name");
++  query->SetQuery("SELECT name FROM sqlite3_master WHERE type='table' ORDER BY name");
+   bool status = query->Execute();
+ 
+   if (!status)
+   {
+     vtkErrorMacro(<< "GetTables(): Database returned error: "
+-                  << vtk_sqlite3_errmsg(this->SQLiteInstance) );
++                  << sqlite3_errmsg(this->SQLiteInstance) );
+     query->Delete();
+     return this->Tables;
+   }
+@@ -403,7 +403,7 @@
+   if (!status)
+   {
+     vtkErrorMacro(<< "GetRecord(" << table << "): Database returned error: "
+-                  << vtk_sqlite3_errmsg(this->SQLiteInstance) );
++                  << sqlite3_errmsg(this->SQLiteInstance) );
+     query->Delete();
+     return NULL;
+   }
+@@ -467,10 +467,10 @@
+ // ----------------------------------------------------------------------
+ bool vtkSQLiteDatabase::HasError()
+ {
+-  return (vtk_sqlite3_errcode(this->SQLiteInstance)!=VTK_SQLITE_OK);
++  return (sqlite3_errcode(this->SQLiteInstance)!=SQLITE_OK);
+ }
+ 
+ const char* vtkSQLiteDatabase::GetLastErrorText()
+ {
+-  return vtk_sqlite3_errmsg(this->SQLiteInstance);
++  return sqlite3_errmsg(this->SQLiteInstance);
+ }
+unchanged:
+--- a/IO/SQL/vtkSQLiteDatabase.h
++++ b/IO/SQL/vtkSQLiteDatabase.h
+@@ -52,7 +52,7 @@
+ class vtkSQLQuery;
+ class vtkSQLiteQuery;
+ class vtkStringArray;
+-struct vtk_sqlite3;
++struct sqlite3;
+ 
+ class VTKIOSQL_EXPORT vtkSQLiteDatabase : public vtkSQLDatabase
+ {
+@@ -167,7 +167,7 @@
+   virtual bool ParseURL(const char* url);
+ 
+ private:
+-  vtk_sqlite3 *SQLiteInstance;
++  sqlite3 *SQLiteInstance;
+ 
+   // We want this to be private, a user of this class
+   // should not be setting this for any reason
+unchanged:
+--- a/IO/SQL/vtkSQLiteQuery.cxx
++++ b/IO/SQL/vtkSQLiteQuery.cxx
+@@ -25,7 +25,7 @@
+ #include "vtkVariant.h"
+ #include "vtkVariantArray.h"
+ 
+-#include <vtksqlite/vtk_sqlite3.h>
++#include <sqlite3.h>
+ 
+ #include <cassert>
+ 
+@@ -43,7 +43,7 @@
+ {
+   this->Statement = NULL;
+   this->InitialFetch = true;
+-  this->InitialFetchResult=VTK_SQLITE_DONE;
++  this->InitialFetchResult=SQLITE_DONE;
+   this->LastErrorText = NULL;
+   this->TransactionInProgress = false;
+ }
+@@ -61,7 +61,7 @@
+   {
+     if (this->Database != NULL)
+     {
+-      vtk_sqlite3_finalize(this->Statement);
++      sqlite3_finalize(this->Statement);
+       this->Statement = NULL;
+     }
+   }
+@@ -128,8 +128,8 @@
+   if (this->Statement)
+   {
+     vtkDebugMacro(<<"Finalizing old statement");
+-    int finalizeStatus = vtk_sqlite3_finalize(this->Statement);
+-    if (finalizeStatus != VTK_SQLITE_OK)
++    int finalizeStatus = sqlite3_finalize(this->Statement);
++    if (finalizeStatus != SQLITE_OK)
+     {
+       vtkWarningMacro(<<"SetQuery(): Finalize returned unexpected code "
+                       << finalizeStatus);
+@@ -148,19 +148,19 @@
+       return false;
+     }
+ 
+-    vtk_sqlite3 *db = dbContainer->SQLiteInstance;
++    sqlite3 *db = dbContainer->SQLiteInstance;
+     const char *unused_statement;
+ 
+-    int prepareStatus = vtk_sqlite3_prepare_v2(db,
++    int prepareStatus = sqlite3_prepare_v2(db,
+                                                this->Query,
+                                                static_cast<int>(strlen(this->Query)),
+                                                &this->Statement,
+                                                &unused_statement);
+ 
+-    if (prepareStatus != VTK_SQLITE_OK)
++    if (prepareStatus != SQLITE_OK)
+     {
+-      this->SetLastErrorText(vtk_sqlite3_errmsg(db));
+-      vtkWarningMacro(<<"SetQuery(): vtk_sqlite3_prepare_v2() failed with error message "
++      this->SetLastErrorText(sqlite3_errmsg(db));
++      vtkWarningMacro(<<"SetQuery(): sqlite3_prepare_v2() failed with error message "
+                     << this->GetLastErrorText()
+                     << " on statement: '"
+                     << this->Query << "'");
+@@ -191,31 +191,31 @@
+   }
+   else
+   {
+-    vtk_sqlite3_reset(this->Statement);
++    sqlite3_reset(this->Statement);
+   }
+ 
+   vtkDebugMacro(<<"Execute(): Query ready to execute.");
+ 
+   this->InitialFetch = true;
+-  int result = vtk_sqlite3_step(this->Statement);
++  int result = sqlite3_step(this->Statement);
+   this->InitialFetchResult = result;
+ 
+-  if (result == VTK_SQLITE_DONE)
++  if (result == SQLITE_DONE)
+   {
+     this->SetLastErrorText(NULL);
+     this->Active = true;
+     return true;
+   }
+-  else if (result != VTK_SQLITE_ROW)
++  else if (result != SQLITE_ROW)
+   {
+     vtkSQLiteDatabase *dbContainer =
+       vtkSQLiteDatabase::SafeDownCast(this->Database);
+     assert(dbContainer != NULL);
+ 
+-    vtk_sqlite3 *db = dbContainer->SQLiteInstance;
++    sqlite3 *db = dbContainer->SQLiteInstance;
+ 
+-    this->SetLastErrorText(vtk_sqlite3_errmsg(db));
+-    vtkDebugMacro(<< "Execute(): vtk_sqlite3_step() returned error message "
++    this->SetLastErrorText(sqlite3_errmsg(db));
++    vtkDebugMacro(<< "Execute(): sqlite3_step() returned error message "
+                   << this->GetLastErrorText());
+     this->Active = false;
+     return false;
+@@ -236,7 +236,7 @@
+   }
+   else
+   {
+-    return vtk_sqlite3_column_count(this->Statement);
++    return sqlite3_column_count(this->Statement);
+   }
+ }
+ 
+@@ -256,7 +256,7 @@
+   }
+   else
+   {
+-    return vtk_sqlite3_column_name(this->Statement, column);
++    return sqlite3_column_name(this->Statement, column);
+   }
+ }
+ 
+@@ -276,22 +276,22 @@
+   }
+   else
+   {
+-    switch (vtk_sqlite3_column_type(this->Statement, column))
++    switch (sqlite3_column_type(this->Statement, column))
+     {
+-      case VTK_SQLITE_INTEGER:
++      case SQLITE_INTEGER:
+         return VTK_INT;
+-      case VTK_SQLITE_FLOAT:
++      case SQLITE_FLOAT:
+         return VTK_FLOAT;
+-      case VTK_SQLITE_TEXT:
++      case SQLITE_TEXT:
+         return VTK_STRING;
+-      case VTK_SQLITE_BLOB:
++      case SQLITE_BLOB:
+         return VTK_STRING; // until we have a BLOB type of our own
+-      case VTK_SQLITE_NULL:
++      case SQLITE_NULL:
+         return VTK_VOID; // ??? what makes sense here?
+       default:
+       {
+       vtkErrorMacro(<<"GetFieldType(): Unknown data type "
+-                    << vtk_sqlite3_column_type(this->Statement, column)
++                    << sqlite3_column_type(this->Statement, column)
+                     <<" from SQLite.");
+       return VTK_VOID;
+       }
+@@ -312,7 +312,7 @@
+   {
+     vtkDebugMacro(<<"NextRow(): Initial fetch being handled.");
+     this->InitialFetch = false;
+-    if (this->InitialFetchResult == VTK_SQLITE_DONE)
++    if (this->InitialFetchResult == SQLITE_DONE)
+     {
+       return false;
+     }
+@@ -323,12 +323,12 @@
+   }
+   else
+   {
+-    int result = vtk_sqlite3_step(this->Statement);
+-    if (result == VTK_SQLITE_DONE)
++    int result = sqlite3_step(this->Statement);
++    if (result == SQLITE_DONE)
+     {
+       return false;
+     }
+-    else if (result == VTK_SQLITE_ROW)
++    else if (result == SQLITE_ROW)
+     {
+       return true;
+     }
+@@ -336,8 +336,8 @@
+     {
+       vtkSQLiteDatabase *dbContainer = vtkSQLiteDatabase::SafeDownCast( this->Database );
+       assert(dbContainer != NULL);
+-      vtk_sqlite3 *db = dbContainer->SQLiteInstance;
+-      this->SetLastErrorText(vtk_sqlite3_errmsg(db));
++      sqlite3 *db = dbContainer->SQLiteInstance;
++      this->SetLastErrorText(sqlite3_errmsg(db));
+       vtkErrorMacro(<<"NextRow(): Database returned error code "
+                     << result << " with the following message: "
+                     << this->GetLastErrorText());
+@@ -363,33 +363,33 @@
+   }
+   else
+   {
+-    switch (vtk_sqlite3_column_type(this->Statement, column))
++    switch (sqlite3_column_type(this->Statement, column))
+     {
+-      case VTK_SQLITE_INTEGER:
+-        return vtkVariant(vtk_sqlite3_column_int(this->Statement, column));
++      case SQLITE_INTEGER:
++        return vtkVariant(sqlite3_column_int(this->Statement, column));
+ 
+-      case VTK_SQLITE_FLOAT:
+-        return vtkVariant(vtk_sqlite3_column_double(this->Statement, column));
++      case SQLITE_FLOAT:
++        return vtkVariant(sqlite3_column_double(this->Statement, column));
+ 
+-      case VTK_SQLITE_TEXT:
++      case SQLITE_TEXT:
+       {
+       std::ostringstream str;
+-      str << vtk_sqlite3_column_text(this->Statement, column);
++      str << sqlite3_column_text(this->Statement, column);
+       return vtkVariant(vtkStdString(str.str()));
+       }
+ 
+-      case VTK_SQLITE_BLOB:
++      case SQLITE_BLOB:
+       {
+       // This is a hack ... by passing the BLOB to vtkStdString with an explicit
+       // byte count, we ensure that the string will store all of the BLOB's bytes,
+       // even if there are NULL values.
+ 
+       return vtkVariant(vtkStdString(
+-        static_cast<const char*>(vtk_sqlite3_column_blob(this->Statement, column)),
+-        vtk_sqlite3_column_bytes(this->Statement, column)));
++        static_cast<const char*>(sqlite3_column_blob(this->Statement, column)),
++        sqlite3_column_bytes(this->Statement, column)));
+       }
+ 
+-      case VTK_SQLITE_NULL:
++      case SQLITE_NULL:
+       default:
+         return vtkVariant();
+     }
+@@ -420,11 +420,11 @@
+   vtkSQLiteDatabase *dbContainer = vtkSQLiteDatabase::SafeDownCast( this->Database );
+   assert(dbContainer != NULL);
+ 
+-  vtk_sqlite3 *db = dbContainer->SQLiteInstance;
++  sqlite3 *db = dbContainer->SQLiteInstance;
+   char *errorMessage = NULL;
+-  int result = vtk_sqlite3_exec(db, BEGIN_TRANSACTION, NULL, NULL, &errorMessage);
++  int result = sqlite3_exec(db, BEGIN_TRANSACTION, NULL, NULL, &errorMessage);
+ 
+-  if (result == VTK_SQLITE_OK)
++  if (result == SQLITE_OK)
+   {
+     this->TransactionInProgress = true;
+     this->SetLastErrorText(NULL);
+@@ -448,7 +448,7 @@
+ {
+   if (this->Statement)
+   {
+-    vtk_sqlite3_finalize(this->Statement);
++    sqlite3_finalize(this->Statement);
+     this->Statement = NULL;
+   }
+ 
+@@ -460,11 +460,11 @@
+ 
+   vtkSQLiteDatabase *dbContainer = vtkSQLiteDatabase::SafeDownCast( this->Database );
+   assert(dbContainer != NULL);
+-  vtk_sqlite3 *db = dbContainer->SQLiteInstance;
++  sqlite3 *db = dbContainer->SQLiteInstance;
+   char *errorMessage = NULL;
+-  int result = vtk_sqlite3_exec(db, COMMIT_TRANSACTION, NULL, NULL, &errorMessage);
++  int result = sqlite3_exec(db, COMMIT_TRANSACTION, NULL, NULL, &errorMessage);
+ 
+-  if (result == VTK_SQLITE_OK)
++  if (result == SQLITE_OK)
+   {
+     this->TransactionInProgress = false;
+     this->SetLastErrorText(NULL);
+@@ -496,11 +496,11 @@
+ 
+   vtkSQLiteDatabase *dbContainer = vtkSQLiteDatabase::SafeDownCast( this->Database );
+   assert(dbContainer != NULL);
+-  vtk_sqlite3 *db = dbContainer->SQLiteInstance;
++  sqlite3 *db = dbContainer->SQLiteInstance;
+   char *errorMessage = NULL;
+-  int result = vtk_sqlite3_exec(db, ROLLBACK_TRANSACTION, NULL, NULL, &errorMessage);
++  int result = sqlite3_exec(db, ROLLBACK_TRANSACTION, NULL, NULL, &errorMessage);
+ 
+-  if (result == VTK_SQLITE_OK)
++  if (result == SQLITE_OK)
+   {
+     this->TransactionInProgress = false;
+     this->SetLastErrorText(NULL);
+@@ -644,14 +644,14 @@
+   if (this->Active)
+   {
+     this->Active = false;
+-    vtk_sqlite3_reset(this->Statement);
++    sqlite3_reset(this->Statement);
+   }
+-  int status = vtk_sqlite3_bind_int(this->Statement, index+1, value);
++  int status = sqlite3_bind_int(this->Statement, index+1, value);
+ 
+-  if (status != VTK_SQLITE_OK)
++  if (status != SQLITE_OK)
+   {
+     std::ostringstream errormessage;
+-    errormessage << "sqlite_bind_int returned error: " << status;
++    errormessage << "sqlite3_bind_int returned error: " << status;
+     this->SetLastErrorText(errormessage.str().c_str());
+     vtkErrorMacro(<<errormessage.str().c_str());
+     return false;
+@@ -673,14 +673,14 @@
+   if (this->Active)
+   {
+     this->Active = false;
+-    vtk_sqlite3_reset(this->Statement);
++    sqlite3_reset(this->Statement);
+   }
+-  int status = vtk_sqlite3_bind_int(this->Statement, index+1, static_cast<vtk_sqlite_int64>(value));
++  int status = sqlite3_bind_int(this->Statement, index+1, static_cast<sqlite3_int64>(value));
+ 
+-  if (status != VTK_SQLITE_OK)
++  if (status != SQLITE_OK)
+   {
+     std::ostringstream errormessage;
+-    errormessage << "sqlite_bind_int64 returned error: " << status;
++    errormessage << "sqlite3_bind_int64 returned error: " << status;
+     this->SetLastErrorText(errormessage.str().c_str());
+     vtkErrorMacro(<<this->GetLastErrorText());
+     return false;
+@@ -702,15 +702,15 @@
+   if (this->Active)
+   {
+     this->Active = false;
+-    vtk_sqlite3_reset(this->Statement);
++    sqlite3_reset(this->Statement);
+   }
+ 
+-  int status = vtk_sqlite3_bind_double(this->Statement, index+1, value);
++  int status = sqlite3_bind_double(this->Statement, index+1, value);
+ 
+-  if (status != VTK_SQLITE_OK)
++  if (status != SQLITE_OK)
+   {
+     std::ostringstream errormessage;
+-    errormessage << "sqlite_bind_double returned error: " << status;
++    errormessage << "sqlite3_bind_double returned error: " << status;
+     this->SetLastErrorText(errormessage.str().c_str());
+     vtkErrorMacro(<<this->GetLastErrorText());
+     return false;
+@@ -731,15 +731,15 @@
+   if (this->Active)
+   {
+     this->Active = false;
+-    vtk_sqlite3_reset(this->Statement);
++    sqlite3_reset(this->Statement);
+   }
+ 
+-  int status = vtk_sqlite3_bind_text(this->Statement, index+1, value, length, VTK_SQLITE_TRANSIENT);
++  int status = sqlite3_bind_text(this->Statement, index+1, value, length, SQLITE_TRANSIENT);
+ 
+-  if (status != VTK_SQLITE_OK)
++  if (status != SQLITE_OK)
+   {
+     std::ostringstream errormessage;
+-    errormessage << "sqlite_bind_text returned error: " << status;
++    errormessage << "sqlite3_bind_text returned error: " << status;
+     this->SetLastErrorText(errormessage.str().c_str());
+     vtkErrorMacro(<<this->GetLastErrorText());
+     return false;
+@@ -760,20 +760,20 @@
+   if (this->Active)
+   {
+     this->Active = false;
+-    vtk_sqlite3_reset(this->Statement);
++    sqlite3_reset(this->Statement);
+   }
+ 
+   int status =
+-    vtk_sqlite3_bind_blob(this->Statement,
++    sqlite3_bind_blob(this->Statement,
+                           index+1,
+                           data,
+                           length,
+-                          VTK_SQLITE_TRANSIENT);
++                          SQLITE_TRANSIENT);
+ 
+-  if (status != VTK_SQLITE_OK)
++  if (status != SQLITE_OK)
+   {
+     std::ostringstream errormessage;
+-    errormessage << "sqlite_bind_blob returned error: " << status;
++    errormessage << "sqlite3_bind_blob returned error: " << status;
+     this->SetLastErrorText(errormessage.str().c_str());
+     vtkErrorMacro(<<this->GetLastErrorText());
+     return false;
+@@ -794,15 +794,15 @@
+   if (this->Active)
+   {
+     this->Active = false;
+-    vtk_sqlite3_reset(this->Statement);
++    sqlite3_reset(this->Statement);
+   }
+ 
+-  int status = vtk_sqlite3_clear_bindings(this->Statement);
++  int status = sqlite3_clear_bindings(this->Statement);
+ 
+-  if (status != VTK_SQLITE_OK)
++  if (status != SQLITE_OK)
+   {
+     std::ostringstream errormessage;
+-    errormessage << "sqlite_clear_bindings returned error: " << status;
++    errormessage << "sqlite3_clear_bindings returned error: " << status;
+     this->SetLastErrorText(errormessage.str().c_str());
+     vtkErrorMacro(<<this->GetLastErrorText());
+     return false;
+unchanged:
+--- a/IO/SQL/vtkSQLiteQuery.h
++++ b/IO/SQL/vtkSQLiteQuery.h
+@@ -50,7 +50,7 @@
+ class vtkSQLiteDatabase;
+ class vtkVariant;
+ class vtkVariantArray;
+-struct vtk_sqlite3_stmt;
++struct sqlite3_stmt;
+ 
+ class VTKIOSQL_EXPORT vtkSQLiteQuery : public vtkSQLQuery
+ {
+@@ -175,7 +175,7 @@
+   vtkSQLiteQuery(const vtkSQLiteQuery &) VTK_DELETE_FUNCTION;
+   void operator=(const vtkSQLiteQuery &) VTK_DELETE_FUNCTION;
+ 
+-  vtk_sqlite3_stmt *Statement;
++  sqlite3_stmt *Statement;
+   bool InitialFetch;
+   int InitialFetchResult;
+   char *LastErrorText;
+unchanged:
+--- a/ThirdParty/sqlite/CMakeLists.txt
++++ b/ThirdParty/sqlite/CMakeLists.txt
+@@ -1,4 +1,4 @@
+ set(vtksqlite_THIRD_PARTY 1)
+-set(vtksqlite_LIBRARIES vtksqlite)
++set(vtksqlite_LIBRARIES sqlite3)
+ vtk_module_export_info()
+-add_subdirectory(vtksqlite)
++
+unchanged:
+--- a/Parallel/MPI4Py/CMakeLists.txt
++++ b/Parallel/MPI4Py/CMakeLists.txt
+@@ -18,7 +18,7 @@
+     mark_as_advanced(MPI4PY_INCLUDE_DIR)
+   endif()
+ else()
+-  set(MPI4PY_INCLUDE_DIR "${vtkmpi4py_SOURCE_DIR}/vtkmpi4py/src/include")
++  set(MPI4PY_INCLUDE_DIR "/usr/include")
+ endif()
+ include_directories("${MPI4PY_INCLUDE_DIR}")
+ 
+unchanged:
+--- a/Parallel/MPI4Py/module.cmake
++++ b/Parallel/MPI4Py/module.cmake
+@@ -2,8 +2,6 @@
+   vtk_module(vtkParallelMPI4Py
+     GROUPS
+       MPI
+-    COMPILE_DEPENDS
+-      vtkmpi4py
+     EXCLUDE_FROM_TCL_WRAPPING
+     EXCLUDE_FROM_JAVA_WRAPPING
+     KIT
+@@ -14,4 +12,4 @@
+     PRIVATE_DEPENDS
+       vtkParallelMPI
+     )
+-endif ()
+\ No newline at end of file
++endif ()
+unchanged:
+--- a/Filters/ParallelMPI/vtkDistributedDataFilter.cxx
++++ b/Filters/ParallelMPI/vtkDistributedDataFilter.cxx
+@@ -1113,7 +1113,10 @@
+   vtkIdType cellsPerNode = numTotalCells / nprocs;
+ 
+   vtkIdList **sendCells = new vtkIdList * [ nprocs ];
+-  memset(sendCells, 0, sizeof(vtkIdList *) * nprocs);
++  
++  if (sizeof(vtkIdList *) * nprocs > 0) {
++    memset(sendCells, 0, sizeof(vtkIdList *) * nprocs);
++  }
+ 
+   if (numConsumers == nprocs - 1)
+   {
+@@ -1598,7 +1601,9 @@
+   // Exchange int arrays
+ 
+   float **recvArrays = new float * [nprocs];
+-  memset(recvArrays, 0, sizeof(float *) * nprocs);
++  if (sizeof(float *) * nprocs > 0) {
++    memset(recvArrays, 0, sizeof(float *) * nprocs);
++  }
+ 
+   if (sendSize[me] > 0)  // sent myself an array
+   {
+@@ -1720,7 +1725,9 @@
+   // Exchange int arrays
+ 
+   vtkIdType **recvArrays = new vtkIdType * [nprocs];
+-  memset(recvArrays, 0, sizeof(vtkIdType *) * nprocs);
++  if (sizeof(vtkIdType *) * nprocs > 0) {
++    memset(recvArrays, 0, sizeof(vtkIdType *) * nprocs);
++  }
+ 
+   if (sendSize[me] > 0)  // sent myself an array
+   {
+@@ -2789,7 +2796,9 @@
+ 
+   unsigned char *vals = new unsigned char [npoints];
+ 
+-  memset(vals, val, npoints);
++  if (npoints > 0) {
++    memset(vals, val, npoints);
++  }
+ 
+   vtkUnsignedCharArray *Array = vtkUnsignedCharArray::New();
+   Array->SetName(arrayName);
+@@ -2809,7 +2818,9 @@
+ 
+   unsigned char *vals = new unsigned char [ncells];
+ 
+-  memset(vals, val, ncells);
++  if (ncells > 0) {
++    memset(vals, val, ncells);
++  }
+ 
+   vtkUnsignedCharArray *Array = vtkUnsignedCharArray::New();
+   Array->SetName(arrayName);
+@@ -3008,7 +3019,9 @@
+   vtkIdType nGridPoints = grid->GetNumberOfPoints();
+ 
+   vtkIdType *numPointsOutside = new vtkIdType [nprocs];
+-  memset(numPointsOutside, 0, sizeof(vtkIdType) * nprocs);
++  if (sizeof(vtkIdType) * nprocs > 0) {
++    memset(numPointsOutside, 0, sizeof(vtkIdType) * nprocs);
++  }
+ 
+   vtkIdTypeArray *globalIds = vtkIdTypeArray::New();
+   globalIds->SetNumberOfValues(nGridPoints);
+@@ -3090,10 +3103,16 @@
+   // global ID back?
+ 
+   vtkFloatArray **ptarrayOut = new vtkFloatArray * [nprocs];
+-  memset(ptarrayOut, 0, sizeof(vtkFloatArray *) * nprocs);
++  
++  if (sizeof(vtkFloatArray *) * nprocs > 0) {
++    memset(ptarrayOut, 0, sizeof(vtkFloatArray *) * nprocs);
++  }
+ 
+   vtkIdTypeArray **localIds     = new vtkIdTypeArray * [nprocs];
+-  memset(localIds, 0, sizeof(vtkIdTypeArray *) * nprocs);
++  
++  if (sizeof(vtkIdTypeArray *) * nprocs > 0) {
++    memset(localIds, 0, sizeof(vtkIdTypeArray *) * nprocs);
++  }
+ 
+   vtkIdType *next = new vtkIdType [nprocs];
+   vtkIdType *next3 = new vtkIdType [nprocs];
+@@ -3268,7 +3287,9 @@
+   {
+     // There are no cells in my assigned region
+ 
+-    memset(gids, 0, sizeof(vtkIdTypeArray *) * nprocs);
++    if (sizeof(vtkIdTypeArray *) * nprocs > 0) {
++      memset(gids, 0, sizeof(vtkIdTypeArray *) * nprocs);
++    }
+ 
+     return gids;
+   }
+@@ -3473,7 +3494,10 @@
+   std::multimap<int, int>::iterator mapIt;
+ 
+   vtkIdTypeArray **processList = new vtkIdTypeArray * [nprocs];
+-  memset(processList, 0, sizeof (vtkIdTypeArray *) * nprocs);
++
++  if (sizeof (vtkIdTypeArray *) * nprocs > 0) {
++    memset(processList, 0, sizeof (vtkIdTypeArray *) * nprocs);
++  }
+ 
+   for (int i=0; i<nprocs; i++)
+   {
+@@ -3563,7 +3587,9 @@
+   vtkIdType numPoints = grid->GetNumberOfPoints();
+ 
+   vtkIdTypeArray **ghostPtIds = new vtkIdTypeArray * [nprocs];
+-  memset(ghostPtIds, 0, sizeof(vtkIdTypeArray *) * nprocs);
++  if (sizeof(vtkIdTypeArray *) * nprocs) {
++    memset(ghostPtIds, 0, sizeof(vtkIdTypeArray *) * nprocs);
++  }
+ 
+   if (numPoints < 1)
+   {
+unchanged:
+--- a/Examples/Infovis/Cxx/CMakeLists.txt
++++ b/Examples/Infovis/Cxx/CMakeLists.txt
+@@ -48,15 +48,6 @@
+   target_link_LIBRARIES(MultiView ${VTK_LIBRARIES})
+ endif()
+ 
+-# If Qt is enabled include the QT based examples
+-if(vtkGUISupportQt_LOADED AND vtkViewsQt_LOADED)
+-  add_subdirectory(EasyView)
+-  add_subdirectory(CustomLinkView)
+-  if(vtkIOSQL_LOADED)
+-    add_subdirectory(StatsView)
+-  endif()
+-endif()
+-
+ if(vtkInfovisParallel_LOADED)
+   add_executable(ParallelBFS ParallelBFS.cxx)
+   find_package(MPI REQUIRED)
+unchanged:
+--- VTK-6.3.0.orig/Wrapping/Java/CMakeLists.txt
++++ VTK-6.3.0/Wrapping/Java/CMakeLists.txt
+@@ -80,6 +80,8 @@ if(APPLE)
+   set(JAVAC_OPTIONS -J-Xmx512m)
+ endif()
+ 
++set(JAVAC_OPTIONS -J-Xmx1024m)
++
+ get_property(java_modules GLOBAL PROPERTY VTK_JAVA_WRAPPED)
+ foreach(module IN LISTS java_modules)
+   if(NOT ${module}_EXCLUDE_FROM_WRAPPING)
+unchanged:
+--- VTK-6.3.0.orig/CMake/vtkJavaWrapping.cmake
++++ VTK-6.3.0/CMake/vtkJavaWrapping.cmake
+@@ -79,7 +79,7 @@ function(vtk_add_java_wrapping module_na
+     install(TARGETS ${module_name}Java
+       EXPORT ${VTK_INSTALL_EXPORT_NAME}
+       RUNTIME DESTINATION ${VTK_INSTALL_RUNTIME_DIR} COMPONENT RuntimeLibraries
+-      LIBRARY DESTINATION ${VTK_INSTALL_LIBRARY_DIR} COMPONENT RuntimeLibraries
++      LIBRARY DESTINATION ${VTK_INSTALL_LIBRARY_DIR}/jni COMPONENT RuntimeLibraries
+       ARCHIVE DESTINATION ${VTK_INSTALL_ARCHIVE_DIR} COMPONENT Development)
+   endif()
+ endfunction()
+unchanged:
+--- b/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -200,7 +200,7 @@
+ endif()
+ 
+ # default to not using the system GLEW as ours has fixes in it right now
+-set(VTK_USE_SYSTEM_GLEW OFF CACHE BOOL "do not use a system glew" FORCE)
++set(VTK_USE_SYSTEM_GLEW OFF CACHE BOOL "do not use a system glew" ON)
+ 
+ set(VTK_BUILD_SHARED_LIBS ${BUILD_SHARED_LIBS})
+ 
+@@ -540,9 +540,7 @@
+ 
+ # The doxygen documentation needs to be aware of all modules.
+ option(BUILD_DOCUMENTATION "Build the VTK documentation" OFF)
+-if(BUILD_DOCUMENTATION)
+-  add_subdirectory(Utilities/Doxygen)
+-endif()
++add_subdirectory(Utilities/Doxygen)
+ 
+ # If python wrapping and testing is enabled then add driver scripts to run
+ # tests.  Note: Many pythong tests used to be automatically converted from TCL
+unchanged:
+--- a/Rendering/OpenGL2/CMakeLists.txt
++++ b/Rendering/OpenGL2/CMakeLists.txt
+@@ -353,7 +353,7 @@
+ vtk_opengl_link(${vtk-module})
+ if(VTK_USE_X)
+   vtk_module_link_libraries(${vtk-module}
+-    LINK_PUBLIC ${X11_LIBRARIES} ${X11_Xt_LIB})
++    LINK_PUBLIC ${GLEW_LIBRARY} ${X11_LIBRARIES} ${X11_Xt_LIB})
+ elseif(VTK_USE_COCOA)
+   vtk_module_link_libraries(${vtk-module} LINK_PUBLIC "-framework Cocoa")
+ endif()
+unchanged:
+--- b/Utilities/Doxygen/CMakeLists.txt
++++ b/Utilities/Doxygen/CMakeLists.txt
+@@ -1,69 +1,79 @@
+ #
+ # Build the documentation
+ #
+-find_package(Doxygen REQUIRED)
+-find_package(Perl REQUIRED)
+-find_package(HTMLHelp)
++if (BUILD_DOCUMENTATION) 
++  find_package(Doxygen REQUIRED)
++  find_package(Perl REQUIRED)
++  find_package(HTMLHelp)
+ 
+-option(DOXYGEN_SHORT_NAMES "Build Doxygen of VTK using short file names" OFF)
+-option(DOXYGEN_KEEP_TEMP "Do not delete the temporary Doxygen headers" OFF)
+-option(DOXYGEN_GENERATE_HTMLHELP "Generate HTML help (CHM) files" ON)
+-mark_as_advanced(DOXYGEN_SHORT_NAMES DOXYGEN_KEEP_TEMP DOXYGEN_GENERATE_HTMLHELP)
+-if(DOXYGEN_SHORT_NAMES)
+-  set(DOXYGEN_SHORT_NAMES YES)
+-else()
+-  set(DOXYGEN_SHORT_NAMES NO)
+-endif()
+-if(DOXYGEN_GENERATE_HTMLHELP)
+-  set(DOXYGEN_GENERATE_HTMLHELP YES)
+-else()
+-  set(DOXYGEN_GENERATE_HTMLHELP NO)
+-endif()
+-
+-#
+-# Configure the script and the doxyfile, then add target
+-#
+-set(HAVE_DOT_YESNO NO)
+-if(DOT)
+-  set(HAVE_DOT_YESNO YES)
+-  if(NOT DOT_PATH)
+-    get_filename_component(DOT_PATH ${DOT} PATH)
++  option(DOXYGEN_SHORT_NAMES "Build Doxygen of VTK using short file names" OFF)
++  option(DOXYGEN_KEEP_TEMP "Do not delete the temporary Doxygen headers" OFF)
++  option(DOXYGEN_GENERATE_HTMLHELP "Generate HTML help (CHM) files" ON)
++  mark_as_advanced(DOXYGEN_SHORT_NAMES DOXYGEN_KEEP_TEMP DOXYGEN_GENERATE_HTMLHELP)
++  if(DOXYGEN_SHORT_NAMES)
++    set(DOXYGEN_SHORT_NAMES YES)
++  else()
++    set(DOXYGEN_SHORT_NAMES NO)
+   endif()
+-endif()
+-
+-# Build up a list of all module source directories. Note that this should be
+-# all source directories and so does not use the normal variables.
+-unset(VTK_MODULE_DIRS_DOXYGEN)
+-file(GLOB src RELATIVE "${VTK_SOURCE_DIR}" "${VTK_SOURCE_DIR}/*/*/module.cmake")
+-foreach(module ${src})
+-  get_filename_component(module_BASE ${module} PATH)
+-  if("${module_BASE}" MATCHES "^Utilities" OR ${module_BASE} MATCHES "^Third")
+-    # Skip the utilities and third parties directories.
++  if(DOXYGEN_GENERATE_HTMLHELP)
++    set(DOXYGEN_GENERATE_HTMLHELP YES)
+   else()
+-    # Use both the source and binary directories, this ensures that
+-    # generated files will be included, but they may then be architecture,
+-    # build configuration and/or compiler specific. All source directories
+-    # are included whether the module is enabled or not.
+-    set(VTK_MODULE_DIRS_DOXYGEN
+-      "${VTK_MODULE_DIRS_DOXYGEN}
++    set(DOXYGEN_GENERATE_HTMLHELP NO)
++  endif()
++  
++  #
++  # Configure the script and the doxyfile, then add target
++  #
++  set(HAVE_DOT_YESNO NO)
++  if(DOT)
++    set(HAVE_DOT_YESNO YES)
++    if(NOT DOT_PATH)
++      get_filename_component(DOT_PATH ${DOT} PATH)
++    endif()
++  endif()
++  
++  # Build up a list of all module source directories. Note that this should be
++  # all source directories and so does not use the normal variables.
++  unset(VTK_MODULE_DIRS_DOXYGEN)
++  file(GLOB src RELATIVE "${VTK_SOURCE_DIR}" "${VTK_SOURCE_DIR}/*/*/module.cmake")
++  foreach(module ${src})
++    get_filename_component(module_BASE ${module} PATH)
++    if("${module_BASE}" MATCHES "^Utilities" OR ${module_BASE} MATCHES "^Third")
++      # Skip the utilities and third parties directories.
++    else()
++      # Use both the source and binary directories, this ensures that
++      # generated files will be included, but they may then be architecture,
++      # build configuration and/or compiler specific. All source directories
++      # are included whether the module is enabled or not.
++      set(VTK_MODULE_DIRS_DOXYGEN
++	"${VTK_MODULE_DIRS_DOXYGEN}
+   \"${VTK_SOURCE_DIR}/${module_BASE}\"
+   \"${VTK_BINARY_DIR}/${module_BASE}\"")
+-  endif()
+-endforeach()
++    endif()
++  endforeach()
++  
++  FIND_PATH(MATHJAX_CODEFILE MathJax.js
++    PATHS
++    /usr/share/mathjax/
++    /usr/share/javascript/
++    /usr/share/javascript/mathjax/
++    )
++  
++  configure_file(
++    ${VTK_SOURCE_DIR}/Utilities/Doxygen/doxyfile.in
++    ${VTK_BINARY_DIR}/Utilities/Doxygen/doxyfile)
++  
++  configure_file(
++    ${VTK_SOURCE_DIR}/Utilities/Doxygen/doc_makeall.cmake.in
++    ${VTK_BINARY_DIR}/Utilities/Doxygen/doc_makeall.cmake
++    @ONLY)
++  
++  add_custom_target(DoxygenDoc
++    ${CMAKE_COMMAND}
++    -P ${VTK_BINARY_DIR}/Utilities/Doxygen/doc_makeall.cmake
++    DEPENDS ${VTK_BINARY_DIR}/Utilities/Doxygen/doc_makeall.cmake)
+ 
+-configure_file(
+-  ${VTK_SOURCE_DIR}/Utilities/Doxygen/doxyfile.in
+-  ${VTK_BINARY_DIR}/Utilities/Doxygen/doxyfile)
+-
+-configure_file(
+-  ${VTK_SOURCE_DIR}/Utilities/Doxygen/doc_makeall.cmake.in
+-  ${VTK_BINARY_DIR}/Utilities/Doxygen/doc_makeall.cmake
+-  @ONLY)
+-
+-add_custom_target(DoxygenDoc
+-  ${CMAKE_COMMAND}
+-  -P ${VTK_BINARY_DIR}/Utilities/Doxygen/doc_makeall.cmake
+-  DEPENDS ${VTK_BINARY_DIR}/Utilities/Doxygen/doc_makeall.cmake)
++endif()
+ 
+ if(NOT VTK_INSTALL_NO_DOCUMENTATION)
+   macro(__vtk_install_documentation_files glob)
+unchanged:
+--- a/Utilities/Doxygen/doxyfile.in
++++ b/Utilities/Doxygen/doxyfile.in
+@@ -19,6 +19,9 @@
+ GENERATE_TAGFILE     = "@VTK_BINARY_DIR@/Utilities/Doxygen/vtk@VTK_MAJOR_VERSION@.@VTK_MINOR_VERSION@.tag"
+ 
+ PDF_HYPERLINKS       = YES
++USE_MATHJAX  = YES
++MATHJAX_RELPATH = @MATHJAX_CODEFILE@
++
+ 
+ HAVE_DOT             = @HAVE_DOT_YESNO@
+ DOT_PATH             = "@DOT_PATH@"
+unchanged:
+--- a/Wrapping/Java/CMakeLists.txt
++++ b/Wrapping/Java/CMakeLists.txt
+@@ -259,7 +259,7 @@
+   if(VTK_JAVA_SWT_COMPONENT)
+     set(VTK_JAVA_SAMPLE_DEPENDENCIES ${VTK_JAVA_SAMPLE_DEPENDENCIES}
+       rendering/SwtConeRendering
+-    )
++q    )
+   endif()
+ endif()
+ 
+@@ -358,11 +358,10 @@
+   COMMENT "Compiling Java Classes"
+   )
+ 
+-# Create the JAR file containing all compiled classes and
++
+ add_custom_command(
+-  COMMAND ${JAVA_ARCHIVE} -cvf  "${VTK_JAR_PATH}/vtk.jar"
+-  -C ${VTK_BINARY_DIR}/java
+-  vtk
++  COMMAND cd ${VTK_BINARY_DIR}/java && find . -name "*.class" -print | sort -u > classes.list
++  COMMAND cd ${VTK_BINARY_DIR}/java && ${JAVA_ARCHIVE} -cvf  "${VTK_JAR_PATH}/vtk.jar" @${VTK_BINARY_DIR}/java/classes.list
+   DEPENDS ${VTK_BINARY_DIR}/java/javac_stamp.txt ${JAVA_LIBRARIES}
+   OUTPUT ${VTK_JAR_PATH}/vtk.jar
+   COMMENT "Java Archive"
+unchanged:
+--- a/Wrapping/PythonCore/vtkPythonArgs.cxx
++++ b/Wrapping/PythonCore/vtkPythonArgs.cxx
+@@ -102,7 +102,7 @@ bool vtkPythonGetStringValue(PyObject *o, T *&a, const char *exctext)
+   else if (PyUnicode_Check(o))
+   {
+ #if PY_VERSION_HEX >= 0x03030000
+-    a = PyUnicode_AsUTF8(o);
++    a = const_cast<char*>(PyUnicode_AsUTF8(o));
+     return true;
+ #else
+     PyObject *s = _PyUnicode_AsDefaultEncodedString(o, NULL);
+unchanged:
+--- a/Utilities/Doxygen/doc_class2example.pl
++++ b/Utilities/Doxygen/doc_class2example.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2004-06-09 11:12:38 barre>
+ #
+ # Build cross-references between classes and examples
+unchanged:
+--- a/Utilities/Doxygen/doc_cleanhtml.pl
++++ b/Utilities/Doxygen/doc_cleanhtml.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2002-10-25 20:17:59 barre>
+ #
+ # Clean the HTML generated by Doxygen to remove some layout quicks
+unchanged:
+--- a/Utilities/Doxygen/doc_codematch.pl
++++ b/Utilities/Doxygen/doc_codematch.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2002-01-18 16:17:26 barre>
+ #
+ # Summary ?
+unchanged:
+--- a/Utilities/Doxygen/doc_contributors.pl
++++ b/Utilities/Doxygen/doc_contributors.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2002-11-01 15:33:04 barre>
+ #
+ # Get author and contributors.
+unchanged:
+--- a/Utilities/Doxygen/doc_header2doxygen.pl
++++ b/Utilities/Doxygen/doc_header2doxygen.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2011-01-16 21:15:53 barre>
+ #
+ # Convert VTK headers to doxygen format
+unchanged:
+--- a/Utilities/Doxygen/doc_index.pl
++++ b/Utilities/Doxygen/doc_index.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2001-11-21 17:40:48 barre>
+ #
+ # Build full-text index
+unchanged:
+--- a/Utilities/Doxygen/doc_rmpath.pl
++++ b/Utilities/Doxygen/doc_rmpath.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2001-10-05 11:49:40 barre>
+ #
+ # Remove path to intermediate Doxygen dir from html doc
+unchanged:
+--- a/Utilities/Doxygen/doc_version.pl
++++ b/Utilities/Doxygen/doc_version.pl
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env perl
++#!/usr/bin/perl
+ # Time-stamp: <2006-11-15 13:25:02 barre>
+ #
+ # Extract VTK version and add it to documentation
+unchanged:
+--- vtk7-7.1.1+dfsg1.orig/Utilities/KWIML/vtkkwiml/include/kwiml/abi.h
++++ vtk7-7.1.1+dfsg1/Utilities/KWIML/vtkkwiml/include/kwiml/abi.h
+@@ -467,6 +467,10 @@ suppression macro KWIML_ABI_NO_VERIFY wa
+ #elif defined(__XTENSA_EL__)
+ # define KWIML_ABI_ENDIAN_ID KWIML_ABI_ENDIAN_ID_LITTLE
+ 
++/* RISC-V */
++#elif defined(__riscv) || defined(__riscv__)
++# define KWIML_ABI_ENDIAN_ID KWIML_ABI_ENDIAN_ID_LITTLE 
++
+ /* Unknown CPU */
+ #elif !defined(KWIML_ABI_NO_ERROR_ENDIAN)
+ # error "Byte order of target CPU unknown."
+unchanged:
+--- a/Wrapping/Python/vtk/numpy_interface/algorithms.py
++++ b/Wrapping/Python/vtk/numpy_interface/algorithms.py
+@@ -197,7 +197,7 @@
+                 return dsa.NoneArray;
+ 
+             if res is dsa.NoneArray:
+-                if max_dims is 1:
++                if max_dims == 1:
+                     # Weird trick to make the array look like a scalar
+                     max_dims = ()
+                 res = numpy.empty(max_dims)
+unchanged:
+--- a/CMake/VTKGenerateExportHeader.cmake
++++ b/CMake/VTKGenerateExportHeader.cmake
+@@ -174,7 +174,7 @@
+     execute_process(COMMAND ${CMAKE_C_COMPILER} --version
+       OUTPUT_VARIABLE _gcc_version_info
+       ERROR_VARIABLE _gcc_version_info)
+-    string(REGEX MATCH "[3-9]\\.[0-9]\\.[0-9]*"
++    string(REGEX MATCH "[0-9]*\\.[0-9]\\.[0-9]*"
+       _gcc_version "${_gcc_version_info}")
+     # gcc on mac just reports: "gcc (GCC) 3.3 20030304 ..." without the
+     # patch level, handle this here:
+unchanged:
+--- a/IO/MySQL/vtkMySQLDatabasePrivate.h
++++ b/IO/MySQL/vtkMySQLDatabasePrivate.h
+@@ -7,6 +7,10 @@
+ 
+ #include "vtkIOMySQLModule.h" // For export macro
+ #include <mysql.h> // needed for MYSQL typedefs
++#if !defined(MARIADB_BASE_VERSION) && !defined(MARIADB_VERSION_ID) && \
++  MYSQL_VERSION_ID >= 80001 && MYSQL_VERSION_ID != 80002
++typedef bool my_bool;
++#endif
+ 
+ class VTKIOMYSQL_EXPORT vtkMySQLDatabasePrivate
+ {
+unchanged:
+--- vtk7.orig/Rendering/FreeType/vtkFreeTypeTools.cxx
++++ vtk7/Rendering/FreeType/vtkFreeTypeTools.cxx
+@@ -273,8 +273,7 @@
+ }
+ 
+ //----------------------------------------------------------------------------
+-FT_CALLBACK_DEF(FT_Error)
+-vtkFreeTypeToolsFaceRequester(FTC_FaceID face_id,
++static FT_Error vtkFreeTypeToolsFaceRequester(FTC_FaceID face_id,
+                               FT_Library lib,
+                               FT_Pointer request_data,
+                               FT_Face* face)
+unchanged:
+--- a/Rendering/FreeTypeFontConfig/vtkFontConfigFreeTypeTools.cxx
++++ b/Rendering/FreeTypeFontConfig/vtkFontConfigFreeTypeTools.cxx
+@@ -31,8 +31,7 @@ vtkStandardNewMacro(vtkFontConfigFreeTypeTools);
+ namespace
+ {
+ // The FreeType face requester callback:
+-FT_CALLBACK_DEF(FT_Error)
+-vtkFontConfigFreeTypeToolsFaceRequester(FTC_FaceID face_id,
++static FT_Error vtkFontConfigFreeTypeToolsFaceRequester(FTC_FaceID face_id,
+                                         FT_Library lib,
+                                         FT_Pointer request_data,
+                                         FT_Face* face)
+unchanged:
+--- vtk7-7.1.1+dfsg2.orig/ThirdParty/xdmf2/vtkxdmf2/libsrc/XdmfDsmComm.cxx
++++ vtk7-7.1.1+dfsg2/ThirdParty/xdmf2/vtkxdmf2/libsrc/XdmfDsmComm.cxx
+@@ -52,7 +52,7 @@
+         XdmfErrorMessage("Cannot Receive Message of Length = " << Msg->Length);
+         return(XDMF_FAIL);
+     }
+-    if(Msg->Data <= 0 ){
++    if(!Msg->Data){
+         XdmfErrorMessage("Cannot Receive Message into Data Buffer = " << Msg->Length);
+         return(XDMF_FAIL);
+     }
+@@ -66,7 +66,7 @@
+         XdmfErrorMessage("Cannot Send Message of Length = " << Msg->Length);
+         return(XDMF_FAIL);
+     }
+-    if(Msg->Data <= 0 ){
++    if(!Msg->Data){
+         XdmfErrorMessage("Cannot Send Message from Data Buffer = " << Msg->Length);
+         return(XDMF_FAIL);
+     }
+unchanged:
+--- vtk7-7.1.1+dfsg2.orig/Rendering/Label/vtkLabelHierarchyPrivate.h
++++ vtk7-7.1.1+dfsg2/Rendering/Label/vtkLabelHierarchyPrivate.h
+@@ -66,7 +66,7 @@
+     {
+     }
+ 
+-    bool operator () ( const vtkIdType& a, const vtkIdType& b )
++    bool operator () ( const vtkIdType& a, const vtkIdType& b ) const
+     {
+       if (0 == this->Hierarchy)
+       {
+unchanged:
+--- vtk7-7.1.1+dfsg2.orig/Rendering/Label/vtkLabelHierarchy.cxx
++++ vtk7-7.1.1+dfsg2/Rendering/Label/vtkLabelHierarchy.cxx
+@@ -525,7 +525,7 @@
+   {
+   public:
+     bool operator()(const vtkHierarchyNode & a,
+-                    const vtkHierarchyNode & b)
++                    const vtkHierarchyNode & b) const
+     {
+       if (a.Level != b.Level)
+       {
+only in patch2:
+unchanged:
+--- a/CMake/FindFFMPEG.cmake
++++ b/CMake/FindFFMPEG.cmake
+@@ -107,13 +107,14 @@
+ FFMPEG_FIND(LIBAVDEVICE avdevice avdevice.h)
+ FFMPEG_FIND(LIBAVCODEC  avcodec  avcodec.h)
+ FFMPEG_FIND(LIBAVUTIL   avutil   avutil.h)
++FFMPEG_FIND(LIBSWRESAMPLE swresample swresample.h)
+ FFMPEG_FIND(LIBSWSCALE  swscale  swscale.h)  # not sure about the header to look for here.
+ 
+ SET(FFMPEG_FOUND "NO")
+ 
+ # Note we don't check FFMPEG_LIBSWSCALE_FOUND, FFMPEG_LIBAVDEVICE_FOUND,
+ # and FFMPEG_LIBAVUTIL_FOUND as they are optional.
+-IF (FFMPEG_LIBAVFORMAT_FOUND AND FFMPEG_LIBAVCODEC_FOUND AND STDINT_OK)
++IF (FFMPEG_LIBAVFORMAT_FOUND AND FFMPEG_LIBAVCODEC_FOUND AND FFMPEG_LIBSWRESAMPLE_FOUND AND STDINT_OK)
+ 
+     SET(FFMPEG_FOUND "YES")
+ 
+only in patch2:
+unchanged:
+--- a/IO/FFMPEG/CMakeLists.txt
++++ b/IO/FFMPEG/CMakeLists.txt
+@@ -22,7 +22,7 @@
+   )
+ 
+ set(_ffmpeg_libs ${FFMPEG_LIBAVFORMAT_LIBRARIES} ${FFMPEG_LIBAVCODEC_LIBRARIES}
+-  ${FFMPEG_LIBAVUTIL_LIBRARIES}
++  ${FFMPEG_LIBAVUTIL_LIBRARIES} ${FFMPEG_LIBSWRESAMPLE_LIBRARIES}
+   )
+ 
+ if(NOT VTK_FFMPEG_HAS_IMG_CONVERT)
+only in patch2:
+unchanged:
+--- a/IO/FFMPEG/vtkFFMPEGWriter.cxx
++++ b/IO/FFMPEG/vtkFFMPEGWriter.cxx
+@@ -15,99 +15,77 @@
+ 
+ #include "vtkFFMPEGWriter.h"
+ 
++#include "vtkErrorCode.h"
+ #include "vtkImageData.h"
+ #include "vtkObjectFactory.h"
+-#include "vtkErrorCode.h"
+-#include "vtkFFMPEGConfig.h"
+ 
+-extern "C" {
+-#ifdef VTK_FFMPEG_HAS_OLD_HEADER
+-# include <ffmpeg/avformat.h>
+-#else
+-# include <libavformat/avformat.h>
+-#endif
+-
+-#ifndef VTK_FFMPEG_HAS_IMG_CONVERT
+-# ifdef VTK_FFMPEG_HAS_OLD_HEADER
+-#  include <ffmpeg/swscale.h>
+-# else
+-#  include <libswscale/swscale.h>
+-# endif
+-#endif
++extern "C"
++{
++#include <libavcodec/avcodec.h>
++#include <libavformat/avformat.h>
++#include <libswscale/swscale.h>
+ }
+ 
+-#ifdef __GNUC__
+-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+-#endif
+-
+-#if LIBAVCODEC_VERSION_MAJOR < 55
+-# define AV_CODEC_ID_MJPEG CODEC_ID_MJPEG
+-# define AV_CODEC_ID_RAWVIDEO CODEC_ID_RAWVIDEO
+-# define AV_PIX_FMT_BGR24 PIX_FMT_BGR24
+-# define AV_PIX_FMT_RGB24 PIX_FMT_RGB24
+-# define AV_PIX_FMT_YUVJ422P PIX_FMT_YUVJ422P
++#if LIBAVFORMAT_VERSION_MAJOR < 59
++#define vtk_ff_const59
++#else
++#define vtk_ff_const59 const
+ #endif
+ 
+-#if LIBAVCODEC_VERSION_MAJOR < 56 || \
+-    LIBAVCODEC_VERSION_MAJOR == 55 && LIBAVCODEC_VERSION_MINOR < 28 || \
+-    LIBAVCODEC_VERSION_MAJOR == 55 && LIBAVCODEC_VERSION_MINOR == 28 && LIBAVCODEC_VERSION_MICRO < 1
+-# define av_frame_alloc avcodec_alloc_frame
++#if defined(LIBAVFORMAT_VERSION_MAJOR) && LIBAVFORMAT_VERSION_MAJOR >= 57
++extern "C"
++{
++#include <libavutil/imgutils.h>
++}
+ #endif
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ class vtkFFMPEGWriterInternal
+-    {
++{
+ public:
+-  vtkFFMPEGWriterInternal(vtkFFMPEGWriter *creator);
++  vtkFFMPEGWriterInternal(vtkFFMPEGWriter* creator);
+   ~vtkFFMPEGWriterInternal();
+ 
+   int Start();
+-  int Write(vtkImageData *id);
++  int Write(vtkImageData* id);
+   void End();
+ 
+   int Dim[2];
+   int FrameRate;
+ 
+ private:
++  vtkFFMPEGWriter* Writer;
+ 
+-  vtkFFMPEGWriter *Writer;
++  AVFormatContext* avFormatContext;
+ 
+-  AVFormatContext *avFormatContext;
++  vtk_ff_const59 AVOutputFormat* avOutputFormat;
+ 
+-  AVOutputFormat *avOutputFormat;
++  AVStream* avStream;
+ 
+-  AVStream *avStream;
++  AVFrame* rgbInput;
++  AVFrame* yuvOutput;
+ 
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  unsigned char *codecBuf;
+-  int codecBufSize;
+-#endif
+-
+-  AVFrame *rgbInput;
+-  AVFrame *yuvOutput;
++  AVCodecContext* avCodecContext;
+ 
+   int openedFile;
+   int closedFile;
+-    };
++};
+ 
+-//---------------------------------------------------------------------------
+-vtkFFMPEGWriterInternal::vtkFFMPEGWriterInternal(vtkFFMPEGWriter *creator)
++//------------------------------------------------------------------------------
++vtkFFMPEGWriterInternal::vtkFFMPEGWriterInternal(vtkFFMPEGWriter* creator)
+ {
+   this->Writer = creator;
+   this->Dim[0] = 0;
+   this->Dim[1] = 0;
+ 
+-  this->avFormatContext = NULL;
++  this->avFormatContext = nullptr;
+ 
+-  this->avOutputFormat = NULL;
++  this->avOutputFormat = nullptr;
+ 
+-  this->avStream = NULL;
++  this->avStream = nullptr;
+ 
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  this->codecBuf = NULL;
+-#endif
+-  this->rgbInput = NULL;
+-  this->yuvOutput = NULL;
++  this->rgbInput = nullptr;
++  this->yuvOutput = nullptr;
+ 
+   this->openedFile = 0;
+   this->closedFile = 1;
+@@ -115,7 +93,7 @@
+   this->FrameRate = 25;
+ }
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ vtkFFMPEGWriterInternal::~vtkFFMPEGWriterInternal()
+ {
+   if (!this->closedFile)
+@@ -124,41 +102,316 @@
+   }
+ }
+ 
+-//---------------------------------------------------------------------------
++// for newer versions of ffmpeg use the new API as the old has been deprecated
++#if defined(LIBAVFORMAT_VERSION_MAJOR) && LIBAVFORMAT_VERSION_MAJOR >= 57
++
++//------------------------------------------------------------------------------
+ int vtkFFMPEGWriterInternal::Start()
+ {
+   this->closedFile = 0;
+ 
+-  //initialize libavcodec, and register all codecs and formats
++#ifdef NDEBUG
++  av_log_set_level(AV_LOG_ERROR);
++#endif
++
++  // choose avi media file format
++  this->avOutputFormat = av_guess_format("avi", nullptr, nullptr);
++  if (!this->avOutputFormat)
++  {
++    vtkGenericWarningMacro(<< "Could not open the avi media file format.");
++    return 0;
++  }
++
++  enum AVCodecID video_codec = this->Writer->GetCompression()
++    ? AV_CODEC_ID_MJPEG // choose a codec that is easily playable on windows
++    : AV_CODEC_ID_RAWVIDEO;
++
++  // create the format context that wraps all of the media output structures
++  if (avformat_alloc_output_context2(
++        &this->avFormatContext, this->avOutputFormat, nullptr, this->Writer->GetFileName()) < 0)
++  {
++    vtkGenericWarningMacro(<< "Could not open the format context.");
++    return 0;
++  }
++
++  vtk_ff_const59 AVCodec* codec;
++  if (!(codec = avcodec_find_encoder(video_codec)))
++  {
++    vtkGenericWarningMacro(<< "Failed to get video codec.");
++    return 0;
++  }
++
++  // create a stream for that file
++  this->avStream = avformat_new_stream(this->avFormatContext, codec);
++  if (!this->avStream)
++  {
++    vtkGenericWarningMacro(<< "Could not create video stream.");
++    return 0;
++  }
++
++  // Set up the codec.
++  if (!(this->avCodecContext = avcodec_alloc_context3(codec)))
++  {
++    vtkGenericWarningMacro(<< "Failed to allocate codec context.");
++    return 0;
++  }
++
++  this->avStream->codecpar->codec_id = video_codec;
++  this->avStream->codecpar->codec_type = AVMEDIA_TYPE_VIDEO;
++  this->avStream->codecpar->width = this->Dim[0];
++  this->avStream->codecpar->height = this->Dim[1];
++  if (this->Writer->GetCompression())
++  {
++    this->avStream->codecpar->format = AV_PIX_FMT_YUVJ420P;
++  }
++  else
++  {
++    this->avStream->codecpar->format = AV_PIX_FMT_BGR24;
++  }
++  this->avStream->time_base.den = this->FrameRate;
++  this->avStream->time_base.num = 1;
++
++  if (!this->Writer->GetBitRate())
++  {
++    // allow a variable quality/size tradeoff
++    switch (this->Writer->GetQuality())
++    {
++      case 0:
++        this->avStream->codecpar->bit_rate = 3 * 1024 * 1024;
++        break;
++      case 1:
++        this->avStream->codecpar->bit_rate = 6 * 1024 * 1024;
++        break;
++      default:
++        this->avStream->codecpar->bit_rate = 12 * 1024 * 1024;
++        break;
++    }
++  }
++  else
++  {
++    this->avStream->codecpar->bit_rate = this->Writer->GetBitRate();
++  }
++
++  // to do playback at actual recorded rate, this will need more work see also below
++  avcodec_parameters_to_context(this->avCodecContext, this->avStream->codecpar);
++  this->avCodecContext->time_base.den = this->FrameRate;
++  this->avCodecContext->time_base.num = 1;
++  // this->avCodecContext->max_b_frames = 2;
++  // about one full frame per second
++  this->avCodecContext->gop_size = this->FrameRate;
++  if (this->avFormatContext->oformat->flags & AVFMT_GLOBALHEADER)
++  {
++    this->avCodecContext->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
++  }
++  if (!this->Writer->GetBitRateTolerance())
++  {
++    this->avCodecContext->bit_rate_tolerance =
++      this->avCodecContext->bit_rate; // ffmpeg won't create a codec if brt<br
++  }
++  else
++  {
++    this->avCodecContext->bit_rate_tolerance = this->Writer->GetBitRateTolerance();
++  }
++  avcodec_parameters_from_context(this->avStream->codecpar, this->avCodecContext);
++
++  if (avcodec_open2(this->avCodecContext, codec, nullptr) < 0)
++  {
++    vtkGenericWarningMacro(<< "Could not open codec.");
++    return 0;
++  }
++
++  // for the output of the writer's input...
++  this->rgbInput = av_frame_alloc();
++  if (!this->rgbInput)
++  {
++    vtkGenericWarningMacro(<< "Could not make rgbInput avframe.");
++    return 0;
++  }
++  this->rgbInput->format = AV_PIX_FMT_RGB24;
++  this->rgbInput->width = this->avCodecContext->width;
++  this->rgbInput->height = this->avCodecContext->height;
++  av_frame_get_buffer(this->rgbInput, 1);
++
++  // and for the output to the codec's input.
++  this->yuvOutput = av_frame_alloc();
++  if (!this->yuvOutput)
++  {
++    vtkGenericWarningMacro(<< "Could not make yuvOutput avframe.");
++    return 0;
++  }
++  this->yuvOutput->format = this->avCodecContext->pix_fmt;
++  this->yuvOutput->width = this->avCodecContext->width;
++  this->yuvOutput->height = this->avCodecContext->height;
++  this->yuvOutput->pts = 0;
++  av_frame_get_buffer(this->yuvOutput, 1);
++
++  // Finally, open the file and start it off.
++  if (!(this->avOutputFormat->flags & AVFMT_NOFILE))
++  {
++    if (avio_open(&this->avFormatContext->pb, this->Writer->GetFileName(), AVIO_FLAG_WRITE) < 0)
++    {
++      vtkGenericWarningMacro(<< "Could not open " << this->Writer->GetFileName() << ".");
++      return 0;
++    }
++  }
++  this->openedFile = 1;
++
++  if (avformat_write_header(this->avFormatContext, nullptr) < 0)
++  {
++    vtkGenericWarningMacro(<< "Could not allocate avcodec private data.");
++    return 0;
++  }
++  return 1;
++}
++
++//------------------------------------------------------------------------------
++int vtkFFMPEGWriterInternal::Write(vtkImageData* id)
++{
++  this->Writer->GetInputAlgorithm(0, 0)->UpdateWholeExtent();
++
++  // copy the image from the input to the RGB buffer while flipping Y
++  unsigned char* rgb = (unsigned char*)id->GetScalarPointer();
++  unsigned char* src;
++  for (int y = 0; y < this->avCodecContext->height; y++)
++  {
++    src = rgb + (this->avCodecContext->height - y - 1) * this->avCodecContext->width * 3; // flip Y
++    unsigned char* dest = &this->rgbInput->data[0][y * this->rgbInput->linesize[0]];
++    memcpy((void*)dest, (void*)src, this->avCodecContext->width * 3);
++  }
++
++  // convert that to YUV for input to the codec
++  SwsContext* convert_ctx =
++    sws_getContext(this->avCodecContext->width, this->avCodecContext->height, AV_PIX_FMT_RGB24,
++      this->avCodecContext->width, this->avCodecContext->height, this->avCodecContext->pix_fmt,
++      SWS_BICUBIC, nullptr, nullptr, nullptr);
++
++  if (convert_ctx == nullptr)
++  {
++    vtkGenericWarningMacro(<< "swscale context initialization failed");
++    return 0;
++  }
++
++  int result = sws_scale(convert_ctx, this->rgbInput->data, this->rgbInput->linesize, 0,
++    this->avCodecContext->height, this->yuvOutput->data, this->yuvOutput->linesize);
++
++  sws_freeContext(convert_ctx);
++
++  if (!result)
++  {
++    vtkGenericWarningMacro(<< "sws_scale() failed");
++    return 0;
++  }
++
++  int ret = avcodec_send_frame(this->avCodecContext, this->yuvOutput);
++  this->yuvOutput->pts++;
++
++  if (ret < 0)
++  {
++    return 1;
++  }
++
++  // run the encoder
++  AVPacket pkt;
++  av_init_packet(&pkt);
++  pkt.data = nullptr;
++  pkt.size = 0;
++
++  while (!ret)
++  {
++    // dump the compressed result to file
++    ret = avcodec_receive_packet(this->avCodecContext, &pkt);
++    if (!ret)
++    {
++      pkt.stream_index = this->avStream->index;
++      int wret = av_write_frame(this->avFormatContext, &pkt);
++      if (wret < 0)
++      {
++        vtkGenericWarningMacro(<< "Problem encoding frame.");
++        return 0;
++      }
++    }
++  }
++
++  return 1;
++}
++
++//------------------------------------------------------------------------------
++void vtkFFMPEGWriterInternal::End()
++{
++  if (this->yuvOutput)
++  {
++    av_frame_free(&this->yuvOutput);
++    this->yuvOutput = nullptr;
++  }
++
++  if (this->rgbInput)
++  {
++    av_frame_free(&this->rgbInput);
++    this->rgbInput = nullptr;
++  }
++
++  if (this->avFormatContext)
++  {
++    if (this->openedFile)
++    {
++      av_write_trailer(this->avFormatContext);
++      avio_close(this->avFormatContext->pb);
++      this->openedFile = 0;
++    }
++
++    avformat_free_context(this->avFormatContext);
++    this->avFormatContext = nullptr;
++  }
++
++  if (this->avOutputFormat)
++  {
++    // Next line was done inside av_free(this->avFormatContext).
++    // av_free(this->avOutputFormat);
++
++    this->avOutputFormat = nullptr;
++  }
++
++  if (this->avCodecContext)
++  {
++    avcodec_close(this->avCodecContext);
++    avcodec_free_context(&this->avCodecContext);
++    this->avCodecContext = nullptr;
++  }
++
++  this->closedFile = 1;
++}
++
++// for old versions of ffmpeg use the old API, eventually remove this code
++// The new API was introduced around 2016
++#else
++
++//------------------------------------------------------------------------------
++int vtkFFMPEGWriterInternal::Start()
++{
++  this->closedFile = 0;
++
++  // initialize libavcodec, and register all codecs and formats
+   av_register_all();
+ 
+-  //create the format context that wraps all of the media output structures
+-#if LIBAVFORMAT_VERSION_MAJOR >= 52
++  // create the format context that wraps all of the media output structures
+   this->avFormatContext = avformat_alloc_context();
+-#else
+-  this->avFormatContext = av_alloc_format_context();
+-#endif
+   if (!this->avFormatContext)
+   {
+-    vtkGenericWarningMacro (<< "Coult not open the format context.");
++    vtkGenericWarningMacro(<< "Could not open the format context.");
+     return 0;
+   }
+ 
+-  //choose avi media file format
+-#ifdef VTK_FFMPEG_HAS_OLD_HEADER
+-  this->avOutputFormat = guess_format("avi", NULL, NULL);
+-#else
+-  this->avOutputFormat = av_guess_format("avi", NULL, NULL);
+-#endif
++  // choose avi media file format
++  this->avOutputFormat = av_guess_format("avi", nullptr, nullptr);
+   if (!this->avOutputFormat)
+   {
+-    vtkGenericWarningMacro (<< "Could not open the avi media file format.");
++    vtkGenericWarningMacro(<< "Could not open the avi media file format.");
+     return 0;
+   }
+ 
+   if (this->Writer->GetCompression())
+   {
+-    //choose a codec that is easily playable on windows
++    // choose a codec that is easily playable on windows
+     this->avOutputFormat->video_codec = AV_CODEC_ID_MJPEG;
+   }
+   else
+@@ -166,36 +419,24 @@
+     this->avOutputFormat->video_codec = AV_CODEC_ID_RAWVIDEO;
+   }
+ 
+-  //assign the format to the context
++  // assign the format to the context
+   this->avFormatContext->oformat = this->avOutputFormat;
+ 
+-  //choose a filename for the output
++  // choose a filename for the output
+   strcpy(this->avFormatContext->filename, this->Writer->GetFileName());
+ 
+-  //create a stream for that file
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  this->avStream = av_new_stream(this->avFormatContext, 0);
+-#else
++  // create a stream for that file
+   this->avStream = avformat_new_stream(this->avFormatContext, 0);
+-#endif
+   if (!this->avStream)
+   {
+-    vtkGenericWarningMacro (<< "Could not create video stream.");
++    vtkGenericWarningMacro(<< "Could not create video stream.");
+     return 0;
+   }
+ 
+-  //Set up the codec.
+-  AVCodecContext *c = this->avStream->codec;
+-#ifdef VTK_FFMPEG_AVCODECID
++  // Set up the codec.
++  AVCodecContext* c = this->avStream->codec;
+   c->codec_id = static_cast<AVCodecID>(this->avOutputFormat->video_codec);
+-#else
+-  c->codec_id = static_cast<CodecID>(this->avOutputFormat->video_codec);
+-#endif
+-#ifdef VTK_FFMPEG_HAS_OLD_HEADER
+-  c->codec_type = CODEC_TYPE_VIDEO;
+-#else
+- c->codec_type = AVMEDIA_TYPE_VIDEO;
+-#endif
++  c->codec_type = AVMEDIA_TYPE_VIDEO;
+   c->width = this->Dim[0];
+   c->height = this->Dim[1];
+   if (this->Writer->GetCompression())
+@@ -207,25 +448,25 @@
+     c->pix_fmt = AV_PIX_FMT_BGR24;
+   }
+ 
+-  //to do playback at actual recorded rate, this will need more work see also below
++  // to do playback at actual recorded rate, this will need more work see also below
+   c->time_base.den = this->FrameRate;
+   c->time_base.num = 1;
+-  //about one full frame per second
++  // about one full frame per second
+   c->gop_size = this->FrameRate;
+ 
+-  if( !this->Writer->GetBitRate() )
++  if (!this->Writer->GetBitRate())
+   {
+-    //allow a variable quality/size tradeoff
++    // allow a variable quality/size tradeoff
+     switch (this->Writer->GetQuality())
+     {
+       case 0:
+-        c->bit_rate = 3*1024*1024;
++        c->bit_rate = 3 * 1024 * 1024;
+         break;
+       case 1:
+-        c->bit_rate = 6*1024*1024;
++        c->bit_rate = 6 * 1024 * 1024;
+         break;
+       default:
+-        c->bit_rate = 12*1024*1024;
++        c->bit_rate = 12 * 1024 * 1024;
+         break;
+     }
+   }
+@@ -234,262 +475,164 @@
+     c->bit_rate = this->Writer->GetBitRate();
+   }
+ 
+-  if(!this->Writer->GetBitRateTolerance())
++  if (!this->Writer->GetBitRateTolerance())
+   {
+-    c->bit_rate_tolerance = c->bit_rate; //ffmpeg won't create a codec if brt<br
++    c->bit_rate_tolerance = c->bit_rate; // ffmpeg won't create a codec if brt<br
+   }
+   else
+   {
+     c->bit_rate_tolerance = this->Writer->GetBitRateTolerance();
+   }
+ 
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  //apply the chosen parameters
+-  if (av_set_parameters(this->avFormatContext, NULL) < 0)
+-  {
+-    vtkGenericWarningMacro (<< "Invalid output format parameters." );
+-    return 0;
+-  }
+-#endif
+-
+-  //manufacture a codec with the chosen parameters
+-  AVCodec *codec = avcodec_find_encoder(c->codec_id);
++  // manufacture a codec with the chosen parameters
++  AVCodec* codec = avcodec_find_encoder(c->codec_id);
+   if (!codec)
+   {
+-    vtkGenericWarningMacro (<< "Codec not found." );
+-    return 0;
+-  }
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  if (avcodec_open(c, codec) < 0)
+-#else
+-  if (avcodec_open2(c, codec, NULL) < 0)
+-#endif
+-  {
+-    vtkGenericWarningMacro (<< "Could not open codec.");
++    vtkGenericWarningMacro(<< "Codec not found.");
+     return 0;
+   }
+-
+-  //create buffers for the codec to work with.
+-
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  //working compression space
+-  this->codecBufSize = 2*c->width*c->height*4; //hopefully this is enough
+-  this->codecBuf = new unsigned char[this->codecBufSize];
+-  if (!this->codecBuf)
++  if (avcodec_open2(c, codec, nullptr) < 0)
+   {
+-    vtkGenericWarningMacro (<< "Could not make codec working space." );
++    vtkGenericWarningMacro(<< "Could not open codec.");
+     return 0;
+   }
+-#endif
+ 
+-  //for the output of the writer's input...
++  // for the output of the writer's input...
+   this->rgbInput = av_frame_alloc();
+   if (!this->rgbInput)
+   {
+-    vtkGenericWarningMacro (<< "Could not make rgbInput avframe." );
++    vtkGenericWarningMacro(<< "Could not make rgbInput avframe.");
+     return 0;
+   }
+   int RGBsize = avpicture_get_size(AV_PIX_FMT_RGB24, c->width, c->height);
+-  unsigned char *rgb = (unsigned char *)av_malloc(sizeof(unsigned char) * RGBsize);
++  unsigned char* rgb = (unsigned char*)av_malloc(sizeof(unsigned char) * RGBsize);
+   if (!rgb)
+   {
+-    vtkGenericWarningMacro (<< "Could not make rgbInput's buffer." );
++    vtkGenericWarningMacro(<< "Could not make rgbInput's buffer.");
+     return 0;
+   }
+-  //The rgb buffer should get deleted when this->rgbInput is.
+-  avpicture_fill((AVPicture *)this->rgbInput, rgb, AV_PIX_FMT_RGB24, c->width, c->height);
++  // The rgb buffer should get deleted when this->rgbInput is.
++  avpicture_fill((AVPicture*)this->rgbInput, rgb, AV_PIX_FMT_RGB24, c->width, c->height);
+ 
+-  //and for the output to the codec's input.
++  // and for the output to the codec's input.
+   this->yuvOutput = av_frame_alloc();
+   if (!this->yuvOutput)
+   {
+-    vtkGenericWarningMacro (<< "Could not make yuvOutput avframe." );
++    vtkGenericWarningMacro(<< "Could not make yuvOutput avframe.");
+     return 0;
+   }
+   int YUVsize = avpicture_get_size(c->pix_fmt, c->width, c->height);
+-  unsigned char *yuv = (unsigned char *)av_malloc(sizeof(unsigned char) * YUVsize);
++  unsigned char* yuv = (unsigned char*)av_malloc(sizeof(unsigned char) * YUVsize);
+   if (!yuv)
+   {
+-    vtkGenericWarningMacro (<< "Could not make yuvOutput's buffer." );
++    vtkGenericWarningMacro(<< "Could not make yuvOutput's buffer.");
+     return 0;
+   }
+-  //The yuv buffer should get deleted when this->yuv_input is.
+-  avpicture_fill((AVPicture *)this->yuvOutput, yuv, c->pix_fmt, c->width, c->height);
+-
++  // The yuv buffer should get deleted when this->yuv_input is.
++  avpicture_fill((AVPicture*)this->yuvOutput, yuv, c->pix_fmt, c->width, c->height);
+ 
+-  //Finally, open the file and start it off.
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  if (url_fopen(&this->avFormatContext->pb, this->avFormatContext->filename, URL_WRONLY) < 0)
+-#else
++  // Finally, open the file and start it off.
+   if (avio_open(&this->avFormatContext->pb, this->avFormatContext->filename, AVIO_FLAG_WRITE) < 0)
+-#endif
+   {
+-    vtkGenericWarningMacro (<< "Could not open " << this->Writer->GetFileName() << "." );
++    vtkGenericWarningMacro(<< "Could not open " << this->Writer->GetFileName() << ".");
+     return 0;
+   }
+   this->openedFile = 1;
+ 
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  av_write_header(this->avFormatContext);
+-#else
+-  if (avformat_write_header(this->avFormatContext, NULL) < 0)
++  if (avformat_write_header(this->avFormatContext, nullptr) < 0)
+   {
+-    vtkGenericWarningMacro (<< "Could not allocate avcodec private data.");
++    vtkGenericWarningMacro(<< "Could not allocate avcodec private data.");
+     return 0;
+   }
+-#endif
+   return 1;
+ }
+ 
+-//---------------------------------------------------------------------------
+-int vtkFFMPEGWriterInternal::Write(vtkImageData *id)
++//------------------------------------------------------------------------------
++int vtkFFMPEGWriterInternal::Write(vtkImageData* id)
+ {
+   this->Writer->GetInputAlgorithm(0, 0)->UpdateWholeExtent();
+ 
+-  AVCodecContext *cc = this->avStream->codec;
++  AVCodecContext* cc = this->avStream->codec;
+ 
+-  //copy the image from the input to the RGB buffer while flipping Y
+-  unsigned char *rgb = (unsigned char*)id->GetScalarPointer();
+-  unsigned char *src;
++  // copy the image from the input to the RGB buffer while flipping Y
++  unsigned char* rgb = (unsigned char*)id->GetScalarPointer();
++  unsigned char* src;
+   for (int y = 0; y < cc->height; y++)
+   {
+-    src = rgb + (cc->height-y-1) * cc->width * 3; //flip Y
+-    unsigned char *dest =
+-      &this->rgbInput->data[0][y*this->rgbInput->linesize[0]];
+-    memcpy((void*)dest, (void*)src, cc->width*3);
++    src = rgb + (cc->height - y - 1) * cc->width * 3; // flip Y
++    unsigned char* dest = &this->rgbInput->data[0][y * this->rgbInput->linesize[0]];
++    memcpy((void*)dest, (void*)src, cc->width * 3);
+   }
+ 
+-  //convert that to YUV for input to the codec
+-#ifdef VTK_FFMPEG_HAS_IMG_CONVERT
+-  img_convert((AVPicture *)this->yuvOutput, cc->pix_fmt,
+-              (AVPicture *)this->rgbInput, AV_PIX_FMT_RGB24,
+-              cc->width, cc->height);
+-#else
+-  //convert that to YUV for input to the codec
+-  SwsContext* convert_ctx = sws_getContext(
+-    cc->width, cc->height, AV_PIX_FMT_RGB24,
+-    cc->width, cc->height, cc->pix_fmt,
+-    SWS_BICUBIC, NULL, NULL, NULL);
++  // convert that to YUV for input to the codec
++  SwsContext* convert_ctx = sws_getContext(cc->width, cc->height, AV_PIX_FMT_RGB24, cc->width,
++    cc->height, cc->pix_fmt, SWS_BICUBIC, nullptr, nullptr, nullptr);
+ 
+-  if(convert_ctx == NULL)
++  if (convert_ctx == nullptr)
+   {
+     vtkGenericWarningMacro(<< "swscale context initialization failed");
+     return 0;
+   }
+ 
+-  int result = sws_scale(convert_ctx,
+-    this->rgbInput->data, this->rgbInput->linesize,
+-    0, cc->height,
+-    this->yuvOutput->data, this->yuvOutput->linesize
+-    );
++  int result = sws_scale(convert_ctx, this->rgbInput->data, this->rgbInput->linesize, 0, cc->height,
++    this->yuvOutput->data, this->yuvOutput->linesize);
+ 
+   sws_freeContext(convert_ctx);
+ 
+-  if(!result)
++  if (!result)
+   {
+     vtkGenericWarningMacro(<< "sws_scale() failed");
+     return 0;
+   }
+-#endif
+ 
+-  //run the encoder
++  // run the encoder
+   AVPacket pkt;
+   av_init_packet(&pkt);
+-  pkt.data = NULL;
++  pkt.data = nullptr;
+   pkt.size = 0;
+ 
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  int toAdd = avcodec_encode_video(cc,
+-                                   this->codecBuf,
+-                                   this->codecBufSize,
+-                                   this->yuvOutput);
+-  if (toAdd)
+-  {
+-    //to do playback at actual recorded rate, this will need more work
+-    pkt.pts = cc->coded_frame->pts;
+-    //pkt.dts = ?; not dure what decompression time stamp should be
+-    pkt.data = this->codecBuf;
+-    pkt.size = toAdd;
+-    pkt.stream_index = this->avStream->index;
+-    if (cc->coded_frame->key_frame) //treat keyframes well
+-    {
+-#ifdef VTK_FFMPEG_HAS_OLD_HEADER
+-      pkt.flags |= PKT_FLAG_KEY;
+-#else
+-      pkt.flags |= AV_PKT_FLAG_KEY;
+-#endif
+-    }
+-    pkt.duration = 0; //presentation duration in time_base units or 0 if NA
+-    pkt.pos = -1; //byte position in stream or -1 if NA
+-
+-    toAdd = av_write_frame(this->avFormatContext, &pkt);
+-  }
+-  if (toAdd) //should not have anything left over
+-  {
+-    vtkGenericWarningMacro (<< "Problem encoding frame." );
+-    return 0;
+-  }
+-
+-#else
+   int got_frame;
+-  int ret = avcodec_encode_video2(cc,
+-                                  &pkt,
+-                                  this->yuvOutput,
+-                                  &got_frame);
++  int ret = avcodec_encode_video2(cc, &pkt, this->yuvOutput, &got_frame);
+ 
+-  //dump the compressed result to file
++  // dump the compressed result to file
+   if (got_frame)
+   {
+     pkt.stream_index = this->avStream->index;
+     ret = av_write_frame(this->avFormatContext, &pkt);
+   }
+ 
+-  if (ret<0)
++  if (ret < 0)
+   {
+-    vtkGenericWarningMacro (<< "Problem encoding frame." );
++    vtkGenericWarningMacro(<< "Problem encoding frame.");
+     return 0;
+   }
+-#endif
+ 
+   return 1;
+ }
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ void vtkFFMPEGWriterInternal::End()
+ {
+   if (this->yuvOutput)
+   {
+     av_free(this->yuvOutput->data[0]);
+     av_free(this->yuvOutput);
+-    this->yuvOutput = NULL;
++    this->yuvOutput = nullptr;
+   }
+ 
+   if (this->rgbInput)
+   {
+     av_free(this->rgbInput->data[0]);
+     av_free(this->rgbInput);
+-    this->rgbInput = NULL;
++    this->rgbInput = nullptr;
+   }
+ 
+-
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-  if (this->codecBuf)
+-  {
+-    av_free(this->codecBuf);
+-    this->codecBuf = NULL;
+-  }
+-#endif
+-
+   if (this->avFormatContext)
+   {
+     if (this->openedFile)
+     {
+       av_write_trailer(this->avFormatContext);
+-#if LIBAVFORMAT_VERSION_MAJOR < 54
+-      url_fclose(this->avFormatContext->pb);
+-#else
+       avio_close(this->avFormatContext->pb);
+-#endif
+       this->openedFile = 0;
+     }
+ 
+@@ -500,13 +643,13 @@
+   if (this->avStream)
+   {
+     av_free(this->avStream);
+-    this->avStream = NULL;
++    this->avStream = nullptr;
+   }
+ 
+   if (this->avOutputFormat)
+   {
+-    //Next line was done inside av_free(this->avFormatContext).
+-    //av_free(this->avOutputFormat);
++    // Next line was done inside av_free(this->avFormatContext).
++    // av_free(this->avOutputFormat);
+ 
+     this->avOutputFormat = 0;
+   }
+@@ -514,14 +657,15 @@
+   this->closedFile = 1;
+ }
+ 
++#endif
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ vtkStandardNewMacro(vtkFFMPEGWriter);
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ vtkFFMPEGWriter::vtkFFMPEGWriter()
+ {
+-  this->Internals = 0;
++  this->Internals = nullptr;
+   this->Quality = 2;
+   this->Compression = true;
+   this->Rate = 25;
+@@ -529,24 +673,24 @@
+   this->BitRateTolerance = 0;
+ }
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ vtkFFMPEGWriter::~vtkFFMPEGWriter()
+ {
+   delete this->Internals;
+ }
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ void vtkFFMPEGWriter::Start()
+ {
+   this->Error = 1;
+ 
+-  if ( this->Internals )
++  if (this->Internals)
+   {
+     vtkErrorMacro("Movie already started.");
+     this->SetErrorCode(vtkGenericMovieWriter::InitError);
+     return;
+   }
+-  if ( this->GetInput() == NULL )
++  if (this->GetInput() == nullptr)
+   {
+     vtkErrorMacro("Please specify an input.");
+     this->SetErrorCode(vtkGenericMovieWriter::NoInputError);
+@@ -566,7 +710,7 @@
+   this->Initialized = 0;
+ }
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ void vtkFFMPEGWriter::Write()
+ {
+   if (this->Error)
+@@ -574,7 +718,7 @@
+     return;
+   }
+ 
+-  if ( !this->Internals )
++  if (!this->Internals)
+   {
+     vtkErrorMacro("Movie not started.");
+     this->Error = 1;
+@@ -588,13 +732,13 @@
+ 
+   int dim[4];
+   input->GetDimensions(dim);
+-  if ( this->Internals->Dim[0] == 0 && this->Internals->Dim[1] == 0 )
++  if (this->Internals->Dim[0] == 0 && this->Internals->Dim[1] == 0)
+   {
+     this->Internals->Dim[0] = dim[0];
+     this->Internals->Dim[1] = dim[1];
+   }
+ 
+-  if (this->Internals->Dim[0]!= dim[0] || this->Internals->Dim[1]!= dim[1])
++  if (this->Internals->Dim[0] != dim[0] || this->Internals->Dim[1] != dim[1])
+   {
+     vtkErrorMacro("Image not of the same size.");
+     this->Error = 1;
+@@ -602,7 +746,7 @@
+     return;
+   }
+ 
+-  if ( !this->Initialized )
++  if (!this->Initialized)
+   {
+     this->Internals->FrameRate = this->Rate;
+     if (!this->Internals->Start())
+@@ -623,21 +767,21 @@
+   }
+ }
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ void vtkFFMPEGWriter::End()
+ {
+   this->Internals->End();
+ 
+   delete this->Internals;
+-  this->Internals = 0;
++  this->Internals = nullptr;
+ }
+ 
+-//---------------------------------------------------------------------------
++//------------------------------------------------------------------------------
+ void vtkFFMPEGWriter::PrintSelf(ostream& os, vtkIndent indent)
+ {
+   this->Superclass::PrintSelf(os, indent);
+   os << indent << "Quality: " << this->Quality << endl;
+-  os << indent << "Compression: " << (this->Compression?"true":"false") << endl;
++  os << indent << "Compression: " << (this->Compression ? "true" : "false") << endl;
+   os << indent << "Rate: " << this->Rate << endl;
+   os << indent << "BitRate: " << this->BitRate << endl;
+   os << indent << "BitRateTolerance: " << this->BitRateTolerance << endl;
