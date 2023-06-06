@@ -25,6 +25,7 @@ mamba update --update-specs --yes --quiet --channel conda-forge \
     conda-build pip boa liblief=0.11.5 conda-forge-ci-setup=3
 
 conda config --add channels conda-forge
+conda config --add channels pychaste
 conda config --env --set show_channel_urls true
 conda config --env --set auto_update_conda false
 conda config --env --set add_pip_as_python_dependency false
@@ -51,6 +52,9 @@ conda list --show-channel-urls
 /usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel
 
 cp "${FEEDSTOCK_ROOT}/LICENSE.txt" "${RECIPE_ROOT}/recipe-scripts-license.txt"
+
+git clone --recursive --depth 1 https://github.com/Chaste/Chaste.git /tmp/Chaste
+git clone --recursive --branch update --depth 1 https://github.com/kwabenantim/PyChaste.git /tmp/Chaste/projects/PyChaste
 
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     conda debug "${RECIPE_ROOT}" -m "${CONFIG_FILE}"
