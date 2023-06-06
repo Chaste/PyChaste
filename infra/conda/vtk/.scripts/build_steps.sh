@@ -24,6 +24,7 @@ mamba install --update-specs --yes --quiet --channel conda-forge \
 mamba update --update-specs --yes --quiet --channel conda-forge \
     conda-build pip boa liblief=0.11.5 conda-forge-ci-setup=3
 
+conda config --add channels bioconda
 conda config --add channels conda-forge
 conda config --env --set show_channel_urls true
 conda config --env --set auto_update_conda false
