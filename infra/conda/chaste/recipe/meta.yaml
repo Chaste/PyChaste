@@ -20,6 +20,7 @@ requirements:
     - cmake
     - make
     - python
+    - pip
     - git
     - {{ cdt('libice-devel') }}
     - {{ cdt('libsm-devel') }}

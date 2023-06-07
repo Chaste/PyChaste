@@ -5,6 +5,7 @@ set -ex
 BUILD_CONFIG=Release
 
 # Ignore PETSc MPICH version warning (4.1.* installed but expected 4.0.*)
+# because PETSc already accepted MPICH version during conda solve
 cd ${PREFIX}/include
 patch -t -p1 < /tmp/patches/petsc.patch
 
@@ -51,23 +52,23 @@ export PIP_NO_INDEX="True"
 
 make chaste_project_PyChaste -j${CPU_COUNT}
 make project_PyChaste_Python -j${CPU_COUNT}
-make install
+#make install -j${CPU_COUNT}
 
 cd projects/PyChaste/python
-${PYTHON} -m pip install . --prefix=${PREFIX}
+pip install . --prefix=${PREFIX}
 
 # Cleanup
-cd ${PREFIX}/build
-rm -rf cell_based/CMakeFiles
-rm -rf global/CMakeFiles
-rm -rf io/CMakeFiles
-rm -rf linalg/CMakeFiles
-rm -rf mesh/CMakeFiles
-rm -rf ode/CMakeFiles
-rm -rf pde/CMakeFiles
-rm -rf python
-rm -rf projects/PyChaste/CMakeFiles
-rm -rf projects/PyChaste/python
+# cd ${PREFIX}/build
+# rm -rf cell_based/CMakeFiles
+# rm -rf global/CMakeFiles
+# rm -rf io/CMakeFiles
+# rm -rf linalg/CMakeFiles
+# rm -rf mesh/CMakeFiles
+# rm -rf ode/CMakeFiles
+# rm -rf pde/CMakeFiles
+# rm -rf python
+# rm -rf projects/PyChaste/CMakeFiles
+# rm -rf projects/PyChaste/python
 
 # The egg-info file is necessary because some packages
 # need pkg_resources to be able to find chaste.
