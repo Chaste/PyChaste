@@ -69,7 +69,7 @@ rm -rf python
 rm -rf projects/PyChaste/CMakeFiles
 rm -rf projects/PyChaste/python
 
-# The egg-info file is necessary because some packages,
+# The egg-info file is necessary because some packages
 # need pkg_resources to be able to find chaste.
 # See https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects
 

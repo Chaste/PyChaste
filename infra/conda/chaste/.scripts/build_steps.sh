@@ -57,7 +57,8 @@ cp "${FEEDSTOCK_ROOT}/LICENSE.txt" "${RECIPE_ROOT}/recipe-scripts-license.txt"
 git clone --recursive --depth 1 https://github.com/Chaste/Chaste.git /tmp/Chaste
 git clone --recursive --branch update --depth 1 https://github.com/kwabenantim/PyChaste.git /tmp/Chaste/projects/PyChaste
 
-cp "${RECIPE_ROOT}/patches/petsc.patch" /tmp/patches/petsc.patch
+mkdir -p /tmp/patches
+cp "${RECIPE_ROOT}"/patches/* /tmp/patches/
 
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     conda debug "${RECIPE_ROOT}" -m "${CONFIG_FILE}"
