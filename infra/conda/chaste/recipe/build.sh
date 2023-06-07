@@ -1,20 +1,21 @@
-export LIBRARY_PATH=${PREFIX}/lib
-export INCLUDE_PATH=${PREFIX}/include
+#!/bin/bash
 
-# Fix pip environment for chaste_codegen
+set -ex
+
+BUILD_CONFIG=Release
+
+# Ignore PETSc MPICH version warning (4.1.* installed but expected 4.0.*)
+# because PETSc already accepted MPICH version during conda solve
+cd ${PREFIX}/include
+patch -t -p1 < /tmp/patches/petsc.patch
+
+# Modify pip environment for chaste_codegen
 export PIP_NO_DEPENDENCIES="False"
 export PIP_NO_INDEX="False"
 
-# Fix paths in some conda-forge vtk builds
-sed -i 's#/home/conda/feedstock_root/build_artifacts/vtk_.*_build_env/x86_64-conda_cos6-linux-gnu/sysroot/usr/lib.*;##g' ${PREFIX}/lib/cmake/vtk-8.2/Modules/vtkhdf5.cmake 
-sed -i 's#/home/conda/feedstock_root/build_artifacts/vtk_.*_build_env/x86_64-conda_cos6-linux-gnu/sysroot/usr/lib.*;##g' ${PREFIX}/lib/cmake/vtk-8.2/VTKTargets-release.cmake 
-
-sed -i "s#/usr/lib64/libXext\.so;#${PREFIX}/lib/libXext\.so;#g" ${PREFIX}/lib/cmake/vtk-8.2/VTKTargets-release.cmake
-sed -i "s#/usr/lib64/libXext\.so;#${PREFIX}/lib/libXext\.so;#g" ${PREFIX}/lib/cmake/vtk-8.2/VTKTargets.cmake
-
-# Build
-mkdir ${PREFIX}/build
-cd ${PREFIX}/build
+cd ${PREFIX}
+mkdir build
+cd build || exit
 
 cmake \
     -DCMAKE_BUILD_TYPE=RELEASE \
@@ -26,8 +27,8 @@ cmake \
     -DCMAKE_INSTALL_PREFIX=${PREFIX} \
     -DBOOST_ROOT=${PREFIX} \
     -DVTK_DIR=${PREFIX} \
-    -DXERCESC_LIBRARY=${LIBRARY_PATH}/libxerces-c.so \
-    -DXERCESC_INCLUDE=${INCLUDE_PATH} \
+    -DXERCESC_LIBRARY=${PREFIX}/lib/libxerces-c.so \
+    -DXERCESC_INCLUDE=${PREFIX}/include \
     -DXSD_EXECUTABLE=${PREFIX}/bin/xsd \
     -DChaste_ENABLE_TESTING=ON \
     -DChaste_UPDATE_PROVENANCE=OFF \
@@ -44,14 +45,18 @@ cmake \
     -DChaste_ENABLE_continuum_mechanics_TESTING=OFF \
     -DChaste_ENABLE_project_PyChaste_TESTING=OFF \
     -DChaste_ERROR_ON_WARNING=OFF \
-    ${SRC_DIR}
-    
-make chaste_project_PyChaste -j ${CPU_COUNT}
-make project_PyChaste_Python -j ${CPU_COUNT}
-make install -j ${CPU_COUNT}
+    $SRC_DIR
 
-cd ${PREFIX}/build/projects/PyChaste/python
-${PYTHON} -m pip install . --prefix=${PREFIX}
+# Revert pip environment settings
+export PIP_NO_DEPENDENCIES="True"
+export PIP_NO_INDEX="True"
+
+make chaste_project_PyChaste -j${CPU_COUNT}
+make project_PyChaste_Python -j${CPU_COUNT}
+#make install -j${CPU_COUNT}
+
+cd projects/PyChaste/python
+pip install . --prefix=${PREFIX}
 
 # Cleanup
 cd ${PREFIX}/build
@@ -66,6 +71,14 @@ rm -rf python
 rm -rf projects/PyChaste/CMakeFiles
 rm -rf projects/PyChaste/python
 
-# Revert to conda-build pip environment settings
-export PIP_NO_DEPENDENCIES="True"
-export PIP_NO_INDEX="True"
+# The egg-info file is necessary because some packages
+# need pkg_resources to be able to find chaste.
+# See https://setuptools.readthedocs.io/en/latest/pkg_resources.html#workingset-objects
+
+cat > $SP_DIR/chaste-$PKG_VERSION.egg-info <<FAKE_EGG
+Metadata-Version: 2.1
+Name: chaste
+Version: $PKG_VERSION
+Summary: Chaste is a general purpose simulation package for computational biology.
+Platform: UNKNOWN
+FAKE_EGG
