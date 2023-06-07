@@ -13,11 +13,11 @@ patch -t -p1 < /tmp/patches/petsc.patch
 export PIP_NO_DEPENDENCIES="False"
 export PIP_NO_INDEX="False"
 
-cd ${SRC_DIR}
+cd ${PREFIX}
 mkdir build
 cd build || exit
 
-cmake .. \
+cmake \
     -DCMAKE_BUILD_TYPE=RELEASE \
     -DPYTHON_EXECUTABLE:FILEPATH=${PYTHON} \
     -DCMAKE_LIBRARY_PATH=${PREFIX}/lib \
@@ -44,7 +44,8 @@ cmake .. \
     -DChaste_ENABLE_cell_based_TESTING=OFF \
     -DChaste_ENABLE_continuum_mechanics_TESTING=OFF \
     -DChaste_ENABLE_project_PyChaste_TESTING=OFF \
-    -DChaste_ERROR_ON_WARNING=OFF
+    -DChaste_ERROR_ON_WARNING=OFF \
+    $SRC_DIR
 
 # Revert pip environment settings
 export PIP_NO_DEPENDENCIES="True"
@@ -58,17 +59,17 @@ cd projects/PyChaste/python
 pip install . --prefix=${PREFIX}
 
 # Cleanup
-# cd ${PREFIX}/build
-# rm -rf cell_based/CMakeFiles
-# rm -rf global/CMakeFiles
-# rm -rf io/CMakeFiles
-# rm -rf linalg/CMakeFiles
-# rm -rf mesh/CMakeFiles
-# rm -rf ode/CMakeFiles
-# rm -rf pde/CMakeFiles
-# rm -rf python
-# rm -rf projects/PyChaste/CMakeFiles
-# rm -rf projects/PyChaste/python
+cd ${PREFIX}/build
+rm -rf cell_based/CMakeFiles
+rm -rf global/CMakeFiles
+rm -rf io/CMakeFiles
+rm -rf linalg/CMakeFiles
+rm -rf mesh/CMakeFiles
+rm -rf ode/CMakeFiles
+rm -rf pde/CMakeFiles
+rm -rf python
+rm -rf projects/PyChaste/CMakeFiles
+rm -rf projects/PyChaste/python
 
 # The egg-info file is necessary because some packages
 # need pkg_resources to be able to find chaste.
