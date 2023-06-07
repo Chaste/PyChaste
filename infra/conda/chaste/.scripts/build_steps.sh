@@ -26,6 +26,7 @@ mamba update --update-specs --yes --quiet --channel conda-forge \
 
 conda config --add channels bioconda
 conda config --add channels conda-forge
+conda config --add channels pychaste
 conda config --env --set show_channel_urls true
 conda config --env --set auto_update_conda false
 conda config --env --set add_pip_as_python_dependency false
@@ -53,6 +54,12 @@ conda list --show-channel-urls
 
 cp "${FEEDSTOCK_ROOT}/LICENSE.txt" "${RECIPE_ROOT}/recipe-scripts-license.txt"
 
+git clone --recursive --depth 1 https://github.com/Chaste/Chaste.git /tmp/Chaste
+git clone --recursive --branch update --depth 1 https://github.com/kwabenantim/PyChaste.git /tmp/Chaste/projects/PyChaste
+
+mkdir -p /tmp/patches
+cp "${RECIPE_ROOT}"/patches/* /tmp/patches/
+
 if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     conda debug "${RECIPE_ROOT}" -m "${CONFIG_FILE}"
 
@@ -63,7 +70,7 @@ else
     # if [[ "${UPLOAD_PACKAGES}" != 'False' ]]; then
     #   anaconda -q --show-traceback -t ${anaconda_token} upload \
     #   -u 'pychaste' \
-    #   ${CONDA_BLD_PATH}/linux-64/${CONFIG}.conda
+    #   ${CONDA_BLD_PATH}/linux-64/chaste*.tar.bz2
     # fi
 fi
 
