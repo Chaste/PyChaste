@@ -21,8 +21,11 @@ requirements:
     - make
     - python
     - git
+    - {{ cdt('libice-devel') }}
     - {{ cdt('libsm-devel') }}
+    - {{ cdt('libx11-devel') }}
     - {{ cdt('libxext') }}
+    - {{ cdt('libxt-devel') }}
 
   host:
     - python
