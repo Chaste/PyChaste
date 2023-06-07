@@ -6,7 +6,7 @@ BUILD_CONFIG=Release
 
 # Ignore PETSc MPICH version warning (4.1.* installed but expected 4.0.*)
 cd ${PREFIX}/include
-patch -t -p1 < ${RECIPE_ROOT}/patches/petsc.patch
+patch -t -p1 < /tmp/patches/petsc.patch
 
 # Modify pip environment for chaste_codegen
 export PIP_NO_DEPENDENCIES="False"
