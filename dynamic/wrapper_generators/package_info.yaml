@@ -133,6 +133,7 @@ modules:
   - name: AbstractSimpleCellCycleModel
   - name: AbstractSimplePhaseBasedCellCycleModel
   - name: AbstractSimpleGenerationalCellCycleModel
+  - name: BiasedBernoulliTrialCellCycleModel
   - name: UniformCellCycleModel
   - name: SimpleOxygenBasedCellCycleModel
   - name: UniformG1GenerationalCellCycleModel
@@ -237,6 +238,7 @@ modules:
   - name: AdhesionPottsUpdateRule
   - name: DifferentialAdhesionPottsUpdateRule 
   - name: AbstractVertexBasedDivisionRule
+  - name: VonMisesVertexBasedDivisionRule
   - name: AbstractForce 
   - name: AbstractTwoBodyInteractionForce
   - name: BuskeAdhesiveForce
@@ -266,6 +268,9 @@ modules:
     source_includes:
     - PythonObjectConverters.hpp
   - name: SphereGeometryBoundaryCondition
+    source_includes:
+    - PythonObjectConverters.hpp
+  - name: SlidingBoundaryCondition
     source_includes:
     - PythonObjectConverters.hpp
   - name: AbstractCellPopulation
@@ -342,7 +347,9 @@ modules:
     - CellLabelWriter.hpp 
     - VoronoiDataWriter.hpp 
   - name: AbstractTargetAreaModifier 
+  - name: ConstantTargetAreaModifier
   - name: SimpleTargetAreaModifier
+  - name: DivisionBiasTrackingModifier
   - name: VtkSceneModifier
   - name: AbstractCellBasedSimulation
     excluded_methods: 
