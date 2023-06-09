@@ -71,20 +71,28 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
     
     if PYCHASTE_CAN_IMPORT_VTK:
         
-        class JupyterNotebookManager():
+        class JupyterNotebookManager(object):
             
             interactive_plotting_loaded = False
             three_js_dir = resource_filename('chaste', os.path.join('external'))
             container_id = 0
-            
-            def __init__(self):
-                self.renderWindow = vtk.vtkRenderWindow()
 
+            def __new__(cls, *args, **kwds):
+                it = cls.__dict__.get("__it__")
+                if it is not None:
+                    return it
+                cls.__it__ = it = object.__new__(cls)
+                it.init(*args, **kwds)
+                return it
+
+            def init(self, *args, **kwds):
                 try:
                     self.vdisplay = Xvfb()
                     self.vdisplay.start()
                 except OSError:
                     self.vdisplay = None
+
+                self.renderWindow = vtk.vtkRenderWindow()
 
             def __del__(self):
                 if self.vdisplay:
