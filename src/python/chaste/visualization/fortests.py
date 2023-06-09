@@ -40,6 +40,8 @@ PYCHASTE_CAN_IMPORT_VTK = True
 from six.moves import StringIO
 import os.path
 from pkg_resources import resource_filename
+from xvfbwrapper import Xvfb
+
 import chaste.cell_based
 
 try:
@@ -51,7 +53,7 @@ try:
     import vtk                    
 except ImportError:
     PYCHASTE_CAN_IMPORT_VTK = False      
-    
+
 if PYCHASTE_CAN_IMPORT_IPYTHON:
     #from IPython import display
     from IPython.display import Image, HTML, display
@@ -63,7 +65,7 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
         Takes a Scene instance and returns an IPython Image with the rendering.
         """
         
-        data = str(buffer(scene.GetSceneAsCharBuffer()))
+        data = memoryview(scene.GetSceneAsCharBuffer())
         
         return Image(data)
     
@@ -77,6 +79,16 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
             
             def __init__(self):
                 self.renderWindow = vtk.vtkRenderWindow()
+
+                try:
+                    self.vdisplay = Xvfb()
+                    self.vdisplay.start()
+                except OSError:
+                    self.vdisplay = None
+
+            def __del__(self):
+                if self.vdisplay:
+                    self.vdisplay.stop()
             
             def interactive_plot_init(self):
                 
