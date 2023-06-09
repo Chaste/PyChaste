@@ -79,11 +79,16 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
             
             def __init__(self):
                 self.renderWindow = vtk.vtkRenderWindow()
-                self.vdisplay = Xvfb()
-                self.vdisplay.start()
+
+                try:
+                    self.vdisplay = Xvfb()
+                    self.vdisplay.start()
+                except OSError:
+                    self.vdisplay = None
 
             def __del__(self):
-                self.vdisplay.stop()
+                if self.vdisplay:
+                    self.vdisplay.stop()
             
             def interactive_plot_init(self):
                 
