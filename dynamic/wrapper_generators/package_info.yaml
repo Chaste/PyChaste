@@ -238,6 +238,7 @@ modules:
   - name: AdhesionPottsUpdateRule
   - name: DifferentialAdhesionPottsUpdateRule 
   - name: AbstractVertexBasedDivisionRule
+  - name: RandomDirectionVertexBasedDivisionRule
   - name: VonMisesVertexBasedDivisionRule
   - name: AbstractForce 
   - name: AbstractTwoBodyInteractionForce
