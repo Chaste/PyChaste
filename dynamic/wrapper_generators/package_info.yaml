@@ -133,11 +133,12 @@ modules:
   - name: AbstractSimpleCellCycleModel
   - name: AbstractSimplePhaseBasedCellCycleModel
   - name: AbstractSimpleGenerationalCellCycleModel
-  - name: BiasedBernoulliTrialCellCycleModel
   - name: UniformCellCycleModel
   - name: SimpleOxygenBasedCellCycleModel
   - name: UniformG1GenerationalCellCycleModel
   - name: NoCellCycleModel
+  - name: BiasedBernoulliTrialCellCycleModel
+  - name: LabelDependentBernoulliTrialCellCycleModel
   - name: AbstractCellCycleModelOdeSolver
   - name: AbstractCellProperty
     excluded_methods: 
@@ -183,12 +184,18 @@ modules:
         - [SimpleOxygenBasedCellCycleModel, 3]
         - [UniformG1GenerationalCellCycleModel, 2]
         - [UniformG1GenerationalCellCycleModel, 3]
+        - [BiasedBernoulliTrialCellCycleModel, 2]
+        - [BiasedBernoulliTrialCellCycleModel, 3]
+        - [LabelDependentBernoulliTrialCellCycleModel, 2]
+        - [LabelDependentBernoulliTrialCellCycleModel, 3]
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/CellsGenerator_custom.py
     source_includes:
     - NoCellCycleModel.hpp
     - UniformCellCycleModel.hpp
     - SimpleOxygenBasedCellCycleModel.hpp
     - UniformG1GenerationalCellCycleModel.hpp
+    - BiasedBernoulliTrialCellCycleModel.hpp
+    - LabelDependentBernoulliTrialCellCycleModel.hpp
   - name: CellwiseSourceEllipticPde
   - name: AveragedSourceEllipticPde
   - name: CellwiseSourceParabolicPde
@@ -255,6 +262,7 @@ modules:
   - name: FarhadifarForce
     excluded_methods: 
     - GetLineTensionParameter
+  - name: PlanarPolarisedFarhadifarForce
   - name: NagaiHondaDifferentialAdhesionForce
     excluded_methods: 
     - GetAdhesionParameter
@@ -351,6 +359,7 @@ modules:
   - name: ConstantTargetAreaModifier
   - name: SimpleTargetAreaModifier
   - name: DivisionBiasTrackingModifier
+  - name: ExtrinsicPullModifier
   - name: VtkSceneModifier
   - name: AbstractCellBasedSimulation
     excluded_methods: 
