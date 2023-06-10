@@ -263,6 +263,8 @@ modules:
     excluded_methods: 
     - GetLineTensionParameter
   - name: PlanarPolarisedFarhadifarForce
+    excluded_methods:
+    - GetLineTensionParameter
   - name: NagaiHondaDifferentialAdhesionForce
     excluded_methods: 
     - GetAdhesionParameter
