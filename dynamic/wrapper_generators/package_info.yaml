@@ -74,6 +74,8 @@ modules:
   - name: AbstractOdeSystemInformation
   - name: AbstractPythonOdeSystemInformation
   - name: AbstractOdeSystem
+  - name: DeltaNotchEdgeOdeSystem
+  - name: DeltaNotchInteriorOdeSystem
 - name: pde
   source_locations:
   - pde/src
@@ -139,6 +141,7 @@ modules:
   - name: NoCellCycleModel
   - name: BiasedBernoulliTrialCellCycleModel
   - name: LabelDependentBernoulliTrialCellCycleModel
+  - name: AlwaysDivideCellCycleModel
   - name: AbstractCellCycleModelOdeSolver
   - name: AbstractCellProperty
     excluded_methods: 
@@ -161,6 +164,7 @@ modules:
   - name: CellLabel
   - name: CellAncestor
   - name: CellId
+  - name: CellEdgeData
   - name: CellPropertyRegistry
     excluded_methods: 
     - rGetAllCellProperties
@@ -168,6 +172,10 @@ modules:
     - Get
   - name: AbstractSrnModel
   - name: NullSrnModel
+  - name: CellSrnModel
+  - name: DeltaNotchEdgeSrnModel
+  - name: DeltaNotchInteriorSrnModel
+  - name: VertexBasedPopulationSrn
   - name: Cell
     excluded_methods: 
     - rGetCellPropertyCollection
@@ -188,6 +196,8 @@ modules:
         - [BiasedBernoulliTrialCellCycleModel, 3]
         - [LabelDependentBernoulliTrialCellCycleModel, 2]
         - [LabelDependentBernoulliTrialCellCycleModel, 3]
+        - [AlwaysDivideCellCycleModel, 2]
+        - [AlwaysDivideCellCycleModel, 3]
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/CellsGenerator_custom.py
     source_includes:
     - NoCellCycleModel.hpp
@@ -196,10 +206,14 @@ modules:
     - UniformG1GenerationalCellCycleModel.hpp
     - BiasedBernoulliTrialCellCycleModel.hpp
     - LabelDependentBernoulliTrialCellCycleModel.hpp
+    - AlwaysDivideCellCycleModel.hpp
   - name: CellwiseSourceEllipticPde
   - name: AveragedSourceEllipticPde
   - name: CellwiseSourceParabolicPde
   - name: AbstractCellBasedSimulationModifier  
+  - name: Edge
+  - name: EdgeHelper
+  - name: EdgeOperation
   - name: AbstractPdeModifier
     excluded_methods: 
     - GetSolution
@@ -362,6 +376,7 @@ modules:
   - name: SimpleTargetAreaModifier
   - name: DivisionBiasTrackingModifier
   - name: ExtrinsicPullModifier
+  - name: DeltaNotchEdgeInteriorTrackingModifier
   - name: VtkSceneModifier
   - name: AbstractCellBasedSimulation
     excluded_methods: 
