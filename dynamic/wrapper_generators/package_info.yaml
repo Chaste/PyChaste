@@ -76,6 +76,11 @@ modules:
   - name: AbstractOdeSystem
   - name: DeltaNotchEdgeOdeSystem
   - name: DeltaNotchInteriorOdeSystem
+  - name: CellwiseOdeSystemInformation
+  - name: Alarcon2004OxygenBasedCellCycleOdeSystem
+  - name: Goldbeter1991OdeSystem
+  - name: TysonNovak2001OdeSystem
+  - name: DeltaNotchOdeSystem
 - name: pde
   source_locations:
   - pde/src
@@ -142,7 +147,19 @@ modules:
   - name: BiasedBernoulliTrialCellCycleModel
   - name: LabelDependentBernoulliTrialCellCycleModel
   - name: AlwaysDivideCellCycleModel
+  - name: AbstractOdeBasedCellCycleModel
+  - name: ContactInhibitionCellCycleModel
+  - name: StochasticOxygenBasedCellCycleModel
+  - name: GammaG1CellCycleModel
+  - name: ExponentialG1GenerationalCellCycleModel
+  - name: AbstractOdeBasedPhaseBasedCellCycleModel
+  - name: TysonNovakCellCycleModel
+  - name: Alarcon2004OxygenBasedCellCycleModel
+  - name: FixedSequenceCellCycleModel
+  - name: BernoulliTrialCellCycleModel
+  - name: FixedG1GenerationalCellCycleModel
   - name: AbstractCellCycleModelOdeSolver
+  - name: CellCycleModelOdeSolver
   - name: AbstractCellProperty
     excluded_methods: 
     - IsType  # exclude templated method
@@ -171,10 +188,13 @@ modules:
     - TakeOwnership
     - Get
   - name: AbstractSrnModel
+  - name: AbstractOdeSrnModel
   - name: NullSrnModel
   - name: CellSrnModel
+  - name: DeltaNotchSrnModel
   - name: DeltaNotchEdgeSrnModel
   - name: DeltaNotchInteriorSrnModel
+  - name: Goldbeter1991SrnModel
   - name: VertexBasedPopulationSrn
   - name: Cell
     excluded_methods: 
@@ -198,6 +218,24 @@ modules:
         - [LabelDependentBernoulliTrialCellCycleModel, 3]
         - [AlwaysDivideCellCycleModel, 2]
         - [AlwaysDivideCellCycleModel, 3]
+        - [ContactInhibitionCellCycleModel, 2]
+        - [ContactInhibitionCellCycleModel, 3]
+        - [StochasticOxygenBasedCellCycleModel, 2]
+        - [StochasticOxygenBasedCellCycleModel, 3]
+        - [GammaG1CellCycleModel, 2]
+        - [GammaG1CellCycleModel, 3]
+        - [ExponentialG1GenerationalCellCycleModel, 2]
+        - [ExponentialG1GenerationalCellCycleModel, 3]
+        - [TysonNovakCellCycleModel, 2]
+        - [TysonNovakCellCycleModel, 3]
+        - [Alarcon2004OxygenBasedCellCycleModel, 2]
+        - [Alarcon2004OxygenBasedCellCycleModel, 3]
+        - [FixedSequenceCellCycleModel, 2]
+        - [FixedSequenceCellCycleModel, 3]
+        - [BernoulliTrialCellCycleModel, 2]
+        - [BernoulliTrialCellCycleModel, 3]
+        - [FixedG1GenerationalCellCycleModel, 2]
+        - [FixedG1GenerationalCellCycleModel, 3]
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/CellsGenerator_custom.py
     source_includes:
     - NoCellCycleModel.hpp
@@ -207,9 +245,24 @@ modules:
     - BiasedBernoulliTrialCellCycleModel.hpp
     - LabelDependentBernoulliTrialCellCycleModel.hpp
     - AlwaysDivideCellCycleModel.hpp
+    - ContactInhibitionCellCycleModel.hpp
+    - StochasticOxygenBasedCellCycleModel.hpp
+    - GammaG1CellCycleModel.hpp
+    - ExponentialG1GenerationalCellCycleModel.hpp
+    - TysonNovakCellCycleModel.hpp
+    - Alarcon2004OxygenBasedCellCycleModel.hpp
+    - FixedSequenceCellCycleModel.hpp
+    - BernoulliTrialCellCycleModel.hpp
+    - FixedG1GenerationalCellCycleModel.hpp
   - name: CellwiseSourceEllipticPde
   - name: AveragedSourceEllipticPde
+  - name: VolumeDependentAveragedSourceEllipticPde
+  - name: UniformSourceEllipticPde
   - name: CellwiseSourceParabolicPde
+  - name: UniformSourceParabolicPde
+  - name: AveragedSourceParabolicPde
+  - name: CellBasedEllipticPdeSolver
+  - name: CellBasedParabolicPdeSolver
   - name: AbstractCellBasedSimulationModifier  
   - name: Edge
   - name: EdgeHelper
@@ -224,6 +277,13 @@ modules:
     prefix_code:
     - PYBIND11_MAKE_OPAQUE(Vec); 
     - PYBIND11_MAKE_OPAQUE(Mat); 
+  - name: AbstractBoxDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    prefix_code:
+    - PYBIND11_MAKE_OPAQUE(Vec); 
+    - PYBIND11_MAKE_OPAQUE(Mat); 
   - name: AbstractGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
@@ -232,6 +292,33 @@ modules:
     - PYBIND11_MAKE_OPAQUE(Vec); 
     - PYBIND11_MAKE_OPAQUE(Mat); 
   - name: EllipticGrowingDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    prefix_code:
+    - PYBIND11_MAKE_OPAQUE(Vec); 
+    - PYBIND11_MAKE_OPAQUE(Mat); 
+    excluded_methods: 
+    - ConstructBoundaryConditionsContainer
+  - name: ParabolicGrowingDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    prefix_code:
+    - PYBIND11_MAKE_OPAQUE(Vec); 
+    - PYBIND11_MAKE_OPAQUE(Mat); 
+    excluded_methods: 
+    - ConstructBoundaryConditionsContainer
+  - name: EllipticBoxDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    prefix_code:
+    - PYBIND11_MAKE_OPAQUE(Vec); 
+    - PYBIND11_MAKE_OPAQUE(Mat); 
+    excluded_methods: 
+    - ConstructBoundaryConditionsContainer
+  - name: ParabolicBoxDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
@@ -261,6 +348,17 @@ modules:
   - name: AbstractVertexBasedDivisionRule
   - name: RandomDirectionVertexBasedDivisionRule
   - name: VonMisesVertexBasedDivisionRule
+  - name: FixedVertexBasedDivisionRule
+  - name: AbstractCaBasedDivisionRule
+  - name: ShovingCaBasedDivisionRule
+  - name: ExclusionCaBasedDivisionRule
+  - name: RandomDirectionCentreBasedDivisionRule
+  - name: FixedCentreBasedDivisionRule
+  - name: AbstractCentreBasedDivisionRule
+  - name: ShortAxisVertexBasedDivisionRule
+  - name: RandomCaSwitchingUpdateRule
+  - name: ChemotaxisPottsUpdateRule
+  - name: AbstractCaSwitchingUpdateRule
   - name: AbstractForce 
   - name: AbstractTwoBodyInteractionForce
   - name: BuskeAdhesiveForce
@@ -285,6 +383,10 @@ modules:
   - name: AbstractCellKiller 
   - name: PlaneBasedCellKiller
   - name: ApoptoticCellKiller
+  - name: TargetedCellKiller
+  - name: RandomCellKiller
+  - name: T2SwapCellKiller
+  - name: IsolatedLabelledCellKiller
   - name: AbstractCellPopulationBoundaryCondition
   - name: PlaneBoundaryCondition
     source_includes:
@@ -313,6 +415,7 @@ modules:
     - GetNodeCorrespondingToCell
     - MarkSpring
     - UnmarkSpring
+  - name: NodeBasedCellPopulationWithParticles
   - name: CaBasedCellPopulation
     excluded_methods: 
     - rGetMesh
@@ -371,12 +474,22 @@ modules:
     source_includes:
     - CellLabelWriter.hpp 
     - VoronoiDataWriter.hpp 
+  - name: NodeBasedCellPopulationWithBuskeUpdate
+    excluded_methods:
+    - rGetMesh
+    custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py   
+    source_includes:
+    - CellLabelWriter.hpp 
+    - VoronoiDataWriter.hpp 
   - name: AbstractTargetAreaModifier 
   - name: ConstantTargetAreaModifier
   - name: SimpleTargetAreaModifier
   - name: DivisionBiasTrackingModifier
   - name: ExtrinsicPullModifier
   - name: DeltaNotchEdgeInteriorTrackingModifier
+  - name: DeltaNotchTrackingModifier
+  - name: TargetAreaLinearGrowthModifier
+  - name: VolumeTrackingModifier
   - name: VtkSceneModifier
   - name: AbstractCellBasedSimulation
     excluded_methods: 
