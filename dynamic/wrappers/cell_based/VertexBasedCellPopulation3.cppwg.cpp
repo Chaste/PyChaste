@@ -32,42 +32,42 @@ class VertexBasedCellPopulation3_Overloads : public VertexBasedCellPopulation3{
     public:
     using VertexBasedCellPopulation3::VertexBasedCellPopulation;
     double GetDampingConstant(unsigned int nodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexBasedCellPopulation3,
             GetDampingConstant,
             nodeIndex);
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             VertexBasedCellPopulation3,
             GetNumNodes,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 3> GetLocationOfCellCentre(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             VertexBasedCellPopulation3,
             GetLocationOfCellCentre,
             pCell);
     }
     ::Node<3> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_3_gt_Ptr,
             VertexBasedCellPopulation3,
             GetNode,
             index);
     }
     ::std::set<unsigned int> GetNeighbouringLocationIndices(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_gt_,
             VertexBasedCellPopulation3,
             GetNeighbouringLocationIndices,
             pCell);
     }
     ::std::set<std::pair<unsigned int, unsigned int>> GetNeighbouringEdgeIndices(::CellPtr pCell, unsigned int EdgeLocalIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_std_pair_lt_unsignedint_unsignedint_gt__gt_,
             VertexBasedCellPopulation3,
             GetNeighbouringEdgeIndices,
@@ -75,14 +75,14 @@ class VertexBasedCellPopulation3_Overloads : public VertexBasedCellPopulation3{
 EdgeLocalIndex);
     }
     unsigned int AddNode(::Node<3> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             VertexBasedCellPopulation3,
             AddNode,
             pNewNode);
     }
     void CheckForStepSizeException(unsigned int nodeIndex, ::boost::numeric::ublas::c_vector<double, 3> & rDisplacement, double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             CheckForStepSizeException,
@@ -91,7 +91,7 @@ rDisplacement,
 dt);
     }
     void SetNode(unsigned int index, ::ChastePoint<3> & rNewLocation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             SetNode,
@@ -99,7 +99,7 @@ dt);
 rNewLocation);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             VertexBasedCellPopulation3,
             AddCell,
@@ -107,56 +107,56 @@ rNewLocation);
 pParentCell);
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             VertexBasedCellPopulation3,
             RemoveDeadCells,
             );
     }
     bool IsCellAssociatedWithADeletedLocation(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             VertexBasedCellPopulation3,
             IsCellAssociatedWithADeletedLocation,
             pCell);
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             Update,
             hasHadBirthsOrDeaths);
     }
     void OpenWritersFiles(::OutputFileHandler & rOutputFileHandler) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             OpenWritersFiles,
             rOutputFileHandler);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<3, 3>> pPopulationWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<3, 3>> pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptPopulationEventWriter(::boost::shared_ptr<AbstractCellPopulationEventWriter<3, 3>> pPopulationEventWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             AcceptPopulationEventWriter,
             pPopulationEventWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<3, 3>> pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             AcceptCellWriter,
@@ -164,49 +164,49 @@ pParentCell);
 pCell);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexBasedCellPopulation3,
             GetVolumeOfCell,
             pCell);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexBasedCellPopulation3,
             GetWidth,
             rDimension);
     }
     ::std::set<unsigned int> GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_gt_,
             VertexBasedCellPopulation3,
             GetNeighbouringNodeIndices,
             index);
     }
     ::TetrahedralMesh<3, 3> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _TetrahedralMesh_lt_3_3_gt_Ptr,
             VertexBasedCellPopulation3,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     bool IsPdeNodeAssociatedWithNonApoptoticCell(unsigned int pdeNodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             VertexBasedCellPopulation3,
             IsPdeNodeAssociatedWithNonApoptoticCell,
             pdeNodeIndex);
     }
     double GetCellDataItemAtPdeNode(unsigned int pdeNodeIndex, ::std::string & rVariableName, bool dirichletBoundaryConditionApplies, double dirichletBoundaryValue) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexBasedCellPopulation3,
             GetCellDataItemAtPdeNode,
@@ -216,21 +216,21 @@ dirichletBoundaryConditionApplies,
 dirichletBoundaryValue);
     }
     double GetDefaultTimeStep() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexBasedCellPopulation3,
             GetDefaultTimeStep,
             );
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             WriteDataToVisualizerSetupFile,
             pVizSetupFile);
     }
     void SimulationSetupHook(::AbstractCellBasedSimulation<3, 3> * pSimulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexBasedCellPopulation3,
             SimulationSetupHook,

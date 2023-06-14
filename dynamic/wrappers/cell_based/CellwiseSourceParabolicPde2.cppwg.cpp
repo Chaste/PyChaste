@@ -19,14 +19,14 @@ class CellwiseSourceParabolicPde2_Overloads : public CellwiseSourceParabolicPde2
     public:
     using CellwiseSourceParabolicPde2::CellwiseSourceParabolicPde;
     double ComputeDuDtCoefficientFunction(::ChastePoint<2> const & rX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceParabolicPde2,
             ComputeDuDtCoefficientFunction,
             rX);
     }
     double ComputeSourceTerm(::ChastePoint<2> const & rX, double u, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceParabolicPde2,
             ComputeSourceTerm,
@@ -35,7 +35,7 @@ u,
 pElement);
     }
     double ComputeSourceTermAtNode(::Node<2> const & rNode, double u) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceParabolicPde2,
             ComputeSourceTermAtNode,
@@ -43,7 +43,7 @@ pElement);
 u);
     }
     ::boost::numeric::ublas::c_matrix<double, 2, 2> ComputeDiffusionTerm(::ChastePoint<2> const & rX, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_2_2_gt_,
             CellwiseSourceParabolicPde2,
             ComputeDiffusionTerm,

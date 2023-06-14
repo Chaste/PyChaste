@@ -18,14 +18,14 @@ class DeltaNotchTrackingModifier2_Overloads : public DeltaNotchTrackingModifier2
     public:
     using DeltaNotchTrackingModifier2::DeltaNotchTrackingModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchTrackingModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchTrackingModifier2,
             SetupSolve,
@@ -33,7 +33,7 @@ class DeltaNotchTrackingModifier2_Overloads : public DeltaNotchTrackingModifier2
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchTrackingModifier2,
             OutputSimulationModifierParameters,

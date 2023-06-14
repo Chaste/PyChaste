@@ -18,14 +18,14 @@ class PythonSimulationModifier2_Overloads : public PythonSimulationModifier2{
     public:
     using PythonSimulationModifier2::PythonSimulationModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier2,
             SetupSolve,
@@ -33,14 +33,14 @@ class PythonSimulationModifier2_Overloads : public PythonSimulationModifier2{
 outputDirectory);
     }
     void UpdateCellData(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier2,
             UpdateCellData,
             rCellPopulation);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier2,
             OutputSimulationModifierParameters,

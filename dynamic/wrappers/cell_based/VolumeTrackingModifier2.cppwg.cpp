@@ -18,14 +18,14 @@ class VolumeTrackingModifier2_Overloads : public VolumeTrackingModifier2{
     public:
     using VolumeTrackingModifier2::VolumeTrackingModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VolumeTrackingModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VolumeTrackingModifier2,
             SetupSolve,
@@ -33,7 +33,7 @@ class VolumeTrackingModifier2_Overloads : public VolumeTrackingModifier2{
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VolumeTrackingModifier2,
             OutputSimulationModifierParameters,

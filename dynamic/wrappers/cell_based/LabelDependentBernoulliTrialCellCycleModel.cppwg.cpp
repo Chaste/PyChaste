@@ -19,35 +19,35 @@ class LabelDependentBernoulliTrialCellCycleModel_Overloads : public LabelDepende
     public:
     using LabelDependentBernoulliTrialCellCycleModel::LabelDependentBernoulliTrialCellCycleModel;
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             LabelDependentBernoulliTrialCellCycleModel,
             ReadyToDivide,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             LabelDependentBernoulliTrialCellCycleModel,
             CreateCellCycleModel,
             );
     }
     double GetAverageTransitCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             LabelDependentBernoulliTrialCellCycleModel,
             GetAverageTransitCellCycleTime,
             );
     }
     double GetAverageStemCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             LabelDependentBernoulliTrialCellCycleModel,
             GetAverageStemCellCycleTime,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             LabelDependentBernoulliTrialCellCycleModel,
             OutputCellCycleModelParameters,

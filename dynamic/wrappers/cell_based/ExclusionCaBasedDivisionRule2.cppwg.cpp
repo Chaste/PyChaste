@@ -19,7 +19,7 @@ class ExclusionCaBasedDivisionRule2_Overloads : public ExclusionCaBasedDivisionR
     public:
     using ExclusionCaBasedDivisionRule2::ExclusionCaBasedDivisionRule;
     bool IsRoomToDivide(::CellPtr pParentCell, ::CaBasedCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ExclusionCaBasedDivisionRule2,
             IsRoomToDivide,
@@ -27,7 +27,7 @@ class ExclusionCaBasedDivisionRule2_Overloads : public ExclusionCaBasedDivisionR
 rCellPopulation);
     }
     unsigned int CalculateDaughterNodeIndex(::CellPtr pNewCell, ::CellPtr pParentCell, ::CaBasedCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ExclusionCaBasedDivisionRule2,
             CalculateDaughterNodeIndex,

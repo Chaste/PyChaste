@@ -19,21 +19,21 @@ class SlidingBoundaryCondition2_Overloads : public SlidingBoundaryCondition2{
     public:
     using SlidingBoundaryCondition2::SlidingBoundaryCondition;
     void ImposeBoundaryCondition(::std::map<Node<2> *, boost::numeric::ublas::c_vector<double, 2>> const & rOldLocations) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SlidingBoundaryCondition2,
             ImposeBoundaryCondition,
             rOldLocations);
     }
     bool VerifyBoundaryCondition() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             SlidingBoundaryCondition2,
             VerifyBoundaryCondition,
             );
     }
     void OutputCellPopulationBoundaryConditionParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SlidingBoundaryCondition2,
             OutputCellPopulationBoundaryConditionParameters,

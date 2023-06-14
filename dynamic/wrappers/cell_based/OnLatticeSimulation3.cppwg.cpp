@@ -18,28 +18,28 @@ class OnLatticeSimulation3_Overloads : public OnLatticeSimulation3{
     public:
     using OnLatticeSimulation3::OnLatticeSimulation;
     void OutputAdditionalSimulationSetup(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation3,
             OutputAdditionalSimulationSetup,
             rParamsFile);
     }
     void OutputSimulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation3,
             OutputSimulationParameters,
             rParamsFile);
     }
     void UpdateCellPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation3,
             UpdateCellPopulation,
             );
     }
     void UpdateCellLocationsAndTopology() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation3,
             UpdateCellLocationsAndTopology,

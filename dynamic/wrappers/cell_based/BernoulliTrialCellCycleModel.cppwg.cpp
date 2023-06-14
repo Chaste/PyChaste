@@ -19,35 +19,35 @@ class BernoulliTrialCellCycleModel_Overloads : public BernoulliTrialCellCycleMod
     public:
     using BernoulliTrialCellCycleModel::BernoulliTrialCellCycleModel;
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             BernoulliTrialCellCycleModel,
             ReadyToDivide,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             BernoulliTrialCellCycleModel,
             CreateCellCycleModel,
             );
     }
     double GetAverageTransitCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             BernoulliTrialCellCycleModel,
             GetAverageTransitCellCycleTime,
             );
     }
     double GetAverageStemCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             BernoulliTrialCellCycleModel,
             GetAverageStemCellCycleTime,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BernoulliTrialCellCycleModel,
             OutputCellCycleModelParameters,

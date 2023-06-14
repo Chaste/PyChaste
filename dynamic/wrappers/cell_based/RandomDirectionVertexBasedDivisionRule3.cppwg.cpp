@@ -19,7 +19,7 @@ class RandomDirectionVertexBasedDivisionRule3_Overloads : public RandomDirection
     public:
     using RandomDirectionVertexBasedDivisionRule3::RandomDirectionVertexBasedDivisionRule;
     ::boost::numeric::ublas::c_vector<double, 3> CalculateCellDivisionVector(::CellPtr pParentCell, ::VertexBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             RandomDirectionVertexBasedDivisionRule3,
             CalculateCellDivisionVector,

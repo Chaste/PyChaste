@@ -18,7 +18,7 @@ class DeltaNotchEdgeOdeSystem_Overloads : public DeltaNotchEdgeOdeSystem{
     public:
     using DeltaNotchEdgeOdeSystem::DeltaNotchEdgeOdeSystem;
     void EvaluateYDerivatives(double time, ::std::vector<double> const & rY, ::std::vector<double> & rDY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeOdeSystem,
             EvaluateYDerivatives,

@@ -18,14 +18,14 @@ class IsolatedLabelledCellKiller2_Overloads : public IsolatedLabelledCellKiller2
     public:
     using IsolatedLabelledCellKiller2::IsolatedLabelledCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             IsolatedLabelledCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             IsolatedLabelledCellKiller2,
             OutputCellKillerParameters,

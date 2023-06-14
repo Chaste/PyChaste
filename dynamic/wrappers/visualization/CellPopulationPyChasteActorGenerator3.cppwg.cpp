@@ -18,7 +18,7 @@ class CellPopulationPyChasteActorGenerator3_Overloads : public CellPopulationPyC
     public:
     using CellPopulationPyChasteActorGenerator3::CellPopulationPyChasteActorGenerator;
     void AddActor(::vtkSmartPointer<vtkRenderer> pRenderer) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellPopulationPyChasteActorGenerator3,
             AddActor,

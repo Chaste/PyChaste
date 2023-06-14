@@ -20,14 +20,14 @@ class Cylindrical2dMesh_Overloads : public Cylindrical2dMesh{
     public:
     using Cylindrical2dMesh::Cylindrical2dMesh;
     void ReMesh(::NodeMap & rMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Cylindrical2dMesh,
             ReMesh,
             rMap);
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocation1, ::boost::numeric::ublas::c_vector<double, 2> const & rLocation2) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             Cylindrical2dMesh,
             GetVectorFromAtoB,
@@ -35,7 +35,7 @@ class Cylindrical2dMesh_Overloads : public Cylindrical2dMesh{
 rLocation2);
     }
     void SetNode(unsigned int index, ::ChastePoint<2> point, bool concreteMove) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Cylindrical2dMesh,
             SetNode,
@@ -44,14 +44,14 @@ point,
 concreteMove);
     }
     double GetWidth(unsigned int const & rDimension) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             Cylindrical2dMesh,
             GetWidth,
             rDimension);
     }
     unsigned int AddNode(::Node<2> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             Cylindrical2dMesh,
             AddNode,

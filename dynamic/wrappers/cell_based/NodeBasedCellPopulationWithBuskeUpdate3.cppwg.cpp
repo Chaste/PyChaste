@@ -20,14 +20,14 @@ class NodeBasedCellPopulationWithBuskeUpdate3_Overloads : public NodeBasedCellPo
     public:
     using NodeBasedCellPopulationWithBuskeUpdate3::NodeBasedCellPopulationWithBuskeUpdate;
     void UpdateNodeLocations(double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulationWithBuskeUpdate3,
             UpdateNodeLocations,
             dt);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulationWithBuskeUpdate3,
             OutputCellPopulationParameters,

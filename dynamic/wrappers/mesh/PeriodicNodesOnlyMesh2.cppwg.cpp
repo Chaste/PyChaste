@@ -20,7 +20,7 @@ class PeriodicNodesOnlyMesh2_Overloads : public PeriodicNodesOnlyMesh2{
     public:
     using PeriodicNodesOnlyMesh2::PeriodicNodesOnlyMesh;
     void SetUpBoxCollection(double cutOffLength, ::boost::numeric::ublas::c_vector<double, 4> domainSize, int numLocalRows, ::boost::numeric::ublas::c_vector<bool, 2> isDimPeriodic) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PeriodicNodesOnlyMesh2,
             SetUpBoxCollection,
@@ -30,7 +30,7 @@ numLocalRows,
 isDimPeriodic);
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocation1, ::boost::numeric::ublas::c_vector<double, 2> const & rLocation2) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             PeriodicNodesOnlyMesh2,
             GetVectorFromAtoB,
@@ -38,14 +38,14 @@ isDimPeriodic);
 rLocation2);
     }
     double GetWidth(unsigned int const & rDimension) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             PeriodicNodesOnlyMesh2,
             GetWidth,
             rDimension);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> point, bool concreteMove) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PeriodicNodesOnlyMesh2,
             SetNode,
@@ -54,14 +54,14 @@ point,
 concreteMove);
     }
     unsigned int AddNode(::Node<2> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             PeriodicNodesOnlyMesh2,
             AddNode,
             pNewNode);
     }
     void RefreshMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PeriodicNodesOnlyMesh2,
             RefreshMesh,
@@ -75,7 +75,7 @@ py::class_<PeriodicNodesOnlyMesh2 , PeriodicNodesOnlyMesh2_Overloads , boost::sh
         .def(
             "SetUpBoxCollection", 
             (void(PeriodicNodesOnlyMesh2::*)(double, ::boost::numeric::ublas::c_vector<double, 4>, int, ::boost::numeric::ublas::c_vector<bool, 2>)) &PeriodicNodesOnlyMesh2::SetUpBoxCollection, 
-            " " , py::arg("cutOffLength"), py::arg("domainSize"), py::arg("numLocalRows") = -1, py::arg("isDimPeriodic") = zero_vector<bool>(PeriodicNodesOnlyMesh::SPACE_DIM) )
+            " " , py::arg("cutOffLength"), py::arg("domainSize"), py::arg("numLocalRows") = -1, py::arg("isDimPeriodic") = zero_vector<bool>(2) )
         .def(
             "GetVectorFromAtoB", 
             (::boost::numeric::ublas::c_vector<double, 2>(PeriodicNodesOnlyMesh2::*)(::boost::numeric::ublas::c_vector<double, 2> const &, ::boost::numeric::ublas::c_vector<double, 2> const &)) &PeriodicNodesOnlyMesh2::GetVectorFromAtoB, 

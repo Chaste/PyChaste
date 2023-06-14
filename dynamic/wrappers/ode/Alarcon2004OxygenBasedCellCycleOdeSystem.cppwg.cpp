@@ -18,7 +18,7 @@ class Alarcon2004OxygenBasedCellCycleOdeSystem_Overloads : public Alarcon2004Oxy
     public:
     using Alarcon2004OxygenBasedCellCycleOdeSystem::Alarcon2004OxygenBasedCellCycleOdeSystem;
     void EvaluateYDerivatives(double time, ::std::vector<double> const & rY, ::std::vector<double> & rDY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Alarcon2004OxygenBasedCellCycleOdeSystem,
             EvaluateYDerivatives,
@@ -27,7 +27,7 @@ rY,
 rDY);
     }
     bool CalculateStoppingEvent(double time, ::std::vector<double> const & rY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             Alarcon2004OxygenBasedCellCycleOdeSystem,
             CalculateStoppingEvent,

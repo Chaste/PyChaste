@@ -22,7 +22,7 @@ class AbstractGrowingDomainPdeModifier3_Overloads : public AbstractGrowingDomain
     public:
     using AbstractGrowingDomainPdeModifier3::AbstractGrowingDomainPdeModifier;
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractGrowingDomainPdeModifier3,
             OutputSimulationModifierParameters,

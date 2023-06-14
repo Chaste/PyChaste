@@ -18,14 +18,14 @@ class T2SwapCellKiller2_Overloads : public T2SwapCellKiller2{
     public:
     using T2SwapCellKiller2::T2SwapCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             T2SwapCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             T2SwapCellKiller2,
             OutputCellKillerParameters,

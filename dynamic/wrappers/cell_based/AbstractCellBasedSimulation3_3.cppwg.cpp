@@ -26,35 +26,35 @@ class AbstractCellBasedSimulation3_3_Overloads : public AbstractCellBasedSimulat
             rParamsFile);
     }
     void WriteVisualizerSetupFile() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulation3_3,
             WriteVisualizerSetupFile,
             );
     }
     unsigned int DoCellBirth() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractCellBasedSimulation3_3,
             DoCellBirth,
             );
     }
     void SetupSolve() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulation3_3,
             SetupSolve,
             );
     }
     bool StoppingEventHasOccurred() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellBasedSimulation3_3,
             StoppingEventHasOccurred,
             );
     }
     void UpdateCellPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulation3_3,
             UpdateCellPopulation,

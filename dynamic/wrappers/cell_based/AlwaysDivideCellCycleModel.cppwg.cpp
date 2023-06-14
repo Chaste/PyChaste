@@ -19,35 +19,35 @@ class AlwaysDivideCellCycleModel_Overloads : public AlwaysDivideCellCycleModel{
     public:
     using AlwaysDivideCellCycleModel::AlwaysDivideCellCycleModel;
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AlwaysDivideCellCycleModel,
             ReadyToDivide,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             AlwaysDivideCellCycleModel,
             CreateCellCycleModel,
             );
     }
     double GetAverageTransitCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AlwaysDivideCellCycleModel,
             GetAverageTransitCellCycleTime,
             );
     }
     double GetAverageStemCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AlwaysDivideCellCycleModel,
             GetAverageStemCellCycleTime,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AlwaysDivideCellCycleModel,
             OutputCellCycleModelParameters,

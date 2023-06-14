@@ -20,7 +20,7 @@ class CellBasedParabolicPdeSolver2_Overloads : public CellBasedParabolicPdeSolve
     public:
     using CellBasedParabolicPdeSolver2::CellBasedParabolicPdeSolver;
     ::boost::numeric::ublas::c_vector<double, 3> ComputeVectorTerm(::boost::numeric::ublas::c_vector<double, 3> & rPhi, ::boost::numeric::ublas::c_matrix<double, 2, 3> & rGradPhi, ::ChastePoint<2> & rX, ::boost::numeric::ublas::c_vector<double, 1> & rU, ::boost::numeric::ublas::c_matrix<double, 1, 2> & rGradU, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             CellBasedParabolicPdeSolver2,
             ComputeVectorTerm,
@@ -32,7 +32,7 @@ rGradU,
 pElement);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeMatrixTerm(::boost::numeric::ublas::c_vector<double, 3> & rPhi, ::boost::numeric::ublas::c_matrix<double, 2, 3> & rGradPhi, ::ChastePoint<2> & rX, ::boost::numeric::ublas::c_vector<double, 1> & rU, ::boost::numeric::ublas::c_matrix<double, 1, 2> & rGradU, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             CellBasedParabolicPdeSolver2,
             ComputeMatrixTerm,
@@ -44,14 +44,14 @@ rGradU,
 pElement);
     }
     void ResetInterpolatedQuantities() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellBasedParabolicPdeSolver2,
             ResetInterpolatedQuantities,
             );
     }
     void IncrementInterpolatedQuantities(double phiI, ::Node<2> const * arg1) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellBasedParabolicPdeSolver2,
             IncrementInterpolatedQuantities,

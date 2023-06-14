@@ -18,7 +18,7 @@ class VtkScene3_Overloads : public VtkScene3{
     public:
     using VtkScene3::VtkScene;
     void ResetRenderer(unsigned int timeStep) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkScene3,
             ResetRenderer,

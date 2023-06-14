@@ -18,14 +18,14 @@ class BuskeCompressionForce2_Overloads : public BuskeCompressionForce2{
     public:
     using BuskeCompressionForce2::BuskeCompressionForce;
     void AddForceContribution(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeCompressionForce2,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeCompressionForce2,
             OutputForceParameters,

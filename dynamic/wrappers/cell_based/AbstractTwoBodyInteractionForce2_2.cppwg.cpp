@@ -28,21 +28,21 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void AddForceContribution(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTwoBodyInteractionForce2_2,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTwoBodyInteractionForce2_2,
             OutputForceParameters,
             rParamsFile);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTwoBodyInteractionForce2_2,
             WriteDataToVisualizerSetupFile,

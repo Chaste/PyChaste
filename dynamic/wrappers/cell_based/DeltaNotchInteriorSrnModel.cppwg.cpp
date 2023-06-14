@@ -19,42 +19,42 @@ class DeltaNotchInteriorSrnModel_Overloads : public DeltaNotchInteriorSrnModel{
     public:
     using DeltaNotchInteriorSrnModel::DeltaNotchInteriorSrnModel;
     ::AbstractSrnModel * CreateSrnModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractSrnModelPtr,
             DeltaNotchInteriorSrnModel,
             CreateSrnModel,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchInteriorSrnModel,
             ResetForDivision,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchInteriorSrnModel,
             Initialise,
             );
     }
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchInteriorSrnModel,
             SimulateToCurrentTime,
             );
     }
     void OutputSrnModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchInteriorSrnModel,
             OutputSrnModelParameters,
             rParamsFile);
     }
     void AddShrunkEdgeToInterior(::AbstractSrnModel * p_shrunk_edge_srn) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchInteriorSrnModel,
             AddShrunkEdgeToInterior,

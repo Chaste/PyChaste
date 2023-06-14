@@ -20,7 +20,7 @@ class Cylindrical2dVertexMesh_Overloads : public Cylindrical2dVertexMesh{
     public:
     using Cylindrical2dVertexMesh::Cylindrical2dVertexMesh;
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocation1, ::boost::numeric::ublas::c_vector<double, 2> const & rLocation2) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             Cylindrical2dVertexMesh,
             GetVectorFromAtoB,
@@ -28,7 +28,7 @@ class Cylindrical2dVertexMesh_Overloads : public Cylindrical2dVertexMesh{
 rLocation2);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> point) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Cylindrical2dVertexMesh,
             SetNode,
@@ -36,14 +36,14 @@ rLocation2);
 point);
     }
     double GetWidth(unsigned int const & rDimension) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             Cylindrical2dVertexMesh,
             GetWidth,
             rDimension);
     }
     void Scale(double const xScale, double const yScale, double const zScale) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Cylindrical2dVertexMesh,
             Scale,
@@ -52,7 +52,7 @@ yScale,
 zScale);
     }
     ::VertexMesh<2, 2> * GetMeshForVtk() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _VertexMesh_lt_2_2_gt_Ptr,
             Cylindrical2dVertexMesh,
             GetMeshForVtk,

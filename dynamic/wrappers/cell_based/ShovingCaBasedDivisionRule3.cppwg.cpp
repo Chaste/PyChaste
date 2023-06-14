@@ -19,7 +19,7 @@ class ShovingCaBasedDivisionRule3_Overloads : public ShovingCaBasedDivisionRule3
     public:
     using ShovingCaBasedDivisionRule3::ShovingCaBasedDivisionRule;
     bool IsRoomToDivide(::CellPtr pParentCell, ::CaBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ShovingCaBasedDivisionRule3,
             IsRoomToDivide,
@@ -27,7 +27,7 @@ class ShovingCaBasedDivisionRule3_Overloads : public ShovingCaBasedDivisionRule3
 rCellPopulation);
     }
     unsigned int CalculateDaughterNodeIndex(::CellPtr pNewCell, ::CellPtr pParentCell, ::CaBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ShovingCaBasedDivisionRule3,
             CalculateDaughterNodeIndex,

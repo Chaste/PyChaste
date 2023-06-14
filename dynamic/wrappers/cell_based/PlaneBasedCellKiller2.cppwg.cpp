@@ -18,14 +18,14 @@ class PlaneBasedCellKiller2_Overloads : public PlaneBasedCellKiller2{
     public:
     using PlaneBasedCellKiller2::PlaneBasedCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PlaneBasedCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PlaneBasedCellKiller2,
             OutputCellKillerParameters,

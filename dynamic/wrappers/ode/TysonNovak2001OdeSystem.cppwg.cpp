@@ -18,7 +18,7 @@ class TysonNovak2001OdeSystem_Overloads : public TysonNovak2001OdeSystem{
     public:
     using TysonNovak2001OdeSystem::TysonNovak2001OdeSystem;
     void EvaluateYDerivatives(double time, ::std::vector<double> const & rY, ::std::vector<double> & rDY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TysonNovak2001OdeSystem,
             EvaluateYDerivatives,
@@ -27,7 +27,7 @@ rY,
 rDY);
     }
     bool CalculateStoppingEvent(double time, ::std::vector<double> const & rY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             TysonNovak2001OdeSystem,
             CalculateStoppingEvent,
@@ -35,23 +35,23 @@ rDY);
 rY);
     }
     double CalculateRootFunction(double time, ::std::vector<double> const & rY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             TysonNovak2001OdeSystem,
             CalculateRootFunction,
             time, 
 rY);
     }
-    void AnalyticJacobian(::std::vector<double> const & rSolutionGuess, double * * jacobian, double time, double timeStep) override {
-        PYBIND11_OVERLOAD(
-            void,
-            TysonNovak2001OdeSystem,
-            AnalyticJacobian,
-            rSolutionGuess, 
-jacobian, 
-time, 
-timeStep);
-    }
+//     void AnalyticJacobian(::std::vector<double> const & rSolutionGuess, double * * jacobian, double time, double timeStep) override {
+//         PYBIND11_OVERRIDE(
+//             void,
+//             TysonNovak2001OdeSystem,
+//             AnalyticJacobian,
+//             rSolutionGuess, 
+// jacobian, 
+// time, 
+// timeStep);
+//     }
 
 };
 void register_TysonNovak2001OdeSystem_class(py::module &m){
@@ -73,9 +73,9 @@ py::class_<TysonNovak2001OdeSystem , TysonNovak2001OdeSystem_Overloads , boost::
             "CalculateRootFunction", 
             (double(TysonNovak2001OdeSystem::*)(double, ::std::vector<double> const &)) &TysonNovak2001OdeSystem::CalculateRootFunction, 
             " " , py::arg("time"), py::arg("rY") )
-        .def(
-            "AnalyticJacobian", 
-            (void(TysonNovak2001OdeSystem::*)(::std::vector<double> const &, double * *, double, double)) &TysonNovak2001OdeSystem::AnalyticJacobian, 
-            " " , py::arg("rSolutionGuess"), py::arg("jacobian"), py::arg("time"), py::arg("timeStep") )
+        // .def(
+        //     "AnalyticJacobian", 
+        //     (void(TysonNovak2001OdeSystem::*)(::std::vector<double> const &, double * *, double, double)) &TysonNovak2001OdeSystem::AnalyticJacobian, 
+        //     " " , py::arg("rSolutionGuess"), py::arg("jacobian"), py::arg("time"), py::arg("timeStep") )
     ;
 }

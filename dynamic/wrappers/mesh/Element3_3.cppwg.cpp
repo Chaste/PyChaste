@@ -18,21 +18,21 @@ class Element3_3_Overloads : public Element3_3{
     public:
     using Element3_3::Element;
     void RegisterWithNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element3_3,
             RegisterWithNodes,
             );
     }
     void MarkAsDeleted() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element3_3,
             MarkAsDeleted,
             );
     }
     void UpdateNode(unsigned int const & rIndex, ::Node<3> * pNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element3_3,
             UpdateNode,

@@ -18,7 +18,7 @@ class DifferentialAdhesionPottsUpdateRule3_Overloads : public DifferentialAdhesi
     public:
     using DifferentialAdhesionPottsUpdateRule3::DifferentialAdhesionPottsUpdateRule;
     double GetCellCellAdhesionEnergy(::CellPtr pCellA, ::CellPtr pCellB) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             DifferentialAdhesionPottsUpdateRule3,
             GetCellCellAdhesionEnergy,
@@ -26,14 +26,14 @@ class DifferentialAdhesionPottsUpdateRule3_Overloads : public DifferentialAdhesi
 pCellB);
     }
     double GetCellBoundaryAdhesionEnergy(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             DifferentialAdhesionPottsUpdateRule3,
             GetCellBoundaryAdhesionEnergy,
             pCell);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DifferentialAdhesionPottsUpdateRule3,
             OutputUpdateRuleParameters,

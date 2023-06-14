@@ -32,7 +32,7 @@ class AbstractForce3_3_Overloads : public AbstractForce3_3{
             rParamsFile);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractForce3_3,
             WriteDataToVisualizerSetupFile,

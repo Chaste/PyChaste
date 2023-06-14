@@ -27,7 +27,7 @@ class AbstractVertexBasedDivisionRule3_Overloads : public AbstractVertexBasedDiv
 rCellPopulation);
     }
     void OutputCellVertexBasedDivisionRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractVertexBasedDivisionRule3,
             OutputCellVertexBasedDivisionRuleParameters,

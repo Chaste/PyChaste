@@ -18,14 +18,14 @@ class WelikyOsterForce3_Overloads : public WelikyOsterForce3{
     public:
     using WelikyOsterForce3::WelikyOsterForce;
     void AddForceContribution(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             WelikyOsterForce3,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             WelikyOsterForce3,
             OutputForceParameters,

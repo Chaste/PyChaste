@@ -36,7 +36,7 @@ pParentCell,
 rCellPopulation);
     }
     void OutputCellCaBasedDivisionRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCaBasedDivisionRule2,
             OutputCellCaBasedDivisionRuleParameters,

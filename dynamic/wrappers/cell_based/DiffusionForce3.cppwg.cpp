@@ -18,14 +18,14 @@ class DiffusionForce3_Overloads : public DiffusionForce3{
     public:
     using DiffusionForce3::DiffusionForce;
     void AddForceContribution(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DiffusionForce3,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DiffusionForce3,
             OutputForceParameters,

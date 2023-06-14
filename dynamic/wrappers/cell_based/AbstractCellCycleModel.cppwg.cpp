@@ -19,21 +19,21 @@ class AbstractCellCycleModel_Overloads : public AbstractCellCycleModel{
     public:
     using AbstractCellCycleModel::AbstractCellCycleModel;
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             Initialise,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             InitialiseDaughterCell,
             );
     }
     void SetBirthTime(double birthTime) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             SetBirthTime,
@@ -47,7 +47,7 @@ class AbstractCellCycleModel_Overloads : public AbstractCellCycleModel{
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             ResetForDivision,
@@ -61,7 +61,7 @@ class AbstractCellCycleModel_Overloads : public AbstractCellCycleModel{
             );
     }
     bool CanCellTerminallyDifferentiate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellCycleModel,
             CanCellTerminallyDifferentiate,

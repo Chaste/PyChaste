@@ -29,7 +29,7 @@ class NodeBasedCellPopulation2_Overloads : public NodeBasedCellPopulation2{
     public:
     using NodeBasedCellPopulation2::NodeBasedCellPopulation;
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> & rNewLocation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             SetNode,
@@ -37,84 +37,84 @@ class NodeBasedCellPopulation2_Overloads : public NodeBasedCellPopulation2{
 rNewLocation);
     }
     ::TetrahedralMesh<2, 2> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _TetrahedralMesh_lt_2_2_gt_Ptr,
             NodeBasedCellPopulation2,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodeBasedCellPopulation2,
             GetNumNodes,
             );
     }
     ::CellPtr GetCellUsingLocationIndex(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             NodeBasedCellPopulation2,
             GetCellUsingLocationIndex,
             index);
     }
     ::Node<2> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_2_gt_Ptr,
             NodeBasedCellPopulation2,
             GetNode,
             index);
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodeBasedCellPopulation2,
             RemoveDeadCells,
             );
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             Update,
             hasHadBirthsOrDeaths);
     }
     ::std::vector<std::pair<Node<2> *, Node<2> *>> & rGetNodePairs() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_vector_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__gt_Ref,
             NodeBasedCellPopulation2,
             rGetNodePairs,
             );
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>> pPopulationWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>> pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptPopulationEventWriter(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>> pPopulationEventWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             AcceptPopulationEventWriter,
             pPopulationEventWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2>> pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             AcceptCellWriter,
@@ -122,21 +122,21 @@ rNewLocation);
 pCell);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NodeBasedCellPopulation2,
             GetWidth,
             rDimension);
     }
     ::std::set<unsigned int> GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_gt_,
             NodeBasedCellPopulation2,
             GetNeighbouringNodeIndices,
             index);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             NodeBasedCellPopulation2,
             AddCell,
@@ -144,28 +144,28 @@ pCell);
 pParentCell);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NodeBasedCellPopulation2,
             GetVolumeOfCell,
             pCell);
     }
     void UpdateCellProcessLocation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             UpdateCellProcessLocation,
             );
     }
     void UpdateParticlesAfterReMesh(::NodeMap & rMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             UpdateParticlesAfterReMesh,
             rMap);
     }
     void Validate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             Validate,

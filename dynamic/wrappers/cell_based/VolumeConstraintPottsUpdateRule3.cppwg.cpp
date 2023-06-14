@@ -18,7 +18,7 @@ class VolumeConstraintPottsUpdateRule3_Overloads : public VolumeConstraintPottsU
     public:
     using VolumeConstraintPottsUpdateRule3::VolumeConstraintPottsUpdateRule;
     double EvaluateHamiltonianContribution(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::PottsBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VolumeConstraintPottsUpdateRule3,
             EvaluateHamiltonianContribution,
@@ -27,7 +27,7 @@ targetNodeIndex,
 rCellPopulation);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VolumeConstraintPottsUpdateRule3,
             OutputUpdateRuleParameters,

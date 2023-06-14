@@ -23,14 +23,14 @@ class ParabolicGrowingDomainPdeModifier2_Overloads : public ParabolicGrowingDoma
     public:
     using ParabolicGrowingDomainPdeModifier2::ParabolicGrowingDomainPdeModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ParabolicGrowingDomainPdeModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ParabolicGrowingDomainPdeModifier2,
             SetupSolve,
@@ -38,14 +38,14 @@ class ParabolicGrowingDomainPdeModifier2_Overloads : public ParabolicGrowingDoma
 outputDirectory);
     }
     ::std::shared_ptr<BoundaryConditionsContainer<2, 2, 1>> ConstructBoundaryConditionsContainer() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_shared_ptr_lt_BoundaryConditionsContainer_lt_2_2_1_gt__gt_,
             ParabolicGrowingDomainPdeModifier2,
             ConstructBoundaryConditionsContainer,
             );
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ParabolicGrowingDomainPdeModifier2,
             OutputSimulationModifierParameters,

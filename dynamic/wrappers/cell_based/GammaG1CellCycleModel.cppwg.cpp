@@ -19,21 +19,21 @@ class GammaG1CellCycleModel_Overloads : public GammaG1CellCycleModel{
     public:
     using GammaG1CellCycleModel::GammaG1CellCycleModel;
     void SetG1Duration() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             GammaG1CellCycleModel,
             SetG1Duration,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             GammaG1CellCycleModel,
             CreateCellCycleModel,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             GammaG1CellCycleModel,
             OutputCellCycleModelParameters,

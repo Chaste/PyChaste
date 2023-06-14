@@ -28,49 +28,49 @@ class AbstractTetrahedralMesh2_2_Overloads : public AbstractTetrahedralMesh2_2{
     public:
     using AbstractTetrahedralMesh2_2::AbstractTetrahedralMesh;
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh2_2,
             GetNumElements,
             );
     }
     unsigned int GetNumLocalElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh2_2,
             GetNumLocalElements,
             );
     }
     unsigned int GetNumBoundaryElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh2_2,
             GetNumBoundaryElements,
             );
     }
     unsigned int GetNumLocalBoundaryElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh2_2,
             GetNumLocalBoundaryElements,
             );
     }
     unsigned int GetNumCableElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh2_2,
             GetNumCableElements,
             );
     }
     unsigned int GetNumVertices() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh2_2,
             GetNumVertices,
             );
     }
     unsigned int GetMaximumNodeIndex() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh2_2,
             GetMaximumNodeIndex,
@@ -84,7 +84,7 @@ class AbstractTetrahedralMesh2_2_Overloads : public AbstractTetrahedralMesh2_2{
             rMeshReader);
     }
     void GetInverseJacobianForElement(unsigned int elementIndex, ::boost::numeric::ublas::c_matrix<double, 2, 2> & rJacobian, double & rJacobianDeterminant, ::boost::numeric::ublas::c_matrix<double, 2, 2> & rInverseJacobian) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh2_2,
             GetInverseJacobianForElement,
@@ -94,7 +94,7 @@ rJacobianDeterminant,
 rInverseJacobian);
     }
     void GetWeightedDirectionForBoundaryElement(unsigned int elementIndex, ::boost::numeric::ublas::c_vector<double, 2> & rWeightedDirection, double & rJacobianDeterminant) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh2_2,
             GetWeightedDirectionForBoundaryElement,
@@ -103,14 +103,14 @@ rWeightedDirection,
 rJacobianDeterminant);
     }
     void ConstructLinearMesh(unsigned int width) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh2_2,
             ConstructLinearMesh,
             width);
     }
     void ConstructRectangularMesh(unsigned int width, unsigned int height, bool stagger) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh2_2,
             ConstructRectangularMesh,
@@ -119,7 +119,7 @@ height,
 stagger);
     }
     void ConstructCuboid(unsigned int width, unsigned int height, unsigned int depth) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh2_2,
             ConstructCuboid,
@@ -128,35 +128,35 @@ height,
 depth);
     }
     bool CalculateDesignatedOwnershipOfBoundaryElement(unsigned int faceIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractTetrahedralMesh2_2,
             CalculateDesignatedOwnershipOfBoundaryElement,
             faceIndex);
     }
     bool CalculateDesignatedOwnershipOfElement(unsigned int elementIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractTetrahedralMesh2_2,
             CalculateDesignatedOwnershipOfElement,
             elementIndex);
     }
     void GetHaloNodeIndices(::std::vector<unsigned int> & rHaloIndices) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh2_2,
             GetHaloNodeIndices,
             rHaloIndices);
     }
     ::boost::numeric::ublas::c_vector<double, 2> CalculateMinMaxEdgeLengths() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractTetrahedralMesh2_2,
             CalculateMinMaxEdgeLengths,
             );
     }
     void SetElementOwnerships() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh2_2,
             SetElementOwnerships,

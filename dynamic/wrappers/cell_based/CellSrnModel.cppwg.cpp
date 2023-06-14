@@ -19,35 +19,35 @@ class CellSrnModel_Overloads : public CellSrnModel{
     public:
     using CellSrnModel::CellSrnModel;
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellSrnModel,
             Initialise,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellSrnModel,
             ResetForDivision,
             );
     }
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellSrnModel,
             SimulateToCurrentTime,
             );
     }
     ::AbstractSrnModel * CreateSrnModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractSrnModelPtr,
             CellSrnModel,
             CreateSrnModel,
             );
     }
     void SetCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellSrnModel,
             SetCell,

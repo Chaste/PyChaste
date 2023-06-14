@@ -19,28 +19,28 @@ class Goldbeter1991SrnModel_Overloads : public Goldbeter1991SrnModel{
     public:
     using Goldbeter1991SrnModel::Goldbeter1991SrnModel;
     ::AbstractSrnModel * CreateSrnModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractSrnModelPtr,
             Goldbeter1991SrnModel,
             CreateSrnModel,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Goldbeter1991SrnModel,
             Initialise,
             );
     }
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Goldbeter1991SrnModel,
             SimulateToCurrentTime,
             );
     }
     void OutputSrnModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Goldbeter1991SrnModel,
             OutputSrnModelParameters,

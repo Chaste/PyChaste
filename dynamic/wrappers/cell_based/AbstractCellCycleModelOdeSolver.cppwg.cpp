@@ -39,7 +39,7 @@ class AbstractCellCycleModelOdeSolver_Overloads : public AbstractCellCycleModelO
             );
     }
     bool IsAdaptive() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellCycleModelOdeSolver,
             IsAdaptive,

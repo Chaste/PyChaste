@@ -18,14 +18,14 @@ class DivisionBiasTrackingModifier3_Overloads : public DivisionBiasTrackingModif
     public:
     using DivisionBiasTrackingModifier3::DivisionBiasTrackingModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DivisionBiasTrackingModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DivisionBiasTrackingModifier3,
             SetupSolve,
@@ -33,7 +33,7 @@ class DivisionBiasTrackingModifier3_Overloads : public DivisionBiasTrackingModif
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DivisionBiasTrackingModifier3,
             OutputSimulationModifierParameters,

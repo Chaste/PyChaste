@@ -18,7 +18,7 @@ class Goldbeter1991OdeSystem_Overloads : public Goldbeter1991OdeSystem{
     public:
     using Goldbeter1991OdeSystem::Goldbeter1991OdeSystem;
     void EvaluateYDerivatives(double time, ::std::vector<double> const & rY, ::std::vector<double> & rDY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Goldbeter1991OdeSystem,
             EvaluateYDerivatives,

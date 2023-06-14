@@ -23,14 +23,14 @@ class EllipticBoxDomainPdeModifier3_Overloads : public EllipticBoxDomainPdeModif
     public:
     using EllipticBoxDomainPdeModifier3::EllipticBoxDomainPdeModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             EllipticBoxDomainPdeModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             EllipticBoxDomainPdeModifier3,
             SetupSolve,
@@ -38,14 +38,14 @@ class EllipticBoxDomainPdeModifier3_Overloads : public EllipticBoxDomainPdeModif
 outputDirectory);
     }
     ::std::shared_ptr<BoundaryConditionsContainer<3, 3, 1>> ConstructBoundaryConditionsContainer(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_shared_ptr_lt_BoundaryConditionsContainer_lt_3_3_1_gt__gt_,
             EllipticBoxDomainPdeModifier3,
             ConstructBoundaryConditionsContainer,
             rCellPopulation);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             EllipticBoxDomainPdeModifier3,
             OutputSimulationModifierParameters,
@@ -55,7 +55,7 @@ outputDirectory);
 };
 void register_EllipticBoxDomainPdeModifier3_class(py::module &m){
 py::class_<EllipticBoxDomainPdeModifier3 , EllipticBoxDomainPdeModifier3_Overloads , boost::shared_ptr<EllipticBoxDomainPdeModifier3 >  , AbstractBoxDomainPdeModifier<3>  >(m, "EllipticBoxDomainPdeModifier3")
-        .def(py::init<::boost::shared_ptr<AbstractLinearPde<3>>, ::boost::shared_ptr<AbstractBoundaryCondition<3>>, bool, ::boost::shared_ptr<ChasteCuboid<3>>, double, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<DIM, DIM>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<DIM>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("pMeshCuboid") = boost::shared_ptr<ChasteCuboid<DIM>>(), py::arg("stepSize") = 1., py::arg("solution") = nullptr)
+        .def(py::init<::boost::shared_ptr<AbstractLinearPde<3>>, ::boost::shared_ptr<AbstractBoundaryCondition<3>>, bool, ::boost::shared_ptr<ChasteCuboid<3>>, double, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<3, 3>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<3>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("pMeshCuboid") = boost::shared_ptr<ChasteCuboid<3>>(), py::arg("stepSize") = 1., py::arg("solution") = nullptr)
         .def(
             "UpdateAtEndOfTimeStep", 
             (void(EllipticBoxDomainPdeModifier3::*)(::AbstractCellPopulation<3> &)) &EllipticBoxDomainPdeModifier3::UpdateAtEndOfTimeStep, 

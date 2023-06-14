@@ -18,14 +18,14 @@ class TargetedCellKiller3_Overloads : public TargetedCellKiller3{
     public:
     using TargetedCellKiller3::TargetedCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TargetedCellKiller3,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TargetedCellKiller3,
             OutputCellKillerParameters,

@@ -19,7 +19,7 @@ class CylindricalHoneycombVertexMeshGenerator_Overloads : public CylindricalHone
     public:
     using CylindricalHoneycombVertexMeshGenerator::SharedCylindricalHoneycombVertexMeshGenerator;
     ::boost::shared_ptr<MutableVertexMesh<2, 2>> GetMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_,
             CylindricalHoneycombVertexMeshGenerator,
             GetMesh,

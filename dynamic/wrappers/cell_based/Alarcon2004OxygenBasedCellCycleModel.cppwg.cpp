@@ -19,28 +19,28 @@ class Alarcon2004OxygenBasedCellCycleModel_Overloads : public Alarcon2004OxygenB
     public:
     using Alarcon2004OxygenBasedCellCycleModel::Alarcon2004OxygenBasedCellCycleModel;
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Alarcon2004OxygenBasedCellCycleModel,
             ResetForDivision,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             Alarcon2004OxygenBasedCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Alarcon2004OxygenBasedCellCycleModel,
             Initialise,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Alarcon2004OxygenBasedCellCycleModel,
             OutputCellCycleModelParameters,

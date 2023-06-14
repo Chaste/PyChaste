@@ -18,7 +18,7 @@ class PlanarPolarisedFarhadifarForce3_Overloads : public PlanarPolarisedFarhadif
     public:
     using PlanarPolarisedFarhadifarForce3::PlanarPolarisedFarhadifarForce;
     double GetLineTensionParameter(::Node<3> * pNodeA, ::Node<3> * pNodeB, ::VertexBasedCellPopulation<3> & rVertexCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             PlanarPolarisedFarhadifarForce3,
             GetLineTensionParameter,
@@ -27,7 +27,7 @@ pNodeB,
 rVertexCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PlanarPolarisedFarhadifarForce3,
             OutputForceParameters,

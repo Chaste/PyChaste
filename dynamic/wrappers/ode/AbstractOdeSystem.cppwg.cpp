@@ -27,7 +27,7 @@ rY,
 rDY);
     }
     bool CalculateStoppingEvent(double time, ::std::vector<double> const & rY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractOdeSystem,
             CalculateStoppingEvent,
@@ -35,7 +35,7 @@ rDY);
 rY);
     }
     double CalculateRootFunction(double time, ::std::vector<double> const & rY) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractOdeSystem,
             CalculateRootFunction,

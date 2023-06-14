@@ -18,28 +18,28 @@ class AbstractOdeSrnModel_Overloads : public AbstractOdeSrnModel{
     public:
     using AbstractOdeSrnModel::AbstractOdeSrnModel;
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOdeSrnModel,
             SimulateToCurrentTime,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOdeSrnModel,
             ResetForDivision,
             );
     }
     void OutputSrnModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOdeSrnModel,
             OutputSrnModelParameters,
             rParamsFile);
     }
     void ScaleSrnVariables(double const theta) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOdeSrnModel,
             ScaleSrnVariables,

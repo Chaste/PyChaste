@@ -26,42 +26,42 @@ class VertexMesh2_2_Overloads : public VertexMesh2_2{
     public:
     using VertexMesh2_2::VertexMesh;
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             VertexMesh2_2,
             GetNumNodes,
             );
     }
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             VertexMesh2_2,
             GetNumElements,
             );
     }
     unsigned int GetNumFaces() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             VertexMesh2_2,
             GetNumFaces,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetCentroidOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             VertexMesh2_2,
             GetCentroidOfElement,
             index);
     }
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VertexMesh2_2,
             Clear,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocationA, ::boost::numeric::ublas::c_vector<double, 2> const & rLocationB) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             VertexMesh2_2,
             GetVectorFromAtoB,
@@ -69,42 +69,42 @@ class VertexMesh2_2_Overloads : public VertexMesh2_2{
 rLocationB);
     }
     double GetVolumeOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexMesh2_2,
             GetVolumeOfElement,
             index);
     }
     double GetSurfaceAreaOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexMesh2_2,
             GetSurfaceAreaOfElement,
             index);
     }
     ::boost::numeric::ublas::c_vector<double, 3> CalculateMomentsOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             VertexMesh2_2,
             CalculateMomentsOfElement,
             index);
     }
     double CalculateAreaOfFace(::VertexElement<1, 2> * pFace) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             VertexMesh2_2,
             CalculateAreaOfFace,
             pFace);
     }
     ::VertexMesh<2, 2> * GetMeshForVtk() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _VertexMesh_lt_2_2_gt_Ptr,
             VertexMesh2_2,
             GetMeshForVtk,
             );
     }
     unsigned int SolveNodeMapping(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             VertexMesh2_2,
             SolveNodeMapping,

@@ -19,28 +19,28 @@ class DeltaNotchSrnModel_Overloads : public DeltaNotchSrnModel{
     public:
     using DeltaNotchSrnModel::DeltaNotchSrnModel;
     ::AbstractSrnModel * CreateSrnModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractSrnModelPtr,
             DeltaNotchSrnModel,
             CreateSrnModel,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchSrnModel,
             Initialise,
             );
     }
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchSrnModel,
             SimulateToCurrentTime,
             );
     }
     void OutputSrnModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchSrnModel,
             OutputSrnModelParameters,

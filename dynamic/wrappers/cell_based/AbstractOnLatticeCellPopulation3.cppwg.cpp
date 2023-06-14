@@ -27,7 +27,7 @@ class AbstractOnLatticeCellPopulation3_Overloads : public AbstractOnLatticeCellP
             dt);
     }
     void SetNode(unsigned int index, ::ChastePoint<3> & rNewLocation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOnLatticeCellPopulation3,
             SetNode,
@@ -35,21 +35,21 @@ class AbstractOnLatticeCellPopulation3_Overloads : public AbstractOnLatticeCellP
 rNewLocation);
     }
     ::std::set<unsigned int> GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_gt_,
             AbstractOnLatticeCellPopulation3,
             GetNeighbouringNodeIndices,
             index);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOnLatticeCellPopulation3,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     double GetDefaultTimeStep() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractOnLatticeCellPopulation3,
             GetDefaultTimeStep,
@@ -63,14 +63,14 @@ rNewLocation);
             pUpdateRule);
     }
     void RemoveAllUpdateRules() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOnLatticeCellPopulation3,
             RemoveAllUpdateRules,
             );
     }
     ::std::vector<boost::shared_ptr<AbstractUpdateRule<3>>> const GetUpdateRuleCollection() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_vector_lt_boost_shared_ptr_lt_AbstractUpdateRule_lt_3_gt__gt__gt_const,
             AbstractOnLatticeCellPopulation3,
             GetUpdateRuleCollection,

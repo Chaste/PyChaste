@@ -18,14 +18,14 @@ class ExtrinsicPullModifier3_Overloads : public ExtrinsicPullModifier3{
     public:
     using ExtrinsicPullModifier3::ExtrinsicPullModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExtrinsicPullModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExtrinsicPullModifier3,
             SetupSolve,
@@ -33,7 +33,7 @@ class ExtrinsicPullModifier3_Overloads : public ExtrinsicPullModifier3{
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExtrinsicPullModifier3,
             OutputSimulationModifierParameters,

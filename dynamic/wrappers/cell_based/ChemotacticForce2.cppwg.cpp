@@ -18,14 +18,14 @@ class ChemotacticForce2_Overloads : public ChemotacticForce2{
     public:
     using ChemotacticForce2::ChemotacticForce;
     void AddForceContribution(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ChemotacticForce2,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ChemotacticForce2,
             OutputForceParameters,

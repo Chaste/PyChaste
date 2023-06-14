@@ -23,14 +23,14 @@ class EllipticGrowingDomainPdeModifier3_Overloads : public EllipticGrowingDomain
     public:
     using EllipticGrowingDomainPdeModifier3::EllipticGrowingDomainPdeModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             EllipticGrowingDomainPdeModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             EllipticGrowingDomainPdeModifier3,
             SetupSolve,
@@ -38,14 +38,14 @@ class EllipticGrowingDomainPdeModifier3_Overloads : public EllipticGrowingDomain
 outputDirectory);
     }
     ::std::shared_ptr<BoundaryConditionsContainer<3, 3, 1>> ConstructBoundaryConditionsContainer() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_shared_ptr_lt_BoundaryConditionsContainer_lt_3_3_1_gt__gt_,
             EllipticGrowingDomainPdeModifier3,
             ConstructBoundaryConditionsContainer,
             );
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             EllipticGrowingDomainPdeModifier3,
             OutputSimulationModifierParameters,

@@ -42,14 +42,14 @@ pElement);
             rX);
     }
     double ComputeConstantInUSourceTermAtNode(::Node<3> const & rNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractLinearEllipticPde3_3,
             ComputeConstantInUSourceTermAtNode,
             rNode);
     }
     double ComputeLinearInUCoeffInSourceTermAtNode(::Node<3> const & rNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractLinearEllipticPde3_3,
             ComputeLinearInUCoeffInSourceTermAtNode,

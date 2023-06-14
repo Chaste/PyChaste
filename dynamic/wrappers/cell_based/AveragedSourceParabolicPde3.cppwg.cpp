@@ -19,7 +19,7 @@ class AveragedSourceParabolicPde3_Overloads : public AveragedSourceParabolicPde3
     public:
     using AveragedSourceParabolicPde3::AveragedSourceParabolicPde;
     void SetupSourceTerms(::TetrahedralMesh<3, 3> & rCoarseMesh, ::std::map<boost::shared_ptr<Cell>, unsigned int> * pCellPdeElementMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AveragedSourceParabolicPde3,
             SetupSourceTerms,
@@ -27,14 +27,14 @@ class AveragedSourceParabolicPde3_Overloads : public AveragedSourceParabolicPde3
 pCellPdeElementMap);
     }
     double ComputeDuDtCoefficientFunction(::ChastePoint<3> const & rX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AveragedSourceParabolicPde3,
             ComputeDuDtCoefficientFunction,
             rX);
     }
     double ComputeSourceTerm(::ChastePoint<3> const & rX, double u, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AveragedSourceParabolicPde3,
             ComputeSourceTerm,
@@ -43,7 +43,7 @@ u,
 pElement);
     }
     double ComputeSourceTermAtNode(::Node<3> const & rNode, double u) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AveragedSourceParabolicPde3,
             ComputeSourceTermAtNode,
@@ -51,7 +51,7 @@ pElement);
 u);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeDiffusionTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             AveragedSourceParabolicPde3,
             ComputeDiffusionTerm,

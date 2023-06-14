@@ -18,14 +18,14 @@ class ConstantTargetAreaModifier3_Overloads : public ConstantTargetAreaModifier3
     public:
     using ConstantTargetAreaModifier3::ConstantTargetAreaModifier;
     void UpdateTargetAreaOfCell(::CellPtr const pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ConstantTargetAreaModifier3,
             UpdateTargetAreaOfCell,
             pCell);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ConstantTargetAreaModifier3,
             OutputSimulationModifierParameters,

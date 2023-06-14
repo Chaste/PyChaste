@@ -25,7 +25,7 @@ class AbstractCellBasedSimulationModifier2_2_Overloads : public AbstractCellBase
             rCellPopulation);
     }
     void UpdateAtEndOfOutputTimeStep(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulationModifier2_2,
             UpdateAtEndOfOutputTimeStep,
@@ -40,7 +40,7 @@ class AbstractCellBasedSimulationModifier2_2_Overloads : public AbstractCellBase
 outputDirectory);
     }
     void UpdateAtEndOfSolve(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulationModifier2_2,
             UpdateAtEndOfSolve,

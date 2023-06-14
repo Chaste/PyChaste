@@ -19,21 +19,21 @@ class UniformG1GenerationalCellCycleModel_Overloads : public UniformG1Generation
     public:
     using UniformG1GenerationalCellCycleModel::UniformG1GenerationalCellCycleModel;
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             UniformG1GenerationalCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             UniformG1GenerationalCellCycleModel,
             OutputCellCycleModelParameters,
             rParamsFile);
     }
     void SetG1Duration() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             UniformG1GenerationalCellCycleModel,
             SetG1Duration,

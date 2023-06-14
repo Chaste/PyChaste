@@ -18,14 +18,14 @@ class RepulsionForce2_Overloads : public RepulsionForce2{
     public:
     using RepulsionForce2::RepulsionForce;
     void AddForceContribution(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             RepulsionForce2,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             RepulsionForce2,
             OutputForceParameters,

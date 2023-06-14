@@ -18,14 +18,14 @@ class ApoptoticCellKiller2_Overloads : public ApoptoticCellKiller2{
     public:
     using ApoptoticCellKiller2::ApoptoticCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ApoptoticCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ApoptoticCellKiller2,
             OutputCellKillerParameters,

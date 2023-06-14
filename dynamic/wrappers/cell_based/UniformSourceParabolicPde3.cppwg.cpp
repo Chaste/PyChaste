@@ -19,7 +19,7 @@ class UniformSourceParabolicPde3_Overloads : public UniformSourceParabolicPde3{
     public:
     using UniformSourceParabolicPde3::UniformSourceParabolicPde;
     double ComputeSourceTerm(::ChastePoint<3> const & rX, double u, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             UniformSourceParabolicPde3,
             ComputeSourceTerm,
@@ -28,7 +28,7 @@ u,
 pElement);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeDiffusionTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             UniformSourceParabolicPde3,
             ComputeDiffusionTerm,
@@ -36,7 +36,7 @@ pElement);
 pElement);
     }
     double ComputeDuDtCoefficientFunction(::ChastePoint<3> const & rX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             UniformSourceParabolicPde3,
             ComputeDuDtCoefficientFunction,

@@ -27,42 +27,42 @@ class PottsBasedCellPopulation3_Overloads : public PottsBasedCellPopulation3{
     public:
     using PottsBasedCellPopulation3::PottsBasedCellPopulation;
     ::TetrahedralMesh<3, 3> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _TetrahedralMesh_lt_3_3_gt_Ptr,
             PottsBasedCellPopulation3,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     ::Node<3> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_3_gt_Ptr,
             PottsBasedCellPopulation3,
             GetNode,
             index);
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             PottsBasedCellPopulation3,
             GetNumNodes,
             );
     }
     ::std::set<unsigned int> GetNeighbouringLocationIndices(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_gt_,
             PottsBasedCellPopulation3,
             GetNeighbouringLocationIndices,
             pCell);
     }
     ::boost::numeric::ublas::c_vector<double, 3> GetLocationOfCellCentre(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             PottsBasedCellPopulation3,
             GetLocationOfCellCentre,
             pCell);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             PottsBasedCellPopulation3,
             AddCell,
@@ -70,70 +70,70 @@ class PottsBasedCellPopulation3_Overloads : public PottsBasedCellPopulation3{
 pParentCell);
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             PottsBasedCellPopulation3,
             RemoveDeadCells,
             );
     }
     void UpdateCellLocations(double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             UpdateCellLocations,
             dt);
     }
     bool IsCellAssociatedWithADeletedLocation(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             PottsBasedCellPopulation3,
             IsCellAssociatedWithADeletedLocation,
             pCell);
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             Update,
             hasHadBirthsOrDeaths);
     }
     void OpenWritersFiles(::OutputFileHandler & rOutputFileHandler) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             OpenWritersFiles,
             rOutputFileHandler);
     }
     void WriteResultsToFiles(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             WriteResultsToFiles,
             rDirectory);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<3, 3>> pPopulationWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<3, 3>> pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptPopulationEventWriter(::boost::shared_ptr<AbstractCellPopulationEventWriter<3, 3>> pPopulationEventWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             AcceptPopulationEventWriter,
             pPopulationEventWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<3, 3>> pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             AcceptCellWriter,
@@ -141,35 +141,35 @@ pParentCell);
 pCell);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             PottsBasedCellPopulation3,
             GetVolumeOfCell,
             pCell);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             PottsBasedCellPopulation3,
             GetWidth,
             rDimension);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     void AddUpdateRule(::boost::shared_ptr<AbstractUpdateRule<3>> pUpdateRule) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsBasedCellPopulation3,
             AddUpdateRule,
             pUpdateRule);
     }
     double GetCellDataItemAtPdeNode(unsigned int pdeNodeIndex, ::std::string & rVariableName, bool dirichletBoundaryConditionApplies, double dirichletBoundaryValue) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             PottsBasedCellPopulation3,
             GetCellDataItemAtPdeNode,

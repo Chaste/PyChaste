@@ -22,42 +22,42 @@ class MutableMesh2_2_Overloads : public MutableMesh2_2{
     public:
     using MutableMesh2_2::MutableMesh;
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh2_2,
             Clear,
             );
     }
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh2_2,
             GetNumNodes,
             );
     }
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh2_2,
             GetNumElements,
             );
     }
     unsigned int GetNumBoundaryElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh2_2,
             GetNumBoundaryElements,
             );
     }
     unsigned int AddNode(::Node<2> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh2_2,
             AddNode,
             pNewNode);
     }
     void SetNode(unsigned int index, ::ChastePoint<2> point, bool concreteMove) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh2_2,
             SetNode,
@@ -66,21 +66,21 @@ point,
 concreteMove);
     }
     void DeleteNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh2_2,
             DeleteNode,
             index);
     }
     void DeleteElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh2_2,
             DeleteElement,
             index);
     }
     void ReMesh(::NodeMap & map) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh2_2,
             ReMesh,

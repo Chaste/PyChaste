@@ -19,21 +19,21 @@ class SphereGeometryBoundaryCondition2_Overloads : public SphereGeometryBoundary
     public:
     using SphereGeometryBoundaryCondition2::SphereGeometryBoundaryCondition;
     void ImposeBoundaryCondition(::std::map<Node<2> *, boost::numeric::ublas::c_vector<double, 2>> const & rOldLocations) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SphereGeometryBoundaryCondition2,
             ImposeBoundaryCondition,
             rOldLocations);
     }
     bool VerifyBoundaryCondition() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             SphereGeometryBoundaryCondition2,
             VerifyBoundaryCondition,
             );
     }
     void OutputCellPopulationBoundaryConditionParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SphereGeometryBoundaryCondition2,
             OutputCellPopulationBoundaryConditionParameters,

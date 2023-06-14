@@ -34,7 +34,7 @@ class AbstractOffLatticeCellPopulation2_2_Overloads : public AbstractOffLatticeC
 rNewLocation);
     }
     void UpdateNodeLocations(double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOffLatticeCellPopulation2_2,
             UpdateNodeLocations,
@@ -57,7 +57,7 @@ dt);
             nodeIndex);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOffLatticeCellPopulation2_2,
             OutputCellPopulationParameters,

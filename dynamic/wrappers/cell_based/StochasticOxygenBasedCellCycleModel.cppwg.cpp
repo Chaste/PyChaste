@@ -19,42 +19,42 @@ class StochasticOxygenBasedCellCycleModel_Overloads : public StochasticOxygenBas
     public:
     using StochasticOxygenBasedCellCycleModel::StochasticOxygenBasedCellCycleModel;
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             StochasticOxygenBasedCellCycleModel,
             InitialiseDaughterCell,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             StochasticOxygenBasedCellCycleModel,
             Initialise,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             StochasticOxygenBasedCellCycleModel,
             ResetForDivision,
             );
     }
     double GetG2Duration() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             StochasticOxygenBasedCellCycleModel,
             GetG2Duration,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             StochasticOxygenBasedCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             StochasticOxygenBasedCellCycleModel,
             OutputCellCycleModelParameters,

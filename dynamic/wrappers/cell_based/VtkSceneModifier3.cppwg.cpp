@@ -18,14 +18,14 @@ class VtkSceneModifier3_Overloads : public VtkSceneModifier3{
     public:
     using VtkSceneModifier3::VtkSceneModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkSceneModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkSceneModifier3,
             SetupSolve,
@@ -33,7 +33,7 @@ class VtkSceneModifier3_Overloads : public VtkSceneModifier3{
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkSceneModifier3,
             OutputSimulationModifierParameters,

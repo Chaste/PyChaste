@@ -18,7 +18,7 @@ class ConstBoundaryCondition1_Overloads : public ConstBoundaryCondition1{
     public:
     using ConstBoundaryCondition1::ConstBoundaryCondition;
     double GetValue(::ChastePoint<1> const & rX) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ConstBoundaryCondition1,
             GetValue,

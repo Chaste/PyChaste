@@ -29,7 +29,7 @@ dt,
 deltaX);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCaSwitchingUpdateRule2,
             OutputUpdateRuleParameters,

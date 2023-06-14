@@ -19,42 +19,42 @@ class DeltaNotchEdgeSrnModel_Overloads : public DeltaNotchEdgeSrnModel{
     public:
     using DeltaNotchEdgeSrnModel::DeltaNotchEdgeSrnModel;
     ::AbstractSrnModel * CreateSrnModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractSrnModelPtr,
             DeltaNotchEdgeSrnModel,
             CreateSrnModel,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             Initialise,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             InitialiseDaughterCell,
             );
     }
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             SimulateToCurrentTime,
             );
     }
     void OutputSrnModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             OutputSrnModelParameters,
             rParamsFile);
     }
     void AddSrnQuantities(::AbstractSrnModel * p_other_srn, double const scale) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             AddSrnQuantities,
@@ -62,21 +62,21 @@ class DeltaNotchEdgeSrnModel_Overloads : public DeltaNotchEdgeSrnModel{
 scale);
     }
     void AddShrunkEdgeSrn(::AbstractSrnModel * p_shrunk_edge_srn) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             AddShrunkEdgeSrn,
             p_shrunk_edge_srn);
     }
     void AddMergedEdgeSrn(::AbstractSrnModel * p_merged_edge_srn) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             AddMergedEdgeSrn,
             p_merged_edge_srn);
     }
     void SplitEdgeSrn(double const relative_position) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DeltaNotchEdgeSrnModel,
             SplitEdgeSrn,

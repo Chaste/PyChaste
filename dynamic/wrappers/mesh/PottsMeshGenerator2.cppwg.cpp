@@ -19,7 +19,7 @@ class PottsMeshGenerator2_Overloads : public PottsMeshGenerator2{
     public:
     using PottsMeshGenerator2::SharedPottsMeshGenerator;
     ::boost::shared_ptr<PottsMesh<2>> GetMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_PottsMesh_lt_2_gt__gt_,
             PottsMeshGenerator2,
             GetMesh,

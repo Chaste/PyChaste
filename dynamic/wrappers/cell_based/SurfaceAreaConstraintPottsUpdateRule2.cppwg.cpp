@@ -18,7 +18,7 @@ class SurfaceAreaConstraintPottsUpdateRule2_Overloads : public SurfaceAreaConstr
     public:
     using SurfaceAreaConstraintPottsUpdateRule2::SurfaceAreaConstraintPottsUpdateRule;
     double EvaluateHamiltonianContribution(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::PottsBasedCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             SurfaceAreaConstraintPottsUpdateRule2,
             EvaluateHamiltonianContribution,
@@ -27,7 +27,7 @@ targetNodeIndex,
 rCellPopulation);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SurfaceAreaConstraintPottsUpdateRule2,
             OutputUpdateRuleParameters,

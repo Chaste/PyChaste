@@ -18,7 +18,7 @@ class VolumeDependentAveragedSourceEllipticPde3_Overloads : public VolumeDepende
     public:
     using VolumeDependentAveragedSourceEllipticPde3::VolumeDependentAveragedSourceEllipticPde;
     void SetupSourceTerms(::TetrahedralMesh<3, 3> & rCoarseMesh, ::std::map<boost::shared_ptr<Cell>, unsigned int> * pCellPdeElementMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VolumeDependentAveragedSourceEllipticPde3,
             SetupSourceTerms,

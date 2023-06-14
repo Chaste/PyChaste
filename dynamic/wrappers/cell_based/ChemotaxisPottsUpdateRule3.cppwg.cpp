@@ -18,7 +18,7 @@ class ChemotaxisPottsUpdateRule3_Overloads : public ChemotaxisPottsUpdateRule3{
     public:
     using ChemotaxisPottsUpdateRule3::ChemotaxisPottsUpdateRule;
     double EvaluateHamiltonianContribution(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::PottsBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ChemotaxisPottsUpdateRule3,
             EvaluateHamiltonianContribution,
@@ -27,7 +27,7 @@ targetNodeIndex,
 rCellPopulation);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ChemotaxisPottsUpdateRule3,
             OutputUpdateRuleParameters,

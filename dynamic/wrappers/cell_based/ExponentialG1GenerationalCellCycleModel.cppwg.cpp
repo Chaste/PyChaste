@@ -19,49 +19,49 @@ class ExponentialG1GenerationalCellCycleModel_Overloads : public ExponentialG1Ge
     public:
     using ExponentialG1GenerationalCellCycleModel::ExponentialG1GenerationalCellCycleModel;
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             ExponentialG1GenerationalCellCycleModel,
             CreateCellCycleModel,
             );
     }
     double GetRate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ExponentialG1GenerationalCellCycleModel,
             GetRate,
             );
     }
     void SetRate(double rate) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExponentialG1GenerationalCellCycleModel,
             SetRate,
             rate);
     }
     void SetStemCellG1Duration(double stemCellG1Duration) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExponentialG1GenerationalCellCycleModel,
             SetStemCellG1Duration,
             stemCellG1Duration);
     }
     void SetTransitCellG1Duration(double transitCellG1Duration) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExponentialG1GenerationalCellCycleModel,
             SetTransitCellG1Duration,
             transitCellG1Duration);
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExponentialG1GenerationalCellCycleModel,
             OutputCellCycleModelParameters,
             rParamsFile);
     }
     void SetG1Duration() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ExponentialG1GenerationalCellCycleModel,
             SetG1Duration,

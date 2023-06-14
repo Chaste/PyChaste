@@ -18,7 +18,7 @@ class NagaiHondaDifferentialAdhesionForce3_Overloads : public NagaiHondaDifferen
     public:
     using NagaiHondaDifferentialAdhesionForce3::NagaiHondaDifferentialAdhesionForce;
     double GetAdhesionParameter(::Node<3> * pNodeA, ::Node<3> * pNodeB, ::VertexBasedCellPopulation<3> & rVertexCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NagaiHondaDifferentialAdhesionForce3,
             GetAdhesionParameter,
@@ -27,7 +27,7 @@ pNodeB,
 rVertexCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NagaiHondaDifferentialAdhesionForce3,
             OutputForceParameters,

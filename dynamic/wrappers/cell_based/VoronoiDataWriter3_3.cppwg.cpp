@@ -23,35 +23,35 @@ class VoronoiDataWriter3_3_Overloads : public VoronoiDataWriter3_3{
     public:
     using VoronoiDataWriter3_3::VoronoiDataWriter;
     void Visit(::MeshBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::CaBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::NodeBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::PottsBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::VertexBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,

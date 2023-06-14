@@ -18,14 +18,14 @@ class AbstractPhaseBasedCellCycleModel_Overloads : public AbstractPhaseBasedCell
     public:
     using AbstractPhaseBasedCellCycleModel::AbstractPhaseBasedCellCycleModel;
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractPhaseBasedCellCycleModel,
             ReadyToDivide,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPhaseBasedCellCycleModel,
             ResetForDivision,
@@ -39,56 +39,56 @@ class AbstractPhaseBasedCellCycleModel_Overloads : public AbstractPhaseBasedCell
             );
     }
     double GetG1Duration() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractPhaseBasedCellCycleModel,
             GetG1Duration,
             );
     }
     double GetSDuration() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractPhaseBasedCellCycleModel,
             GetSDuration,
             );
     }
     double GetG2Duration() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractPhaseBasedCellCycleModel,
             GetG2Duration,
             );
     }
     double GetMDuration() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractPhaseBasedCellCycleModel,
             GetMDuration,
             );
     }
     void SetStemCellG1Duration(double stemCellG1Duration) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPhaseBasedCellCycleModel,
             SetStemCellG1Duration,
             stemCellG1Duration);
     }
     void SetTransitCellG1Duration(double transitCellG1Duration) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPhaseBasedCellCycleModel,
             SetTransitCellG1Duration,
             transitCellG1Duration);
     }
     double GetAverageTransitCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractPhaseBasedCellCycleModel,
             GetAverageTransitCellCycleTime,
             );
     }
     double GetAverageStemCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractPhaseBasedCellCycleModel,
             GetAverageStemCellCycleTime,

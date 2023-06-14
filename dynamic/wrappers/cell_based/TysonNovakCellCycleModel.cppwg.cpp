@@ -19,56 +19,56 @@ class TysonNovakCellCycleModel_Overloads : public TysonNovakCellCycleModel{
     public:
     using TysonNovakCellCycleModel::TysonNovakCellCycleModel;
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TysonNovakCellCycleModel,
             Initialise,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TysonNovakCellCycleModel,
             ResetForDivision,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             TysonNovakCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TysonNovakCellCycleModel,
             InitialiseDaughterCell,
             );
     }
     double GetAverageTransitCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             TysonNovakCellCycleModel,
             GetAverageTransitCellCycleTime,
             );
     }
     double GetAverageStemCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             TysonNovakCellCycleModel,
             GetAverageStemCellCycleTime,
             );
     }
     bool CanCellTerminallyDifferentiate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             TysonNovakCellCycleModel,
             CanCellTerminallyDifferentiate,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TysonNovakCellCycleModel,
             OutputCellCycleModelParameters,

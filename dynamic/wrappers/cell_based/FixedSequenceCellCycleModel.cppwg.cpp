@@ -19,49 +19,49 @@ class FixedSequenceCellCycleModel_Overloads : public FixedSequenceCellCycleModel
     public:
     using FixedSequenceCellCycleModel::FixedSequenceCellCycleModel;
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             FixedSequenceCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void SetRate(double rate) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FixedSequenceCellCycleModel,
             SetRate,
             rate);
     }
     double GetRate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             FixedSequenceCellCycleModel,
             GetRate,
             );
     }
     void SetStemCellG1Duration(double stemCellG1Duration) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FixedSequenceCellCycleModel,
             SetStemCellG1Duration,
             stemCellG1Duration);
     }
     void SetTransitCellG1Duration(double transitCellG1Duration) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FixedSequenceCellCycleModel,
             SetTransitCellG1Duration,
             transitCellG1Duration);
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FixedSequenceCellCycleModel,
             OutputCellCycleModelParameters,
             rParamsFile);
     }
     void SetG1Duration() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FixedSequenceCellCycleModel,
             SetG1Duration,

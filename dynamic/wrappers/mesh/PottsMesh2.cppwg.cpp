@@ -22,49 +22,49 @@ class PottsMesh2_Overloads : public PottsMesh2{
     public:
     using PottsMesh2::PottsMesh;
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             PottsMesh2,
             GetNumNodes,
             );
     }
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             PottsMesh2,
             GetNumElements,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetCentroidOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             PottsMesh2,
             GetCentroidOfElement,
             index);
     }
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PottsMesh2,
             Clear,
             );
     }
     double GetVolumeOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             PottsMesh2,
             GetVolumeOfElement,
             index);
     }
     double GetSurfaceAreaOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             PottsMesh2,
             GetSurfaceAreaOfElement,
             index);
     }
     unsigned int SolveNodeMapping(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             PottsMesh2,
             SolveNodeMapping,

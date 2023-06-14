@@ -35,7 +35,7 @@ class AbstractCellPopulation3_3_Overloads : public AbstractCellPopulation3_3{
             );
     }
     bool IsPdeNodeAssociatedWithNonApoptoticCell(unsigned int pdeNodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellPopulation3_3,
             IsPdeNodeAssociatedWithNonApoptoticCell,
@@ -88,7 +88,7 @@ rNewLocation);
             pCell);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             WriteDataToVisualizerSetupFile,
@@ -124,21 +124,21 @@ pParentCell);
             hasHadBirthsOrDeaths);
     }
     ::CellPtr GetCellUsingLocationIndex(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             AbstractCellPopulation3_3,
             GetCellUsingLocationIndex,
             index);
     }
     bool IsCellAttachedToLocationIndex(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellPopulation3_3,
             IsCellAttachedToLocationIndex,
             index);
     }
     void AddCellUsingLocationIndex(unsigned int index, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             AddCellUsingLocationIndex,
@@ -146,7 +146,7 @@ pParentCell);
 pCell);
     }
     void RemoveCellUsingLocationIndex(unsigned int index, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             RemoveCellUsingLocationIndex,
@@ -182,21 +182,21 @@ pCell);
             pCell);
     }
     void UpdateCellProcessLocation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             UpdateCellProcessLocation,
             );
     }
     void OpenWritersFiles(::OutputFileHandler & rOutputFileHandler) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             OpenWritersFiles,
             rOutputFileHandler);
     }
     void WriteResultsToFiles(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             WriteResultsToFiles,
@@ -232,14 +232,14 @@ pCell);
             rParamsFile);
     }
     void SimulationSetupHook(::AbstractCellBasedSimulation<3, 3> * pSimulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             SimulationSetupHook,
             pSimulation);
     }
     bool IsRoomToDivide(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellPopulation3_3,
             IsRoomToDivide,
@@ -260,7 +260,7 @@ pCell);
             rDirectory);
     }
     void AcceptCellWritersAcrossPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             AcceptCellWritersAcrossPopulation,

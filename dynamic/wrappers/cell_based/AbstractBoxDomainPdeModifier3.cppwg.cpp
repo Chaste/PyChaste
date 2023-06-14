@@ -22,7 +22,7 @@ class AbstractBoxDomainPdeModifier3_Overloads : public AbstractBoxDomainPdeModif
     public:
     using AbstractBoxDomainPdeModifier3::AbstractBoxDomainPdeModifier;
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractBoxDomainPdeModifier3,
             SetupSolve,
@@ -30,7 +30,7 @@ class AbstractBoxDomainPdeModifier3_Overloads : public AbstractBoxDomainPdeModif
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractBoxDomainPdeModifier3,
             OutputSimulationModifierParameters,

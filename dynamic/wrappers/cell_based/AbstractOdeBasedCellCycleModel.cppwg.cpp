@@ -18,28 +18,28 @@ class AbstractOdeBasedCellCycleModel_Overloads : public AbstractOdeBasedCellCycl
     public:
     using AbstractOdeBasedCellCycleModel::AbstractOdeBasedCellCycleModel;
     void SetBirthTime(double birthTime) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOdeBasedCellCycleModel,
             SetBirthTime,
             birthTime);
     }
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractOdeBasedCellCycleModel,
             ReadyToDivide,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOdeBasedCellCycleModel,
             ResetForDivision,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOdeBasedCellCycleModel,
             OutputCellCycleModelParameters,

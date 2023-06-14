@@ -19,7 +19,7 @@ class UniformSourceEllipticPde3_Overloads : public UniformSourceEllipticPde3{
     public:
     using UniformSourceEllipticPde3::UniformSourceEllipticPde;
     double ComputeConstantInUSourceTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             UniformSourceEllipticPde3,
             ComputeConstantInUSourceTerm,
@@ -27,7 +27,7 @@ class UniformSourceEllipticPde3_Overloads : public UniformSourceEllipticPde3{
 pElement);
     }
     double ComputeLinearInUCoeffInSourceTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             UniformSourceEllipticPde3,
             ComputeLinearInUCoeffInSourceTerm,
@@ -35,7 +35,7 @@ pElement);
 pElement);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeDiffusionTerm(::ChastePoint<3> const & rX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             UniformSourceEllipticPde3,
             ComputeDiffusionTerm,

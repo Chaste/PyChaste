@@ -18,28 +18,28 @@ class AbstractSimpleCellCycleModel_Overloads : public AbstractSimpleCellCycleMod
     public:
     using AbstractSimpleCellCycleModel::AbstractSimpleCellCycleModel;
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractSimpleCellCycleModel,
             ReadyToDivide,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimpleCellCycleModel,
             ResetForDivision,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimpleCellCycleModel,
             InitialiseDaughterCell,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimpleCellCycleModel,
             Initialise,

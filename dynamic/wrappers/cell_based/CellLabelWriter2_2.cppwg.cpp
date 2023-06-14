@@ -19,7 +19,7 @@ class CellLabelWriter2_2_Overloads : public CellLabelWriter2_2{
     public:
     using CellLabelWriter2_2::CellLabelWriter;
     double GetCellDataForVtkOutput(::CellPtr pCell, ::AbstractCellPopulation<2> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellLabelWriter2_2,
             GetCellDataForVtkOutput,
@@ -27,7 +27,7 @@ class CellLabelWriter2_2_Overloads : public CellLabelWriter2_2{
 pCellPopulation);
     }
     void VisitCell(::CellPtr pCell, ::AbstractCellPopulation<2> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellLabelWriter2_2,
             VisitCell,

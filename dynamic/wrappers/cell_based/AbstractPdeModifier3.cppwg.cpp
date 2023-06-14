@@ -22,7 +22,7 @@ class AbstractPdeModifier3_Overloads : public AbstractPdeModifier3{
     public:
     using AbstractPdeModifier3::AbstractPdeModifier;
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier3,
             SetupSolve,
@@ -37,21 +37,21 @@ outputDirectory);
             rCellPopulation);
     }
     void UpdateAtEndOfOutputTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier3,
             UpdateAtEndOfOutputTimeStep,
             rCellPopulation);
     }
     void UpdateAtEndOfSolve(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier3,
             UpdateAtEndOfSolve,
             rCellPopulation);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier3,
             OutputSimulationModifierParameters,

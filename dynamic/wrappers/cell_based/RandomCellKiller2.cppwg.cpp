@@ -18,14 +18,14 @@ class RandomCellKiller2_Overloads : public RandomCellKiller2{
     public:
     using RandomCellKiller2::RandomCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             RandomCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             RandomCellKiller2,
             OutputCellKillerParameters,

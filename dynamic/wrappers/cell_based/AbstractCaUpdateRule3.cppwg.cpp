@@ -30,7 +30,7 @@ deltaX,
 cell);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCaUpdateRule3,
             OutputUpdateRuleParameters,

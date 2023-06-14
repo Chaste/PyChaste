@@ -19,21 +19,21 @@ class ContactInhibitionCellCycleModel_Overloads : public ContactInhibitionCellCy
     public:
     using ContactInhibitionCellCycleModel::ContactInhibitionCellCycleModel;
     void UpdateCellCyclePhase() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ContactInhibitionCellCycleModel,
             UpdateCellCyclePhase,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             ContactInhibitionCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ContactInhibitionCellCycleModel,
             OutputCellCycleModelParameters,

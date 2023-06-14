@@ -18,14 +18,14 @@ class FarhadifarForce2_Overloads : public FarhadifarForce2{
     public:
     using FarhadifarForce2::FarhadifarForce;
     void AddForceContribution(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FarhadifarForce2,
             AddForceContribution,
             rCellPopulation);
     }
     double GetLineTensionParameter(::Node<2> * pNodeA, ::Node<2> * pNodeB, ::VertexBasedCellPopulation<2> & rVertexCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             FarhadifarForce2,
             GetLineTensionParameter,
@@ -34,7 +34,7 @@ pNodeB,
 rVertexCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FarhadifarForce2,
             OutputForceParameters,

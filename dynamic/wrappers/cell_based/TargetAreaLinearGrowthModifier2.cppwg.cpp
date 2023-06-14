@@ -18,14 +18,14 @@ class TargetAreaLinearGrowthModifier2_Overloads : public TargetAreaLinearGrowthM
     public:
     using TargetAreaLinearGrowthModifier2::TargetAreaLinearGrowthModifier;
     void UpdateTargetAreaOfCell(::CellPtr const pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TargetAreaLinearGrowthModifier2,
             UpdateTargetAreaOfCell,
             pCell);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TargetAreaLinearGrowthModifier2,
             OutputSimulationModifierParameters,

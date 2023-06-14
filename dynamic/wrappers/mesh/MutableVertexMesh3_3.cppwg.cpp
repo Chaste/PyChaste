@@ -20,7 +20,7 @@ class MutableVertexMesh3_3_Overloads : public MutableVertexMesh3_3{
     public:
     using MutableVertexMesh3_3::MutableVertexMesh;
     void SetNode(unsigned int nodeIndex, ::ChastePoint<3> point) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh3_3,
             SetNode,
@@ -28,42 +28,42 @@ class MutableVertexMesh3_3_Overloads : public MutableVertexMesh3_3{
 point);
     }
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableVertexMesh3_3,
             GetNumNodes,
             );
     }
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableVertexMesh3_3,
             GetNumElements,
             );
     }
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh3_3,
             Clear,
             );
     }
     void ReMesh(::VertexElementMap & rElementMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh3_3,
             ReMesh,
             rElementMap);
     }
     bool CheckForSwapsFromShortEdges() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             MutableVertexMesh3_3,
             CheckForSwapsFromShortEdges,
             );
     }
     void IdentifySwapType(::Node<3> * pNodeA, ::Node<3> * pNodeB) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh3_3,
             IdentifySwapType,

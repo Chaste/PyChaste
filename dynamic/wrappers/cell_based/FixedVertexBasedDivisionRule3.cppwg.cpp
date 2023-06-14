@@ -19,7 +19,7 @@ class FixedVertexBasedDivisionRule3_Overloads : public FixedVertexBasedDivisionR
     public:
     using FixedVertexBasedDivisionRule3::FixedVertexBasedDivisionRule;
     ::boost::numeric::ublas::c_vector<double, 3> CalculateCellDivisionVector(::CellPtr pParentCell, ::VertexBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             FixedVertexBasedDivisionRule3,
             CalculateCellDivisionVector,

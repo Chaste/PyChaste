@@ -18,14 +18,14 @@ class AbstractTargetAreaModifier3_Overloads : public AbstractTargetAreaModifier3
     public:
     using AbstractTargetAreaModifier3::AbstractTargetAreaModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTargetAreaModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTargetAreaModifier3,
             SetupSolve,
@@ -40,7 +40,7 @@ outputDirectory);
             pCell);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTargetAreaModifier3,
             OutputSimulationModifierParameters,

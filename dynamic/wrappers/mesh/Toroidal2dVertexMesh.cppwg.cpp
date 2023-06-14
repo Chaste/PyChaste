@@ -20,7 +20,7 @@ class Toroidal2dVertexMesh_Overloads : public Toroidal2dVertexMesh{
     public:
     using Toroidal2dVertexMesh::Toroidal2dVertexMesh;
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocation1, ::boost::numeric::ublas::c_vector<double, 2> const & rLocation2) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             Toroidal2dVertexMesh,
             GetVectorFromAtoB,
@@ -28,7 +28,7 @@ class Toroidal2dVertexMesh_Overloads : public Toroidal2dVertexMesh{
 rLocation2);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> point) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Toroidal2dVertexMesh,
             SetNode,
@@ -36,14 +36,14 @@ rLocation2);
 point);
     }
     double GetWidth(unsigned int const & rDimension) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             Toroidal2dVertexMesh,
             GetWidth,
             rDimension);
     }
     ::VertexMesh<2, 2> * GetMeshForVtk() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _VertexMesh_lt_2_2_gt_Ptr,
             Toroidal2dVertexMesh,
             GetMeshForVtk,

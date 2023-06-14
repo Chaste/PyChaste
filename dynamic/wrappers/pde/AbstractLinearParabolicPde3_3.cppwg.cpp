@@ -35,7 +35,7 @@ u,
 pElement);
     }
     double ComputeSourceTermAtNode(::Node<3> const & rNode, double u) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractLinearParabolicPde3_3,
             ComputeSourceTermAtNode,

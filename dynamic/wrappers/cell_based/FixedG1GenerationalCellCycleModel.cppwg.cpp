@@ -19,14 +19,14 @@ class FixedG1GenerationalCellCycleModel_Overloads : public FixedG1GenerationalCe
     public:
     using FixedG1GenerationalCellCycleModel::FixedG1GenerationalCellCycleModel;
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             FixedG1GenerationalCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FixedG1GenerationalCellCycleModel,
             OutputCellCycleModelParameters,

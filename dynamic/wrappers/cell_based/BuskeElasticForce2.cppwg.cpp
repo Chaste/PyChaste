@@ -19,7 +19,7 @@ class BuskeElasticForce2_Overloads : public BuskeElasticForce2{
     public:
     using BuskeElasticForce2::BuskeElasticForce;
     ::boost::numeric::ublas::c_vector<double, 2> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             BuskeElasticForce2,
             CalculateForceBetweenNodes,
@@ -28,7 +28,7 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeElasticForce2,
             OutputForceParameters,

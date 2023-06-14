@@ -19,21 +19,21 @@ class AbstractSrnModel_Overloads : public AbstractSrnModel{
     public:
     using AbstractSrnModel::AbstractSrnModel;
     void SetCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             SetCell,
             pCell);
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             Initialise,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             InitialiseDaughterCell,
@@ -47,7 +47,7 @@ class AbstractSrnModel_Overloads : public AbstractSrnModel{
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             ResetForDivision,
@@ -61,21 +61,21 @@ class AbstractSrnModel_Overloads : public AbstractSrnModel{
             );
     }
     void OutputSrnModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             OutputSrnModelParameters,
             rParamsFile);
     }
     void ScaleSrnVariables(double const theta) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             ScaleSrnVariables,
             theta);
     }
     void AddSrnQuantities(::AbstractSrnModel * p_other_srn, double const scale) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             AddSrnQuantities,
@@ -83,28 +83,28 @@ class AbstractSrnModel_Overloads : public AbstractSrnModel{
 scale);
     }
     void AddShrunkEdgeSrn(::AbstractSrnModel * p_shrunk_edge_srn) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             AddShrunkEdgeSrn,
             p_shrunk_edge_srn);
     }
     void AddMergedEdgeSrn(::AbstractSrnModel * p_merged_edge_srn) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             AddMergedEdgeSrn,
             p_merged_edge_srn);
     }
     void AddShrunkEdgeToInterior(::AbstractSrnModel * p_shrunk_edge_srn) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             AddShrunkEdgeToInterior,
             p_shrunk_edge_srn);
     }
     void SplitEdgeSrn(double const relative_position) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSrnModel,
             SplitEdgeSrn,

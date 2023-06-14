@@ -18,14 +18,14 @@ class SimpleTargetAreaModifier2_Overloads : public SimpleTargetAreaModifier2{
     public:
     using SimpleTargetAreaModifier2::SimpleTargetAreaModifier;
     void UpdateTargetAreaOfCell(::CellPtr const pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SimpleTargetAreaModifier2,
             UpdateTargetAreaOfCell,
             pCell);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SimpleTargetAreaModifier2,
             OutputSimulationModifierParameters,

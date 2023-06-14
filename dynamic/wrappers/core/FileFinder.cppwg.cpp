@@ -19,7 +19,7 @@ class FileFinder_Overloads : public FileFinder{
     public:
     using FileFinder::FileFinder;
     void SetPath(::std::string const & rPath, ::RelativeTo::Value relativeTo) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FileFinder,
             SetPath,
@@ -27,7 +27,7 @@ class FileFinder_Overloads : public FileFinder{
 relativeTo);
     }
     void SetPath(::std::string const & rLeafName, ::FileFinder const & rParentOrSibling) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FileFinder,
             SetPath,

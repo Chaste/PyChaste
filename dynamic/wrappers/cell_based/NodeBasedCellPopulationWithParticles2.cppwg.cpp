@@ -19,21 +19,21 @@ class NodeBasedCellPopulationWithParticles2_Overloads : public NodeBasedCellPopu
     public:
     using NodeBasedCellPopulationWithParticles2::NodeBasedCellPopulationWithParticles;
     void UpdateParticlesAfterReMesh(::NodeMap & rMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulationWithParticles2,
             UpdateParticlesAfterReMesh,
             rMap);
     }
     bool IsParticle(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             NodeBasedCellPopulationWithParticles2,
             IsParticle,
             index);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             NodeBasedCellPopulationWithParticles2,
             AddCell,
@@ -41,28 +41,28 @@ class NodeBasedCellPopulationWithParticles2_Overloads : public NodeBasedCellPopu
 pParentCell);
     }
     void WriteVtkResultsToFile(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulationWithParticles2,
             WriteVtkResultsToFile,
             rDirectory);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulationWithParticles2,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     void Validate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulationWithParticles2,
             Validate,
             );
     }
     void AcceptCellWritersAcrossPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulationWithParticles2,
             AcceptCellWritersAcrossPopulation,

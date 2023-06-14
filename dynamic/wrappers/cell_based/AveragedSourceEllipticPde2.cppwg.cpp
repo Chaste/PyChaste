@@ -19,7 +19,7 @@ class AveragedSourceEllipticPde2_Overloads : public AveragedSourceEllipticPde2{
     public:
     using AveragedSourceEllipticPde2::AveragedSourceEllipticPde;
     void SetupSourceTerms(::TetrahedralMesh<2, 2> & rCoarseMesh, ::std::map<boost::shared_ptr<Cell>, unsigned int> * pCellPdeElementMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AveragedSourceEllipticPde2,
             SetupSourceTerms,
@@ -27,7 +27,7 @@ class AveragedSourceEllipticPde2_Overloads : public AveragedSourceEllipticPde2{
 pCellPdeElementMap);
     }
     double ComputeConstantInUSourceTerm(::ChastePoint<2> const & rX, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AveragedSourceEllipticPde2,
             ComputeConstantInUSourceTerm,
@@ -35,7 +35,7 @@ pCellPdeElementMap);
 pElement);
     }
     double ComputeLinearInUCoeffInSourceTerm(::ChastePoint<2> const & rX, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AveragedSourceEllipticPde2,
             ComputeLinearInUCoeffInSourceTerm,
@@ -43,7 +43,7 @@ pElement);
 pElement);
     }
     ::boost::numeric::ublas::c_matrix<double, 2, 2> ComputeDiffusionTerm(::ChastePoint<2> const & rX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_2_2_gt_,
             AveragedSourceEllipticPde2,
             ComputeDiffusionTerm,

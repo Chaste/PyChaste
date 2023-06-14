@@ -18,7 +18,7 @@ class RandomCaSwitchingUpdateRule3_Overloads : public RandomCaSwitchingUpdateRul
     public:
     using RandomCaSwitchingUpdateRule3::RandomCaSwitchingUpdateRule;
     double EvaluateSwitchingProbability(unsigned int currentNodeIndex, unsigned int neighbourNodeIndex, ::CaBasedCellPopulation<3> & rCellPopulation, double dt, double deltaX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             RandomCaSwitchingUpdateRule3,
             EvaluateSwitchingProbability,
@@ -29,7 +29,7 @@ dt,
 deltaX);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             RandomCaSwitchingUpdateRule3,
             OutputUpdateRuleParameters,

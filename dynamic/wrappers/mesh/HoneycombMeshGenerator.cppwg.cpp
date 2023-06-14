@@ -19,7 +19,7 @@ class HoneycombMeshGenerator_Overloads : public HoneycombMeshGenerator{
     public:
     using HoneycombMeshGenerator::SharedHoneycombMeshGenerator;
     ::boost::shared_ptr<MutableMesh<2, 2>> GetMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_,
             HoneycombMeshGenerator,
             GetMesh,
