@@ -31,7 +31,7 @@ py::class_<CellData  , boost::shared_ptr<CellData >  , AbstractCellProperty  >(m
             " "  )
         .def(
             "GetKeys", 
-            (::std::vector<std::basic_string<char>, std::allocator<std::basic_string<char> > >(CellData::*)() const ) &CellData::GetKeys, 
+            (::std::vector<std::basic_string<char>>(CellData::*)() const ) &CellData::GetKeys, 
             " "  )
     ;
 }

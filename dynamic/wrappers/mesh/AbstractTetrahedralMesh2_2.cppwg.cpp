@@ -141,7 +141,7 @@ depth);
             CalculateDesignatedOwnershipOfElement,
             elementIndex);
     }
-    void GetHaloNodeIndices(::std::vector<unsigned int, std::allocator<unsigned int> > & rHaloIndices) const  override {
+    void GetHaloNodeIndices(::std::vector<unsigned int> & rHaloIndices) const  override {
         PYBIND11_OVERLOAD(
             void,
             AbstractTetrahedralMesh2_2,
@@ -280,11 +280,11 @@ py::class_<AbstractTetrahedralMesh2_2 , AbstractTetrahedralMesh2_2_Overloads , b
             " "  )
         .def(
             "GetHaloNodeIndices", 
-            (void(AbstractTetrahedralMesh2_2::*)(::std::vector<unsigned int, std::allocator<unsigned int> > &) const ) &AbstractTetrahedralMesh2_2::GetHaloNodeIndices, 
+            (void(AbstractTetrahedralMesh2_2::*)(::std::vector<unsigned int> &) const ) &AbstractTetrahedralMesh2_2::GetHaloNodeIndices, 
             " " , py::arg("rHaloIndices") )
         .def(
             "CalculateNodeExchange", 
-            (void(AbstractTetrahedralMesh2_2::*)(::std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > > &, ::std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > > &)) &AbstractTetrahedralMesh2_2::CalculateNodeExchange, 
+            (void(AbstractTetrahedralMesh2_2::*)(::std::vector<std::vector<unsigned int>> &, ::std::vector<std::vector<unsigned int>> &)) &AbstractTetrahedralMesh2_2::CalculateNodeExchange, 
             " " , py::arg("rNodesToSendPerProcess"), py::arg("rNodesToReceivePerProcess") )
         .def(
             "CalculateMinMaxEdgeLengths", 
@@ -292,11 +292,11 @@ py::class_<AbstractTetrahedralMesh2_2 , AbstractTetrahedralMesh2_2_Overloads , b
             " "  )
         .def(
             "GetContainingElementIndex", 
-            (unsigned int(AbstractTetrahedralMesh2_2::*)(::ChastePoint<2> const &, bool, ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >, bool)) &AbstractTetrahedralMesh2_2::GetContainingElementIndex, 
+            (unsigned int(AbstractTetrahedralMesh2_2::*)(::ChastePoint<2> const &, bool, ::std::set<unsigned int>, bool)) &AbstractTetrahedralMesh2_2::GetContainingElementIndex, 
             " " , py::arg("rTestPoint"), py::arg("strict") = false, py::arg("testElements") = std::set<unsigned int>(), py::arg("onlyTryWithTestElements") = false )
         .def(
             "GetNearestElementIndexFromTestElements", 
-            (unsigned int(AbstractTetrahedralMesh2_2::*)(::ChastePoint<2> const &, ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >)) &AbstractTetrahedralMesh2_2::GetNearestElementIndexFromTestElements, 
+            (unsigned int(AbstractTetrahedralMesh2_2::*)(::ChastePoint<2> const &, ::std::set<unsigned int>)) &AbstractTetrahedralMesh2_2::GetNearestElementIndexFromTestElements, 
             " " , py::arg("rTestPoint"), py::arg("testElements") )
     ;
 }

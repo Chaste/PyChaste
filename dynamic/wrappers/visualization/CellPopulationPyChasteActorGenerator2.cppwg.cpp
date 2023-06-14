@@ -51,7 +51,7 @@ py::class_<CellPopulationPyChasteActorGenerator2 , CellPopulationPyChasteActorGe
             " " , py::arg("pRenderer") )
         .def(
             "SetCellPopulation", 
-            (void(CellPopulationPyChasteActorGenerator2::*)(::boost::shared_ptr<AbstractCellPopulation<2, 2> >)) &CellPopulationPyChasteActorGenerator2::SetCellPopulation, 
+            (void(CellPopulationPyChasteActorGenerator2::*)(::boost::shared_ptr<AbstractCellPopulation<2>>)) &CellPopulationPyChasteActorGenerator2::SetCellPopulation, 
             " " , py::arg("pCellPopulation") )
         .def(
             "SetShowVoronoiMeshEdges", 

@@ -54,10 +54,10 @@ pElement);
 };
 void register_CellwiseSourceParabolicPde3_class(py::module &m){
 py::class_<CellwiseSourceParabolicPde3 , CellwiseSourceParabolicPde3_Overloads , boost::shared_ptr<CellwiseSourceParabolicPde3 >   >(m, "CellwiseSourceParabolicPde3")
-        .def(py::init<::AbstractCellPopulation<3, 3> &, double, double, double >(), py::arg("rCellPopulation"), py::arg("duDtCoefficient") = 1., py::arg("diffusionCoefficient") = 1., py::arg("sourceCoefficient") = 0.)
+        .def(py::init<::AbstractCellPopulation<3> &, double, double, double >(), py::arg("rCellPopulation"), py::arg("duDtCoefficient") = 1., py::arg("diffusionCoefficient") = 1., py::arg("sourceCoefficient") = 0.)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<3, 3> const &(CellwiseSourceParabolicPde3::*)() const ) &CellwiseSourceParabolicPde3::rGetCellPopulation, 
+            (::AbstractCellPopulation<3> const &(CellwiseSourceParabolicPde3::*)() const ) &CellwiseSourceParabolicPde3::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "ComputeDuDtCoefficientFunction", 

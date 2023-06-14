@@ -13,12 +13,12 @@
 namespace py = pybind11;
 typedef SharedHoneycombMeshGenerator HoneycombMeshGenerator;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-typedef ::boost::shared_ptr<MutableMesh<2, 2> > _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_;
+typedef ::boost::shared_ptr<MutableMesh<2, 2>> _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_;
 
 class HoneycombMeshGenerator_Overloads : public HoneycombMeshGenerator{
     public:
     using HoneycombMeshGenerator::SharedHoneycombMeshGenerator;
-    ::boost::shared_ptr<MutableMesh<2, 2> > GetMesh() override {
+    ::boost::shared_ptr<MutableMesh<2, 2>> GetMesh() override {
         PYBIND11_OVERLOAD(
             _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_,
             HoneycombMeshGenerator,
@@ -33,15 +33,15 @@ py::class_<HoneycombMeshGenerator , HoneycombMeshGenerator_Overloads , boost::sh
         .def(py::init< >())
         .def(
             "GetMesh", 
-            (::boost::shared_ptr<MutableMesh<2, 2> >(HoneycombMeshGenerator::*)()) &HoneycombMeshGenerator::GetMesh, 
+            (::boost::shared_ptr<MutableMesh<2, 2>>(HoneycombMeshGenerator::*)()) &HoneycombMeshGenerator::GetMesh, 
             " "  )
         .def(
             "GetCellLocationIndices", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> >(HoneycombMeshGenerator::*)()) &HoneycombMeshGenerator::GetCellLocationIndices, 
+            (::std::vector<unsigned int>(HoneycombMeshGenerator::*)()) &HoneycombMeshGenerator::GetCellLocationIndices, 
             " "  )
         .def(
             "GetCircularMesh", 
-            (::boost::shared_ptr<MutableMesh<2, 2> >(HoneycombMeshGenerator::*)(double)) &HoneycombMeshGenerator::GetCircularMesh, 
+            (::boost::shared_ptr<MutableMesh<2, 2>>(HoneycombMeshGenerator::*)(double)) &HoneycombMeshGenerator::GetCircularMesh, 
             " " , py::arg("radius") )
         .def(
             "GetDomainDepth", 

@@ -58,7 +58,7 @@ pElement);
 
 };
 void register_AbstractLinearEllipticPde3_3_class(py::module &m){
-py::class_<AbstractLinearEllipticPde3_3 , AbstractLinearEllipticPde3_3_Overloads , boost::shared_ptr<AbstractLinearEllipticPde3_3 >  , AbstractLinearPde<3, 3>  >(m, "AbstractLinearEllipticPde3_3")
+py::class_<AbstractLinearEllipticPde3_3 , AbstractLinearEllipticPde3_3_Overloads , boost::shared_ptr<AbstractLinearEllipticPde3_3 >   >(m, "AbstractLinearEllipticPde3_3")
         .def(py::init< >())
         .def(
             "ComputeConstantInUSourceTerm", 

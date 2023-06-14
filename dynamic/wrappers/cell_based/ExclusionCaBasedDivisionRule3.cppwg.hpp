@@ -1,0 +1,6 @@
+#ifndef ExclusionCaBasedDivisionRule3_hpp__pyplusplus_wrapper
+#define ExclusionCaBasedDivisionRule3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ExclusionCaBasedDivisionRule3_class(py::module &m);
+#endif // ExclusionCaBasedDivisionRule3_hpp__pyplusplus_wrapper

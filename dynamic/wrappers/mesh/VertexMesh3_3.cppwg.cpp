@@ -114,8 +114,8 @@ rLocationB);
 };
 void register_VertexMesh3_3_class(py::module &m){
 py::class_<VertexMesh3_3 , VertexMesh3_3_Overloads , boost::shared_ptr<VertexMesh3_3 >  , AbstractMesh<3, 3>  >(m, "VertexMesh3_3")
-        .def(py::init<::std::vector<Node<3> *, std::allocator<Node<3> *> >, ::std::vector<VertexElement<3, 3> *, std::allocator<VertexElement<3, 3> *> > >(), py::arg("nodes"), py::arg("vertexElements"))
-        .def(py::init<::std::vector<Node<3> *, std::allocator<Node<3> *> >, ::std::vector<VertexElement<2, 3> *, std::allocator<VertexElement<2, 3> *> >, ::std::vector<VertexElement<3, 3> *, std::allocator<VertexElement<3, 3> *> > >(), py::arg("nodes"), py::arg("faces"), py::arg("vertexElements"))
+        .def(py::init<::std::vector<Node<3> *>, ::std::vector<VertexElement<3, 3> *> >(), py::arg("nodes"), py::arg("vertexElements"))
+        .def(py::init<::std::vector<Node<3> *>, ::std::vector<VertexElement<2, 3> *>, ::std::vector<VertexElement<3, 3> *> >(), py::arg("nodes"), py::arg("faces"), py::arg("vertexElements"))
         .def(py::init< >())
         .def(
             "GetElementIteratorBegin", 
@@ -125,6 +125,18 @@ py::class_<VertexMesh3_3 , VertexMesh3_3_Overloads , boost::shared_ptr<VertexMes
             "GetElementIteratorEnd", 
             (::VertexMesh<3, 3>::VertexElementIterator(VertexMesh3_3::*)()) &VertexMesh3_3::GetElementIteratorEnd, 
             " "  )
+        .def(
+            "GetNumEdges", 
+            (unsigned int(VertexMesh3_3::*)() const ) &VertexMesh3_3::GetNumEdges, 
+            " "  )
+        .def(
+            "GetEdge", 
+            (::Edge<3> *(VertexMesh3_3::*)(unsigned int) const ) &VertexMesh3_3::GetEdge, 
+            " " , py::arg("index") , py::return_value_policy::reference)
+        .def(
+            "GetEdgeHelper", 
+            (::EdgeHelper<3> const &(VertexMesh3_3::*)() const ) &VertexMesh3_3::GetEdgeHelper, 
+            " "  , py::return_value_policy::reference_internal)
         .def(
             "GetNumNodes", 
             (unsigned int(VertexMesh3_3::*)() const ) &VertexMesh3_3::GetNumNodes, 
@@ -223,15 +235,15 @@ py::class_<VertexMesh3_3 , VertexMesh3_3_Overloads , boost::shared_ptr<VertexMes
             " " , py::arg("index") )
         .def(
             "GetNeighbouringNodeIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(VertexMesh3_3::*)(unsigned int)) &VertexMesh3_3::GetNeighbouringNodeIndices, 
+            (::std::set<unsigned int>(VertexMesh3_3::*)(unsigned int)) &VertexMesh3_3::GetNeighbouringNodeIndices, 
             " " , py::arg("nodeIndex") )
         .def(
             "GetNeighbouringNodeNotAlsoInElement", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(VertexMesh3_3::*)(unsigned int, unsigned int)) &VertexMesh3_3::GetNeighbouringNodeNotAlsoInElement, 
+            (::std::set<unsigned int>(VertexMesh3_3::*)(unsigned int, unsigned int)) &VertexMesh3_3::GetNeighbouringNodeNotAlsoInElement, 
             " " , py::arg("nodeIndex"), py::arg("elemIndex") )
         .def(
             "GetNeighbouringElementIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(VertexMesh3_3::*)(unsigned int)) &VertexMesh3_3::GetNeighbouringElementIndices, 
+            (::std::set<unsigned int>(VertexMesh3_3::*)(unsigned int)) &VertexMesh3_3::GetNeighbouringElementIndices, 
             " " , py::arg("elementIndex") )
         .def(
             "GetMeshForVtk", 

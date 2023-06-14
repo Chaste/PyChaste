@@ -18,7 +18,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 typedef ::TetrahedralMesh<2, 2> * _TetrahedralMesh_lt_2_2_gt_Ptr;
 typedef ::Node<2> * _Node_lt_2_gt_Ptr;
 typedef unsigned int unsignedint;
-typedef ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_;
+typedef ::std::set<unsigned int> _std_set_lt_unsignedint_gt_;
 typedef ::boost::numeric::ublas::c_vector<double, 2> _boost_numeric_ublas_c_vector_lt_double_2_gt_;
 typedef ::CellPtr _CellPtr;
 typedef unsigned int unsignedint;
@@ -47,9 +47,9 @@ class PottsBasedCellPopulation2_Overloads : public PottsBasedCellPopulation2{
             GetNumNodes,
             );
     }
-    ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringLocationIndices(::CellPtr pCell) override {
+    ::std::set<unsigned int> GetNeighbouringLocationIndices(::CellPtr pCell) override {
         PYBIND11_OVERLOAD(
-            _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
+            _std_set_lt_unsignedint_gt_,
             PottsBasedCellPopulation2,
             GetNeighbouringLocationIndices,
             pCell);
@@ -111,21 +111,28 @@ pParentCell);
             WriteResultsToFiles,
             rDirectory);
     }
-    void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> > pPopulationWriter) override {
+    void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>> pPopulationWriter) override {
         PYBIND11_OVERLOAD(
             void,
             PottsBasedCellPopulation2,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
-    void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> > pPopulationCountWriter) override {
+    void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>> pPopulationCountWriter) override {
         PYBIND11_OVERLOAD(
             void,
             PottsBasedCellPopulation2,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
-    void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2> > pCellWriter, ::CellPtr pCell) override {
+    void AcceptPopulationEventWriter(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>> pPopulationEventWriter) override {
+        PYBIND11_OVERLOAD(
+            void,
+            PottsBasedCellPopulation2,
+            AcceptPopulationEventWriter,
+            pPopulationEventWriter);
+    }
+    void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2>> pCellWriter, ::CellPtr pCell) override {
         PYBIND11_OVERLOAD(
             void,
             PottsBasedCellPopulation2,
@@ -154,7 +161,7 @@ pCell);
             OutputCellPopulationParameters,
             rParamsFile);
     }
-    void AddUpdateRule(::boost::shared_ptr<AbstractUpdateRule<2> > pUpdateRule) override {
+    void AddUpdateRule(::boost::shared_ptr<AbstractUpdateRule<2>> pUpdateRule) override {
         PYBIND11_OVERLOAD(
             void,
             PottsBasedCellPopulation2,
@@ -175,7 +182,7 @@ dirichletBoundaryValue);
 };
 void register_PottsBasedCellPopulation2_class(py::module &m){
 py::class_<PottsBasedCellPopulation2 , PottsBasedCellPopulation2_Overloads , boost::shared_ptr<PottsBasedCellPopulation2 >  , AbstractOnLatticeCellPopulation<2>  >(m, "PottsBasedCellPopulation2")
-        .def(py::init<::PottsMesh<2> &, ::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, bool, bool, ::std::vector<unsigned int, std::allocator<unsigned int> > const >(), py::arg("rMesh"), py::arg("rCells"), py::arg("deleteMesh") = false, py::arg("validate") = true, py::arg("locationIndices") = std::vector<unsigned int>())
+        .def(py::init<::PottsMesh<2> &, ::std::vector<boost::shared_ptr<Cell>> &, bool, bool, ::std::vector<unsigned int> const >(), py::arg("rMesh"), py::arg("rCells"), py::arg("deleteMesh") = false, py::arg("validate") = true, py::arg("locationIndices") = std::vector<unsigned int>())
         .def(py::init<::PottsMesh<2> & >(), py::arg("rMesh"))
         .def(
             "GetNumElements", 
@@ -191,7 +198,7 @@ py::class_<PottsBasedCellPopulation2 , PottsBasedCellPopulation2_Overloads , boo
             " "  )
         .def(
             "GetNeighbouringLocationIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(PottsBasedCellPopulation2::*)(::CellPtr)) &PottsBasedCellPopulation2::GetNeighbouringLocationIndices, 
+            (::std::set<unsigned int>(PottsBasedCellPopulation2::*)(::CellPtr)) &PottsBasedCellPopulation2::GetNeighbouringLocationIndices, 
             " " , py::arg("pCell") )
         .def(
             "GetLocationOfCellCentre", 
@@ -227,15 +234,19 @@ py::class_<PottsBasedCellPopulation2 , PottsBasedCellPopulation2_Overloads , boo
             " " , py::arg("rDirectory") )
         .def(
             "AcceptPopulationWriter", 
-            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> >)) &PottsBasedCellPopulation2::AcceptPopulationWriter, 
+            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>>)) &PottsBasedCellPopulation2::AcceptPopulationWriter, 
             " " , py::arg("pPopulationWriter") )
         .def(
             "AcceptPopulationCountWriter", 
-            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> >)) &PottsBasedCellPopulation2::AcceptPopulationCountWriter, 
+            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>>)) &PottsBasedCellPopulation2::AcceptPopulationCountWriter, 
             " " , py::arg("pPopulationCountWriter") )
         .def(
+            "AcceptPopulationEventWriter", 
+            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>>)) &PottsBasedCellPopulation2::AcceptPopulationEventWriter, 
+            " " , py::arg("pPopulationEventWriter") )
+        .def(
             "AcceptCellWriter", 
-            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2> >, ::CellPtr)) &PottsBasedCellPopulation2::AcceptCellWriter, 
+            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2>>, ::CellPtr)) &PottsBasedCellPopulation2::AcceptCellWriter, 
             " " , py::arg("pCellWriter"), py::arg("pCell") )
         .def(
             "GetVolumeOfCell", 
@@ -275,7 +286,7 @@ py::class_<PottsBasedCellPopulation2 , PottsBasedCellPopulation2_Overloads , boo
             " "  )
         .def(
             "AddUpdateRule", 
-            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractUpdateRule<2> >)) &PottsBasedCellPopulation2::AddUpdateRule, 
+            (void(PottsBasedCellPopulation2::*)(::boost::shared_ptr<AbstractUpdateRule<2>>)) &PottsBasedCellPopulation2::AddUpdateRule, 
             " " , py::arg("pUpdateRule") )
         .def(
             "GetCellDataItemAtPdeNode", 

@@ -7,29 +7,12 @@
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
 #include "VtkScene.hpp"
-#include <vtkOpenGLRenderer.h>
-#include <vtkUnsignedCharArray.h>
-#include <vtkSmartPointer.h>
-#include "PythonObjectConverters.hpp"
 
 #include "VtkScene2.cppwg.hpp"
 
 namespace py = pybind11;
 typedef VtkScene<2 > VtkScene2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_DECLARE_HOLDER_TYPE(T, vtkSmartPointer<T>);
-PYBIND11_VTK_TYPECASTER(vtkRenderer);
-PYBIND11_VTK_TYPECASTER(vtkOpenGLRenderer);
-PYBIND11_VTK_TYPECASTER(vtkUnsignedCharArray);
-
-
-// Only needed if the type's `.get()` goes by another name
-namespace PYBIND11_NAMESPACE { namespace detail {
-    template <typename T>
-    struct holder_helper<vtkSmartPointer<T>> { // <-- specialization
-        static const T *get(const vtkSmartPointer<T> &p) { return p.Get(); }
-    };
-}}
 
 class VtkScene2_Overloads : public VtkScene2{
     public:
@@ -60,7 +43,7 @@ py::class_<VtkScene2 , VtkScene2_Overloads , boost::shared_ptr<VtkScene2 >   >(m
             " "  )
         .def(
             "GetCellPopulationActorGenerator", 
-            (::boost::shared_ptr<CellPopulationPyChasteActorGenerator<2> >(VtkScene2::*)()) &VtkScene2::GetCellPopulationActorGenerator, 
+            (::boost::shared_ptr<CellPopulationPyChasteActorGenerator<2>>(VtkScene2::*)()) &VtkScene2::GetCellPopulationActorGenerator, 
             " "  )
         .def(
             "ResetRenderer", 
@@ -72,7 +55,7 @@ py::class_<VtkScene2 , VtkScene2_Overloads , boost::shared_ptr<VtkScene2 >   >(m
             " "  )
         .def(
             "SetCellPopulation", 
-            (void(VtkScene2::*)(::boost::shared_ptr<AbstractCellPopulation<2, 2> >)) &VtkScene2::SetCellPopulation, 
+            (void(VtkScene2::*)(::boost::shared_ptr<AbstractCellPopulation<2>>)) &VtkScene2::SetCellPopulation, 
             " " , py::arg("pCellPopulation") )
         .def(
             "SetOutputFilePath", 

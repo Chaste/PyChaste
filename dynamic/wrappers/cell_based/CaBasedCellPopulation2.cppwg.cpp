@@ -18,11 +18,11 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 typedef ::TetrahedralMesh<2, 2> * _TetrahedralMesh_lt_2_2_gt_Ptr;
 typedef ::Node<2> * _Node_lt_2_gt_Ptr;
 typedef unsigned int unsignedint;
-typedef ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_;
+typedef ::std::set<unsigned int> _std_set_lt_unsignedint_gt_;
 typedef ::boost::numeric::ublas::c_vector<double, 2> _boost_numeric_ublas_c_vector_lt_double_2_gt_;
 typedef ::CellPtr _CellPtr;
 typedef unsigned int unsignedint;
-typedef ::std::vector<boost::shared_ptr<AbstractUpdateRule<2> >, std::allocator<boost::shared_ptr<AbstractUpdateRule<2> > > > const _std_vector_lt_boost_shared_ptr_lt_AbstractUpdateRule_lt_2_gt__gt__std_allocator_lt_boost_shared_ptr_lt_AbstractUpdateRule_lt_2_gt__gt__gt__gt_const;
+typedef ::std::vector<boost::shared_ptr<AbstractUpdateRule<2>>> const _std_vector_lt_boost_shared_ptr_lt_AbstractUpdateRule_lt_2_gt__gt__gt_const;
 
 class CaBasedCellPopulation2_Overloads : public CaBasedCellPopulation2{
     public:
@@ -56,9 +56,9 @@ pCell);
             GetNumNodes,
             );
     }
-    ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringLocationIndices(::CellPtr pCell) override {
+    ::std::set<unsigned int> GetNeighbouringLocationIndices(::CellPtr pCell) override {
         PYBIND11_OVERLOAD(
-            _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
+            _std_set_lt_unsignedint_gt_,
             CaBasedCellPopulation2,
             GetNeighbouringLocationIndices,
             pCell);
@@ -138,21 +138,28 @@ pCell);
             Update,
             hasHadBirthsOrDeaths);
     }
-    void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> > pPopulationWriter) override {
+    void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>> pPopulationWriter) override {
         PYBIND11_OVERLOAD(
             void,
             CaBasedCellPopulation2,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
-    void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> > pPopulationCountWriter) override {
+    void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>> pPopulationCountWriter) override {
         PYBIND11_OVERLOAD(
             void,
             CaBasedCellPopulation2,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
-    void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2> > pCellWriter, ::CellPtr pCell) override {
+    void AcceptPopulationEventWriter(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>> pPopulationEventWriter) override {
+        PYBIND11_OVERLOAD(
+            void,
+            CaBasedCellPopulation2,
+            AcceptPopulationEventWriter,
+            pPopulationEventWriter);
+    }
+    void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2>> pCellWriter, ::CellPtr pCell) override {
         PYBIND11_OVERLOAD(
             void,
             CaBasedCellPopulation2,
@@ -195,16 +202,16 @@ pCell);
             IsRoomToDivide,
             pCell);
     }
-    void AddUpdateRule(::boost::shared_ptr<AbstractUpdateRule<2> > pUpdateRule) override {
+    void AddUpdateRule(::boost::shared_ptr<AbstractUpdateRule<2>> pUpdateRule) override {
         PYBIND11_OVERLOAD(
             void,
             CaBasedCellPopulation2,
             AddUpdateRule,
             pUpdateRule);
     }
-    ::std::vector<boost::shared_ptr<AbstractUpdateRule<2> >, std::allocator<boost::shared_ptr<AbstractUpdateRule<2> > > > const GetUpdateRuleCollection() const  override {
+    ::std::vector<boost::shared_ptr<AbstractUpdateRule<2>>> const GetUpdateRuleCollection() const  override {
         PYBIND11_OVERLOAD(
-            _std_vector_lt_boost_shared_ptr_lt_AbstractUpdateRule_lt_2_gt__gt__std_allocator_lt_boost_shared_ptr_lt_AbstractUpdateRule_lt_2_gt__gt__gt__gt_const,
+            _std_vector_lt_boost_shared_ptr_lt_AbstractUpdateRule_lt_2_gt__gt__gt_const,
             CaBasedCellPopulation2,
             GetUpdateRuleCollection,
             );
@@ -230,7 +237,7 @@ dirichletBoundaryValue);
 };
 void register_CaBasedCellPopulation2_class(py::module &m){
 py::class_<CaBasedCellPopulation2 , CaBasedCellPopulation2_Overloads , boost::shared_ptr<CaBasedCellPopulation2 >  , AbstractOnLatticeCellPopulation<2>  >(m, "CaBasedCellPopulation2")
-        .def(py::init<::PottsMesh<2> &, ::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, ::std::vector<unsigned int, std::allocator<unsigned int> > const, unsigned int, bool, bool >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices"), py::arg("latticeCarryingCapacity") = 1U, py::arg("deleteMesh") = false, py::arg("validate") = false)
+        .def(py::init<::PottsMesh<2> &, ::std::vector<boost::shared_ptr<Cell>> &, ::std::vector<unsigned int> const, unsigned int, bool, bool >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices"), py::arg("latticeCarryingCapacity") = 1U, py::arg("deleteMesh") = false, py::arg("validate") = false)
         .def(py::init<::PottsMesh<2> & >(), py::arg("rMesh"))
         .def(
             "IsSiteAvailable", 
@@ -246,7 +253,7 @@ py::class_<CaBasedCellPopulation2 , CaBasedCellPopulation2_Overloads , boost::sh
             " "  )
         .def(
             "GetNeighbouringLocationIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(CaBasedCellPopulation2::*)(::CellPtr)) &CaBasedCellPopulation2::GetNeighbouringLocationIndices, 
+            (::std::set<unsigned int>(CaBasedCellPopulation2::*)(::CellPtr)) &CaBasedCellPopulation2::GetNeighbouringLocationIndices, 
             " " , py::arg("pCell") )
         .def(
             "GetLocationOfCellCentre", 
@@ -290,15 +297,19 @@ py::class_<CaBasedCellPopulation2 , CaBasedCellPopulation2_Overloads , boost::sh
             " " , py::arg("hasHadBirthsOrDeaths") = true )
         .def(
             "AcceptPopulationWriter", 
-            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> >)) &CaBasedCellPopulation2::AcceptPopulationWriter, 
+            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>>)) &CaBasedCellPopulation2::AcceptPopulationWriter, 
             " " , py::arg("pPopulationWriter") )
         .def(
             "AcceptPopulationCountWriter", 
-            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> >)) &CaBasedCellPopulation2::AcceptPopulationCountWriter, 
+            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>>)) &CaBasedCellPopulation2::AcceptPopulationCountWriter, 
             " " , py::arg("pPopulationCountWriter") )
         .def(
+            "AcceptPopulationEventWriter", 
+            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>>)) &CaBasedCellPopulation2::AcceptPopulationEventWriter, 
+            " " , py::arg("pPopulationEventWriter") )
+        .def(
             "AcceptCellWriter", 
-            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2> >, ::CellPtr)) &CaBasedCellPopulation2::AcceptCellWriter, 
+            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2>>, ::CellPtr)) &CaBasedCellPopulation2::AcceptCellWriter, 
             " " , py::arg("pCellWriter"), py::arg("pCell") )
         .def(
             "GetVolumeOfCell", 
@@ -322,19 +333,19 @@ py::class_<CaBasedCellPopulation2 , CaBasedCellPopulation2_Overloads , boost::sh
             " " , py::arg("pCell") )
         .def(
             "GetCaBasedDivisionRule", 
-            (::boost::shared_ptr<AbstractCaBasedDivisionRule<2> >(CaBasedCellPopulation2::*)()) &CaBasedCellPopulation2::GetCaBasedDivisionRule, 
+            (::boost::shared_ptr<AbstractCaBasedDivisionRule<2>>(CaBasedCellPopulation2::*)()) &CaBasedCellPopulation2::GetCaBasedDivisionRule, 
             " "  )
         .def(
             "SetCaBasedDivisionRule", 
-            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCaBasedDivisionRule<2> >)) &CaBasedCellPopulation2::SetCaBasedDivisionRule, 
+            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCaBasedDivisionRule<2>>)) &CaBasedCellPopulation2::SetCaBasedDivisionRule, 
             " " , py::arg("pCaBasedDivisionRule") )
         .def(
             "AddUpdateRule", 
-            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractUpdateRule<2> >)) &CaBasedCellPopulation2::AddUpdateRule, 
+            (void(CaBasedCellPopulation2::*)(::boost::shared_ptr<AbstractUpdateRule<2>>)) &CaBasedCellPopulation2::AddUpdateRule, 
             " " , py::arg("pUpdateRule") )
         .def(
             "GetUpdateRuleCollection", 
-            (::std::vector<boost::shared_ptr<AbstractUpdateRule<2> >, std::allocator<boost::shared_ptr<AbstractUpdateRule<2> > > > const(CaBasedCellPopulation2::*)() const ) &CaBasedCellPopulation2::GetUpdateRuleCollection, 
+            (::std::vector<boost::shared_ptr<AbstractUpdateRule<2>>> const(CaBasedCellPopulation2::*)() const ) &CaBasedCellPopulation2::GetUpdateRuleCollection, 
             " "  )
         .def(
             "GetCellDataItemAtPdeNode", 

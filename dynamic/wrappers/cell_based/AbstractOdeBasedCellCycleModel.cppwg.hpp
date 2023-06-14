@@ -1,0 +1,6 @@
+#ifndef AbstractOdeBasedCellCycleModel_hpp__pyplusplus_wrapper
+#define AbstractOdeBasedCellCycleModel_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_AbstractOdeBasedCellCycleModel_class(py::module &m);
+#endif // AbstractOdeBasedCellCycleModel_hpp__pyplusplus_wrapper

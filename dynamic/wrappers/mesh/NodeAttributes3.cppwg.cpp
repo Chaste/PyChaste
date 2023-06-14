@@ -19,7 +19,7 @@ py::class_<NodeAttributes3  , boost::shared_ptr<NodeAttributes3 >   >(m, "NodeAt
         .def(py::init< >())
         .def(
             "rGetAttributes", 
-            (::std::vector<double, std::allocator<double> > &(NodeAttributes3::*)()) &NodeAttributes3::rGetAttributes, 
+            (::std::vector<double> &(NodeAttributes3::*)()) &NodeAttributes3::rGetAttributes, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "AddAttribute", 
@@ -71,7 +71,7 @@ py::class_<NodeAttributes3  , boost::shared_ptr<NodeAttributes3 >   >(m, "NodeAt
             " "  )
         .def(
             "rGetNeighbours", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodeAttributes3::*)()) &NodeAttributes3::rGetNeighbours, 
+            (::std::vector<unsigned int> &(NodeAttributes3::*)()) &NodeAttributes3::rGetNeighbours, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "IsParticle", 

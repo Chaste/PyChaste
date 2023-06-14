@@ -1,0 +1,6 @@
+#ifndef AbstractCaSwitchingUpdateRule3_hpp__pyplusplus_wrapper
+#define AbstractCaSwitchingUpdateRule3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_AbstractCaSwitchingUpdateRule3_class(py::module &m);
+#endif // AbstractCaSwitchingUpdateRule3_hpp__pyplusplus_wrapper

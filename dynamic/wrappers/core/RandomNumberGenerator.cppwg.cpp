@@ -42,7 +42,7 @@ py::class_<RandomNumberGenerator  , boost::shared_ptr<RandomNumberGenerator >   
             " " , py::arg("base") )
         .def(
             "Shuffle", 
-            (void(RandomNumberGenerator::*)(unsigned int, ::std::vector<unsigned int, std::allocator<unsigned int> > &)) &RandomNumberGenerator::Shuffle, 
+            (void(RandomNumberGenerator::*)(unsigned int, ::std::vector<unsigned int> &)) &RandomNumberGenerator::Shuffle, 
             " " , py::arg("num"), py::arg("rValues") )
         .def_static(
             "Instance", 

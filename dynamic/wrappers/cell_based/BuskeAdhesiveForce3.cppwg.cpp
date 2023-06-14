@@ -18,7 +18,7 @@ typedef ::boost::numeric::ublas::c_vector<double, 3> _boost_numeric_ublas_c_vect
 class BuskeAdhesiveForce3_Overloads : public BuskeAdhesiveForce3{
     public:
     using BuskeAdhesiveForce3::BuskeAdhesiveForce;
-    ::boost::numeric::ublas::c_vector<double, 3> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3, 3> & rCellPopulation) override {
+    ::boost::numeric::ublas::c_vector<double, 3> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3> & rCellPopulation) override {
         PYBIND11_OVERLOAD(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             BuskeAdhesiveForce3,
@@ -37,7 +37,7 @@ rCellPopulation);
 
 };
 void register_BuskeAdhesiveForce3_class(py::module &m){
-py::class_<BuskeAdhesiveForce3 , BuskeAdhesiveForce3_Overloads , boost::shared_ptr<BuskeAdhesiveForce3 >  , AbstractTwoBodyInteractionForce<3, 3>  >(m, "BuskeAdhesiveForce3")
+py::class_<BuskeAdhesiveForce3 , BuskeAdhesiveForce3_Overloads , boost::shared_ptr<BuskeAdhesiveForce3 >   >(m, "BuskeAdhesiveForce3")
         .def(py::init< >())
         .def(
             "GetAdhesionEnergyParameter", 
@@ -49,7 +49,7 @@ py::class_<BuskeAdhesiveForce3 , BuskeAdhesiveForce3_Overloads , boost::shared_p
             " " , py::arg("adhesionEnergyParameter") )
         .def(
             "CalculateForceBetweenNodes", 
-            (::boost::numeric::ublas::c_vector<double, 3>(BuskeAdhesiveForce3::*)(unsigned int, unsigned int, ::AbstractCellPopulation<3, 3> &)) &BuskeAdhesiveForce3::CalculateForceBetweenNodes, 
+            (::boost::numeric::ublas::c_vector<double, 3>(BuskeAdhesiveForce3::*)(unsigned int, unsigned int, ::AbstractCellPopulation<3> &)) &BuskeAdhesiveForce3::CalculateForceBetweenNodes, 
             " " , py::arg("nodeAGlobalIndex"), py::arg("nodeBGlobalIndex"), py::arg("rCellPopulation") )
         .def(
             "GetMagnitudeOfForce", 

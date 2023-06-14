@@ -18,7 +18,7 @@ typedef ::boost::numeric::ublas::c_matrix<double, 2, 2> _boost_numeric_ublas_c_m
 class AveragedSourceEllipticPde2_Overloads : public AveragedSourceEllipticPde2{
     public:
     using AveragedSourceEllipticPde2::AveragedSourceEllipticPde;
-    void SetupSourceTerms(::TetrahedralMesh<2, 2> & rCoarseMesh, ::std::map<boost::shared_ptr<Cell>, unsigned int, std::less<boost::shared_ptr<Cell> >, std::allocator<std::pair<const boost::shared_ptr<Cell>, unsigned int> > > * pCellPdeElementMap) override {
+    void SetupSourceTerms(::TetrahedralMesh<2, 2> & rCoarseMesh, ::std::map<boost::shared_ptr<Cell>, unsigned int> * pCellPdeElementMap) override {
         PYBIND11_OVERLOAD(
             void,
             AveragedSourceEllipticPde2,
@@ -53,10 +53,10 @@ pElement);
 };
 void register_AveragedSourceEllipticPde2_class(py::module &m){
 py::class_<AveragedSourceEllipticPde2 , AveragedSourceEllipticPde2_Overloads , boost::shared_ptr<AveragedSourceEllipticPde2 >   >(m, "AveragedSourceEllipticPde2")
-        .def(py::init<::AbstractCellPopulation<2, 2> &, double, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0., py::arg("diffusionCoefficient") = 1.)
+        .def(py::init<::AbstractCellPopulation<2> &, double, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0., py::arg("diffusionCoefficient") = 1.)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<2, 2> const &(AveragedSourceEllipticPde2::*)() const ) &AveragedSourceEllipticPde2::rGetCellPopulation, 
+            (::AbstractCellPopulation<2> const &(AveragedSourceEllipticPde2::*)() const ) &AveragedSourceEllipticPde2::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetCoefficient", 
@@ -64,7 +64,7 @@ py::class_<AveragedSourceEllipticPde2 , AveragedSourceEllipticPde2_Overloads , b
             " "  )
         .def(
             "SetupSourceTerms", 
-            (void(AveragedSourceEllipticPde2::*)(::TetrahedralMesh<2, 2> &, ::std::map<boost::shared_ptr<Cell>, unsigned int, std::less<boost::shared_ptr<Cell> >, std::allocator<std::pair<const boost::shared_ptr<Cell>, unsigned int> > > *)) &AveragedSourceEllipticPde2::SetupSourceTerms, 
+            (void(AveragedSourceEllipticPde2::*)(::TetrahedralMesh<2, 2> &, ::std::map<boost::shared_ptr<Cell>, unsigned int> *)) &AveragedSourceEllipticPde2::SetupSourceTerms, 
             " " , py::arg("rCoarseMesh"), py::arg("pCellPdeElementMap") = nullptr )
         .def(
             "ComputeConstantInUSourceTerm", 

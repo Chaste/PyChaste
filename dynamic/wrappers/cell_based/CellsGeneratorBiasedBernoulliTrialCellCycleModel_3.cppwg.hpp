@@ -1,0 +1,6 @@
+#ifndef CellsGeneratorBiasedBernoulliTrialCellCycleModel_3_hpp__pyplusplus_wrapper
+#define CellsGeneratorBiasedBernoulliTrialCellCycleModel_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellsGeneratorBiasedBernoulliTrialCellCycleModel_3_class(py::module &m);
+#endif // CellsGeneratorBiasedBernoulliTrialCellCycleModel_3_hpp__pyplusplus_wrapper

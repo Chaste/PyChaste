@@ -155,7 +155,7 @@ py::class_<TetrahedralMesh2_2 , TetrahedralMesh2_2_Overloads , boost::shared_ptr
             " "  )
         .def(
             "PermuteNodes", 
-            (void(TetrahedralMesh2_2::*)(::std::vector<unsigned int, std::allocator<unsigned int> > const &)) &TetrahedralMesh2_2::PermuteNodes, 
+            (void(TetrahedralMesh2_2::*)(::std::vector<unsigned int> const &)) &TetrahedralMesh2_2::PermuteNodes, 
             " " , py::arg("perm") )
         .def(
             "GetContainingElementIndexWithInitialGuess", 
@@ -167,7 +167,7 @@ py::class_<TetrahedralMesh2_2 , TetrahedralMesh2_2_Overloads , boost::shared_ptr
             " " , py::arg("rTestPoint") )
         .def(
             "GetContainingElementIndices", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> >(TetrahedralMesh2_2::*)(::ChastePoint<2> const &)) &TetrahedralMesh2_2::GetContainingElementIndices, 
+            (::std::vector<unsigned int>(TetrahedralMesh2_2::*)(::ChastePoint<2> const &)) &TetrahedralMesh2_2::GetContainingElementIndices, 
             " " , py::arg("rTestPoint") )
         .def(
             "Clear", 

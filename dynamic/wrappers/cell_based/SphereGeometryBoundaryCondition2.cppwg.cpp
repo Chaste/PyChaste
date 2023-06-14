@@ -18,7 +18,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class SphereGeometryBoundaryCondition2_Overloads : public SphereGeometryBoundaryCondition2{
     public:
     using SphereGeometryBoundaryCondition2::SphereGeometryBoundaryCondition;
-    void ImposeBoundaryCondition(::std::map<Node<2> *, boost::numeric::ublas::c_vector<double, 2>, std::less<Node<2> *>, std::allocator<std::pair<Node<2> *const, boost::numeric::ublas::c_vector<double, 2> > > > const & rOldLocations) override {
+    void ImposeBoundaryCondition(::std::map<Node<2> *, boost::numeric::ublas::c_vector<double, 2>> const & rOldLocations) override {
         PYBIND11_OVERLOAD(
             void,
             SphereGeometryBoundaryCondition2,
@@ -42,8 +42,8 @@ class SphereGeometryBoundaryCondition2_Overloads : public SphereGeometryBoundary
 
 };
 void register_SphereGeometryBoundaryCondition2_class(py::module &m){
-py::class_<SphereGeometryBoundaryCondition2 , SphereGeometryBoundaryCondition2_Overloads , boost::shared_ptr<SphereGeometryBoundaryCondition2 >  , AbstractCellPopulationBoundaryCondition<2, 2>  >(m, "SphereGeometryBoundaryCondition2")
-        .def(py::init<::AbstractCellPopulation<2, 2> *, ::boost::numeric::ublas::c_vector<double, 2>, double, double >(), py::arg("pCellPopulation"), py::arg("centre"), py::arg("radius"), py::arg("distance") = 1.0000000000000001E-5)
+py::class_<SphereGeometryBoundaryCondition2 , SphereGeometryBoundaryCondition2_Overloads , boost::shared_ptr<SphereGeometryBoundaryCondition2 >   >(m, "SphereGeometryBoundaryCondition2")
+        .def(py::init<::AbstractCellPopulation<2> *, ::boost::numeric::ublas::c_vector<double, 2>, double, double >(), py::arg("pCellPopulation"), py::arg("centre"), py::arg("radius"), py::arg("distance") = 1.0000000000000001E-5)
         .def(
             "rGetCentreOfSphere", 
             (::boost::numeric::ublas::c_vector<double, 2> const &(SphereGeometryBoundaryCondition2::*)() const ) &SphereGeometryBoundaryCondition2::rGetCentreOfSphere, 
@@ -54,7 +54,7 @@ py::class_<SphereGeometryBoundaryCondition2 , SphereGeometryBoundaryCondition2_O
             " "  )
         .def(
             "ImposeBoundaryCondition", 
-            (void(SphereGeometryBoundaryCondition2::*)(::std::map<Node<2> *, boost::numeric::ublas::c_vector<double, 2>, std::less<Node<2> *>, std::allocator<std::pair<Node<2> *const, boost::numeric::ublas::c_vector<double, 2> > > > const &)) &SphereGeometryBoundaryCondition2::ImposeBoundaryCondition, 
+            (void(SphereGeometryBoundaryCondition2::*)(::std::map<Node<2> *, boost::numeric::ublas::c_vector<double, 2>> const &)) &SphereGeometryBoundaryCondition2::ImposeBoundaryCondition, 
             " " , py::arg("rOldLocations") )
         .def(
             "VerifyBoundaryCondition", 

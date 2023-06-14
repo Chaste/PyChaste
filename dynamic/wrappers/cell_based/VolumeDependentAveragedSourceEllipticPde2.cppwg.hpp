@@ -1,0 +1,6 @@
+#ifndef VolumeDependentAveragedSourceEllipticPde2_hpp__pyplusplus_wrapper
+#define VolumeDependentAveragedSourceEllipticPde2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_VolumeDependentAveragedSourceEllipticPde2_class(py::module &m);
+#endif // VolumeDependentAveragedSourceEllipticPde2_hpp__pyplusplus_wrapper

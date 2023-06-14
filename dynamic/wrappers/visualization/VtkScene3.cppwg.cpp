@@ -43,7 +43,7 @@ py::class_<VtkScene3 , VtkScene3_Overloads , boost::shared_ptr<VtkScene3 >   >(m
             " "  )
         .def(
             "GetCellPopulationActorGenerator", 
-            (::boost::shared_ptr<CellPopulationPyChasteActorGenerator<3> >(VtkScene3::*)()) &VtkScene3::GetCellPopulationActorGenerator, 
+            (::boost::shared_ptr<CellPopulationPyChasteActorGenerator<3>>(VtkScene3::*)()) &VtkScene3::GetCellPopulationActorGenerator, 
             " "  )
         .def(
             "ResetRenderer", 
@@ -55,7 +55,7 @@ py::class_<VtkScene3 , VtkScene3_Overloads , boost::shared_ptr<VtkScene3 >   >(m
             " "  )
         .def(
             "SetCellPopulation", 
-            (void(VtkScene3::*)(::boost::shared_ptr<AbstractCellPopulation<3, 3> >)) &VtkScene3::SetCellPopulation, 
+            (void(VtkScene3::*)(::boost::shared_ptr<AbstractCellPopulation<3>>)) &VtkScene3::SetCellPopulation, 
             " " , py::arg("pCellPopulation") )
         .def(
             "SetOutputFilePath", 

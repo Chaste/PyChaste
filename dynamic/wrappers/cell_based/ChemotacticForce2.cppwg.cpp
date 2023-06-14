@@ -17,7 +17,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class ChemotacticForce2_Overloads : public ChemotacticForce2{
     public:
     using ChemotacticForce2::ChemotacticForce;
-    void AddForceContribution(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
+    void AddForceContribution(::AbstractCellPopulation<2> & rCellPopulation) override {
         PYBIND11_OVERLOAD(
             void,
             ChemotacticForce2,
@@ -34,11 +34,11 @@ class ChemotacticForce2_Overloads : public ChemotacticForce2{
 
 };
 void register_ChemotacticForce2_class(py::module &m){
-py::class_<ChemotacticForce2 , ChemotacticForce2_Overloads , boost::shared_ptr<ChemotacticForce2 >  , AbstractForce<2, 2>  >(m, "ChemotacticForce2")
+py::class_<ChemotacticForce2 , ChemotacticForce2_Overloads , boost::shared_ptr<ChemotacticForce2 >   >(m, "ChemotacticForce2")
         .def(py::init< >())
         .def(
             "AddForceContribution", 
-            (void(ChemotacticForce2::*)(::AbstractCellPopulation<2, 2> &)) &ChemotacticForce2::AddForceContribution, 
+            (void(ChemotacticForce2::*)(::AbstractCellPopulation<2> &)) &ChemotacticForce2::AddForceContribution, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputForceParameters", 

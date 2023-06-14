@@ -101,6 +101,16 @@ concreteMove);
             ConstructFromMeshReader,
             rMeshReader);
     }
+    void SetUpBoxCollection(double cutOffLength, ::boost::numeric::ublas::c_vector<double, 4> domainSize, int numLocalRows, ::boost::numeric::ublas::c_vector<bool, 2> isDimPeriodic) override {
+        PYBIND11_OVERLOAD(
+            void,
+            NodesOnlyMesh2,
+            SetUpBoxCollection,
+            cutOffLength, 
+domainSize, 
+numLocalRows, 
+isDimPeriodic);
+    }
 
 };
 void register_NodesOnlyMesh2_class(py::module &m){
@@ -108,11 +118,11 @@ py::class_<NodesOnlyMesh2 , NodesOnlyMesh2_Overloads , boost::shared_ptr<NodesOn
         .def(py::init< >())
         .def(
             "ConstructNodesWithoutMesh", 
-            (void(NodesOnlyMesh2::*)(::std::vector<Node<2> *, std::allocator<Node<2> *> > const &, double)) &NodesOnlyMesh2::ConstructNodesWithoutMesh, 
+            (void(NodesOnlyMesh2::*)(::std::vector<Node<2> *> const &, double)) &NodesOnlyMesh2::ConstructNodesWithoutMesh, 
             " " , py::arg("rNodes"), py::arg("maxInteractionDistance") )
         .def(
             "ConstructNodesWithoutMesh", 
-            (void(NodesOnlyMesh2::*)(::std::vector<boost::shared_ptr<Node<2> >, std::allocator<boost::shared_ptr<Node<2> > > > const &, double)) &NodesOnlyMesh2::ConstructNodesWithoutMesh, 
+            (void(NodesOnlyMesh2::*)(::std::vector<boost::shared_ptr<Node<2>>> const &, double)) &NodesOnlyMesh2::ConstructNodesWithoutMesh, 
             " " , py::arg("rNodes"), py::arg("maxInteractionDistance") )
         .def(
             "ConstructNodesWithoutMesh", 
@@ -120,7 +130,7 @@ py::class_<NodesOnlyMesh2 , NodesOnlyMesh2_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("rGeneratingMesh"), py::arg("maxInteractionDistance") )
         .def(
             "rGetInitiallyOwnedNodes", 
-            (::std::vector<bool, std::allocator<bool> > &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetInitiallyOwnedNodes, 
+            (::std::vector<bool> &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetInitiallyOwnedNodes, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "Clear", 
@@ -164,11 +174,11 @@ py::class_<NodesOnlyMesh2 , NodesOnlyMesh2_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("calculateNodeNeighbours") )
         .def(
             "CalculateInteriorNodePairs", 
-            (void(NodesOnlyMesh2::*)(::std::vector<std::pair<Node<2> *, Node<2> *>, std::allocator<std::pair<Node<2> *, Node<2> *> > > &)) &NodesOnlyMesh2::CalculateInteriorNodePairs, 
+            (void(NodesOnlyMesh2::*)(::std::vector<std::pair<Node<2> *, Node<2> *>> &)) &NodesOnlyMesh2::CalculateInteriorNodePairs, 
             " " , py::arg("rNodePairs") )
         .def(
             "CalculateBoundaryNodePairs", 
-            (void(NodesOnlyMesh2::*)(::std::vector<std::pair<Node<2> *, Node<2> *>, std::allocator<std::pair<Node<2> *, Node<2> *> > > &)) &NodesOnlyMesh2::CalculateBoundaryNodePairs, 
+            (void(NodesOnlyMesh2::*)(::std::vector<std::pair<Node<2> *, Node<2> *>> &)) &NodesOnlyMesh2::CalculateBoundaryNodePairs, 
             " " , py::arg("rNodePairs") )
         .def(
             "ReMesh", 
@@ -187,6 +197,10 @@ py::class_<NodesOnlyMesh2 , NodesOnlyMesh2_Overloads , boost::shared_ptr<NodesOn
             (void(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::ResizeBoxCollection, 
             " "  )
         .def(
+            "GetIsPeriodicAcrossProcsFromBoxCollection", 
+            (bool(NodesOnlyMesh2::*)() const ) &NodesOnlyMesh2::GetIsPeriodicAcrossProcsFromBoxCollection, 
+            " "  )
+        .def(
             "AddNodesToBoxes", 
             (void(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::AddNodesToBoxes, 
             " "  )
@@ -200,23 +214,23 @@ py::class_<NodesOnlyMesh2 , NodesOnlyMesh2_Overloads , boost::shared_ptr<NodesOn
             " "  )
         .def(
             "rGetNodesToSendLeft", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetNodesToSendLeft, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetNodesToSendLeft, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetNodesToSendRight", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetNodesToSendRight, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetNodesToSendRight, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetHaloNodesToSendRight", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetHaloNodesToSendRight, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetHaloNodesToSendRight, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetHaloNodesToSendLeft", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetHaloNodesToSendLeft, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh2::*)()) &NodesOnlyMesh2::rGetHaloNodesToSendLeft, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "AddHaloNode", 
-            (void(NodesOnlyMesh2::*)(::boost::shared_ptr<Node<2> >)) &NodesOnlyMesh2::AddHaloNode, 
+            (void(NodesOnlyMesh2::*)(::boost::shared_ptr<Node<2>>)) &NodesOnlyMesh2::AddHaloNode, 
             " " , py::arg("pNewNode") )
         .def(
             "ClearHaloNodes", 
@@ -232,7 +246,7 @@ py::class_<NodesOnlyMesh2 , NodesOnlyMesh2_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("pNewNode") )
         .def(
             "AddMovedNode", 
-            (void(NodesOnlyMesh2::*)(::boost::shared_ptr<Node<2> >)) &NodesOnlyMesh2::AddMovedNode, 
+            (void(NodesOnlyMesh2::*)(::boost::shared_ptr<Node<2>>)) &NodesOnlyMesh2::AddMovedNode, 
             " " , py::arg("pMovedNode") )
         .def(
             "DeleteNode", 
@@ -256,7 +270,7 @@ py::class_<NodesOnlyMesh2 , NodesOnlyMesh2_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("rMeshReader") )
         .def(
             "GetAllNodeIndices", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> >(NodesOnlyMesh2::*)() const ) &NodesOnlyMesh2::GetAllNodeIndices, 
+            (::std::vector<unsigned int>(NodesOnlyMesh2::*)() const ) &NodesOnlyMesh2::GetAllNodeIndices, 
             " "  )
     ;
 }

@@ -17,7 +17,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class AbstractOdeSystem_Overloads : public AbstractOdeSystem{
     public:
     using AbstractOdeSystem::AbstractOdeSystem;
-    void EvaluateYDerivatives(double time, ::std::vector<double, std::allocator<double> > const & rY, ::std::vector<double, std::allocator<double> > & rDY) override {
+    void EvaluateYDerivatives(double time, ::std::vector<double> const & rY, ::std::vector<double> & rDY) override {
         PYBIND11_OVERLOAD_PURE(
             void,
             AbstractOdeSystem,
@@ -26,7 +26,7 @@ class AbstractOdeSystem_Overloads : public AbstractOdeSystem{
 rY, 
 rDY);
     }
-    bool CalculateStoppingEvent(double time, ::std::vector<double, std::allocator<double> > const & rY) override {
+    bool CalculateStoppingEvent(double time, ::std::vector<double> const & rY) override {
         PYBIND11_OVERLOAD(
             bool,
             AbstractOdeSystem,
@@ -34,7 +34,7 @@ rDY);
             time, 
 rY);
     }
-    double CalculateRootFunction(double time, ::std::vector<double, std::allocator<double> > const & rY) override {
+    double CalculateRootFunction(double time, ::std::vector<double> const & rY) override {
         PYBIND11_OVERLOAD(
             double,
             AbstractOdeSystem,
@@ -48,15 +48,15 @@ void register_AbstractOdeSystem_class(py::module &m){
 py::class_<AbstractOdeSystem , AbstractOdeSystem_Overloads , boost::shared_ptr<AbstractOdeSystem >   >(m, "AbstractOdeSystem")
         .def(
             "EvaluateYDerivatives", 
-            (void(AbstractOdeSystem::*)(double, ::std::vector<double, std::allocator<double> > const &, ::std::vector<double, std::allocator<double> > &)) &AbstractOdeSystem::EvaluateYDerivatives, 
+            (void(AbstractOdeSystem::*)(double, ::std::vector<double> const &, ::std::vector<double> &)) &AbstractOdeSystem::EvaluateYDerivatives, 
             " " , py::arg("time"), py::arg("rY"), py::arg("rDY") )
         .def(
             "CalculateStoppingEvent", 
-            (bool(AbstractOdeSystem::*)(double, ::std::vector<double, std::allocator<double> > const &)) &AbstractOdeSystem::CalculateStoppingEvent, 
+            (bool(AbstractOdeSystem::*)(double, ::std::vector<double> const &)) &AbstractOdeSystem::CalculateStoppingEvent, 
             " " , py::arg("time"), py::arg("rY") )
         .def(
             "CalculateRootFunction", 
-            (double(AbstractOdeSystem::*)(double, ::std::vector<double, std::allocator<double> > const &)) &AbstractOdeSystem::CalculateRootFunction, 
+            (double(AbstractOdeSystem::*)(double, ::std::vector<double> const &)) &AbstractOdeSystem::CalculateRootFunction, 
             " " , py::arg("time"), py::arg("rY") )
         .def(
             "GetUseAnalyticJacobian", 
@@ -64,7 +64,7 @@ py::class_<AbstractOdeSystem , AbstractOdeSystem_Overloads , boost::shared_ptr<A
             " "  )
         .def(
             "rGetConstStateVariables", 
-            (::std::vector<double, std::allocator<double> > const &(AbstractOdeSystem::*)() const ) &AbstractOdeSystem::rGetConstStateVariables, 
+            (::std::vector<double> const &(AbstractOdeSystem::*)() const ) &AbstractOdeSystem::rGetConstStateVariables, 
             " "  , py::return_value_policy::reference_internal)
     ;
 }

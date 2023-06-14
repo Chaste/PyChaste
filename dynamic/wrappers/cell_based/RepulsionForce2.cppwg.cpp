@@ -17,7 +17,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class RepulsionForce2_Overloads : public RepulsionForce2{
     public:
     using RepulsionForce2::RepulsionForce;
-    void AddForceContribution(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
+    void AddForceContribution(::AbstractCellPopulation<2> & rCellPopulation) override {
         PYBIND11_OVERLOAD(
             void,
             RepulsionForce2,
@@ -34,11 +34,11 @@ class RepulsionForce2_Overloads : public RepulsionForce2{
 
 };
 void register_RepulsionForce2_class(py::module &m){
-py::class_<RepulsionForce2 , RepulsionForce2_Overloads , boost::shared_ptr<RepulsionForce2 >  , GeneralisedLinearSpringForce<2, 2>  >(m, "RepulsionForce2")
+py::class_<RepulsionForce2 , RepulsionForce2_Overloads , boost::shared_ptr<RepulsionForce2 >   >(m, "RepulsionForce2")
         .def(py::init< >())
         .def(
             "AddForceContribution", 
-            (void(RepulsionForce2::*)(::AbstractCellPopulation<2, 2> &)) &RepulsionForce2::AddForceContribution, 
+            (void(RepulsionForce2::*)(::AbstractCellPopulation<2> &)) &RepulsionForce2::AddForceContribution, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputForceParameters", 

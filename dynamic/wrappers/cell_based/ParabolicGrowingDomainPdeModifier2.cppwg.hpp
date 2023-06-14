@@ -1,0 +1,6 @@
+#ifndef ParabolicGrowingDomainPdeModifier2_hpp__pyplusplus_wrapper
+#define ParabolicGrowingDomainPdeModifier2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ParabolicGrowingDomainPdeModifier2_class(py::module &m);
+#endif // ParabolicGrowingDomainPdeModifier2_hpp__pyplusplus_wrapper

@@ -7,6 +7,9 @@
 #include "Node3.cppwg.hpp"
 #include "Element2_2.cppwg.hpp"
 #include "Element3_3.cppwg.hpp"
+#include "Edge2.cppwg.hpp"
+#include "Edge3.cppwg.hpp"
+#include "EdgeOperation.cppwg.hpp"
 #include "AbstractMesh2_2.cppwg.hpp"
 #include "AbstractMesh3_3.cppwg.hpp"
 #include "AbstractTetrahedralMesh2_2.cppwg.hpp"
@@ -28,6 +31,12 @@
 #include "MutableVertexMesh2_2.cppwg.hpp"
 #include "MutableVertexMesh3_3.cppwg.hpp"
 #include "Cylindrical2dVertexMesh.cppwg.hpp"
+#include "Toroidal2dMesh.cppwg.hpp"
+#include "PeriodicNodesOnlyMesh2.cppwg.hpp"
+#include "PeriodicNodesOnlyMesh3.cppwg.hpp"
+#include "Cylindrical2dNodesOnlyMesh.cppwg.hpp"
+#include "Cylindrical2dMesh.cppwg.hpp"
+#include "Toroidal2dVertexMesh.cppwg.hpp"
 #include "HoneycombMeshGenerator.cppwg.hpp"
 #include "HoneycombVertexMeshGenerator.cppwg.hpp"
 #include "CylindricalHoneycombVertexMeshGenerator.cppwg.hpp"
@@ -44,6 +53,9 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_Node3_class(m);
     register_Element2_2_class(m);
     register_Element3_3_class(m);
+    register_Edge2_class(m);
+    register_Edge3_class(m);
+    register_EdgeOperation_class(m);
     register_AbstractMesh2_2_class(m);
     register_AbstractMesh3_3_class(m);
     register_AbstractTetrahedralMesh2_2_class(m);
@@ -65,6 +77,12 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_MutableVertexMesh2_2_class(m);
     register_MutableVertexMesh3_3_class(m);
     register_Cylindrical2dVertexMesh_class(m);
+    register_Toroidal2dMesh_class(m);
+    register_PeriodicNodesOnlyMesh2_class(m);
+    register_PeriodicNodesOnlyMesh3_class(m);
+    register_Cylindrical2dNodesOnlyMesh_class(m);
+    register_Cylindrical2dMesh_class(m);
+    register_Toroidal2dVertexMesh_class(m);
     register_HoneycombMeshGenerator_class(m);
     register_HoneycombVertexMeshGenerator_class(m);
     register_CylindricalHoneycombVertexMeshGenerator_class(m);

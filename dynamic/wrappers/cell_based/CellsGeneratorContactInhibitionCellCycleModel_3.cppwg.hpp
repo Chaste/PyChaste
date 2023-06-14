@@ -1,0 +1,6 @@
+#ifndef CellsGeneratorContactInhibitionCellCycleModel_3_hpp__pyplusplus_wrapper
+#define CellsGeneratorContactInhibitionCellCycleModel_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellsGeneratorContactInhibitionCellCycleModel_3_class(py::module &m);
+#endif // CellsGeneratorContactInhibitionCellCycleModel_3_hpp__pyplusplus_wrapper

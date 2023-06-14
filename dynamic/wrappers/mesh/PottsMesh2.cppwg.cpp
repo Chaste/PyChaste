@@ -74,7 +74,7 @@ class PottsMesh2_Overloads : public PottsMesh2{
 };
 void register_PottsMesh2_class(py::module &m){
 py::class_<PottsMesh2 , PottsMesh2_Overloads , boost::shared_ptr<PottsMesh2 >  , AbstractMesh<2, 2>  >(m, "PottsMesh2")
-        .def(py::init<::std::vector<Node<2> *, std::allocator<Node<2> *> >, ::std::vector<PottsElement<2> *, std::allocator<PottsElement<2> *> >, ::std::vector<std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >, std::allocator<std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > > >, ::std::vector<std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >, std::allocator<std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > > > >(), py::arg("nodes"), py::arg("pottsElements"), py::arg("vonNeumannNeighbouringNodeIndices"), py::arg("mooreNeighbouringNodeIndices"))
+        .def(py::init<::std::vector<Node<2> *>, ::std::vector<PottsElement<2> *>, ::std::vector<std::set<unsigned int>>, ::std::vector<std::set<unsigned int>> >(), py::arg("nodes"), py::arg("pottsElements"), py::arg("vonNeumannNeighbouringNodeIndices"), py::arg("mooreNeighbouringNodeIndices"))
         .def(py::init< >())
         .def(
             "GetElementIteratorBegin", 
@@ -122,11 +122,11 @@ py::class_<PottsMesh2 , PottsMesh2_Overloads , boost::shared_ptr<PottsMesh2 >  ,
             " " , py::arg("index") )
         .def(
             "GetMooreNeighbouringNodeIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(PottsMesh2::*)(unsigned int)) &PottsMesh2::GetMooreNeighbouringNodeIndices, 
+            (::std::set<unsigned int>(PottsMesh2::*)(unsigned int)) &PottsMesh2::GetMooreNeighbouringNodeIndices, 
             " " , py::arg("nodeIndex") )
         .def(
             "GetVonNeumannNeighbouringNodeIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(PottsMesh2::*)(unsigned int)) &PottsMesh2::GetVonNeumannNeighbouringNodeIndices, 
+            (::std::set<unsigned int>(PottsMesh2::*)(unsigned int)) &PottsMesh2::GetVonNeumannNeighbouringNodeIndices, 
             " " , py::arg("nodeIndex") )
         .def(
             "DeleteNode", 
@@ -150,7 +150,7 @@ py::class_<PottsMesh2 , PottsMesh2_Overloads , boost::shared_ptr<PottsMesh2 >  ,
             " " , py::arg("pNewElement") )
         .def(
             "GetNeighbouringElementIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(PottsMesh2::*)(unsigned int)) &PottsMesh2::GetNeighbouringElementIndices, 
+            (::std::set<unsigned int>(PottsMesh2::*)(unsigned int)) &PottsMesh2::GetNeighbouringElementIndices, 
             " " , py::arg("elementIndex") )
     ;
 }

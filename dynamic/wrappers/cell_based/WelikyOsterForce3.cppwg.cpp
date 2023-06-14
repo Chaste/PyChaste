@@ -17,7 +17,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class WelikyOsterForce3_Overloads : public WelikyOsterForce3{
     public:
     using WelikyOsterForce3::WelikyOsterForce;
-    void AddForceContribution(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
+    void AddForceContribution(::AbstractCellPopulation<3> & rCellPopulation) override {
         PYBIND11_OVERLOAD(
             void,
             WelikyOsterForce3,
@@ -34,11 +34,11 @@ class WelikyOsterForce3_Overloads : public WelikyOsterForce3{
 
 };
 void register_WelikyOsterForce3_class(py::module &m){
-py::class_<WelikyOsterForce3 , WelikyOsterForce3_Overloads , boost::shared_ptr<WelikyOsterForce3 >  , AbstractForce<3, 3>  >(m, "WelikyOsterForce3")
+py::class_<WelikyOsterForce3 , WelikyOsterForce3_Overloads , boost::shared_ptr<WelikyOsterForce3 >   >(m, "WelikyOsterForce3")
         .def(py::init< >())
         .def(
             "AddForceContribution", 
-            (void(WelikyOsterForce3::*)(::AbstractCellPopulation<3, 3> &)) &WelikyOsterForce3::AddForceContribution, 
+            (void(WelikyOsterForce3::*)(::AbstractCellPopulation<3> &)) &WelikyOsterForce3::AddForceContribution, 
             " " , py::arg("rCellPopulation") )
         .def(
             "GetWelikyOsterAreaParameter", 

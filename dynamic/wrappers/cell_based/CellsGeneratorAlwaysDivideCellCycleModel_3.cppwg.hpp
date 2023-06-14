@@ -1,0 +1,6 @@
+#ifndef CellsGeneratorAlwaysDivideCellCycleModel_3_hpp__pyplusplus_wrapper
+#define CellsGeneratorAlwaysDivideCellCycleModel_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellsGeneratorAlwaysDivideCellCycleModel_3_class(py::module &m);
+#endif // CellsGeneratorAlwaysDivideCellCycleModel_3_hpp__pyplusplus_wrapper

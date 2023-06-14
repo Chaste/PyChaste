@@ -1,0 +1,6 @@
+#ifndef ParabolicBoxDomainPdeModifier3_hpp__pyplusplus_wrapper
+#define ParabolicBoxDomainPdeModifier3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ParabolicBoxDomainPdeModifier3_class(py::module &m);
+#endif // ParabolicBoxDomainPdeModifier3_hpp__pyplusplus_wrapper

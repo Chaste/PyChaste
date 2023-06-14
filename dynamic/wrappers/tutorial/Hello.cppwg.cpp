@@ -27,11 +27,11 @@ py::class_<Hello  , boost::shared_ptr<Hello >   >(m, "Hello")
             " " , py::arg("rComplaint") )
         .def(
             "SetVector", 
-            (void(Hello::*)(::std::vector<double, std::allocator<double> >)) &Hello::SetVector, 
+            (void(Hello::*)(::std::vector<double>)) &Hello::SetVector, 
             " " , py::arg("vectorInput") )
         .def(
             "GetVector", 
-            (::std::vector<double, std::allocator<double> >(Hello::*)()) &Hello::GetVector, 
+            (::std::vector<double>(Hello::*)()) &Hello::GetVector, 
             " "  )
     ;
 }

@@ -18,7 +18,7 @@ typedef ::boost::numeric::ublas::c_vector<double, 3> _boost_numeric_ublas_c_vect
 class BuskeElasticForce3_Overloads : public BuskeElasticForce3{
     public:
     using BuskeElasticForce3::BuskeElasticForce;
-    ::boost::numeric::ublas::c_vector<double, 3> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3, 3> & rCellPopulation) override {
+    ::boost::numeric::ublas::c_vector<double, 3> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3> & rCellPopulation) override {
         PYBIND11_OVERLOAD(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             BuskeElasticForce3,
@@ -37,7 +37,7 @@ rCellPopulation);
 
 };
 void register_BuskeElasticForce3_class(py::module &m){
-py::class_<BuskeElasticForce3 , BuskeElasticForce3_Overloads , boost::shared_ptr<BuskeElasticForce3 >  , AbstractTwoBodyInteractionForce<3, 3>  >(m, "BuskeElasticForce3")
+py::class_<BuskeElasticForce3 , BuskeElasticForce3_Overloads , boost::shared_ptr<BuskeElasticForce3 >   >(m, "BuskeElasticForce3")
         .def(py::init< >())
         .def(
             "GetDeformationEnergyParameter", 
@@ -49,7 +49,7 @@ py::class_<BuskeElasticForce3 , BuskeElasticForce3_Overloads , boost::shared_ptr
             " " , py::arg("deformationEnergyParameter") )
         .def(
             "CalculateForceBetweenNodes", 
-            (::boost::numeric::ublas::c_vector<double, 3>(BuskeElasticForce3::*)(unsigned int, unsigned int, ::AbstractCellPopulation<3, 3> &)) &BuskeElasticForce3::CalculateForceBetweenNodes, 
+            (::boost::numeric::ublas::c_vector<double, 3>(BuskeElasticForce3::*)(unsigned int, unsigned int, ::AbstractCellPopulation<3> &)) &BuskeElasticForce3::CalculateForceBetweenNodes, 
             " " , py::arg("nodeAGlobalIndex"), py::arg("nodeBGlobalIndex"), py::arg("rCellPopulation") )
         .def(
             "GetMagnitudeOfForce", 

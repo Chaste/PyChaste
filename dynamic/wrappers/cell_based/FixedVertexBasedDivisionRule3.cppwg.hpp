@@ -1,0 +1,6 @@
+#ifndef FixedVertexBasedDivisionRule3_hpp__pyplusplus_wrapper
+#define FixedVertexBasedDivisionRule3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_FixedVertexBasedDivisionRule3_class(py::module &m);
+#endif // FixedVertexBasedDivisionRule3_hpp__pyplusplus_wrapper

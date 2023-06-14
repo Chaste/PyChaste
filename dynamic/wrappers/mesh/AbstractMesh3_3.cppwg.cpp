@@ -214,7 +214,7 @@ py::class_<AbstractMesh3_3 , AbstractMesh3_3_Overloads , boost::shared_ptr<Abstr
             " "  )
         .def(
             "rGetNodePermutation", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > const &(AbstractMesh3_3::*)() const ) &AbstractMesh3_3::rGetNodePermutation, 
+            (::std::vector<unsigned int> const &(AbstractMesh3_3::*)() const ) &AbstractMesh3_3::rGetNodePermutation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetVectorFromAtoB", 

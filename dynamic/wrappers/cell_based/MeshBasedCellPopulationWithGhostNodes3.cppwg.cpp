@@ -16,7 +16,7 @@ namespace py = pybind11;
 typedef MeshBasedCellPopulationWithGhostNodes<3 > MeshBasedCellPopulationWithGhostNodes3;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 typedef ::TetrahedralMesh<3, 3> * _TetrahedralMesh_lt_3_3_gt_Ptr;
-typedef ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_;
+typedef ::std::set<unsigned int> _std_set_lt_unsignedint_gt_;
 typedef ::CellPtr _CellPtr;
 
 class MeshBasedCellPopulationWithGhostNodes3_Overloads : public MeshBasedCellPopulationWithGhostNodes3{
@@ -29,9 +29,9 @@ class MeshBasedCellPopulationWithGhostNodes3_Overloads : public MeshBasedCellPop
             GetTetrahedralMeshForPdeModifier,
             );
     }
-    ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringLocationIndices(::CellPtr pCell) override {
+    ::std::set<unsigned int> GetNeighbouringLocationIndices(::CellPtr pCell) override {
         PYBIND11_OVERLOAD(
-            _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
+            _std_set_lt_unsignedint_gt_,
             MeshBasedCellPopulationWithGhostNodes3,
             GetNeighbouringLocationIndices,
             pCell);
@@ -89,24 +89,28 @@ pParentCell);
 
 };
 void register_MeshBasedCellPopulationWithGhostNodes3_class(py::module &m){
-py::class_<MeshBasedCellPopulationWithGhostNodes3 , MeshBasedCellPopulationWithGhostNodes3_Overloads , boost::shared_ptr<MeshBasedCellPopulationWithGhostNodes3 >  , MeshBasedCellPopulation<3, 3>  >(m, "MeshBasedCellPopulationWithGhostNodes3")
-        .def(py::init<::MutableMesh<3, 3> &, ::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, ::std::vector<unsigned int, std::allocator<unsigned int> > const, bool, double >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices") = std::vector<unsigned int>(), py::arg("deleteMesh") = false, py::arg("ghostSpringStiffness") = 15.)
-        .def(py::init<::MutableMesh<3, 3> &, double >(), py::arg("rMesh"), py::arg("ghostSpringStiffness") = 15.)
+py::class_<MeshBasedCellPopulationWithGhostNodes3 , MeshBasedCellPopulationWithGhostNodes3_Overloads , boost::shared_ptr<MeshBasedCellPopulationWithGhostNodes3 >   >(m, "MeshBasedCellPopulationWithGhostNodes3")
+        .def(py::init<::MutableMesh<3, 3> &, ::std::vector<boost::shared_ptr<Cell>> &, ::std::vector<unsigned int> const, bool, double, double, double >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices") = std::vector<unsigned int>(), py::arg("deleteMesh") = false, py::arg("ghostCellSpringStiffness") = 15., py::arg("ghostGhostSpringStiffness") = 15., py::arg("ghostSpringRestLength") = 1.)
+        .def(py::init<::MutableMesh<3, 3> &, double, double, double >(), py::arg("rMesh"), py::arg("ghostCellSpringStiffness") = 15., py::arg("ghostGhostSpringStiffness") = 15., py::arg("ghostSpringRestLength") = 1.)
         .def(
             "GetTetrahedralMeshForPdeModifier", 
             (::TetrahedralMesh<3, 3> *(MeshBasedCellPopulationWithGhostNodes3::*)()) &MeshBasedCellPopulationWithGhostNodes3::GetTetrahedralMeshForPdeModifier, 
             " "  , py::return_value_policy::reference)
         .def(
             "GetNeighbouringLocationIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(MeshBasedCellPopulationWithGhostNodes3::*)(::CellPtr)) &MeshBasedCellPopulationWithGhostNodes3::GetNeighbouringLocationIndices, 
+            (::std::set<unsigned int>(MeshBasedCellPopulationWithGhostNodes3::*)(::CellPtr)) &MeshBasedCellPopulationWithGhostNodes3::GetNeighbouringLocationIndices, 
             " " , py::arg("pCell") )
+        .def(
+            "SetGhostNodes", 
+            (void(MeshBasedCellPopulationWithGhostNodes3::*)(::std::set<unsigned int> const &)) &MeshBasedCellPopulationWithGhostNodes3::SetGhostNodes, 
+            " " , py::arg("rGhostNodeIndices") )
         .def(
             "ApplyGhostForces", 
             (void(MeshBasedCellPopulationWithGhostNodes3::*)()) &MeshBasedCellPopulationWithGhostNodes3::ApplyGhostForces, 
             " "  )
         .def(
             "rGetGhostNodes", 
-            (::std::vector<bool, std::allocator<bool> > &(MeshBasedCellPopulationWithGhostNodes3::*)()) &MeshBasedCellPopulationWithGhostNodes3::rGetGhostNodes, 
+            (::std::vector<bool> &(MeshBasedCellPopulationWithGhostNodes3::*)()) &MeshBasedCellPopulationWithGhostNodes3::rGetGhostNodes, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "IsGhostNode", 
@@ -114,8 +118,12 @@ py::class_<MeshBasedCellPopulationWithGhostNodes3 , MeshBasedCellPopulationWithG
             " " , py::arg("index") )
         .def(
             "GetGhostNodeIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(MeshBasedCellPopulationWithGhostNodes3::*)()) &MeshBasedCellPopulationWithGhostNodes3::GetGhostNodeIndices, 
+            (::std::set<unsigned int>(MeshBasedCellPopulationWithGhostNodes3::*)()) &MeshBasedCellPopulationWithGhostNodes3::GetGhostNodeIndices, 
             " "  )
+        .def(
+            "RemoveGhostNode", 
+            (void(MeshBasedCellPopulationWithGhostNodes3::*)(unsigned int)) &MeshBasedCellPopulationWithGhostNodes3::RemoveGhostNode, 
+            " " , py::arg("nodeIndex") )
         .def(
             "UpdateGhostNodesAfterReMesh", 
             (void(MeshBasedCellPopulationWithGhostNodes3::*)(::NodeMap &)) &MeshBasedCellPopulationWithGhostNodes3::UpdateGhostNodesAfterReMesh, 

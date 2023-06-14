@@ -16,7 +16,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void register_TimeStepper_class(py::module &m){
 py::class_<TimeStepper  , boost::shared_ptr<TimeStepper >   >(m, "TimeStepper")
-        .def(py::init<double, double, double, bool, ::std::vector<double, std::allocator<double> > >(), py::arg("startTime"), py::arg("endTime"), py::arg("dt"), py::arg("enforceConstantTimeStep") = false, py::arg("additionalTimes") = std::vector<double>())
+        .def(py::init<double, double, double, bool, ::std::vector<double> >(), py::arg("startTime"), py::arg("endTime"), py::arg("dt"), py::arg("enforceConstantTimeStep") = false, py::arg("additionalTimes") = std::vector<double>())
         .def(
             "AdvanceOneTimeStep", 
             (void(TimeStepper::*)()) &TimeStepper::AdvanceOneTimeStep, 

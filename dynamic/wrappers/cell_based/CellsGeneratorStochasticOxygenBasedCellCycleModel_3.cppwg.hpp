@@ -1,0 +1,6 @@
+#ifndef CellsGeneratorStochasticOxygenBasedCellCycleModel_3_hpp__pyplusplus_wrapper
+#define CellsGeneratorStochasticOxygenBasedCellCycleModel_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellsGeneratorStochasticOxygenBasedCellCycleModel_3_class(py::module &m);
+#endif // CellsGeneratorStochasticOxygenBasedCellCycleModel_3_hpp__pyplusplus_wrapper

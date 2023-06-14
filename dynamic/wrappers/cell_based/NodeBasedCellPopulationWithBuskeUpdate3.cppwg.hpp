@@ -1,0 +1,6 @@
+#ifndef NodeBasedCellPopulationWithBuskeUpdate3_hpp__pyplusplus_wrapper
+#define NodeBasedCellPopulationWithBuskeUpdate3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_NodeBasedCellPopulationWithBuskeUpdate3_class(py::module &m);
+#endif // NodeBasedCellPopulationWithBuskeUpdate3_hpp__pyplusplus_wrapper
