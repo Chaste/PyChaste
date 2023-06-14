@@ -40,7 +40,7 @@ class AbstractSrnModel_Overloads : public AbstractSrnModel{
             );
     }
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractSrnModel,
             SimulateToCurrentTime,
@@ -54,7 +54,7 @@ class AbstractSrnModel_Overloads : public AbstractSrnModel{
             );
     }
     ::AbstractSrnModel * CreateSrnModel() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _AbstractSrnModelPtr,
             AbstractSrnModel,
             CreateSrnModel,

@@ -20,7 +20,7 @@ class AbstractOnLatticeCellPopulation2_Overloads : public AbstractOnLatticeCellP
     public:
     using AbstractOnLatticeCellPopulation2::AbstractOnLatticeCellPopulation;
     void UpdateCellLocations(double dt) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOnLatticeCellPopulation2,
             UpdateCellLocations,
@@ -56,7 +56,7 @@ rNewLocation);
             );
     }
     void AddUpdateRule(::boost::shared_ptr<AbstractUpdateRule<2>> pUpdateRule) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOnLatticeCellPopulation2,
             AddUpdateRule,

@@ -18,14 +18,14 @@ class AbstractForce2_2_Overloads : public AbstractForce2_2{
     public:
     using AbstractForce2_2::AbstractForce;
     void AddForceContribution(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractForce2_2,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractForce2_2,
             OutputForceParameters,

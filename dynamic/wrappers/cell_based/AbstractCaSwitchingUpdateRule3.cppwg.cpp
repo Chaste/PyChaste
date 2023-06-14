@@ -18,7 +18,7 @@ class AbstractCaSwitchingUpdateRule3_Overloads : public AbstractCaSwitchingUpdat
     public:
     using AbstractCaSwitchingUpdateRule3::AbstractCaSwitchingUpdateRule;
     double EvaluateSwitchingProbability(unsigned int currentNodeIndex, unsigned int neighbourNodeIndex, ::CaBasedCellPopulation<3> & rCellPopulation, double dt, double deltaX) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCaSwitchingUpdateRule3,
             EvaluateSwitchingProbability,

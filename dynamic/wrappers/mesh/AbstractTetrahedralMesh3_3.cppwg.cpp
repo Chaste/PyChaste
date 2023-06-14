@@ -77,7 +77,7 @@ class AbstractTetrahedralMesh3_3_Overloads : public AbstractTetrahedralMesh3_3{
             );
     }
     void ConstructFromMeshReader(::AbstractMeshReader<3, 3> & rMeshReader) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractTetrahedralMesh3_3,
             ConstructFromMeshReader,

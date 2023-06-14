@@ -18,7 +18,7 @@ class AbstractCaUpdateRule3_Overloads : public AbstractCaUpdateRule3{
     public:
     using AbstractCaUpdateRule3::AbstractCaUpdateRule;
     double EvaluateProbability(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::CaBasedCellPopulation<3> & rCellPopulation, double dt, double deltaX, ::CellPtr cell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCaUpdateRule3,
             EvaluateProbability,

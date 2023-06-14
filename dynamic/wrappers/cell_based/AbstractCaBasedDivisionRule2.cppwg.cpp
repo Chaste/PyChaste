@@ -19,7 +19,7 @@ class AbstractCaBasedDivisionRule2_Overloads : public AbstractCaBasedDivisionRul
     public:
     using AbstractCaBasedDivisionRule2::AbstractCaBasedDivisionRule;
     bool IsRoomToDivide(::CellPtr pParentCell, ::CaBasedCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             bool,
             AbstractCaBasedDivisionRule2,
             IsRoomToDivide,
@@ -27,7 +27,7 @@ class AbstractCaBasedDivisionRule2_Overloads : public AbstractCaBasedDivisionRul
 rCellPopulation);
     }
     unsigned int CalculateDaughterNodeIndex(::CellPtr pNewCell, ::CellPtr pParentCell, ::CaBasedCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             unsignedint,
             AbstractCaBasedDivisionRule2,
             CalculateDaughterNodeIndex,

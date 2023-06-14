@@ -18,7 +18,7 @@ class AbstractOdeSystemInformation_Overloads : public AbstractOdeSystemInformati
     public:
     using AbstractOdeSystemInformation::AbstractOdeSystemInformation;
     void Initialise() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOdeSystemInformation,
             Initialise,

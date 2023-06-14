@@ -28,7 +28,7 @@ class AbstractCellPopulation2_2_Overloads : public AbstractCellPopulation2_2{
     public:
     using AbstractCellPopulation2_2::AbstractCellPopulation;
     ::TetrahedralMesh<2, 2> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _TetrahedralMesh_lt_2_2_gt_Ptr,
             AbstractCellPopulation2_2,
             GetTetrahedralMeshForPdeModifier,
@@ -42,7 +42,7 @@ class AbstractCellPopulation2_2_Overloads : public AbstractCellPopulation2_2{
             pdeNodeIndex);
     }
     double GetCellDataItemAtPdeNode(unsigned int pdeNodeIndex, ::std::string & rVariableName, bool dirichletBoundaryConditionApplies, double dirichletBoundaryValue) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation2_2,
             GetCellDataItemAtPdeNode,
@@ -52,28 +52,28 @@ dirichletBoundaryConditionApplies,
 dirichletBoundaryValue);
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             unsignedint,
             AbstractCellPopulation2_2,
             GetNumNodes,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetLocationOfCellCentre(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractCellPopulation2_2,
             GetLocationOfCellCentre,
             pCell);
     }
     ::Node<2> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _Node_lt_2_gt_Ptr,
             AbstractCellPopulation2_2,
             GetNode,
             index);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> & rNewLocation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             SetNode,
@@ -81,7 +81,7 @@ dirichletBoundaryValue);
 rNewLocation);
     }
     bool IsCellAssociatedWithADeletedLocation(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             bool,
             AbstractCellPopulation2_2,
             IsCellAssociatedWithADeletedLocation,
@@ -95,7 +95,7 @@ rNewLocation);
             pVizSetupFile);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _CellPtr,
             AbstractCellPopulation2_2,
             AddCell,
@@ -103,21 +103,21 @@ rNewLocation);
 pParentCell);
     }
     double GetDefaultTimeStep() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation2_2,
             GetDefaultTimeStep,
             );
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             unsignedint,
             AbstractCellPopulation2_2,
             RemoveDeadCells,
             );
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             Update,
@@ -154,28 +154,28 @@ pCell);
 pCell);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation2_2,
             GetWidth,
             rDimension);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation2_2,
             GetVolumeOfCell,
             pCell);
     }
     ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
             AbstractCellPopulation2_2,
             GetNeighbouringNodeIndices,
             index);
     }
     ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringLocationIndices(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
             AbstractCellPopulation2_2,
             GetNeighbouringLocationIndices,
@@ -203,21 +203,21 @@ pCell);
             rDirectory);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> > pPopulationWriter) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> > pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2> > pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             AcceptCellWriter,
@@ -225,7 +225,7 @@ pCell);
 pCell);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             OutputCellPopulationParameters,
@@ -246,14 +246,14 @@ pCell);
             pCell);
     }
     void Validate() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             Validate,
             );
     }
     void WriteVtkResultsToFile(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation2_2,
             WriteVtkResultsToFile,

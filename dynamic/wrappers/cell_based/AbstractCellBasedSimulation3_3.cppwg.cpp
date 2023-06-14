@@ -19,7 +19,7 @@ class AbstractCellBasedSimulation3_3_Overloads : public AbstractCellBasedSimulat
     public:
     using AbstractCellBasedSimulation3_3::AbstractCellBasedSimulation;
     void OutputSimulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellBasedSimulation3_3,
             OutputSimulationParameters,
@@ -61,14 +61,14 @@ class AbstractCellBasedSimulation3_3_Overloads : public AbstractCellBasedSimulat
             );
     }
     void UpdateCellLocationsAndTopology() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellBasedSimulation3_3,
             UpdateCellLocationsAndTopology,
             );
     }
     void OutputAdditionalSimulationSetup(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellBasedSimulation3_3,
             OutputAdditionalSimulationSetup,

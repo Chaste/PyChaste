@@ -32,7 +32,7 @@ class AbstractPhaseBasedCellCycleModel_Overloads : public AbstractPhaseBasedCell
             );
     }
     void UpdateCellCyclePhase() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractPhaseBasedCellCycleModel,
             UpdateCellCyclePhase,
@@ -95,7 +95,7 @@ class AbstractPhaseBasedCellCycleModel_Overloads : public AbstractPhaseBasedCell
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractPhaseBasedCellCycleModel,
             OutputCellCycleModelParameters,

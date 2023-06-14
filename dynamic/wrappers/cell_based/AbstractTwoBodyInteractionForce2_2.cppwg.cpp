@@ -19,7 +19,7 @@ class AbstractTwoBodyInteractionForce2_2_Overloads : public AbstractTwoBodyInter
     public:
     using AbstractTwoBodyInteractionForce2_2::AbstractTwoBodyInteractionForce;
     ::boost::numeric::ublas::c_vector<double, 2> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractTwoBodyInteractionForce2_2,
             CalculateForceBetweenNodes,

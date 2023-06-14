@@ -18,7 +18,7 @@ class AbstractPottsUpdateRule3_Overloads : public AbstractPottsUpdateRule3{
     public:
     using AbstractPottsUpdateRule3::AbstractPottsUpdateRule;
     double EvaluateHamiltonianContribution(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::PottsBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractPottsUpdateRule3,
             EvaluateHamiltonianContribution,

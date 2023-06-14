@@ -30,7 +30,7 @@ class AbstractPdeModifier2_Overloads : public AbstractPdeModifier2{
 outputDirectory);
     }
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractPdeModifier2,
             UpdateAtEndOfTimeStep,

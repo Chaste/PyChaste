@@ -20,14 +20,14 @@ class AbstractNonlinearEllipticPde2_Overloads : public AbstractNonlinearElliptic
     public:
     using AbstractNonlinearEllipticPde2::AbstractNonlinearEllipticPde;
     double ComputeLinearSourceTerm(::ChastePoint<2> const & rX) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractNonlinearEllipticPde2,
             ComputeLinearSourceTerm,
             rX);
     }
     double ComputeNonlinearSourceTerm(::ChastePoint<2> const & rX, double u) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractNonlinearEllipticPde2,
             ComputeNonlinearSourceTerm,
@@ -35,7 +35,7 @@ class AbstractNonlinearEllipticPde2_Overloads : public AbstractNonlinearElliptic
 u);
     }
     ::boost::numeric::ublas::c_matrix<double, 2, 2> ComputeDiffusionTerm(::ChastePoint<2> const & rX, double u) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_matrix_lt_double_2_2_gt_,
             AbstractNonlinearEllipticPde2,
             ComputeDiffusionTerm,
@@ -43,7 +43,7 @@ u);
 u);
     }
     ::boost::numeric::ublas::c_matrix<double, 2, 2> ComputeDiffusionTermPrime(::ChastePoint<2> const & rX, double u) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_matrix_lt_double_2_2_gt_,
             AbstractNonlinearEllipticPde2,
             ComputeDiffusionTermPrime,
@@ -51,7 +51,7 @@ u);
 u);
     }
     double ComputeNonlinearSourceTermPrime(::ChastePoint<2> const & rX, double u) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractNonlinearEllipticPde2,
             ComputeNonlinearSourceTermPrime,

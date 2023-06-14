@@ -18,7 +18,7 @@ class AbstractBoundaryCondition1_Overloads : public AbstractBoundaryCondition1{
     public:
     using AbstractBoundaryCondition1::AbstractBoundaryCondition;
     double GetValue(::ChastePoint<1> const & rX) const  override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractBoundaryCondition1,
             GetValue,

@@ -19,14 +19,14 @@ class AbstractOffLatticeCellPopulation3_3_Overloads : public AbstractOffLatticeC
     public:
     using AbstractOffLatticeCellPopulation3_3::AbstractOffLatticeCellPopulation;
     unsigned int AddNode(::Node<3> * pNewNode) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             unsignedint,
             AbstractOffLatticeCellPopulation3_3,
             AddNode,
             pNewNode);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<3> & rNewLocation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOffLatticeCellPopulation3_3,
             SetNode,
@@ -41,7 +41,7 @@ rNewLocation);
             dt);
     }
     void CheckForStepSizeException(unsigned int nodeIndex, ::boost::numeric::ublas::c_vector<double, 3> & rDisplacement, double dt) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOffLatticeCellPopulation3_3,
             CheckForStepSizeException,
@@ -50,7 +50,7 @@ rDisplacement,
 dt);
     }
     double GetDampingConstant(unsigned int nodeIndex) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractOffLatticeCellPopulation3_3,
             GetDampingConstant,

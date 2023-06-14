@@ -18,7 +18,7 @@ class AbstractOdeSystem_Overloads : public AbstractOdeSystem{
     public:
     using AbstractOdeSystem::AbstractOdeSystem;
     void EvaluateYDerivatives(double time, ::std::vector<double> const & rY, ::std::vector<double> & rDY) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOdeSystem,
             EvaluateYDerivatives,

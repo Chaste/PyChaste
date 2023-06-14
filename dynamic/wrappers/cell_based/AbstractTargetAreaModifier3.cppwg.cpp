@@ -33,7 +33,7 @@ class AbstractTargetAreaModifier3_Overloads : public AbstractTargetAreaModifier3
 outputDirectory);
     }
     void UpdateTargetAreaOfCell(::CellPtr const pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractTargetAreaModifier3,
             UpdateTargetAreaOfCell,

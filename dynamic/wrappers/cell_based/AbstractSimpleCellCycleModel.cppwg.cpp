@@ -46,14 +46,14 @@ class AbstractSimpleCellCycleModel_Overloads : public AbstractSimpleCellCycleMod
             );
     }
     void SetCellCycleDuration() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractSimpleCellCycleModel,
             SetCellCycleDuration,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractSimpleCellCycleModel,
             OutputCellCycleModelParameters,

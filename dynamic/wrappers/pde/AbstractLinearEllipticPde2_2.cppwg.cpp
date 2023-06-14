@@ -19,7 +19,7 @@ class AbstractLinearEllipticPde2_2_Overloads : public AbstractLinearEllipticPde2
     public:
     using AbstractLinearEllipticPde2_2::AbstractLinearEllipticPde;
     double ComputeConstantInUSourceTerm(::ChastePoint<2> const & rX, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearEllipticPde2_2,
             ComputeConstantInUSourceTerm,
@@ -27,7 +27,7 @@ class AbstractLinearEllipticPde2_2_Overloads : public AbstractLinearEllipticPde2
 pElement);
     }
     double ComputeLinearInUCoeffInSourceTerm(::ChastePoint<2> const & rX, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearEllipticPde2_2,
             ComputeLinearInUCoeffInSourceTerm,
@@ -35,7 +35,7 @@ pElement);
 pElement);
     }
     ::boost::numeric::ublas::c_matrix<double, 2, 2> ComputeDiffusionTerm(::ChastePoint<2> const & rX) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_matrix_lt_double_2_2_gt_,
             AbstractLinearEllipticPde2_2,
             ComputeDiffusionTerm,
