@@ -14,25 +14,21 @@ namespace py = pybind11;
 typedef EdgeHelper<3 > EdgeHelper3;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
-void register_Edge3_class(py::module &m){
+void register_EdgeHelper3_class(py::module &m){
 py::class_<EdgeHelper3  , boost::shared_ptr<EdgeHelper3 >   >(m, "EdgeHelper3")
         .def(py::init<>())
-        .def_static(
-            "GenerateMapIndex", 
-            (::std::pair<unsigned int, unsigned int>(*)(unsigned int, unsigned int)) &EdgeHelper3::GenerateMapIndex, 
-            " " , py::arg("index1"), py::arg("index2") )
         .def(
             "GetEdgeFromNodes", 
-            (::Edge<3> *(::Node<3> *, ::Node<3> *)) &EdgeHelper3::GetEdgeFromNodes, 
-            " " , py::arg("node0"), py::arg("node1") ) 
+            (::Edge<3> *(EdgeHelper3::*)(::Node<3> *, ::Node<3> *) ) &EdgeHelper3::GetEdgeFromNodes, 
+            " " , py::arg("node0"), py::arg("node1"), py::return_value_policy::reference )
         .def(
             "GetEdgeFromNodes", 
-            (::Edge<3> *(unsigned int, ::Node<3> *, ::Node<3> *)) &EdgeHelper3::GetEdgeFromNodes, 
-            " " , py::arg("elementIndex"), py::arg("node0"), py::arg("node1") ) 
+            (::Edge<3> *(EdgeHelper3::*)(unsigned int, ::Node<3> *, ::Node<3> *) ) &EdgeHelper3::GetEdgeFromNodes, 
+            " " , py::arg("elementIndex"), py::arg("node0"), py::arg("node1") ,py::return_value_policy::reference )
         .def(
             "GetEdge", 
-            (::Edge<3> *(unsigned int)) &EdgeHelper3::GetEdge, 
-            " " , py::arg("index"), py::arg("node0"), py::arg("node1") ) 
+            (::Edge<3> *(EdgeHelper3::*)(unsigned int) const ) &EdgeHelper3::GetEdge, 
+            " " , py::arg("index"), py::return_value_policy::reference )
         .def(
             "RemoveDeletedEdges", 
             (void(EdgeHelper3::*)()) &EdgeHelper3::RemoveDeletedEdges, 
