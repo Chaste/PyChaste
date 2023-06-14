@@ -55,7 +55,7 @@ outputDirectory);
 };
 void register_ParabolicGrowingDomainPdeModifier2_class(py::module &m){
 py::class_<ParabolicGrowingDomainPdeModifier2 , ParabolicGrowingDomainPdeModifier2_Overloads , boost::shared_ptr<ParabolicGrowingDomainPdeModifier2 >  , AbstractGrowingDomainPdeModifier<2>  >(m, "ParabolicGrowingDomainPdeModifier2")
-        .def(py::init<::boost::shared_ptr<AbstractLinearPde<2>>, ::boost::shared_ptr<AbstractBoundaryCondition<2>>, bool, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<DIM, DIM>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<DIM>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("solution") = nullptr)
+        .def(py::init<::boost::shared_ptr<AbstractLinearPde<2>>, ::boost::shared_ptr<AbstractBoundaryCondition<2>>, bool, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<2, 2>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<2>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("solution") = nullptr)
         .def(
             "UpdateAtEndOfTimeStep", 
             (void(ParabolicGrowingDomainPdeModifier2::*)(::AbstractCellPopulation<2> &)) &ParabolicGrowingDomainPdeModifier2::UpdateAtEndOfTimeStep, 

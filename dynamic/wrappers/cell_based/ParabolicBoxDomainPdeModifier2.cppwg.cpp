@@ -55,7 +55,7 @@ outputDirectory);
 };
 void register_ParabolicBoxDomainPdeModifier2_class(py::module &m){
 py::class_<ParabolicBoxDomainPdeModifier2 , ParabolicBoxDomainPdeModifier2_Overloads , boost::shared_ptr<ParabolicBoxDomainPdeModifier2 >  , AbstractBoxDomainPdeModifier<2>  >(m, "ParabolicBoxDomainPdeModifier2")
-        .def(py::init<::boost::shared_ptr<AbstractLinearPde<2>>, ::boost::shared_ptr<AbstractBoundaryCondition<2>>, bool, ::boost::shared_ptr<ChasteCuboid<2>>, double, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<DIM, DIM>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<DIM>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("pMeshCuboid") = boost::shared_ptr<ChasteCuboid<DIM>>(), py::arg("stepSize") = 1., py::arg("solution") = nullptr)
+        .def(py::init<::boost::shared_ptr<AbstractLinearPde<2>>, ::boost::shared_ptr<AbstractBoundaryCondition<2>>, bool, ::boost::shared_ptr<ChasteCuboid<2>>, double, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<2, 2>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<2>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("pMeshCuboid") = boost::shared_ptr<ChasteCuboid<2>>(), py::arg("stepSize") = 1., py::arg("solution") = nullptr)
         .def(
             "UpdateAtEndOfTimeStep", 
             (void(ParabolicBoxDomainPdeModifier2::*)(::AbstractCellPopulation<2> &)) &ParabolicBoxDomainPdeModifier2::UpdateAtEndOfTimeStep, 
