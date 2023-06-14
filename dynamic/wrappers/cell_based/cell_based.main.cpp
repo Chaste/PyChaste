@@ -95,6 +95,8 @@
 #include "UniformSourceEllipticPde3.cppwg.hpp"
 #include "CellwiseSourceParabolicPde2.cppwg.hpp"
 #include "CellwiseSourceParabolicPde3.cppwg.hpp"
+#include "AbstractCellBasedSimulationModifier2_2.cppwg.hpp"
+#include "AbstractCellBasedSimulationModifier3_3.cppwg.hpp"
 #include "UniformSourceParabolicPde2.cppwg.hpp"
 #include "UniformSourceParabolicPde3.cppwg.hpp"
 #include "AveragedSourceParabolicPde2.cppwg.hpp"
@@ -139,6 +141,10 @@
 #include "DifferentialAdhesionPottsUpdateRule3.cppwg.hpp"
 #include "AbstractVertexBasedDivisionRule2.cppwg.hpp"
 #include "AbstractVertexBasedDivisionRule3.cppwg.hpp"
+#include "AbstractForce2_2.cppwg.hpp"
+#include "AbstractForce3_3.cppwg.hpp"
+#include "AbstractTwoBodyInteractionForce2_2.cppwg.hpp"
+#include "AbstractTwoBodyInteractionForce3_3.cppwg.hpp"
 #include "RandomDirectionVertexBasedDivisionRule2.cppwg.hpp"
 #include "RandomDirectionVertexBasedDivisionRule3.cppwg.hpp"
 #include "VonMisesVertexBasedDivisionRule2.cppwg.hpp"
@@ -167,6 +173,10 @@
 #include "BuskeElasticForce3.cppwg.hpp"
 #include "ChemotacticForce2.cppwg.hpp"
 #include "ChemotacticForce3.cppwg.hpp"
+#include "GeneralisedLinearSpringForce2_2.cppwg.hpp"
+#include "GeneralisedLinearSpringForce3_3.cppwg.hpp"
+#include "DifferentialAdhesionGeneralisedLinearSpringForce2_2.cppwg.hpp"
+#include "DifferentialAdhesionGeneralisedLinearSpringForce3_3.cppwg.hpp"
 #include "NagaiHondaForce2.cppwg.hpp"
 #include "NagaiHondaForce3.cppwg.hpp"
 #include "DiffusionForce2.cppwg.hpp"
@@ -187,6 +197,12 @@
 #include "PlaneBasedCellKiller3.cppwg.hpp"
 #include "ApoptoticCellKiller2.cppwg.hpp"
 #include "ApoptoticCellKiller3.cppwg.hpp"
+#include "AbstractCellPopulationBoundaryCondition2_2.cppwg.hpp"
+#include "AbstractCellPopulationBoundaryCondition3_3.cppwg.hpp"
+#include "PlaneBoundaryCondition2_2.cppwg.hpp"
+#include "PlaneBoundaryCondition3_3.cppwg.hpp"
+#include "AttractingPlaneBoundaryCondition2_2.cppwg.hpp"
+#include "AttractingPlaneBoundaryCondition3_3.cppwg.hpp"
 #include "TargetedCellKiller2.cppwg.hpp"
 #include "TargetedCellKiller3.cppwg.hpp"
 #include "RandomCellKiller2.cppwg.hpp"
@@ -197,6 +213,12 @@
 #include "IsolatedLabelledCellKiller3.cppwg.hpp"
 #include "SphereGeometryBoundaryCondition2.cppwg.hpp"
 #include "SphereGeometryBoundaryCondition3.cppwg.hpp"
+#include "AbstractCellPopulationBoundaryCondition2_2.cppwg.hpp"
+#include "AbstractCellPopulationBoundaryCondition3_3.cppwg.hpp"
+#include "PlaneBoundaryCondition2_2.cppwg.hpp"
+#include "PlaneBoundaryCondition3_3.cppwg.hpp"
+#include "AttractingPlaneBoundaryCondition2_2.cppwg.hpp"
+#include "AttractingPlaneBoundaryCondition3_3.cppwg.hpp"
 #include "SlidingBoundaryCondition2.cppwg.hpp"
 #include "SlidingBoundaryCondition3.cppwg.hpp"
 #include "AbstractOnLatticeCellPopulation2.cppwg.hpp"
@@ -205,6 +227,12 @@
 #include "NodeBasedCellPopulationWithParticles3.cppwg.hpp"
 #include "CaBasedCellPopulation2.cppwg.hpp"
 #include "CaBasedCellPopulation3.cppwg.hpp"
+#include "AbstractCellPopulationBoundaryCondition2_2.cppwg.hpp"
+#include "AbstractCellPopulationBoundaryCondition3_3.cppwg.hpp"
+#include "PlaneBoundaryCondition2_2.cppwg.hpp"
+#include "PlaneBoundaryCondition3_3.cppwg.hpp"
+#include "AttractingPlaneBoundaryCondition2_2.cppwg.hpp"
+#include "AttractingPlaneBoundaryCondition3_3.cppwg.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes2.cppwg.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes3.cppwg.hpp"
 #include "VertexBasedCellPopulation2.cppwg.hpp"
@@ -240,6 +268,8 @@
 #include "SimulationTime.cppwg.hpp"
 #include "OnLatticeSimulation2.cppwg.hpp"
 #include "OnLatticeSimulation3.cppwg.hpp"
+#include "OffLatticeSimulation2_2.cppwg.hpp"
+#include "OffLatticeSimulation3_3.cppwg.hpp"
 #include "PythonSimulationModifier2.cppwg.hpp"
 #include "PythonSimulationModifier3.cppwg.hpp"
 
@@ -343,6 +373,8 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_UniformSourceEllipticPde3_class(m);
     register_CellwiseSourceParabolicPde2_class(m);
     register_CellwiseSourceParabolicPde3_class(m);
+    register_AbstractCellBasedSimulationModifier2_2_class(m);
+    register_AbstractCellBasedSimulationModifier3_3_class(m);
     register_UniformSourceParabolicPde2_class(m);
     register_UniformSourceParabolicPde3_class(m);
     register_AveragedSourceParabolicPde2_class(m);
@@ -387,6 +419,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_DifferentialAdhesionPottsUpdateRule3_class(m);
     register_AbstractVertexBasedDivisionRule2_class(m);
     register_AbstractVertexBasedDivisionRule3_class(m);
+    register_AbstractForce2_2_class(m);
+    register_AbstractForce3_3_class(m);
+    register_AbstractTwoBodyInteractionForce2_2_class(m);
+    register_AbstractTwoBodyInteractionForce3_3_class(m);
     register_RandomDirectionVertexBasedDivisionRule2_class(m);
     register_RandomDirectionVertexBasedDivisionRule3_class(m);
     register_VonMisesVertexBasedDivisionRule2_class(m);
@@ -415,6 +451,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_BuskeElasticForce3_class(m);
     register_ChemotacticForce2_class(m);
     register_ChemotacticForce3_class(m);
+    register_AbstractForce2_2_class(m);
+    register_AbstractForce3_3_class(m);
+    register_AbstractTwoBodyInteractionForce2_2_class(m);
+    register_AbstractTwoBodyInteractionForce3_3_class(m);
     register_NagaiHondaForce2_class(m);
     register_NagaiHondaForce3_class(m);
     register_DiffusionForce2_class(m);
@@ -435,6 +475,12 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_PlaneBasedCellKiller3_class(m);
     register_ApoptoticCellKiller2_class(m);
     register_ApoptoticCellKiller3_class(m);
+    register_AbstractCellPopulationBoundaryCondition2_2_class(m);
+    register_AbstractCellPopulationBoundaryCondition3_3_class(m);
+    register_PlaneBoundaryCondition2_2_class(m);
+    register_PlaneBoundaryCondition3_3_class(m);
+    register_AttractingPlaneBoundaryCondition2_2_class(m);
+    register_AttractingPlaneBoundaryCondition3_3_class(m);
     register_TargetedCellKiller2_class(m);
     register_TargetedCellKiller3_class(m);
     register_RandomCellKiller2_class(m);
@@ -445,6 +491,12 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_IsolatedLabelledCellKiller3_class(m);
     register_SphereGeometryBoundaryCondition2_class(m);
     register_SphereGeometryBoundaryCondition3_class(m);
+    register_AbstractCellPopulation2_2_class(m);
+    register_AbstractCellPopulation3_3_class(m);
+    register_AbstractOffLatticeCellPopulation2_2_class(m);
+    register_AbstractOffLatticeCellPopulation3_3_class(m);
+    register_AbstractCentreBasedCellPopulation2_2_class(m);
+    register_AbstractCentreBasedCellPopulation3_3_class(m);
     register_SlidingBoundaryCondition2_class(m);
     register_SlidingBoundaryCondition3_class(m);
     register_AbstractOnLatticeCellPopulation2_class(m);
@@ -453,6 +505,8 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_NodeBasedCellPopulationWithParticles3_class(m);
     register_CaBasedCellPopulation2_class(m);
     register_CaBasedCellPopulation3_class(m);
+    register_MeshBasedCellPopulation2_2_class(m);
+    register_MeshBasedCellPopulation3_3_class(m);
     register_MeshBasedCellPopulationWithGhostNodes2_class(m);
     register_MeshBasedCellPopulationWithGhostNodes3_class(m);
     register_VertexBasedCellPopulation2_class(m);
@@ -488,6 +542,8 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_SimulationTime_class(m);
     register_OnLatticeSimulation2_class(m);
     register_OnLatticeSimulation3_class(m);
+    register_OffLatticeSimulation2_2_class(m);
+    register_OffLatticeSimulation3_3_class(m);
     register_PythonSimulationModifier2_class(m);
     register_PythonSimulationModifier3_class(m);
 }

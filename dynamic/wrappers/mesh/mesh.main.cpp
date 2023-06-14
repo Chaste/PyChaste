@@ -9,6 +9,8 @@
 #include "Element3_3.cppwg.hpp"
 #include "Edge2.cppwg.hpp"
 #include "Edge3.cppwg.hpp"
+#include "EdgeHelper2.cppwg.hpp"
+#include "EdgeHelper3.cppwg.hpp"
 #include "EdgeOperation.cppwg.hpp"
 #include "AbstractMesh2_2.cppwg.hpp"
 #include "AbstractMesh3_3.cppwg.hpp"
@@ -55,6 +57,8 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_Element3_3_class(m);
     register_Edge2_class(m);
     register_Edge3_class(m);
+    register_EdgeHelper2_class(m);
+    register_EdgeHelper3_class(m);
     register_EdgeOperation_class(m);
     register_AbstractMesh2_2_class(m);
     register_AbstractMesh3_3_class(m);
