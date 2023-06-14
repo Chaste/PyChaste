@@ -134,10 +134,6 @@ py::class_<VertexMesh2_2 , VertexMesh2_2_Overloads , boost::shared_ptr<VertexMes
             (::Edge<2> *(VertexMesh2_2::*)(unsigned int) const ) &VertexMesh2_2::GetEdge, 
             " " , py::arg("index") , py::return_value_policy::reference)
         .def(
-            "GetEdgeHelper", 
-            (::EdgeHelper<2> const &(VertexMesh2_2::*)() const ) &VertexMesh2_2::GetEdgeHelper, 
-            " "  , py::return_value_policy::reference_internal)
-        .def(
             "GetNumNodes", 
             (unsigned int(VertexMesh2_2::*)() const ) &VertexMesh2_2::GetNumNodes, 
             " "  )

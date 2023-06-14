@@ -134,10 +134,6 @@ py::class_<VertexMesh3_3 , VertexMesh3_3_Overloads , boost::shared_ptr<VertexMes
             (::Edge<3> *(VertexMesh3_3::*)(unsigned int) const ) &VertexMesh3_3::GetEdge, 
             " " , py::arg("index") , py::return_value_policy::reference)
         .def(
-            "GetEdgeHelper", 
-            (::EdgeHelper<3> const &(VertexMesh3_3::*)() const ) &VertexMesh3_3::GetEdgeHelper, 
-            " "  , py::return_value_policy::reference_internal)
-        .def(
             "GetNumNodes", 
             (unsigned int(VertexMesh3_3::*)() const ) &VertexMesh3_3::GetNumNodes, 
             " "  )

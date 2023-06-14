@@ -80,6 +80,8 @@ modules:
   - name: Alarcon2004OxygenBasedCellCycleOdeSystem
   - name: Goldbeter1991OdeSystem
   - name: TysonNovak2001OdeSystem
+    excluded_methods:
+    - AnalyticJacobian # double ** jacobian
   - name: DeltaNotchOdeSystem
 - name: pde
   source_locations:
@@ -123,15 +125,20 @@ modules:
   - name: VertexMesh
     excluded_methods: 
     - GetFace # dont have mixed dim elements
+    - GetEdgeHelper
     constructor_arg_type_excludes: 
     - TetrahedralMesh<3, 3>
     - TetrahedralMesh<2, 2>
   - name: MutableVertexMesh
   - name: Cylindrical2dVertexMesh
   - name: Toroidal2dMesh
+    excluded_methods:
+    - GetInstanceOfMismatchedBoundaryNodes
   - name: PeriodicNodesOnlyMesh
   - name: Cylindrical2dNodesOnlyMesh
   - name: Cylindrical2dMesh
+    excluded_methods:
+    - GetInstanceOfMismatchedBoundaryNodes
   - name: Toroidal2dVertexMesh
   - name: SharedHoneycombMeshGenerator
     name_override: HoneycombMeshGenerator
@@ -278,6 +285,9 @@ modules:
   - name: UniformSourceParabolicPde
   - name: AveragedSourceParabolicPde
   - name: CellBasedEllipticPdeSolver
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
   - name: CellBasedParabolicPdeSolver
   # - name: AbstractCellBasedSimulationModifier  
   - name: AbstractPdeModifier

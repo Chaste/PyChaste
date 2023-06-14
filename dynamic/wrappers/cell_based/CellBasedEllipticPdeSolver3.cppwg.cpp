@@ -1,5 +1,7 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include <petsc/private/vecimpl.h>
+#include <petsc/private/matimpl.h>
 #include <set>
 #include <vector>
 #include <string>
@@ -58,13 +60,13 @@ pElement);
             phiI, 
 pNode);
     }
-    // void InitialiseForSolve(::Vec initialSolution) override {
-    //     PYBIND11_OVERRIDE(
-    //         void,
-    //         CellBasedEllipticPdeSolver3,
-    //         InitialiseForSolve,
-    //         initialSolution);
-    // }
+    void InitialiseForSolve(::Vec initialSolution) override {
+        PYBIND11_OVERRIDE(
+            void,
+            CellBasedEllipticPdeSolver3,
+            InitialiseForSolve,
+            initialSolution);
+    }
 
 };
 void register_CellBasedEllipticPdeSolver3_class(py::module &m){

@@ -42,16 +42,6 @@ rY);
             time, 
 rY);
     }
-//     void AnalyticJacobian(::std::vector<double> const & rSolutionGuess, double * * jacobian, double time, double timeStep) override {
-//         PYBIND11_OVERRIDE(
-//             void,
-//             TysonNovak2001OdeSystem,
-//             AnalyticJacobian,
-//             rSolutionGuess, 
-// jacobian, 
-// time, 
-// timeStep);
-//     }
 
 };
 void register_TysonNovak2001OdeSystem_class(py::module &m){
@@ -73,9 +63,5 @@ py::class_<TysonNovak2001OdeSystem , TysonNovak2001OdeSystem_Overloads , boost::
             "CalculateRootFunction", 
             (double(TysonNovak2001OdeSystem::*)(double, ::std::vector<double> const &)) &TysonNovak2001OdeSystem::CalculateRootFunction, 
             " " , py::arg("time"), py::arg("rY") )
-        // .def(
-        //     "AnalyticJacobian", 
-        //     (void(TysonNovak2001OdeSystem::*)(::std::vector<double> const &, double * *, double, double)) &TysonNovak2001OdeSystem::AnalyticJacobian, 
-        //     " " , py::arg("rSolutionGuess"), py::arg("jacobian"), py::arg("time"), py::arg("timeStep") )
     ;
 }
