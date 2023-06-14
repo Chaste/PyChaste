@@ -83,9 +83,5 @@ py::class_<Cylindrical2dMesh , Cylindrical2dMesh_Overloads , boost::shared_ptr<C
             "AddNode", 
             (unsigned int(Cylindrical2dMesh::*)(::Node<2> *)) &Cylindrical2dMesh::AddNode, 
             " " , py::arg("pNewNode") )
-        .def(
-            "GetInstanceOfMismatchedBoundaryNodes", 
-            (bool(Cylindrical2dMesh::*)()) &Cylindrical2dMesh::GetInstanceOfMismatchedBoundaryNodes, 
-            " "  )
     ;
 }

@@ -91,10 +91,6 @@ py::class_<Toroidal2dMesh , Toroidal2dMesh_Overloads , boost::shared_ptr<Toroida
             (unsigned int(Toroidal2dMesh::*)(::Node<2> *)) &Toroidal2dMesh::AddNode, 
             " " , py::arg("pNewNode") )
         .def(
-            "GetInstanceOfMismatchedBoundaryNodes", 
-            (bool(Toroidal2dMesh::*)()) &Toroidal2dMesh::GetInstanceOfMismatchedBoundaryNodes, 
-            " "  )
-        .def(
             "RefreshMesh", 
             (void(Toroidal2dMesh::*)()) &Toroidal2dMesh::RefreshMesh, 
             " "  )
