@@ -116,10 +116,10 @@
 #include "EllipticGrowingDomainPdeModifier3.cppwg.hpp"
 #include "ParabolicGrowingDomainPdeModifier2.cppwg.hpp"
 #include "ParabolicGrowingDomainPdeModifier3.cppwg.hpp"
-// #include "EllipticBoxDomainPdeModifier2.cppwg.hpp"
-// #include "EllipticBoxDomainPdeModifier3.cppwg.hpp"
-// #include "ParabolicBoxDomainPdeModifier2.cppwg.hpp"
-// #include "ParabolicBoxDomainPdeModifier3.cppwg.hpp"
+#include "EllipticBoxDomainPdeModifier2.cppwg.hpp"
+#include "EllipticBoxDomainPdeModifier3.cppwg.hpp"
+#include "ParabolicBoxDomainPdeModifier2.cppwg.hpp"
+#include "ParabolicBoxDomainPdeModifier3.cppwg.hpp"
 #include "VoronoiDataWriter2_2.cppwg.hpp"
 #include "VoronoiDataWriter3_3.cppwg.hpp"
 #include "CellLabelWriter2_2.cppwg.hpp"
@@ -390,10 +390,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_EllipticGrowingDomainPdeModifier3_class(m);
     register_ParabolicGrowingDomainPdeModifier2_class(m);
     register_ParabolicGrowingDomainPdeModifier3_class(m);
-    // register_EllipticBoxDomainPdeModifier2_class(m);
-    // register_EllipticBoxDomainPdeModifier3_class(m);
-    // register_ParabolicBoxDomainPdeModifier2_class(m);
-    // register_ParabolicBoxDomainPdeModifier3_class(m);
+    register_EllipticBoxDomainPdeModifier2_class(m);
+    register_EllipticBoxDomainPdeModifier3_class(m);
+    register_ParabolicBoxDomainPdeModifier2_class(m);
+    register_ParabolicBoxDomainPdeModifier3_class(m);
     register_VoronoiDataWriter2_2_class(m);
     register_VoronoiDataWriter3_3_class(m);
     register_CellLabelWriter2_2_class(m);
