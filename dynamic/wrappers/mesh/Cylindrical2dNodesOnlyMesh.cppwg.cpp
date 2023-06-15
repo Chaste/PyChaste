@@ -19,16 +19,6 @@ typedef unsigned int unsignedint;
 class Cylindrical2dNodesOnlyMesh_Overloads : public Cylindrical2dNodesOnlyMesh{
     public:
     using Cylindrical2dNodesOnlyMesh::Cylindrical2dNodesOnlyMesh;
-    void SetUpBoxCollection(double cutOffLength, ::boost::numeric::ublas::c_vector<double, 4> domainSize, int numLocalRows, ::boost::numeric::ublas::c_vector<bool, 2> isDimPeriodic) override {
-        PYBIND11_OVERRIDE(
-            void,
-            Cylindrical2dNodesOnlyMesh,
-            SetUpBoxCollection,
-            cutOffLength, 
-domainSize, 
-numLocalRows, 
-isDimPeriodic);
-    }
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocation1, ::boost::numeric::ublas::c_vector<double, 2> const & rLocation2) override {
         PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
@@ -72,10 +62,6 @@ concreteMove);
 void register_Cylindrical2dNodesOnlyMesh_class(py::module &m){
 py::class_<Cylindrical2dNodesOnlyMesh , Cylindrical2dNodesOnlyMesh_Overloads , boost::shared_ptr<Cylindrical2dNodesOnlyMesh >  , NodesOnlyMesh<2>  >(m, "Cylindrical2dNodesOnlyMesh")
         .def(py::init<double >(), py::arg("width"))
-        .def(
-            "SetUpBoxCollection", 
-            (void(Cylindrical2dNodesOnlyMesh::*)(double, ::boost::numeric::ublas::c_vector<double, 4>, int, ::boost::numeric::ublas::c_vector<bool, 2>)) &Cylindrical2dNodesOnlyMesh::SetUpBoxCollection, 
-            " " , py::arg("cutOffLength"), py::arg("domainSize"), py::arg("numLocalRows") = -1, py::arg("isDimPeriodic") = unit_vector<bool>(2, 0) )
         .def(
             "GetVectorFromAtoB", 
             (::boost::numeric::ublas::c_vector<double, 2>(Cylindrical2dNodesOnlyMesh::*)(::boost::numeric::ublas::c_vector<double, 2> const &, ::boost::numeric::ublas::c_vector<double, 2> const &)) &Cylindrical2dNodesOnlyMesh::GetVectorFromAtoB, 

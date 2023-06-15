@@ -19,16 +19,6 @@ typedef unsigned int unsignedint;
 class PeriodicNodesOnlyMesh3_Overloads : public PeriodicNodesOnlyMesh3{
     public:
     using PeriodicNodesOnlyMesh3::PeriodicNodesOnlyMesh;
-    void SetUpBoxCollection(double cutOffLength, ::boost::numeric::ublas::c_vector<double, 6> domainSize, int numLocalRows, ::boost::numeric::ublas::c_vector<bool, 3> isDimPeriodic) override {
-        PYBIND11_OVERRIDE(
-            void,
-            PeriodicNodesOnlyMesh3,
-            SetUpBoxCollection,
-            cutOffLength, 
-domainSize, 
-numLocalRows, 
-isDimPeriodic);
-    }
     ::boost::numeric::ublas::c_vector<double, 3> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 3> const & rLocation1, ::boost::numeric::ublas::c_vector<double, 3> const & rLocation2) override {
         PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
@@ -72,10 +62,6 @@ concreteMove);
 void register_PeriodicNodesOnlyMesh3_class(py::module &m){
 py::class_<PeriodicNodesOnlyMesh3 , PeriodicNodesOnlyMesh3_Overloads , boost::shared_ptr<PeriodicNodesOnlyMesh3 >  , NodesOnlyMesh<3>  >(m, "PeriodicNodesOnlyMesh3")
         .def(py::init<::boost::numeric::ublas::c_vector<double, 3> >(), py::arg("width"))
-        .def(
-            "SetUpBoxCollection", 
-            (void(PeriodicNodesOnlyMesh3::*)(double, ::boost::numeric::ublas::c_vector<double, 6>, int, ::boost::numeric::ublas::c_vector<bool, 3>)) &PeriodicNodesOnlyMesh3::SetUpBoxCollection, 
-            " " , py::arg("cutOffLength"), py::arg("domainSize"), py::arg("numLocalRows") = -1, py::arg("isDimPeriodic") = zero_vector<bool>(3) )
         .def(
             "GetVectorFromAtoB", 
             (::boost::numeric::ublas::c_vector<double, 3>(PeriodicNodesOnlyMesh3::*)(::boost::numeric::ublas::c_vector<double, 3> const &, ::boost::numeric::ublas::c_vector<double, 3> const &)) &PeriodicNodesOnlyMesh3::GetVectorFromAtoB, 
