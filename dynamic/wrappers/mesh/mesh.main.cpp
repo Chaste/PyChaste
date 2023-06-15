@@ -1,4 +1,5 @@
 #include <pybind11/pybind11.h>
+
 #include "ChastePoint2.cppwg.hpp"
 #include "ChastePoint3.cppwg.hpp"
 #include "NodeAttributes2.cppwg.hpp"
@@ -42,6 +43,18 @@
 #include "HoneycombMeshGenerator.cppwg.hpp"
 #include "HoneycombVertexMeshGenerator.cppwg.hpp"
 #include "CylindricalHoneycombVertexMeshGenerator.cppwg.hpp"
+#include "CylindricalHoneycombMeshGenerator.cppwg.hpp"
+#include "ToroidalHoneycombMeshGenerator.cppwg.hpp"
+#include "ToroidalHoneycombVertexMeshGenerator.cppwg.hpp"
+#include "VoronoiVertexMeshGenerator.cppwg.hpp"
+#include "AbstractChasteRegion2.cppwg.hpp"
+#include "AbstractChasteRegion3.cppwg.hpp"
+#include "ChastePoint2.cppwg.hpp"
+#include "ChastePoint3.cppwg.hpp"
+#include "ChasteCuboid2.cppwg.hpp"
+#include "ChasteCuboid3.cppwg.hpp"
+#include "ChasteEllipsoid2.cppwg.hpp"
+#include "ChasteEllipsoid3.cppwg.hpp"
 
 namespace py = pybind11;
 
@@ -90,4 +103,16 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_HoneycombMeshGenerator_class(m);
     register_HoneycombVertexMeshGenerator_class(m);
     register_CylindricalHoneycombVertexMeshGenerator_class(m);
+    register_CylindricalHoneycombMeshGenerator_class(m);
+    register_ToroidalHoneycombMeshGenerator_class(m);
+    register_ToroidalHoneycombVertexMeshGenerator_class(m);
+    register_VoronoiVertexMeshGenerator_class(m);
+    register_AbstractChasteRegion2_class(m);
+    register_AbstractChasteRegion3_class(m);
+    register_ChastePoint2_class(m);
+    register_ChastePoint3_class(m);
+    register_ChasteCuboid2_class(m);
+    register_ChasteCuboid3_class(m);
+    register_ChasteEllipsoid2_class(m);
+    register_ChasteEllipsoid3_class(m);
 }

@@ -138,6 +138,7 @@ modules:
     excluded_methods:
     - SetUpBoxCollection # boost::numeric::ublas::zero_vector
   - name: Cylindrical2dNodesOnlyMesh
+    excluded_methods:
     - SetUpBoxCollection # boost::numeric::ublas::unit_vector
   - name: Cylindrical2dMesh
     excluded_methods:
@@ -157,6 +158,10 @@ modules:
   #   name_override: ToroidalHoneycombVertexMeshGenerator
   # - name: SharedVoronoiVertexMeshGenerator
   #   name_override: VoronoiVertexMeshGenerator
+  - name: AbstractChasteRegion
+  - name: ChastePoint
+  - name: ChasteCuboid
+  - name: ChasteEllipsoid
 - name: cell_based
   source_locations:
   - cell_based/src

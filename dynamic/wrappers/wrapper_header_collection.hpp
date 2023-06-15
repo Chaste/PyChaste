@@ -205,6 +205,14 @@
 #include "VtkScene.hpp"
 #include "AbstractPyChasteActorGenerator.hpp"
 #include "CellPopulationPyChasteActorGenerator.hpp"
+#include "AbstractChasteRegion.hpp"
+#include "ChastePoint.hpp"
+#include "ChasteCuboid.hpp"
+#include "ChasteEllipsoid.hpp"
+#include "CylindricalHoneycombMeshGenerator.hpp"
+#include "ToroidalHoneycombMeshGenerator.hpp"
+#include "ToroidalHoneycombVertexMeshGenerator.hpp"
+#include "VoronoiVertexMeshGenerator.hpp"
 
 // Instantiate Template Classes 
 template class AbstractLinearPde<2,2>;
@@ -475,6 +483,14 @@ template class AbstractPyChasteActorGenerator<2>;
 template class AbstractPyChasteActorGenerator<3>;
 template class CellPopulationPyChasteActorGenerator<2>;
 template class CellPopulationPyChasteActorGenerator<3>;
+template class AbstractChasteRegion<2>;
+template class AbstractChasteRegion<3>;
+template class ChastePoint<2>;
+template class ChastePoint<3>;
+template class ChasteCuboid<2>;
+template class ChasteCuboid<3>;
+template class ChasteEllipsoid<2>;
+template class ChasteEllipsoid<3>;
 
 // Typedef for nicer naming
 namespace cppwg{ 
@@ -746,6 +762,14 @@ typedef AbstractPyChasteActorGenerator<2> AbstractPyChasteActorGenerator2;
 typedef AbstractPyChasteActorGenerator<3> AbstractPyChasteActorGenerator3;
 typedef CellPopulationPyChasteActorGenerator<2> CellPopulationPyChasteActorGenerator2;
 typedef CellPopulationPyChasteActorGenerator<3> CellPopulationPyChasteActorGenerator3;
+typedef AbstractChasteRegion<2> AbstractChasteRegion2;
+typedef AbstractChasteRegion<3> AbstractChasteRegion3;
+typedef ChastePoint<2> ChastePoint2;
+typedef ChastePoint<3> ChastePoint3;
+typedef ChasteCuboid<2> ChasteCuboid2;
+typedef ChasteCuboid<3> ChasteCuboid3;
+typedef ChasteEllipsoid<2> ChasteEllipsoid2;
+typedef ChasteEllipsoid<3> ChasteEllipsoid3;
 }
 
 #endif // chaste_project_PyChaste_HEADERS_HPP_
