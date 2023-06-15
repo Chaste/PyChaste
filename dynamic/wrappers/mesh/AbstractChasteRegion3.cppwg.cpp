@@ -18,14 +18,14 @@ class AbstractChasteRegion3_Overloads : public AbstractChasteRegion3{
     public:
     using AbstractChasteRegion3::AbstractChasteRegion;
     void Destroy() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractChasteRegion3,
             Destroy,
             );
     }
     bool DoesContain(::ChastePoint<3> const & rPointToCheck) const  override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             bool,
             AbstractChasteRegion3,
             DoesContain,

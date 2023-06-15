@@ -19,7 +19,7 @@ class CylindricalHoneycombMeshGenerator_Overloads : public CylindricalHoneycombM
     public:
     using CylindricalHoneycombMeshGenerator::CylindricalHoneycombMeshGenerator;
     ::MutableMesh<2, 2> * GetMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _MutableMesh_lt_2_2_gt_Ptr,
             CylindricalHoneycombMeshGenerator,
             GetMesh,

@@ -79,7 +79,7 @@ class TysonNovakCellCycleModel_Overloads : public TysonNovakCellCycleModel{
 };
 void register_TysonNovakCellCycleModel_class(py::module &m){
 py::class_<TysonNovakCellCycleModel , TysonNovakCellCycleModel_Overloads , boost::shared_ptr<TysonNovakCellCycleModel >  , AbstractOdeBasedCellCycleModel  >(m, "TysonNovakCellCycleModel")
-        .def(py::init<::boost::shared_ptr<AbstractCellCycleModelOdeSolver> >(), py::arg("pOdeSolver"))
+        .def(py::init<::boost::shared_ptr<AbstractCellCycleModelOdeSolver> >(), py::arg("pOdeSolver") = boost::shared_ptr<AbstractCellCycleModelOdeSolver>())
         .def(
             "Initialise", 
             (void(TysonNovakCellCycleModel::*)()) &TysonNovakCellCycleModel::Initialise, 

@@ -18,7 +18,7 @@ class ChasteEllipsoid3_Overloads : public ChasteEllipsoid3{
     public:
     using ChasteEllipsoid3::ChasteEllipsoid;
     bool DoesContain(::ChastePoint<3> const & rPointToCheck) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ChasteEllipsoid3,
             DoesContain,

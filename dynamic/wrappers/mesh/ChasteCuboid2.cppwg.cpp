@@ -18,7 +18,7 @@ class ChasteCuboid2_Overloads : public ChasteCuboid2{
     public:
     using ChasteCuboid2::ChasteCuboid;
     bool DoesContain(::ChastePoint<2> const & rPointToCheck) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ChasteCuboid2,
             DoesContain,

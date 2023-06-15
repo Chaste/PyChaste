@@ -18,7 +18,7 @@ class ChasteEllipsoid2_Overloads : public ChasteEllipsoid2{
     public:
     using ChasteEllipsoid2::ChasteEllipsoid;
     bool DoesContain(::ChastePoint<2> const & rPointToCheck) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ChasteEllipsoid2,
             DoesContain,

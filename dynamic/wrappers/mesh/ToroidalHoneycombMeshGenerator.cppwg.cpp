@@ -19,7 +19,7 @@ class ToroidalHoneycombMeshGenerator_Overloads : public ToroidalHoneycombMeshGen
     public:
     using ToroidalHoneycombMeshGenerator::ToroidalHoneycombMeshGenerator;
     ::MutableMesh<2, 2> * GetMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _MutableMesh_lt_2_2_gt_Ptr,
             ToroidalHoneycombMeshGenerator,
             GetMesh,

@@ -21,21 +21,21 @@ class VoronoiVertexMeshGenerator_Overloads : public VoronoiVertexMeshGenerator{
     public:
     using VoronoiVertexMeshGenerator::VoronoiVertexMeshGenerator;
     ::MutableVertexMesh<2, 2> * GetMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _MutableVertexMesh_lt_2_2_gt_Ptr,
             VoronoiVertexMeshGenerator,
             GetMesh,
             );
     }
     ::MutableVertexMesh<2, 2> * GetMeshAfterReMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _MutableVertexMesh_lt_2_2_gt_Ptr,
             VoronoiVertexMeshGenerator,
             GetMeshAfterReMesh,
             );
     }
     ::Toroidal2dVertexMesh * GetToroidalMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Toroidal2dVertexMeshPtr,
             VoronoiVertexMeshGenerator,
             GetToroidalMesh,
