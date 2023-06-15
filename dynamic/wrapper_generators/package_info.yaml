@@ -135,7 +135,10 @@ modules:
     excluded_methods:
     - GetInstanceOfMismatchedBoundaryNodes
   - name: PeriodicNodesOnlyMesh
+    excluded_methods:
+    - SetUpBoxCollection # boost::numeric::ublas::zero_vector
   - name: Cylindrical2dNodesOnlyMesh
+    - SetUpBoxCollection # boost::numeric::ublas::unit_vector
   - name: Cylindrical2dMesh
     excluded_methods:
     - GetInstanceOfMismatchedBoundaryNodes

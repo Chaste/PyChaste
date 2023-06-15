@@ -1,4 +1,5 @@
 #include <pybind11/pybind11.h>
+
 #include "AbstractCellCycleModel.cppwg.hpp"
 #include "AbstractPhaseBasedCellCycleModel.cppwg.hpp"
 #include "AbstractSimpleCellCycleModel.cppwg.hpp"
@@ -17,8 +18,8 @@
 #include "GammaG1CellCycleModel.cppwg.hpp"
 #include "ExponentialG1GenerationalCellCycleModel.cppwg.hpp"
 #include "AbstractOdeBasedPhaseBasedCellCycleModel.cppwg.hpp"
-#include "TysonNovakCellCycleModel.cppwg.hpp"
-#include "Alarcon2004OxygenBasedCellCycleModel.cppwg.hpp"
+// #include "TysonNovakCellCycleModel.cppwg.hpp"
+// #include "Alarcon2004OxygenBasedCellCycleModel.cppwg.hpp"
 #include "FixedSequenceCellCycleModel.cppwg.hpp"
 #include "BernoulliTrialCellCycleModel.cppwg.hpp"
 #include "FixedG1GenerationalCellCycleModel.cppwg.hpp"
@@ -75,10 +76,10 @@
 #include "CellsGeneratorGammaG1CellCycleModel_3.cppwg.hpp"
 #include "CellsGeneratorExponentialG1GenerationalCellCycleModel_2.cppwg.hpp"
 #include "CellsGeneratorExponentialG1GenerationalCellCycleModel_3.cppwg.hpp"
-#include "CellsGeneratorTysonNovakCellCycleModel_2.cppwg.hpp"
-#include "CellsGeneratorTysonNovakCellCycleModel_3.cppwg.hpp"
-#include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2.cppwg.hpp"
-#include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3.cppwg.hpp"
+// #include "CellsGeneratorTysonNovakCellCycleModel_2.cppwg.hpp"
+// #include "CellsGeneratorTysonNovakCellCycleModel_3.cppwg.hpp"
+// #include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2.cppwg.hpp"
+// #include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3.cppwg.hpp"
 #include "CellsGeneratorFixedSequenceCellCycleModel_2.cppwg.hpp"
 #include "CellsGeneratorFixedSequenceCellCycleModel_3.cppwg.hpp"
 #include "CellsGeneratorBernoulliTrialCellCycleModel_2.cppwg.hpp"
@@ -115,10 +116,10 @@
 #include "EllipticGrowingDomainPdeModifier3.cppwg.hpp"
 #include "ParabolicGrowingDomainPdeModifier2.cppwg.hpp"
 #include "ParabolicGrowingDomainPdeModifier3.cppwg.hpp"
-#include "EllipticBoxDomainPdeModifier2.cppwg.hpp"
-#include "EllipticBoxDomainPdeModifier3.cppwg.hpp"
-#include "ParabolicBoxDomainPdeModifier2.cppwg.hpp"
-#include "ParabolicBoxDomainPdeModifier3.cppwg.hpp"
+// #include "EllipticBoxDomainPdeModifier2.cppwg.hpp"
+// #include "EllipticBoxDomainPdeModifier3.cppwg.hpp"
+// #include "ParabolicBoxDomainPdeModifier2.cppwg.hpp"
+// #include "ParabolicBoxDomainPdeModifier3.cppwg.hpp"
 #include "VoronoiDataWriter2_2.cppwg.hpp"
 #include "VoronoiDataWriter3_3.cppwg.hpp"
 #include "CellLabelWriter2_2.cppwg.hpp"
@@ -159,8 +160,8 @@
 #include "ExclusionCaBasedDivisionRule3.cppwg.hpp"
 #include "ShortAxisVertexBasedDivisionRule2.cppwg.hpp"
 #include "ShortAxisVertexBasedDivisionRule3.cppwg.hpp"
-#include "RandomCaSwitchingUpdateRule2.cppwg.hpp"
-#include "RandomCaSwitchingUpdateRule3.cppwg.hpp"
+// #include "RandomCaSwitchingUpdateRule2.cppwg.hpp"
+// #include "RandomCaSwitchingUpdateRule3.cppwg.hpp"
 #include "ChemotaxisPottsUpdateRule2.cppwg.hpp"
 #include "ChemotaxisPottsUpdateRule3.cppwg.hpp"
 #include "AbstractCaSwitchingUpdateRule2.cppwg.hpp"
@@ -199,8 +200,6 @@
 #include "ApoptoticCellKiller3.cppwg.hpp"
 #include "AbstractCellPopulationBoundaryCondition2_2.cppwg.hpp"
 #include "AbstractCellPopulationBoundaryCondition3_3.cppwg.hpp"
-#include "PlaneBoundaryCondition2_2.cppwg.hpp"
-#include "PlaneBoundaryCondition3_3.cppwg.hpp"
 #include "AttractingPlaneBoundaryCondition2_2.cppwg.hpp"
 #include "AttractingPlaneBoundaryCondition3_3.cppwg.hpp"
 #include "TargetedCellKiller2.cppwg.hpp"
@@ -219,28 +218,16 @@
 #include "AbstractOffLatticeCellPopulation3_3.cppwg.hpp"
 #include "AbstractCentreBasedCellPopulation2_2.cppwg.hpp"
 #include "AbstractCentreBasedCellPopulation3_3.cppwg.hpp"
-#include "AbstractCellPopulationBoundaryCondition2_2.cppwg.hpp"
-#include "AbstractCellPopulationBoundaryCondition3_3.cppwg.hpp"
 #include "PlaneBoundaryCondition2_2.cppwg.hpp"
 #include "PlaneBoundaryCondition3_3.cppwg.hpp"
-#include "AttractingPlaneBoundaryCondition2_2.cppwg.hpp"
-#include "AttractingPlaneBoundaryCondition3_3.cppwg.hpp"
 #include "SlidingBoundaryCondition2.cppwg.hpp"
 #include "SlidingBoundaryCondition3.cppwg.hpp"
 #include "AbstractOnLatticeCellPopulation2.cppwg.hpp"
 #include "AbstractOnLatticeCellPopulation3.cppwg.hpp"
-#include "NodeBasedCellPopulationWithParticles2.cppwg.hpp"
-#include "NodeBasedCellPopulationWithParticles3.cppwg.hpp"
 #include "CaBasedCellPopulation2.cppwg.hpp"
 #include "CaBasedCellPopulation3.cppwg.hpp"
 #include "MeshBasedCellPopulation2_2.cppwg.hpp"
 #include "MeshBasedCellPopulation3_3.cppwg.hpp"
-#include "AbstractCellPopulationBoundaryCondition2_2.cppwg.hpp"
-#include "AbstractCellPopulationBoundaryCondition3_3.cppwg.hpp"
-#include "PlaneBoundaryCondition2_2.cppwg.hpp"
-#include "PlaneBoundaryCondition3_3.cppwg.hpp"
-#include "AttractingPlaneBoundaryCondition2_2.cppwg.hpp"
-#include "AttractingPlaneBoundaryCondition3_3.cppwg.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes2.cppwg.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes3.cppwg.hpp"
 #include "VertexBasedCellPopulation2.cppwg.hpp"
@@ -251,6 +238,8 @@
 #include "NodeBasedCellPopulation3.cppwg.hpp"
 #include "NodeBasedCellPopulationWithBuskeUpdate2.cppwg.hpp"
 #include "NodeBasedCellPopulationWithBuskeUpdate3.cppwg.hpp"
+#include "NodeBasedCellPopulationWithParticles2.cppwg.hpp"
+#include "NodeBasedCellPopulationWithParticles3.cppwg.hpp"
 #include "AbstractTargetAreaModifier2.cppwg.hpp"
 #include "AbstractTargetAreaModifier3.cppwg.hpp"
 #include "ConstantTargetAreaModifier2.cppwg.hpp"
@@ -303,8 +292,8 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_GammaG1CellCycleModel_class(m);
     register_ExponentialG1GenerationalCellCycleModel_class(m);
     register_AbstractOdeBasedPhaseBasedCellCycleModel_class(m);
-    register_TysonNovakCellCycleModel_class(m);
-    register_Alarcon2004OxygenBasedCellCycleModel_class(m);
+    // register_TysonNovakCellCycleModel_class(m);
+    // register_Alarcon2004OxygenBasedCellCycleModel_class(m);
     register_FixedSequenceCellCycleModel_class(m);
     register_BernoulliTrialCellCycleModel_class(m);
     register_FixedG1GenerationalCellCycleModel_class(m);
@@ -361,10 +350,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_CellsGeneratorGammaG1CellCycleModel_3_class(m);
     register_CellsGeneratorExponentialG1GenerationalCellCycleModel_2_class(m);
     register_CellsGeneratorExponentialG1GenerationalCellCycleModel_3_class(m);
-    register_CellsGeneratorTysonNovakCellCycleModel_2_class(m);
-    register_CellsGeneratorTysonNovakCellCycleModel_3_class(m);
-    register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2_class(m);
-    register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3_class(m);
+    // register_CellsGeneratorTysonNovakCellCycleModel_2_class(m);
+    // register_CellsGeneratorTysonNovakCellCycleModel_3_class(m);
+    // register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2_class(m);
+    // register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3_class(m);
     register_CellsGeneratorFixedSequenceCellCycleModel_2_class(m);
     register_CellsGeneratorFixedSequenceCellCycleModel_3_class(m);
     register_CellsGeneratorBernoulliTrialCellCycleModel_2_class(m);
@@ -401,10 +390,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_EllipticGrowingDomainPdeModifier3_class(m);
     register_ParabolicGrowingDomainPdeModifier2_class(m);
     register_ParabolicGrowingDomainPdeModifier3_class(m);
-    register_EllipticBoxDomainPdeModifier2_class(m);
-    register_EllipticBoxDomainPdeModifier3_class(m);
-    register_ParabolicBoxDomainPdeModifier2_class(m);
-    register_ParabolicBoxDomainPdeModifier3_class(m);
+    // register_EllipticBoxDomainPdeModifier2_class(m);
+    // register_EllipticBoxDomainPdeModifier3_class(m);
+    // register_ParabolicBoxDomainPdeModifier2_class(m);
+    // register_ParabolicBoxDomainPdeModifier3_class(m);
     register_VoronoiDataWriter2_2_class(m);
     register_VoronoiDataWriter3_3_class(m);
     register_CellLabelWriter2_2_class(m);
@@ -445,8 +434,8 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_ExclusionCaBasedDivisionRule3_class(m);
     register_ShortAxisVertexBasedDivisionRule2_class(m);
     register_ShortAxisVertexBasedDivisionRule3_class(m);
-    register_RandomCaSwitchingUpdateRule2_class(m);
-    register_RandomCaSwitchingUpdateRule3_class(m);
+    // register_RandomCaSwitchingUpdateRule2_class(m);
+    // register_RandomCaSwitchingUpdateRule3_class(m);
     register_ChemotaxisPottsUpdateRule2_class(m);
     register_ChemotaxisPottsUpdateRule3_class(m);
     register_AbstractCaSwitchingUpdateRule2_class(m);
@@ -459,10 +448,6 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_BuskeElasticForce3_class(m);
     register_ChemotacticForce2_class(m);
     register_ChemotacticForce3_class(m);
-    register_AbstractForce2_2_class(m);
-    register_AbstractForce3_3_class(m);
-    register_AbstractTwoBodyInteractionForce2_2_class(m);
-    register_AbstractTwoBodyInteractionForce3_3_class(m);
     register_NagaiHondaForce2_class(m);
     register_NagaiHondaForce3_class(m);
     register_DiffusionForce2_class(m);
@@ -509,8 +494,6 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_SlidingBoundaryCondition3_class(m);
     register_AbstractOnLatticeCellPopulation2_class(m);
     register_AbstractOnLatticeCellPopulation3_class(m);
-    register_NodeBasedCellPopulationWithParticles2_class(m);
-    register_NodeBasedCellPopulationWithParticles3_class(m);
     register_CaBasedCellPopulation2_class(m);
     register_CaBasedCellPopulation3_class(m);
     register_MeshBasedCellPopulation2_2_class(m);
@@ -525,6 +508,8 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_NodeBasedCellPopulation3_class(m);
     register_NodeBasedCellPopulationWithBuskeUpdate2_class(m);
     register_NodeBasedCellPopulationWithBuskeUpdate3_class(m);
+    register_NodeBasedCellPopulationWithParticles2_class(m);
+    register_NodeBasedCellPopulationWithParticles3_class(m);
     register_AbstractTargetAreaModifier2_class(m);
     register_AbstractTargetAreaModifier3_class(m);
     register_ConstantTargetAreaModifier2_class(m);
