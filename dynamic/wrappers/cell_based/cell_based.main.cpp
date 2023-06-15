@@ -1,5 +1,6 @@
 #include <pybind11/pybind11.h>
 
+#include "AbstractCellCycleModelOdeSolver.cppwg.hpp"
 #include "AbstractCellCycleModel.cppwg.hpp"
 #include "AbstractPhaseBasedCellCycleModel.cppwg.hpp"
 #include "AbstractSimpleCellCycleModel.cppwg.hpp"
@@ -18,12 +19,11 @@
 #include "GammaG1CellCycleModel.cppwg.hpp"
 #include "ExponentialG1GenerationalCellCycleModel.cppwg.hpp"
 #include "AbstractOdeBasedPhaseBasedCellCycleModel.cppwg.hpp"
-// #include "TysonNovakCellCycleModel.cppwg.hpp"
-// #include "Alarcon2004OxygenBasedCellCycleModel.cppwg.hpp"
 #include "FixedSequenceCellCycleModel.cppwg.hpp"
 #include "BernoulliTrialCellCycleModel.cppwg.hpp"
 #include "FixedG1GenerationalCellCycleModel.cppwg.hpp"
-#include "AbstractCellCycleModelOdeSolver.cppwg.hpp"
+#include "TysonNovakCellCycleModel.cppwg.hpp"
+#include "Alarcon2004OxygenBasedCellCycleModel.cppwg.hpp"
 #include "AbstractCellProperty.cppwg.hpp"
 #include "CellPropertyCollection.cppwg.hpp"
 #include "AbstractCellProliferativeType.cppwg.hpp"
@@ -76,16 +76,16 @@
 #include "CellsGeneratorGammaG1CellCycleModel_3.cppwg.hpp"
 #include "CellsGeneratorExponentialG1GenerationalCellCycleModel_2.cppwg.hpp"
 #include "CellsGeneratorExponentialG1GenerationalCellCycleModel_3.cppwg.hpp"
-// #include "CellsGeneratorTysonNovakCellCycleModel_2.cppwg.hpp"
-// #include "CellsGeneratorTysonNovakCellCycleModel_3.cppwg.hpp"
-// #include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2.cppwg.hpp"
-// #include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3.cppwg.hpp"
 #include "CellsGeneratorFixedSequenceCellCycleModel_2.cppwg.hpp"
 #include "CellsGeneratorFixedSequenceCellCycleModel_3.cppwg.hpp"
 #include "CellsGeneratorBernoulliTrialCellCycleModel_2.cppwg.hpp"
 #include "CellsGeneratorBernoulliTrialCellCycleModel_3.cppwg.hpp"
 #include "CellsGeneratorFixedG1GenerationalCellCycleModel_2.cppwg.hpp"
 #include "CellsGeneratorFixedG1GenerationalCellCycleModel_3.cppwg.hpp"
+#include "CellsGeneratorTysonNovakCellCycleModel_2.cppwg.hpp"
+#include "CellsGeneratorTysonNovakCellCycleModel_3.cppwg.hpp"
+#include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2.cppwg.hpp"
+#include "CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3.cppwg.hpp"
 #include "CellwiseSourceEllipticPde2.cppwg.hpp"
 #include "CellwiseSourceEllipticPde3.cppwg.hpp"
 #include "AveragedSourceEllipticPde2.cppwg.hpp"
@@ -160,12 +160,12 @@
 #include "ExclusionCaBasedDivisionRule3.cppwg.hpp"
 #include "ShortAxisVertexBasedDivisionRule2.cppwg.hpp"
 #include "ShortAxisVertexBasedDivisionRule3.cppwg.hpp"
-// #include "RandomCaSwitchingUpdateRule2.cppwg.hpp"
-// #include "RandomCaSwitchingUpdateRule3.cppwg.hpp"
 #include "ChemotaxisPottsUpdateRule2.cppwg.hpp"
 #include "ChemotaxisPottsUpdateRule3.cppwg.hpp"
 #include "AbstractCaSwitchingUpdateRule2.cppwg.hpp"
 #include "AbstractCaSwitchingUpdateRule3.cppwg.hpp"
+#include "RandomCaSwitchingUpdateRule2.cppwg.hpp"
+#include "RandomCaSwitchingUpdateRule3.cppwg.hpp"
 #include "BuskeAdhesiveForce2.cppwg.hpp"
 #include "BuskeAdhesiveForce3.cppwg.hpp"
 #include "BuskeCompressionForce2.cppwg.hpp"
@@ -274,6 +274,7 @@ namespace py = pybind11;
 
 PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
 {
+    register_AbstractCellCycleModelOdeSolver_class(m);
     register_AbstractCellCycleModel_class(m);
     register_AbstractPhaseBasedCellCycleModel_class(m);
     register_AbstractSimpleCellCycleModel_class(m);
@@ -292,12 +293,11 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_GammaG1CellCycleModel_class(m);
     register_ExponentialG1GenerationalCellCycleModel_class(m);
     register_AbstractOdeBasedPhaseBasedCellCycleModel_class(m);
-    // register_TysonNovakCellCycleModel_class(m);
-    // register_Alarcon2004OxygenBasedCellCycleModel_class(m);
     register_FixedSequenceCellCycleModel_class(m);
     register_BernoulliTrialCellCycleModel_class(m);
     register_FixedG1GenerationalCellCycleModel_class(m);
-    register_AbstractCellCycleModelOdeSolver_class(m);
+    register_TysonNovakCellCycleModel_class(m);
+    register_Alarcon2004OxygenBasedCellCycleModel_class(m);
     register_AbstractCellProperty_class(m);
     register_CellPropertyCollection_class(m);
     register_AbstractCellProliferativeType_class(m);
@@ -350,10 +350,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_CellsGeneratorGammaG1CellCycleModel_3_class(m);
     register_CellsGeneratorExponentialG1GenerationalCellCycleModel_2_class(m);
     register_CellsGeneratorExponentialG1GenerationalCellCycleModel_3_class(m);
-    // register_CellsGeneratorTysonNovakCellCycleModel_2_class(m);
-    // register_CellsGeneratorTysonNovakCellCycleModel_3_class(m);
-    // register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2_class(m);
-    // register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3_class(m);
+    register_CellsGeneratorTysonNovakCellCycleModel_2_class(m);
+    register_CellsGeneratorTysonNovakCellCycleModel_3_class(m);
+    register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_2_class(m);
+    register_CellsGeneratorAlarcon2004OxygenBasedCellCycleModel_3_class(m);
     register_CellsGeneratorFixedSequenceCellCycleModel_2_class(m);
     register_CellsGeneratorFixedSequenceCellCycleModel_3_class(m);
     register_CellsGeneratorBernoulliTrialCellCycleModel_2_class(m);
@@ -434,12 +434,12 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_ExclusionCaBasedDivisionRule3_class(m);
     register_ShortAxisVertexBasedDivisionRule2_class(m);
     register_ShortAxisVertexBasedDivisionRule3_class(m);
-    // register_RandomCaSwitchingUpdateRule2_class(m);
-    // register_RandomCaSwitchingUpdateRule3_class(m);
     register_ChemotaxisPottsUpdateRule2_class(m);
     register_ChemotaxisPottsUpdateRule3_class(m);
     register_AbstractCaSwitchingUpdateRule2_class(m);
     register_AbstractCaSwitchingUpdateRule3_class(m);
+    register_RandomCaSwitchingUpdateRule2_class(m);
+    register_RandomCaSwitchingUpdateRule3_class(m);
     register_BuskeAdhesiveForce2_class(m);
     register_BuskeAdhesiveForce3_class(m);
     register_BuskeCompressionForce2_class(m);
