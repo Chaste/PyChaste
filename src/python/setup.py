@@ -43,7 +43,7 @@ setup(
     name = "chaste",
     version = "2019.1",
     packages = find_packages(),
-    #install_requires = ['petsc4py==3.7', 'matplotlib', 'numpy'],
+    
     package_data={
         'chaste': ['_chaste_project_PyChaste_preload.so', 
                    'cell_based/_chaste_project_PyChaste_cell_based.so',
@@ -69,8 +69,8 @@ setup(
     # Project Metadata
     author = "Chaste Team, University of Oxford",
     author_email = "grogan@maths.ox.ac.uk",
-    description = "Python bindings for the Chaste project",
-    license = "BSD",
+    description = "Python bindings for Chaste, a general purpose simulation package for computational biology.",
+    license = "BSD-3-Clause",
     keywords = "cancer developmental biology electrophysiology scientific",
 
     classifiers=[
@@ -79,7 +79,7 @@ setup(
         'Topic :: Scientific/Engineering',
         'Operating System :: Unix',  
         'License :: OSI Approved :: BSD License',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.10',
     ],
 
     distclass=BinaryDistribution
