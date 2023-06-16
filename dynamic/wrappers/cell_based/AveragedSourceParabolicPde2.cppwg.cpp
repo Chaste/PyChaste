@@ -61,7 +61,7 @@ pElement);
 
 };
 void register_AveragedSourceParabolicPde2_class(py::module &m){
-py::class_<AveragedSourceParabolicPde2 , AveragedSourceParabolicPde2_Overloads , boost::shared_ptr<AveragedSourceParabolicPde2 >   >(m, "AveragedSourceParabolicPde2")
+py::class_<AveragedSourceParabolicPde2 , AveragedSourceParabolicPde2_Overloads , boost::shared_ptr<AveragedSourceParabolicPde2 > , AbstractLinearParabolicPde<2, 2>  >(m, "AveragedSourceParabolicPde2")
         .def(py::init<::AbstractCellPopulation<2> &, double, double, double >(), py::arg("rCellPopulation"), py::arg("duDtCoefficient") = 1., py::arg("diffusionCoefficient") = 1., py::arg("sourceCoefficient") = 0.)
         .def(
             "rGetCellPopulation", 

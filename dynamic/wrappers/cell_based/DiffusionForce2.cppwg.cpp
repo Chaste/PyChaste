@@ -17,7 +17,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class DiffusionForce2_Overloads : public DiffusionForce2{
     public:
     using DiffusionForce2::DiffusionForce;
-    void AddForceContribution(::AbstractCellPopulation<2> & rCellPopulation) override {
+    void AddForceContribution(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             DiffusionForce2,
@@ -34,7 +34,7 @@ class DiffusionForce2_Overloads : public DiffusionForce2{
 
 };
 void register_DiffusionForce2_class(py::module &m){
-py::class_<DiffusionForce2 , DiffusionForce2_Overloads , boost::shared_ptr<DiffusionForce2 >   >(m, "DiffusionForce2")
+py::class_<DiffusionForce2 , DiffusionForce2_Overloads , boost::shared_ptr<DiffusionForce2 > , AbstractForce<2, 2>  >(m, "DiffusionForce2")
         .def(py::init< >())
         .def(
             "SetAbsoluteTemperature", 
@@ -58,7 +58,7 @@ py::class_<DiffusionForce2 , DiffusionForce2_Overloads , boost::shared_ptr<Diffu
             " "  )
         .def(
             "AddForceContribution", 
-            (void(DiffusionForce2::*)(::AbstractCellPopulation<2> &)) &DiffusionForce2::AddForceContribution, 
+            (void(DiffusionForce2::*)(::AbstractCellPopulation<2, 2> &)) &DiffusionForce2::AddForceContribution, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputForceParameters", 

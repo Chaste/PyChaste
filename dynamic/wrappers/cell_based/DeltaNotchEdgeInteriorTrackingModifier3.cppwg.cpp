@@ -42,7 +42,7 @@ outputDirectory);
 
 };
 void register_DeltaNotchEdgeInteriorTrackingModifier3_class(py::module &m){
-py::class_<DeltaNotchEdgeInteriorTrackingModifier3 , DeltaNotchEdgeInteriorTrackingModifier3_Overloads , boost::shared_ptr<DeltaNotchEdgeInteriorTrackingModifier3 >   >(m, "DeltaNotchEdgeInteriorTrackingModifier3")
+py::class_<DeltaNotchEdgeInteriorTrackingModifier3 , DeltaNotchEdgeInteriorTrackingModifier3_Overloads , boost::shared_ptr<DeltaNotchEdgeInteriorTrackingModifier3 > , AbstractCellBasedSimulationModifier<3, 3>  >(m, "DeltaNotchEdgeInteriorTrackingModifier3")
         .def(py::init< >())
         .def(
             "UpdateAtEndOfTimeStep", 

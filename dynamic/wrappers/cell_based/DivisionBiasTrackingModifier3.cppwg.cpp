@@ -42,7 +42,7 @@ outputDirectory);
 
 };
 void register_DivisionBiasTrackingModifier3_class(py::module &m){
-py::class_<DivisionBiasTrackingModifier3 , DivisionBiasTrackingModifier3_Overloads , boost::shared_ptr<DivisionBiasTrackingModifier3 >   >(m, "DivisionBiasTrackingModifier3")
+py::class_<DivisionBiasTrackingModifier3 , DivisionBiasTrackingModifier3_Overloads , boost::shared_ptr<DivisionBiasTrackingModifier3 > , AbstractCellBasedSimulationModifier<3, 3>  >(m, "DivisionBiasTrackingModifier3")
         .def(py::init<::boost::numeric::ublas::c_vector<double, 3> >(), py::arg("divisionBiasVector"))
         .def(
             "rGetDivisionBiasVector", 
