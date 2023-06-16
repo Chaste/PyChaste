@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2005-2017, University of Oxford.
+Copyright (c) 2005-2023, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -33,62 +33,48 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef SHAREDHONEYCOMBVERTEXMESHGENERATOR_HPP_
-#define SHAREDHONEYCOMBVERTEXMESHGENERATOR_HPP_
+#ifndef SHAREDTOROIDALHONEYCOMBVERTEXMESHGENERATOR_HPP_
+#define SHAREDTOROIDALHONEYCOMBVERTEXMESHGENERATOR_HPP_
 
 #include <cmath>
 #include <vector>
 
 #include "SmartPointers.hpp"
-#include "MutableVertexMesh.hpp"
+#include "SharedHoneycombVertexMeshGenerator.hpp"
+#include "Toroidal2dVertexMesh.hpp"
 
 /**
- * Honeycomb mesh generator that creates a 2D honeycomb mesh (with equal distance
- * between nodes) for use in vertex simulations.
+ * Honeycomb mesh generator that creates a 2D "toroidal" mesh (one in which
+ * periodicity is imposed on the left and right and top and bottom boundaries)
+ * for use with vertex-based simulations.
  *
+ * NOTE: the user should delete the mesh after use to manage memory.
  */
-class SharedHoneycombVertexMeshGenerator
+class SharedToroidalHoneycombVertexMeshGenerator : SharedHoneycombVertexMeshGenerator
 {
-protected:
-
-    /** A pointer to the mesh this class creates */
-    boost::shared_ptr<MutableVertexMesh<2,2> > mpMesh;
-
 public:
 
     /**
      * Constructor.
      *
-     * @param numElementsAcross  The number of columns of elements in the mesh
-     * @param numElementsUp  The number of rows of elements in the mesh
-     * @param isFlatBottom  Whether to enforce a flat bottom to the mesh (defaults to false)
+     * @param numElementsAcross  The number of columns of elements in the mesh.  This MUST be an even number.
+     * @param numElementsUp  The number of rows of elements in the mesh.   This MUST be an even number.
      * @param cellRearrangementThreshold the minimum threshold distance for element rearrangement (defaults to 0.01)
      * @param t2Threshold the maximum threshold distance for Type 2 swaps (defaults to 0.001)
-     * @param elementArea the element area, which has default value 0.5*sqrt(3.0)
      */
-    SharedHoneycombVertexMeshGenerator(unsigned numElementsAcross,
-                                 unsigned numElementsUp,
-                                 bool isFlatBottom=false,
-                                 double cellRearrangementThreshold=0.01,
-                                 double t2Threshold=0.001,
-                                 double elementArea=0.5*sqrt(3.0));
-
-    /**
-     * Null constructor for derived classes to call.
-     */
-    SharedHoneycombVertexMeshGenerator()
-    {
-    }
-
-    /**
-     * Destructor - deletes the mesh object and pointer.
-     */
-    virtual ~SharedHoneycombVertexMeshGenerator();
-
+    SharedToroidalHoneycombVertexMeshGenerator(unsigned numElementsAcross,
+                                         unsigned numElementsUp,
+                                         double cellRearrangementThreshold=0.01,
+                                         double t2Threshold=0.001);
     /**
      * @return a 2D honeycomb mesh
      */
-    virtual boost::shared_ptr<MutableVertexMesh<2,2> > GetMesh();
+    boost::shared_ptr<MutableVertexMesh<2,2> > GetMesh();
+
+    /**
+     * @return a 2D honeycomb mesh with periodic left/right and top/bottom boundaries
+     */
+    boost::shared_ptr<Toroidal2dVertexMesh > GetToroidalMesh();
 };
 
-#endif /*SHAREDHONEYCOMBVERTEXMESHGENERATOR_HPP_*/
+#endif /*SHAREDTOROIDALHONEYCOMBVERTEXMESHGENERATOR_HPP_*/

@@ -6,21 +6,21 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "ToroidalHoneycombMeshGenerator.hpp"
+#include "SharedToroidalHoneycombMeshGenerator.hpp"
 
 #include "ToroidalHoneycombMeshGenerator.cppwg.hpp"
 
 namespace py = pybind11;
-typedef ToroidalHoneycombMeshGenerator ToroidalHoneycombMeshGenerator;
+typedef SharedToroidalHoneycombMeshGenerator ToroidalHoneycombMeshGenerator;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-typedef ::MutableMesh<2, 2> * _MutableMesh_lt_2_2_gt_Ptr;
+typedef ::boost::shared_ptr<MutableMesh<2, 2>> _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_;
 
 class ToroidalHoneycombMeshGenerator_Overloads : public ToroidalHoneycombMeshGenerator{
     public:
-    using ToroidalHoneycombMeshGenerator::ToroidalHoneycombMeshGenerator;
-    ::MutableMesh<2, 2> * GetMesh() override {
-        PYBIND11_OVERRIDE(
-            _MutableMesh_lt_2_2_gt_Ptr,
+    using ToroidalHoneycombMeshGenerator::SharedToroidalHoneycombMeshGenerator;
+    ::boost::shared_ptr<MutableMesh<2, 2>> GetMesh() override {
+        PYBIND11_OVERLOAD(
+            _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_,
             ToroidalHoneycombMeshGenerator,
             GetMesh,
             );
@@ -28,15 +28,15 @@ class ToroidalHoneycombMeshGenerator_Overloads : public ToroidalHoneycombMeshGen
 
 };
 void register_ToroidalHoneycombMeshGenerator_class(py::module &m){
-py::class_<ToroidalHoneycombMeshGenerator , ToroidalHoneycombMeshGenerator_Overloads , boost::shared_ptr<ToroidalHoneycombMeshGenerator >  , HoneycombMeshGenerator  >(m, "ToroidalHoneycombMeshGenerator")
+py::class_<ToroidalHoneycombMeshGenerator , ToroidalHoneycombMeshGenerator_Overloads , boost::shared_ptr<ToroidalHoneycombMeshGenerator >   >(m, "ToroidalHoneycombMeshGenerator")
         .def(py::init<unsigned int, unsigned int, double, double >(), py::arg("numNodesAlongWidth"), py::arg("numNodesAlongDepth"), py::arg("widthScaleFactor") = 1., py::arg("depthScaleFactor") = 1.)
         .def(
             "GetMesh", 
-            (::MutableMesh<2, 2> *(ToroidalHoneycombMeshGenerator::*)()) &ToroidalHoneycombMeshGenerator::GetMesh, 
-            " "  , py::return_value_policy::reference)
+            (::boost::shared_ptr<MutableMesh<2, 2>>(ToroidalHoneycombMeshGenerator::*)()) &ToroidalHoneycombMeshGenerator::GetMesh, 
+            " "  )
         .def(
             "GetToroidalMesh", 
-            (::Toroidal2dMesh *(ToroidalHoneycombMeshGenerator::*)()) &ToroidalHoneycombMeshGenerator::GetToroidalMesh, 
-            " "  , py::return_value_policy::reference)
+            (::boost::shared_ptr<Toroidal2dMesh>(ToroidalHoneycombMeshGenerator::*)()) &ToroidalHoneycombMeshGenerator::GetToroidalMesh, 
+            " "  )
     ;
 }

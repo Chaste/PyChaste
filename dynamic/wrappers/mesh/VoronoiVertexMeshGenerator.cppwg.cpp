@@ -6,37 +6,37 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "VoronoiVertexMeshGenerator.hpp"
+#include "SharedVoronoiVertexMeshGenerator.hpp"
 
 #include "VoronoiVertexMeshGenerator.cppwg.hpp"
 
 namespace py = pybind11;
-typedef VoronoiVertexMeshGenerator VoronoiVertexMeshGenerator;
+typedef SharedVoronoiVertexMeshGenerator VoronoiVertexMeshGenerator;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-typedef ::MutableVertexMesh<2, 2> * _MutableVertexMesh_lt_2_2_gt_Ptr;
-typedef ::MutableVertexMesh<2, 2> * _MutableVertexMesh_lt_2_2_gt_Ptr;
-typedef ::Toroidal2dVertexMesh * _Toroidal2dVertexMeshPtr;
+typedef ::boost::shared_ptr<MutableVertexMesh<2, 2>> _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_;
+typedef ::boost::shared_ptr<MutableVertexMesh<2, 2>> _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_;
+typedef ::boost::shared_ptr<Toroidal2dVertexMesh> _boost_shared_ptr_lt_Toroidal2dVertexMesh_gt_;
 
 class VoronoiVertexMeshGenerator_Overloads : public VoronoiVertexMeshGenerator{
     public:
-    using VoronoiVertexMeshGenerator::VoronoiVertexMeshGenerator;
-    ::MutableVertexMesh<2, 2> * GetMesh() override {
-        PYBIND11_OVERRIDE(
-            _MutableVertexMesh_lt_2_2_gt_Ptr,
+    using VoronoiVertexMeshGenerator::SharedVoronoiVertexMeshGenerator;
+    ::boost::shared_ptr<MutableVertexMesh<2, 2>> GetMesh() override {
+        PYBIND11_OVERLOAD(
+            _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_,
             VoronoiVertexMeshGenerator,
             GetMesh,
             );
     }
-    ::MutableVertexMesh<2, 2> * GetMeshAfterReMesh() override {
-        PYBIND11_OVERRIDE(
-            _MutableVertexMesh_lt_2_2_gt_Ptr,
+    ::boost::shared_ptr<MutableVertexMesh<2, 2>> GetMeshAfterReMesh() override {
+        PYBIND11_OVERLOAD(
+            _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_,
             VoronoiVertexMeshGenerator,
             GetMeshAfterReMesh,
             );
     }
-    ::Toroidal2dVertexMesh * GetToroidalMesh() override {
-        PYBIND11_OVERRIDE(
-            _Toroidal2dVertexMeshPtr,
+    ::boost::shared_ptr<Toroidal2dVertexMesh> GetToroidalMesh() override {
+        PYBIND11_OVERLOAD(
+            _boost_shared_ptr_lt_Toroidal2dVertexMesh_gt_,
             VoronoiVertexMeshGenerator,
             GetToroidalMesh,
             );
@@ -53,16 +53,16 @@ py::class_<VoronoiVertexMeshGenerator , VoronoiVertexMeshGenerator_Overloads , b
             " "  )
         .def(
             "GetMesh", 
-            (::MutableVertexMesh<2, 2> *(VoronoiVertexMeshGenerator::*)()) &VoronoiVertexMeshGenerator::GetMesh, 
-            " "  , py::return_value_policy::reference)
+            (::boost::shared_ptr<MutableVertexMesh<2, 2>>(VoronoiVertexMeshGenerator::*)()) &VoronoiVertexMeshGenerator::GetMesh, 
+            " "  )
         .def(
             "GetMeshAfterReMesh", 
-            (::MutableVertexMesh<2, 2> *(VoronoiVertexMeshGenerator::*)()) &VoronoiVertexMeshGenerator::GetMeshAfterReMesh, 
-            " "  , py::return_value_policy::reference)
+            (::boost::shared_ptr<MutableVertexMesh<2, 2>>(VoronoiVertexMeshGenerator::*)()) &VoronoiVertexMeshGenerator::GetMeshAfterReMesh, 
+            " "  )
         .def(
             "GetToroidalMesh", 
-            (::Toroidal2dVertexMesh *(VoronoiVertexMeshGenerator::*)()) &VoronoiVertexMeshGenerator::GetToroidalMesh, 
-            " "  , py::return_value_policy::reference)
+            (::boost::shared_ptr<Toroidal2dVertexMesh>(VoronoiVertexMeshGenerator::*)()) &VoronoiVertexMeshGenerator::GetToroidalMesh, 
+            " "  )
         .def(
             "GetPolygonDistribution", 
             (::std::vector<double>(VoronoiVertexMeshGenerator::*)()) &VoronoiVertexMeshGenerator::GetPolygonDistribution, 

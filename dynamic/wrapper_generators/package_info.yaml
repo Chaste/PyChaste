@@ -148,14 +148,14 @@ modules:
     name_override: HoneycombMeshGenerator
   - name: SharedHoneycombVertexMeshGenerator
     name_override: HoneycombVertexMeshGenerator
-  # - name: SharedCylindricalHoneycombMeshGenerator
-  #   name_override: CylindricalHoneycombMeshGenerator
+  - name: SharedCylindricalHoneycombMeshGenerator
+    name_override: CylindricalHoneycombMeshGenerator
   - name: SharedCylindricalHoneycombVertexMeshGenerator
     name_override: CylindricalHoneycombVertexMeshGenerator
-  # - name: SharedToroidalHoneycombMeshGenerator
-  #   name_override: ToroidalHoneycombMeshGenerator
-  # - name: SharedToroidalHoneycombVertexMeshGenerator
-  #   name_override: ToroidalHoneycombVertexMeshGenerator
+  - name: SharedToroidalHoneycombMeshGenerator
+    name_override: ToroidalHoneycombMeshGenerator
+  - name: SharedToroidalHoneycombVertexMeshGenerator
+    name_override: ToroidalHoneycombVertexMeshGenerator
   # - name: SharedVoronoiVertexMeshGenerator
   #   name_override: VoronoiVertexMeshGenerator
   - name: AbstractChasteRegion

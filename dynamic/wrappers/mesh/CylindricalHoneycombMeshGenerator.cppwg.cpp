@@ -6,21 +6,21 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "CylindricalHoneycombMeshGenerator.hpp"
+#include "SharedCylindricalHoneycombMeshGenerator.hpp"
 
 #include "CylindricalHoneycombMeshGenerator.cppwg.hpp"
 
 namespace py = pybind11;
-typedef CylindricalHoneycombMeshGenerator CylindricalHoneycombMeshGenerator;
+typedef SharedCylindricalHoneycombMeshGenerator CylindricalHoneycombMeshGenerator;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-typedef ::MutableMesh<2, 2> * _MutableMesh_lt_2_2_gt_Ptr;
+typedef ::boost::shared_ptr<MutableMesh<2, 2>> _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_;
 
 class CylindricalHoneycombMeshGenerator_Overloads : public CylindricalHoneycombMeshGenerator{
     public:
-    using CylindricalHoneycombMeshGenerator::CylindricalHoneycombMeshGenerator;
-    ::MutableMesh<2, 2> * GetMesh() override {
-        PYBIND11_OVERRIDE(
-            _MutableMesh_lt_2_2_gt_Ptr,
+    using CylindricalHoneycombMeshGenerator::SharedCylindricalHoneycombMeshGenerator;
+    ::boost::shared_ptr<MutableMesh<2, 2>> GetMesh() override {
+        PYBIND11_OVERLOAD(
+            _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_,
             CylindricalHoneycombMeshGenerator,
             GetMesh,
             );
@@ -28,15 +28,15 @@ class CylindricalHoneycombMeshGenerator_Overloads : public CylindricalHoneycombM
 
 };
 void register_CylindricalHoneycombMeshGenerator_class(py::module &m){
-py::class_<CylindricalHoneycombMeshGenerator , CylindricalHoneycombMeshGenerator_Overloads , boost::shared_ptr<CylindricalHoneycombMeshGenerator >  , HoneycombMeshGenerator  >(m, "CylindricalHoneycombMeshGenerator")
+py::class_<CylindricalHoneycombMeshGenerator , CylindricalHoneycombMeshGenerator_Overloads , boost::shared_ptr<CylindricalHoneycombMeshGenerator >   >(m, "CylindricalHoneycombMeshGenerator")
         .def(py::init<unsigned int, unsigned int, unsigned int, double >(), py::arg("numNodesAlongWidth"), py::arg("numNodesAlongLength"), py::arg("ghosts") = 3, py::arg("scaleFactor") = 1.)
         .def(
             "GetMesh", 
-            (::MutableMesh<2, 2> *(CylindricalHoneycombMeshGenerator::*)()) &CylindricalHoneycombMeshGenerator::GetMesh, 
-            " "  , py::return_value_policy::reference)
+            (::boost::shared_ptr<MutableMesh<2, 2>>(CylindricalHoneycombMeshGenerator::*)()) &CylindricalHoneycombMeshGenerator::GetMesh, 
+            " "  )
         .def(
             "GetCylindricalMesh", 
-            (::Cylindrical2dMesh *(CylindricalHoneycombMeshGenerator::*)()) &CylindricalHoneycombMeshGenerator::GetCylindricalMesh, 
-            " "  , py::return_value_policy::reference)
+            (::boost::shared_ptr<Cylindrical2dMesh>(CylindricalHoneycombMeshGenerator::*)()) &CylindricalHoneycombMeshGenerator::GetCylindricalMesh, 
+            " "  )
     ;
 }

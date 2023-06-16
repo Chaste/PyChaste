@@ -55,6 +55,10 @@
 #include "SharedHoneycombMeshGenerator.hpp"
 #include "SharedHoneycombVertexMeshGenerator.hpp"
 #include "SharedCylindricalHoneycombVertexMeshGenerator.hpp"
+#include "SharedCylindricalHoneycombMeshGenerator.hpp"
+#include "SharedToroidalHoneycombMeshGenerator.hpp"
+#include "SharedToroidalHoneycombVertexMeshGenerator.hpp"
+#include "SharedVoronoiVertexMeshGenerator.hpp"
 #include "AbstractCellCycleModel.hpp"
 #include "AbstractPhaseBasedCellCycleModel.hpp"
 #include "AbstractSimpleCellCycleModel.hpp"
@@ -209,10 +213,6 @@
 #include "ChastePoint.hpp"
 #include "ChasteCuboid.hpp"
 #include "ChasteEllipsoid.hpp"
-#include "CylindricalHoneycombMeshGenerator.hpp"
-#include "ToroidalHoneycombMeshGenerator.hpp"
-#include "ToroidalHoneycombVertexMeshGenerator.hpp"
-#include "VoronoiVertexMeshGenerator.hpp"
 
 // Instantiate Template Classes 
 template class AbstractLinearPde<2,2>;
