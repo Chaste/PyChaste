@@ -448,6 +448,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_BuskeElasticForce3_class(m);
     register_ChemotacticForce2_class(m);
     register_ChemotacticForce3_class(m);
+    register_GeneralisedLinearSpringForce2_2_class(m);
+    register_GeneralisedLinearSpringForce3_3_class(m);
+    register_DifferentialAdhesionGeneralisedLinearSpringForce2_2_class(m);
+    register_DifferentialAdhesionGeneralisedLinearSpringForce3_3_class(m);
     register_NagaiHondaForce2_class(m);
     register_NagaiHondaForce3_class(m);
     register_DiffusionForce2_class(m);

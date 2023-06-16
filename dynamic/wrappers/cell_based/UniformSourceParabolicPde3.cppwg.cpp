@@ -45,7 +45,7 @@ pElement);
 
 };
 void register_UniformSourceParabolicPde3_class(py::module &m){
-py::class_<UniformSourceParabolicPde3 , UniformSourceParabolicPde3_Overloads , boost::shared_ptr<UniformSourceParabolicPde3 >   >(m, "UniformSourceParabolicPde3")
+py::class_<UniformSourceParabolicPde3 , UniformSourceParabolicPde3_Overloads , boost::shared_ptr<UniformSourceParabolicPde3 > , AbstractLinearParabolicPde<3 ,3>  >(m, "UniformSourceParabolicPde3")
         .def(py::init<double >(), py::arg("sourceCoefficient") = 0.)
         .def(
             "GetCoefficient", 

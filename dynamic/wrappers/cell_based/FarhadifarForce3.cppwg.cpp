@@ -17,7 +17,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class FarhadifarForce3_Overloads : public FarhadifarForce3{
     public:
     using FarhadifarForce3::FarhadifarForce;
-    void AddForceContribution(::AbstractCellPopulation<3> & rCellPopulation) override {
+    void AddForceContribution(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             FarhadifarForce3,
@@ -43,11 +43,11 @@ rVertexCellPopulation);
 
 };
 void register_FarhadifarForce3_class(py::module &m){
-py::class_<FarhadifarForce3 , FarhadifarForce3_Overloads , boost::shared_ptr<FarhadifarForce3 >   >(m, "FarhadifarForce3")
+py::class_<FarhadifarForce3 , FarhadifarForce3_Overloads , boost::shared_ptr<FarhadifarForce3 > , AbstractForce<3, 3>  >(m, "FarhadifarForce3")
         .def(py::init< >())
         .def(
             "AddForceContribution", 
-            (void(FarhadifarForce3::*)(::AbstractCellPopulation<3> &)) &FarhadifarForce3::AddForceContribution, 
+            (void(FarhadifarForce3::*)(::AbstractCellPopulation<3, 3> &)) &FarhadifarForce3::AddForceContribution, 
             " " , py::arg("rCellPopulation") )
         .def(
             "GetAreaElasticityParameter", 

@@ -17,14 +17,14 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class PythonSimulationModifier3_Overloads : public PythonSimulationModifier3{
     public:
     using PythonSimulationModifier3::PythonSimulationModifier;
-    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
+    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
-    void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
+    void SetupSolve(::AbstractCellPopulation<3, 3> & rCellPopulation, ::std::string outputDirectory) override {
         PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier3,
@@ -32,7 +32,7 @@ class PythonSimulationModifier3_Overloads : public PythonSimulationModifier3{
             rCellPopulation, 
 outputDirectory);
     }
-    void UpdateCellData(::AbstractCellPopulation<3> & rCellPopulation) override {
+    void UpdateCellData(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier3,
@@ -49,19 +49,19 @@ outputDirectory);
 
 };
 void register_PythonSimulationModifier3_class(py::module &m){
-py::class_<PythonSimulationModifier3 , PythonSimulationModifier3_Overloads , boost::shared_ptr<PythonSimulationModifier3 >   >(m, "PythonSimulationModifier3")
+py::class_<PythonSimulationModifier3 , PythonSimulationModifier3_Overloads , boost::shared_ptr<PythonSimulationModifier3 > , AbstractCellBasedSimulationModifier<3, 3>  >(m, "PythonSimulationModifier3")
         .def(py::init< >())
         .def(
             "UpdateAtEndOfTimeStep", 
-            (void(PythonSimulationModifier3::*)(::AbstractCellPopulation<3> &)) &PythonSimulationModifier3::UpdateAtEndOfTimeStep, 
+            (void(PythonSimulationModifier3::*)(::AbstractCellPopulation<3, 3> &)) &PythonSimulationModifier3::UpdateAtEndOfTimeStep, 
             " " , py::arg("rCellPopulation") )
         .def(
             "SetupSolve", 
-            (void(PythonSimulationModifier3::*)(::AbstractCellPopulation<3> &, ::std::string)) &PythonSimulationModifier3::SetupSolve, 
+            (void(PythonSimulationModifier3::*)(::AbstractCellPopulation<3, 3> &, ::std::string)) &PythonSimulationModifier3::SetupSolve, 
             " " , py::arg("rCellPopulation"), py::arg("outputDirectory") )
         .def(
             "UpdateCellData", 
-            (void(PythonSimulationModifier3::*)(::AbstractCellPopulation<3> &)) &PythonSimulationModifier3::UpdateCellData, 
+            (void(PythonSimulationModifier3::*)(::AbstractCellPopulation<3, 3> &)) &PythonSimulationModifier3::UpdateCellData, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputSimulationModifierParameters", 

@@ -42,7 +42,7 @@ class SphereGeometryBoundaryCondition3_Overloads : public SphereGeometryBoundary
 
 };
 void register_SphereGeometryBoundaryCondition3_class(py::module &m){
-py::class_<SphereGeometryBoundaryCondition3 , SphereGeometryBoundaryCondition3_Overloads , boost::shared_ptr<SphereGeometryBoundaryCondition3 >   >(m, "SphereGeometryBoundaryCondition3")
+py::class_<SphereGeometryBoundaryCondition3 , SphereGeometryBoundaryCondition3_Overloads , boost::shared_ptr<SphereGeometryBoundaryCondition3 > , AbstractCellPopulationBoundaryCondition<3, 3>  >(m, "SphereGeometryBoundaryCondition3")
         .def(py::init<::AbstractCellPopulation<3> *, ::boost::numeric::ublas::c_vector<double, 3>, double, double >(), py::arg("pCellPopulation"), py::arg("centre"), py::arg("radius"), py::arg("distance") = 1.0000000000000001E-5)
         .def(
             "rGetCentreOfSphere", 

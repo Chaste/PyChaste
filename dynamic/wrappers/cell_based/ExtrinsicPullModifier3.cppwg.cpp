@@ -42,7 +42,7 @@ outputDirectory);
 
 };
 void register_ExtrinsicPullModifier3_class(py::module &m){
-py::class_<ExtrinsicPullModifier3 , ExtrinsicPullModifier3_Overloads , boost::shared_ptr<ExtrinsicPullModifier3 >   >(m, "ExtrinsicPullModifier3")
+py::class_<ExtrinsicPullModifier3 , ExtrinsicPullModifier3_Overloads , boost::shared_ptr<ExtrinsicPullModifier3 > , AbstractCellBasedSimulationModifier<3, 3>  >(m, "ExtrinsicPullModifier3")
         .def(py::init< >())
         .def(
             "UpdateAtEndOfTimeStep", 

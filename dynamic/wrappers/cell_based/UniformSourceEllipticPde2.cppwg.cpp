@@ -44,7 +44,7 @@ pElement);
 
 };
 void register_UniformSourceEllipticPde2_class(py::module &m){
-py::class_<UniformSourceEllipticPde2 , UniformSourceEllipticPde2_Overloads , boost::shared_ptr<UniformSourceEllipticPde2 >   >(m, "UniformSourceEllipticPde2")
+py::class_<UniformSourceEllipticPde2 , UniformSourceEllipticPde2_Overloads , boost::shared_ptr<UniformSourceEllipticPde2 > , AbstractLinearEllipticPde<2, 2>  >(m, "UniformSourceEllipticPde2")
         .def(py::init<double >(), py::arg("sourceCoefficient") = 0.)
         .def(
             "GetCoefficient", 

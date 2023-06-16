@@ -42,7 +42,7 @@ outputDirectory);
 
 };
 void register_VolumeTrackingModifier2_class(py::module &m){
-py::class_<VolumeTrackingModifier2 , VolumeTrackingModifier2_Overloads , boost::shared_ptr<VolumeTrackingModifier2 >   >(m, "VolumeTrackingModifier2")
+py::class_<VolumeTrackingModifier2 , VolumeTrackingModifier2_Overloads , boost::shared_ptr<VolumeTrackingModifier2 > , AbstractCellBasedSimulationModifier<2, 2>  >(m, "VolumeTrackingModifier2")
         .def(py::init< >())
         .def(
             "UpdateAtEndOfTimeStep", 
