@@ -19,56 +19,56 @@ class AbstractCellBasedSimulation3_3_Overloads : public AbstractCellBasedSimulat
     public:
     using AbstractCellBasedSimulation3_3::AbstractCellBasedSimulation;
     void OutputSimulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellBasedSimulation3_3,
             OutputSimulationParameters,
             rParamsFile);
     }
     void WriteVisualizerSetupFile() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulation3_3,
             WriteVisualizerSetupFile,
             );
     }
     unsigned int DoCellBirth() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractCellBasedSimulation3_3,
             DoCellBirth,
             );
     }
     void SetupSolve() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulation3_3,
             SetupSolve,
             );
     }
     bool StoppingEventHasOccurred() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellBasedSimulation3_3,
             StoppingEventHasOccurred,
             );
     }
     void UpdateCellPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellBasedSimulation3_3,
             UpdateCellPopulation,
             );
     }
     void UpdateCellLocationsAndTopology() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellBasedSimulation3_3,
             UpdateCellLocationsAndTopology,
             );
     }
     void OutputAdditionalSimulationSetup(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellBasedSimulation3_3,
             OutputAdditionalSimulationSetup,
@@ -78,10 +78,10 @@ class AbstractCellBasedSimulation3_3_Overloads : public AbstractCellBasedSimulat
 };
 void register_AbstractCellBasedSimulation3_3_class(py::module &m){
 py::class_<AbstractCellBasedSimulation3_3 , AbstractCellBasedSimulation3_3_Overloads , boost::shared_ptr<AbstractCellBasedSimulation3_3 >   >(m, "AbstractCellBasedSimulation3_3")
-        .def(py::init<::AbstractCellPopulation<3, 3> &, bool, bool >(), py::arg("rCellPopulation"), py::arg("deleteCellPopulationInDestructor") = false, py::arg("initialiseCells") = true)
+        .def(py::init<::AbstractCellPopulation<3> &, bool, bool >(), py::arg("rCellPopulation"), py::arg("deleteCellPopulationInDestructor") = false, py::arg("initialiseCells") = true)
         .def(
             "GetNodeLocation", 
-            (::std::vector<double, std::allocator<double> >(AbstractCellBasedSimulation3_3::*)(unsigned int const &)) &AbstractCellBasedSimulation3_3::GetNodeLocation, 
+            (::std::vector<double>(AbstractCellBasedSimulation3_3::*)(unsigned int const &)) &AbstractCellBasedSimulation3_3::GetNodeLocation, 
             " " , py::arg("rNodeIndex") )
         .def(
             "GetDt", 
@@ -116,6 +116,10 @@ py::class_<AbstractCellBasedSimulation3_3 , AbstractCellBasedSimulation3_3_Overl
             (void(AbstractCellBasedSimulation3_3::*)(unsigned int)) &AbstractCellBasedSimulation3_3::SetSamplingTimestepMultiple, 
             " " , py::arg("samplingTimestepMultiple") )
         .def(
+            "SetUpdatingTimestepMultiple", 
+            (void(AbstractCellBasedSimulation3_3::*)(unsigned int)) &AbstractCellBasedSimulation3_3::SetUpdatingTimestepMultiple, 
+            " " , py::arg("updatingTimestepMultiple") )
+        .def(
             "SetNoBirth", 
             (void(AbstractCellBasedSimulation3_3::*)(bool)) &AbstractCellBasedSimulation3_3::SetNoBirth, 
             " " , py::arg("noBirth") )
@@ -129,7 +133,7 @@ py::class_<AbstractCellBasedSimulation3_3 , AbstractCellBasedSimulation3_3_Overl
             " "  )
         .def(
             "AddCellKiller", 
-            (void(AbstractCellBasedSimulation3_3::*)(::boost::shared_ptr<AbstractCellKiller<3> >)) &AbstractCellBasedSimulation3_3::AddCellKiller, 
+            (void(AbstractCellBasedSimulation3_3::*)(::boost::shared_ptr<AbstractCellKiller<3>>)) &AbstractCellBasedSimulation3_3::AddCellKiller, 
             " " , py::arg("pCellKiller") )
         .def(
             "RemoveAllCellKillers", 
@@ -137,19 +141,27 @@ py::class_<AbstractCellBasedSimulation3_3 , AbstractCellBasedSimulation3_3_Overl
             " "  )
         .def(
             "AddSimulationModifier", 
-            (void(AbstractCellBasedSimulation3_3::*)(::boost::shared_ptr<AbstractCellBasedSimulationModifier<3, 3> >)) &AbstractCellBasedSimulation3_3::AddSimulationModifier, 
+            (void(AbstractCellBasedSimulation3_3::*)(::boost::shared_ptr<AbstractCellBasedSimulationModifier<3>>)) &AbstractCellBasedSimulation3_3::AddSimulationModifier, 
             " " , py::arg("pSimulationModifier") )
+        .def(
+            "AddTopologyUpdateSimulationModifier", 
+            (void(AbstractCellBasedSimulation3_3::*)(::boost::shared_ptr<AbstractCellBasedSimulationModifier<3>>)) &AbstractCellBasedSimulation3_3::AddTopologyUpdateSimulationModifier, 
+            " " , py::arg("pSimulationModifier") )
+        .def(
+            "GetTopologyUpdateSimulationModifiers", 
+            (::std::vector<boost::shared_ptr<AbstractCellBasedSimulationModifier<3>>> *(AbstractCellBasedSimulation3_3::*)()) &AbstractCellBasedSimulation3_3::GetTopologyUpdateSimulationModifiers, 
+            " "  , py::return_value_policy::reference)
         .def(
             "Solve", 
             (void(AbstractCellBasedSimulation3_3::*)()) &AbstractCellBasedSimulation3_3::Solve, 
             " "  )
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<3, 3> &(AbstractCellBasedSimulation3_3::*)()) &AbstractCellBasedSimulation3_3::rGetCellPopulation, 
+            (::AbstractCellPopulation<3> &(AbstractCellBasedSimulation3_3::*)()) &AbstractCellBasedSimulation3_3::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<3, 3> const &(AbstractCellBasedSimulation3_3::*)() const ) &AbstractCellBasedSimulation3_3::rGetCellPopulation, 
+            (::AbstractCellPopulation<3> const &(AbstractCellBasedSimulation3_3::*)() const ) &AbstractCellBasedSimulation3_3::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetOutputDivisionLocations", 

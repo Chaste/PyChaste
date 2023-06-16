@@ -28,63 +28,63 @@ class AbstractTetrahedralMesh3_3_Overloads : public AbstractTetrahedralMesh3_3{
     public:
     using AbstractTetrahedralMesh3_3::AbstractTetrahedralMesh;
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh3_3,
             GetNumElements,
             );
     }
     unsigned int GetNumLocalElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh3_3,
             GetNumLocalElements,
             );
     }
     unsigned int GetNumBoundaryElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh3_3,
             GetNumBoundaryElements,
             );
     }
     unsigned int GetNumLocalBoundaryElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh3_3,
             GetNumLocalBoundaryElements,
             );
     }
     unsigned int GetNumCableElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh3_3,
             GetNumCableElements,
             );
     }
     unsigned int GetNumVertices() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh3_3,
             GetNumVertices,
             );
     }
     unsigned int GetMaximumNodeIndex() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractTetrahedralMesh3_3,
             GetMaximumNodeIndex,
             );
     }
     void ConstructFromMeshReader(::AbstractMeshReader<3, 3> & rMeshReader) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractTetrahedralMesh3_3,
             ConstructFromMeshReader,
             rMeshReader);
     }
     void GetInverseJacobianForElement(unsigned int elementIndex, ::boost::numeric::ublas::c_matrix<double, 3, 3> & rJacobian, double & rJacobianDeterminant, ::boost::numeric::ublas::c_matrix<double, 3, 3> & rInverseJacobian) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh3_3,
             GetInverseJacobianForElement,
@@ -94,7 +94,7 @@ rJacobianDeterminant,
 rInverseJacobian);
     }
     void GetWeightedDirectionForBoundaryElement(unsigned int elementIndex, ::boost::numeric::ublas::c_vector<double, 3> & rWeightedDirection, double & rJacobianDeterminant) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh3_3,
             GetWeightedDirectionForBoundaryElement,
@@ -103,14 +103,14 @@ rWeightedDirection,
 rJacobianDeterminant);
     }
     void ConstructLinearMesh(unsigned int width) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh3_3,
             ConstructLinearMesh,
             width);
     }
     void ConstructRectangularMesh(unsigned int width, unsigned int height, bool stagger) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh3_3,
             ConstructRectangularMesh,
@@ -119,7 +119,7 @@ height,
 stagger);
     }
     void ConstructCuboid(unsigned int width, unsigned int height, unsigned int depth) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh3_3,
             ConstructCuboid,
@@ -128,35 +128,35 @@ height,
 depth);
     }
     bool CalculateDesignatedOwnershipOfBoundaryElement(unsigned int faceIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractTetrahedralMesh3_3,
             CalculateDesignatedOwnershipOfBoundaryElement,
             faceIndex);
     }
     bool CalculateDesignatedOwnershipOfElement(unsigned int elementIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractTetrahedralMesh3_3,
             CalculateDesignatedOwnershipOfElement,
             elementIndex);
     }
-    void GetHaloNodeIndices(::std::vector<unsigned int, std::allocator<unsigned int> > & rHaloIndices) const  override {
-        PYBIND11_OVERLOAD(
+    void GetHaloNodeIndices(::std::vector<unsigned int> & rHaloIndices) const  override {
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh3_3,
             GetHaloNodeIndices,
             rHaloIndices);
     }
     ::boost::numeric::ublas::c_vector<double, 2> CalculateMinMaxEdgeLengths() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractTetrahedralMesh3_3,
             CalculateMinMaxEdgeLengths,
             );
     }
     void SetElementOwnerships() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTetrahedralMesh3_3,
             SetElementOwnerships,
@@ -280,11 +280,11 @@ py::class_<AbstractTetrahedralMesh3_3 , AbstractTetrahedralMesh3_3_Overloads , b
             " "  )
         .def(
             "GetHaloNodeIndices", 
-            (void(AbstractTetrahedralMesh3_3::*)(::std::vector<unsigned int, std::allocator<unsigned int> > &) const ) &AbstractTetrahedralMesh3_3::GetHaloNodeIndices, 
+            (void(AbstractTetrahedralMesh3_3::*)(::std::vector<unsigned int> &) const ) &AbstractTetrahedralMesh3_3::GetHaloNodeIndices, 
             " " , py::arg("rHaloIndices") )
         .def(
             "CalculateNodeExchange", 
-            (void(AbstractTetrahedralMesh3_3::*)(::std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > > &, ::std::vector<std::vector<unsigned int, std::allocator<unsigned int> >, std::allocator<std::vector<unsigned int, std::allocator<unsigned int> > > > &)) &AbstractTetrahedralMesh3_3::CalculateNodeExchange, 
+            (void(AbstractTetrahedralMesh3_3::*)(::std::vector<std::vector<unsigned int>> &, ::std::vector<std::vector<unsigned int>> &)) &AbstractTetrahedralMesh3_3::CalculateNodeExchange, 
             " " , py::arg("rNodesToSendPerProcess"), py::arg("rNodesToReceivePerProcess") )
         .def(
             "CalculateMinMaxEdgeLengths", 
@@ -292,11 +292,11 @@ py::class_<AbstractTetrahedralMesh3_3 , AbstractTetrahedralMesh3_3_Overloads , b
             " "  )
         .def(
             "GetContainingElementIndex", 
-            (unsigned int(AbstractTetrahedralMesh3_3::*)(::ChastePoint<3> const &, bool, ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >, bool)) &AbstractTetrahedralMesh3_3::GetContainingElementIndex, 
+            (unsigned int(AbstractTetrahedralMesh3_3::*)(::ChastePoint<3> const &, bool, ::std::set<unsigned int>, bool)) &AbstractTetrahedralMesh3_3::GetContainingElementIndex, 
             " " , py::arg("rTestPoint"), py::arg("strict") = false, py::arg("testElements") = std::set<unsigned int>(), py::arg("onlyTryWithTestElements") = false )
         .def(
             "GetNearestElementIndexFromTestElements", 
-            (unsigned int(AbstractTetrahedralMesh3_3::*)(::ChastePoint<3> const &, ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >)) &AbstractTetrahedralMesh3_3::GetNearestElementIndexFromTestElements, 
+            (unsigned int(AbstractTetrahedralMesh3_3::*)(::ChastePoint<3> const &, ::std::set<unsigned int>)) &AbstractTetrahedralMesh3_3::GetNearestElementIndexFromTestElements, 
             " " , py::arg("rTestPoint"), py::arg("testElements") )
     ;
 }

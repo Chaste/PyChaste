@@ -18,14 +18,14 @@ class WelikyOsterForce3_Overloads : public WelikyOsterForce3{
     public:
     using WelikyOsterForce3::WelikyOsterForce;
     void AddForceContribution(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             WelikyOsterForce3,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             WelikyOsterForce3,
             OutputForceParameters,
@@ -34,7 +34,7 @@ class WelikyOsterForce3_Overloads : public WelikyOsterForce3{
 
 };
 void register_WelikyOsterForce3_class(py::module &m){
-py::class_<WelikyOsterForce3 , WelikyOsterForce3_Overloads , boost::shared_ptr<WelikyOsterForce3 >  , AbstractForce<3, 3>  >(m, "WelikyOsterForce3")
+py::class_<WelikyOsterForce3 , WelikyOsterForce3_Overloads , boost::shared_ptr<WelikyOsterForce3 > , AbstractForce<3, 3>  >(m, "WelikyOsterForce3")
         .def(py::init< >())
         .def(
             "AddForceContribution", 

@@ -1,0 +1,6 @@
+#ifndef FixedG1GenerationalCellCycleModel_hpp__pyplusplus_wrapper
+#define FixedG1GenerationalCellCycleModel_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_FixedG1GenerationalCellCycleModel_class(py::module &m);
+#endif // FixedG1GenerationalCellCycleModel_hpp__pyplusplus_wrapper

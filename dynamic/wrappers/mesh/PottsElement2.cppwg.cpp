@@ -16,7 +16,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 
 void register_PottsElement2_class(py::module &m){
 py::class_<PottsElement2  , boost::shared_ptr<PottsElement2 >   >(m, "PottsElement2")
-        .def(py::init<unsigned int, ::std::vector<Node<2> *, std::allocator<Node<2> *> > const & >(), py::arg("index"), py::arg("rNodes"))
+        .def(py::init<unsigned int, ::std::vector<Node<2> *> const & >(), py::arg("index"), py::arg("rNodes"))
         .def(
             "AddNode", 
             (void(PottsElement2::*)(::Node<2> *, unsigned int const &)) &PottsElement2::AddNode, 

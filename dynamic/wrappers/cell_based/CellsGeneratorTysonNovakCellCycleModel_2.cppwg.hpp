@@ -1,0 +1,6 @@
+#ifndef CellsGeneratorTysonNovakCellCycleModel_2_hpp__pyplusplus_wrapper
+#define CellsGeneratorTysonNovakCellCycleModel_2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellsGeneratorTysonNovakCellCycleModel_2_class(py::module &m);
+#endif // CellsGeneratorTysonNovakCellCycleModel_2_hpp__pyplusplus_wrapper

@@ -26,7 +26,7 @@ py::class_<CellPropertyRegistry  , boost::shared_ptr<CellPropertyRegistry >   >(
             " "  )
         .def(
             "SpecifyOrdering", 
-            (void(CellPropertyRegistry::*)(::std::vector<boost::shared_ptr<AbstractCellProperty>, std::allocator<boost::shared_ptr<AbstractCellProperty> > > const &)) &CellPropertyRegistry::SpecifyOrdering, 
+            (void(CellPropertyRegistry::*)(::std::vector<boost::shared_ptr<AbstractCellProperty>> const &)) &CellPropertyRegistry::SpecifyOrdering, 
             " " , py::arg("rOrdering") )
         .def(
             "HasOrderingBeenSpecified", 

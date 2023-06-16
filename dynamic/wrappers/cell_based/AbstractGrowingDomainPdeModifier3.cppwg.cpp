@@ -22,7 +22,7 @@ class AbstractGrowingDomainPdeModifier3_Overloads : public AbstractGrowingDomain
     public:
     using AbstractGrowingDomainPdeModifier3::AbstractGrowingDomainPdeModifier;
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractGrowingDomainPdeModifier3,
             OutputSimulationModifierParameters,
@@ -34,11 +34,11 @@ void register_AbstractGrowingDomainPdeModifier3_class(py::module &m){
 py::class_<AbstractGrowingDomainPdeModifier3 , AbstractGrowingDomainPdeModifier3_Overloads , boost::shared_ptr<AbstractGrowingDomainPdeModifier3 >  , AbstractPdeModifier<3>  >(m, "AbstractGrowingDomainPdeModifier3")
         .def(
             "GenerateFeMesh", 
-            (void(AbstractGrowingDomainPdeModifier3::*)(::AbstractCellPopulation<3, 3> &)) &AbstractGrowingDomainPdeModifier3::GenerateFeMesh, 
+            (void(AbstractGrowingDomainPdeModifier3::*)(::AbstractCellPopulation<3> &)) &AbstractGrowingDomainPdeModifier3::GenerateFeMesh, 
             " " , py::arg("rCellPopulation") )
         .def(
             "UpdateCellData", 
-            (void(AbstractGrowingDomainPdeModifier3::*)(::AbstractCellPopulation<3, 3> &)) &AbstractGrowingDomainPdeModifier3::UpdateCellData, 
+            (void(AbstractGrowingDomainPdeModifier3::*)(::AbstractCellPopulation<3> &)) &AbstractGrowingDomainPdeModifier3::UpdateCellData, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputSimulationModifierParameters", 

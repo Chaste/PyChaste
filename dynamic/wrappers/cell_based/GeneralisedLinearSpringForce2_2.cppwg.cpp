@@ -19,7 +19,7 @@ class GeneralisedLinearSpringForce2_2_Overloads : public GeneralisedLinearSpring
     public:
     using GeneralisedLinearSpringForce2_2::GeneralisedLinearSpringForce;
     double VariableSpringConstantMultiplicationFactor(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<2, 2> & rCellPopulation, bool isCloserThanRestLength) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             GeneralisedLinearSpringForce2_2,
             VariableSpringConstantMultiplicationFactor,
@@ -29,7 +29,7 @@ rCellPopulation,
 isCloserThanRestLength);
     }
     ::boost::numeric::ublas::c_vector<double, 2> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             GeneralisedLinearSpringForce2_2,
             CalculateForceBetweenNodes,
@@ -38,7 +38,7 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             GeneralisedLinearSpringForce2_2,
             OutputForceParameters,

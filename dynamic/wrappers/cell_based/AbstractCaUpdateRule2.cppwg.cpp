@@ -18,7 +18,7 @@ class AbstractCaUpdateRule2_Overloads : public AbstractCaUpdateRule2{
     public:
     using AbstractCaUpdateRule2::AbstractCaUpdateRule;
     double EvaluateProbability(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::CaBasedCellPopulation<2> & rCellPopulation, double dt, double deltaX, ::CellPtr cell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCaUpdateRule2,
             EvaluateProbability,
@@ -30,7 +30,7 @@ deltaX,
 cell);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCaUpdateRule2,
             OutputUpdateRuleParameters,

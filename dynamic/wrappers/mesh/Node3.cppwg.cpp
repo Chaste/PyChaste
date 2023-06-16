@@ -17,7 +17,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 void register_Node3_class(py::module &m){
 py::class_<Node3  , boost::shared_ptr<Node3 >   >(m, "Node3")
         .def(py::init<unsigned int, ::ChastePoint<3>, bool >(), py::arg("index"), py::arg("point"), py::arg("isBoundaryNode") = false)
-        .def(py::init<unsigned int, ::std::vector<double, std::allocator<double> >, bool >(), py::arg("index"), py::arg("coords"), py::arg("isBoundaryNode") = false)
+        .def(py::init<unsigned int, ::std::vector<double>, bool >(), py::arg("index"), py::arg("coords"), py::arg("isBoundaryNode") = false)
         .def(py::init<unsigned int, ::boost::numeric::ublas::c_vector<double, 3>, bool >(), py::arg("index"), py::arg("location"), py::arg("isBoundaryNode") = false)
         .def(py::init<unsigned int, bool, double, double, double >(), py::arg("index"), py::arg("isBoundaryNode") = false, py::arg("v1") = 0, py::arg("v2") = 0, py::arg("v3") = 0)
         .def(py::init<unsigned int, double *, bool >(), py::arg("index"), py::arg("location"), py::arg("isBoundaryNode") = false)
@@ -99,15 +99,15 @@ py::class_<Node3  , boost::shared_ptr<Node3 >   >(m, "Node3")
             " "  )
         .def(
             "rGetNeighbours", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(Node3::*)()) &Node3::rGetNeighbours, 
+            (::std::vector<unsigned int> &(Node3::*)()) &Node3::rGetNeighbours, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetContainingElementIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > &(Node3::*)()) &Node3::rGetContainingElementIndices, 
+            (::std::set<unsigned int> &(Node3::*)()) &Node3::rGetContainingElementIndices, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetNodeAttributes", 
-            (::std::vector<double, std::allocator<double> > &(Node3::*)()) &Node3::rGetNodeAttributes, 
+            (::std::vector<double> &(Node3::*)()) &Node3::rGetNodeAttributes, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetNumNodeAttributes", 
@@ -119,7 +119,7 @@ py::class_<Node3  , boost::shared_ptr<Node3 >   >(m, "Node3")
             " "  )
         .def(
             "rGetContainingBoundaryElementIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > &(Node3::*)()) &Node3::rGetContainingBoundaryElementIndices, 
+            (::std::set<unsigned int> &(Node3::*)()) &Node3::rGetContainingBoundaryElementIndices, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetNumContainingElements", 

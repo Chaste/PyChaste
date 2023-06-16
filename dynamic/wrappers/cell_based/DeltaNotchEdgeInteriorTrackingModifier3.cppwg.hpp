@@ -1,0 +1,6 @@
+#ifndef DeltaNotchEdgeInteriorTrackingModifier3_hpp__pyplusplus_wrapper
+#define DeltaNotchEdgeInteriorTrackingModifier3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_DeltaNotchEdgeInteriorTrackingModifier3_class(py::module &m);
+#endif // DeltaNotchEdgeInteriorTrackingModifier3_hpp__pyplusplus_wrapper

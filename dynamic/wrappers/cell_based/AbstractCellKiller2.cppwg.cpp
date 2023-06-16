@@ -18,14 +18,14 @@ class AbstractCellKiller2_Overloads : public AbstractCellKiller2{
     public:
     using AbstractCellKiller2::AbstractCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellKiller2,
             OutputCellKillerParameters,
@@ -35,14 +35,14 @@ class AbstractCellKiller2_Overloads : public AbstractCellKiller2{
 };
 void register_AbstractCellKiller2_class(py::module &m){
 py::class_<AbstractCellKiller2 , AbstractCellKiller2_Overloads , boost::shared_ptr<AbstractCellKiller2 >   >(m, "AbstractCellKiller2")
-        .def(py::init<::AbstractCellPopulation<2, 2> * >(), py::arg("pCellPopulation"))
+        .def(py::init<::AbstractCellPopulation<2> * >(), py::arg("pCellPopulation"))
         .def(
             "CheckAndLabelCellsForApoptosisOrDeath", 
             (void(AbstractCellKiller2::*)()) &AbstractCellKiller2::CheckAndLabelCellsForApoptosisOrDeath, 
             " "  )
         .def(
             "GetCellPopulation", 
-            (::AbstractCellPopulation<2, 2> const *(AbstractCellKiller2::*)() const ) &AbstractCellKiller2::GetCellPopulation, 
+            (::AbstractCellPopulation<2> const *(AbstractCellKiller2::*)() const ) &AbstractCellKiller2::GetCellPopulation, 
             " "  , py::return_value_policy::reference)
         .def(
             "OutputCellKillerInfo", 

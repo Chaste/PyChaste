@@ -19,14 +19,14 @@ class AbstractLinearParabolicPde3_3_Overloads : public AbstractLinearParabolicPd
     public:
     using AbstractLinearParabolicPde3_3::AbstractLinearParabolicPde;
     double ComputeDuDtCoefficientFunction(::ChastePoint<3> const & rX) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearParabolicPde3_3,
             ComputeDuDtCoefficientFunction,
             rX);
     }
     double ComputeSourceTerm(::ChastePoint<3> const & rX, double u, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearParabolicPde3_3,
             ComputeSourceTerm,
@@ -35,7 +35,7 @@ u,
 pElement);
     }
     double ComputeSourceTermAtNode(::Node<3> const & rNode, double u) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractLinearParabolicPde3_3,
             ComputeSourceTermAtNode,
@@ -43,7 +43,7 @@ pElement);
 u);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeDiffusionTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             AbstractLinearParabolicPde3_3,
             ComputeDiffusionTerm,

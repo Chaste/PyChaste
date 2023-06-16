@@ -18,21 +18,21 @@ class Element3_3_Overloads : public Element3_3{
     public:
     using Element3_3::Element;
     void RegisterWithNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element3_3,
             RegisterWithNodes,
             );
     }
     void MarkAsDeleted() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element3_3,
             MarkAsDeleted,
             );
     }
     void UpdateNode(unsigned int const & rIndex, ::Node<3> * pNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element3_3,
             UpdateNode,
@@ -43,7 +43,7 @@ pNode);
 };
 void register_Element3_3_class(py::module &m){
 py::class_<Element3_3 , Element3_3_Overloads , boost::shared_ptr<Element3_3 >   >(m, "Element3_3")
-        .def(py::init<unsigned int, ::std::vector<Node<3> *, std::allocator<Node<3> *> > const &, bool >(), py::arg("index"), py::arg("rNodes"), py::arg("registerWithNodes") = true)
+        .def(py::init<unsigned int, ::std::vector<Node<3> *> const &, bool >(), py::arg("index"), py::arg("rNodes"), py::arg("registerWithNodes") = true)
         .def(py::init<::Element<3, 3> const &, unsigned int const >(), py::arg("rElement"), py::arg("index"))
         .def(
             "RegisterWithNodes", 

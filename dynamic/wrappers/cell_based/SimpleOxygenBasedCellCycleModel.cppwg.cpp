@@ -19,21 +19,21 @@ class SimpleOxygenBasedCellCycleModel_Overloads : public SimpleOxygenBasedCellCy
     public:
     using SimpleOxygenBasedCellCycleModel::SimpleOxygenBasedCellCycleModel;
     void UpdateCellCyclePhase() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SimpleOxygenBasedCellCycleModel,
             UpdateCellCyclePhase,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             SimpleOxygenBasedCellCycleModel,
             CreateCellCycleModel,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             SimpleOxygenBasedCellCycleModel,
             OutputCellCycleModelParameters,

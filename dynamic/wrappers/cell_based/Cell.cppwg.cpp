@@ -78,6 +78,10 @@ py::class_<Cell  , boost::shared_ptr<Cell >   >(m, "Cell")
             (::boost::shared_ptr<CellData>(Cell::*)() const ) &Cell::GetCellData, 
             " "  )
         .def(
+            "GetCellEdgeData", 
+            (::boost::shared_ptr<CellEdgeData>(Cell::*)() const ) &Cell::GetCellEdgeData, 
+            " "  )
+        .def(
             "HasCellVecData", 
             (bool(Cell::*)() const ) &Cell::HasCellVecData, 
             " "  )
@@ -140,6 +144,10 @@ py::class_<Cell  , boost::shared_ptr<Cell >   >(m, "Cell")
         .def(
             "GetCellId", 
             (unsigned int(Cell::*)() const ) &Cell::GetCellId, 
+            " "  )
+        .def(
+            "HasSrnModel", 
+            (bool(Cell::*)() const ) &Cell::HasSrnModel, 
             " "  )
     ;
 }

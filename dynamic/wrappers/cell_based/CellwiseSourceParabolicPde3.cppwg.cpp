@@ -19,14 +19,14 @@ class CellwiseSourceParabolicPde3_Overloads : public CellwiseSourceParabolicPde3
     public:
     using CellwiseSourceParabolicPde3::CellwiseSourceParabolicPde;
     double ComputeDuDtCoefficientFunction(::ChastePoint<3> const & rX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceParabolicPde3,
             ComputeDuDtCoefficientFunction,
             rX);
     }
     double ComputeSourceTerm(::ChastePoint<3> const & rX, double u, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceParabolicPde3,
             ComputeSourceTerm,
@@ -35,7 +35,7 @@ u,
 pElement);
     }
     double ComputeSourceTermAtNode(::Node<3> const & rNode, double u) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceParabolicPde3,
             ComputeSourceTermAtNode,
@@ -43,7 +43,7 @@ pElement);
 u);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeDiffusionTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             CellwiseSourceParabolicPde3,
             ComputeDiffusionTerm,
@@ -54,10 +54,10 @@ pElement);
 };
 void register_CellwiseSourceParabolicPde3_class(py::module &m){
 py::class_<CellwiseSourceParabolicPde3 , CellwiseSourceParabolicPde3_Overloads , boost::shared_ptr<CellwiseSourceParabolicPde3 >   >(m, "CellwiseSourceParabolicPde3")
-        .def(py::init<::AbstractCellPopulation<3, 3> &, double, double, double >(), py::arg("rCellPopulation"), py::arg("duDtCoefficient") = 1., py::arg("diffusionCoefficient") = 1., py::arg("sourceCoefficient") = 0.)
+        .def(py::init<::AbstractCellPopulation<3> &, double, double, double >(), py::arg("rCellPopulation"), py::arg("duDtCoefficient") = 1., py::arg("diffusionCoefficient") = 1., py::arg("sourceCoefficient") = 0.)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<3, 3> const &(CellwiseSourceParabolicPde3::*)() const ) &CellwiseSourceParabolicPde3::rGetCellPopulation, 
+            (::AbstractCellPopulation<3> const &(CellwiseSourceParabolicPde3::*)() const ) &CellwiseSourceParabolicPde3::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "ComputeDuDtCoefficientFunction", 

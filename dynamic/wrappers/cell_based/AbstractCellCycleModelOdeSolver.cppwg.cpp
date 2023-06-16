@@ -18,28 +18,28 @@ class AbstractCellCycleModelOdeSolver_Overloads : public AbstractCellCycleModelO
     public:
     using AbstractCellCycleModelOdeSolver::AbstractCellCycleModelOdeSolver;
     bool IsSetUp() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             bool,
             AbstractCellCycleModelOdeSolver,
             IsSetUp,
             );
     }
     void Reset() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellCycleModelOdeSolver,
             Reset,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellCycleModelOdeSolver,
             Initialise,
             );
     }
     bool IsAdaptive() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellCycleModelOdeSolver,
             IsAdaptive,

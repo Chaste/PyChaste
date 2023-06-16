@@ -19,21 +19,21 @@ class PlaneBoundaryCondition2_2_Overloads : public PlaneBoundaryCondition2_2{
     public:
     using PlaneBoundaryCondition2_2::PlaneBoundaryCondition;
     void ImposeBoundaryCondition(::std::map<Node<2> *, boost::numeric::ublas::c_vector<double, 2>, std::less<Node<2> *>, std::allocator<std::pair<Node<2> *const, boost::numeric::ublas::c_vector<double, 2> > > > const & rOldLocations) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PlaneBoundaryCondition2_2,
             ImposeBoundaryCondition,
             rOldLocations);
     }
     bool VerifyBoundaryCondition() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             PlaneBoundaryCondition2_2,
             VerifyBoundaryCondition,
             );
     }
     void OutputCellPopulationBoundaryConditionParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PlaneBoundaryCondition2_2,
             OutputCellPopulationBoundaryConditionParameters,

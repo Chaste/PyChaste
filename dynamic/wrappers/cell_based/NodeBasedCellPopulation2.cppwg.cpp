@@ -20,8 +20,8 @@ typedef unsigned int unsignedint;
 typedef ::CellPtr _CellPtr;
 typedef ::Node<2> * _Node_lt_2_gt_Ptr;
 typedef unsigned int unsignedint;
-typedef ::std::vector<std::pair<Node<2> *, Node<2> *>, std::allocator<std::pair<Node<2> *, Node<2> *> > > & _std_vector_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__std_allocator_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__gt__gt_Ref;
-typedef ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_;
+typedef ::std::vector<std::pair<Node<2> *, Node<2> *>> & _std_vector_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__gt_Ref;
+typedef ::std::set<unsigned int> _std_set_lt_unsignedint_gt_;
 typedef ::CellPtr _CellPtr;
 typedef unsigned int unsignedint;
 
@@ -29,7 +29,7 @@ class NodeBasedCellPopulation2_Overloads : public NodeBasedCellPopulation2{
     public:
     using NodeBasedCellPopulation2::NodeBasedCellPopulation;
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> & rNewLocation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             SetNode,
@@ -37,77 +37,84 @@ class NodeBasedCellPopulation2_Overloads : public NodeBasedCellPopulation2{
 rNewLocation);
     }
     ::TetrahedralMesh<2, 2> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _TetrahedralMesh_lt_2_2_gt_Ptr,
             NodeBasedCellPopulation2,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodeBasedCellPopulation2,
             GetNumNodes,
             );
     }
     ::CellPtr GetCellUsingLocationIndex(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             NodeBasedCellPopulation2,
             GetCellUsingLocationIndex,
             index);
     }
     ::Node<2> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_2_gt_Ptr,
             NodeBasedCellPopulation2,
             GetNode,
             index);
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodeBasedCellPopulation2,
             RemoveDeadCells,
             );
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             Update,
             hasHadBirthsOrDeaths);
     }
-    ::std::vector<std::pair<Node<2> *, Node<2> *>, std::allocator<std::pair<Node<2> *, Node<2> *> > > & rGetNodePairs() override {
-        PYBIND11_OVERLOAD(
-            _std_vector_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__std_allocator_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__gt__gt_Ref,
+    ::std::vector<std::pair<Node<2> *, Node<2> *>> & rGetNodePairs() override {
+        PYBIND11_OVERRIDE(
+            _std_vector_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__gt_Ref,
             NodeBasedCellPopulation2,
             rGetNodePairs,
             );
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             OutputCellPopulationParameters,
             rParamsFile);
     }
-    void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> > pPopulationWriter) override {
-        PYBIND11_OVERLOAD(
+    void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>> pPopulationWriter) override {
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
-    void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> > pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD(
+    void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>> pPopulationCountWriter) override {
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
-    void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2> > pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+    void AcceptPopulationEventWriter(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>> pPopulationEventWriter) override {
+        PYBIND11_OVERRIDE(
+            void,
+            NodeBasedCellPopulation2,
+            AcceptPopulationEventWriter,
+            pPopulationEventWriter);
+    }
+    void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2>> pCellWriter, ::CellPtr pCell) override {
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             AcceptCellWriter,
@@ -115,21 +122,21 @@ rNewLocation);
 pCell);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NodeBasedCellPopulation2,
             GetWidth,
             rDimension);
     }
-    ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD(
-            _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
+    ::std::set<unsigned int> GetNeighbouringNodeIndices(unsigned int index) override {
+        PYBIND11_OVERRIDE(
+            _std_set_lt_unsignedint_gt_,
             NodeBasedCellPopulation2,
             GetNeighbouringNodeIndices,
             index);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             NodeBasedCellPopulation2,
             AddCell,
@@ -137,28 +144,28 @@ pCell);
 pParentCell);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NodeBasedCellPopulation2,
             GetVolumeOfCell,
             pCell);
     }
     void UpdateCellProcessLocation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             UpdateCellProcessLocation,
             );
     }
     void UpdateParticlesAfterReMesh(::NodeMap & rMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             UpdateParticlesAfterReMesh,
             rMap);
     }
     void Validate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodeBasedCellPopulation2,
             Validate,
@@ -167,8 +174,8 @@ pParentCell);
 
 };
 void register_NodeBasedCellPopulation2_class(py::module &m){
-py::class_<NodeBasedCellPopulation2 , NodeBasedCellPopulation2_Overloads , boost::shared_ptr<NodeBasedCellPopulation2 >  , AbstractCentreBasedCellPopulation<2, 2>  >(m, "NodeBasedCellPopulation2")
-        .def(py::init<::NodesOnlyMesh<2> &, ::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, ::std::vector<unsigned int, std::allocator<unsigned int> > const, bool, bool >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices") = std::vector<unsigned int>(), py::arg("deleteMesh") = false, py::arg("validate") = true)
+py::class_<NodeBasedCellPopulation2 , NodeBasedCellPopulation2_Overloads , boost::shared_ptr<NodeBasedCellPopulation2 >   >(m, "NodeBasedCellPopulation2")
+        .def(py::init<::NodesOnlyMesh<2> &, ::std::vector<boost::shared_ptr<Cell>> &, ::std::vector<unsigned int> const, bool, bool >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices") = std::vector<unsigned int>(), py::arg("deleteMesh") = false, py::arg("validate") = true)
         .def(py::init<::NodesOnlyMesh<2> & >(), py::arg("rMesh"))
         .def(
             "SetNode", 
@@ -204,15 +211,19 @@ py::class_<NodeBasedCellPopulation2 , NodeBasedCellPopulation2_Overloads , boost
             " " , py::arg("rParamsFile") )
         .def(
             "AcceptPopulationWriter", 
-            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> >)) &NodeBasedCellPopulation2::AcceptPopulationWriter, 
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>>)) &NodeBasedCellPopulation2::AcceptPopulationWriter, 
             " " , py::arg("pPopulationWriter") )
         .def(
             "AcceptPopulationCountWriter", 
-            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> >)) &NodeBasedCellPopulation2::AcceptPopulationCountWriter, 
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>>)) &NodeBasedCellPopulation2::AcceptPopulationCountWriter, 
             " " , py::arg("pPopulationCountWriter") )
         .def(
+            "AcceptPopulationEventWriter", 
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>>)) &NodeBasedCellPopulation2::AcceptPopulationEventWriter, 
+            " " , py::arg("pPopulationEventWriter") )
+        .def(
             "AcceptCellWriter", 
-            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2> >, ::CellPtr)) &NodeBasedCellPopulation2::AcceptCellWriter, 
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2>>, ::CellPtr)) &NodeBasedCellPopulation2::AcceptCellWriter, 
             " " , py::arg("pCellWriter"), py::arg("pCell") )
         .def(
             "GetMechanicsCutOffLength", 
@@ -244,11 +255,11 @@ py::class_<NodeBasedCellPopulation2 , NodeBasedCellPopulation2_Overloads , boost
             " "  )
         .def(
             "GetNodesWithinNeighbourhoodRadius", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(NodeBasedCellPopulation2::*)(unsigned int, double)) &NodeBasedCellPopulation2::GetNodesWithinNeighbourhoodRadius, 
+            (::std::set<unsigned int>(NodeBasedCellPopulation2::*)(unsigned int, double)) &NodeBasedCellPopulation2::GetNodesWithinNeighbourhoodRadius, 
             " " , py::arg("index"), py::arg("neighbourhoodRadius") )
         .def(
             "GetNeighbouringNodeIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(NodeBasedCellPopulation2::*)(unsigned int)) &NodeBasedCellPopulation2::GetNeighbouringNodeIndices, 
+            (::std::set<unsigned int>(NodeBasedCellPopulation2::*)(unsigned int)) &NodeBasedCellPopulation2::GetNeighbouringNodeIndices, 
             " " , py::arg("index") )
         .def(
             "AddCell", 

@@ -1,0 +1,6 @@
+#ifndef NodeBasedCellPopulationWithParticles3_hpp__pyplusplus_wrapper
+#define NodeBasedCellPopulationWithParticles3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_NodeBasedCellPopulationWithParticles3_class(py::module &m);
+#endif // NodeBasedCellPopulationWithParticles3_hpp__pyplusplus_wrapper

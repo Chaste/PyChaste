@@ -19,7 +19,7 @@ class AbstractVertexBasedDivisionRule2_Overloads : public AbstractVertexBasedDiv
     public:
     using AbstractVertexBasedDivisionRule2::AbstractVertexBasedDivisionRule;
     ::boost::numeric::ublas::c_vector<double, 2> CalculateCellDivisionVector(::CellPtr pParentCell, ::VertexBasedCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractVertexBasedDivisionRule2,
             CalculateCellDivisionVector,
@@ -27,7 +27,7 @@ class AbstractVertexBasedDivisionRule2_Overloads : public AbstractVertexBasedDiv
 rCellPopulation);
     }
     void OutputCellVertexBasedDivisionRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractVertexBasedDivisionRule2,
             OutputCellVertexBasedDivisionRuleParameters,

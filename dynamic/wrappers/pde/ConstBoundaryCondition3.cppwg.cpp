@@ -18,7 +18,7 @@ class ConstBoundaryCondition3_Overloads : public ConstBoundaryCondition3{
     public:
     using ConstBoundaryCondition3::ConstBoundaryCondition;
     double GetValue(::ChastePoint<3> const & rX) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ConstBoundaryCondition3,
             GetValue,

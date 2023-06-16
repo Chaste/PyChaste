@@ -67,9 +67,9 @@ test:
     - chaste
 
 about:
-  home: http://www.cs.ox.ac.uk/chaste/
+  home: https://chaste.github.io
   license: BSD-3-Clause
   summary: >
     Chaste is a general purpose simulation package for computational biology.
   dev_url: https://github.com/Chaste/Chaste
-  doc_url: https://chaste.github.io
+  doc_url: https://chaste.github.io/docs/

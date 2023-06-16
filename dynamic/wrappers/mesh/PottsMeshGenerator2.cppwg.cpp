@@ -13,13 +13,13 @@
 namespace py = pybind11;
 typedef SharedPottsMeshGenerator<2 > PottsMeshGenerator2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-typedef ::boost::shared_ptr<PottsMesh<2> > _boost_shared_ptr_lt_PottsMesh_lt_2_gt__gt_;
+typedef ::boost::shared_ptr<PottsMesh<2>> _boost_shared_ptr_lt_PottsMesh_lt_2_gt__gt_;
 
 class PottsMeshGenerator2_Overloads : public PottsMeshGenerator2{
     public:
     using PottsMeshGenerator2::SharedPottsMeshGenerator;
-    ::boost::shared_ptr<PottsMesh<2> > GetMesh() override {
-        PYBIND11_OVERLOAD(
+    ::boost::shared_ptr<PottsMesh<2>> GetMesh() override {
+        PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_PottsMesh_lt_2_gt__gt_,
             PottsMeshGenerator2,
             GetMesh,
@@ -33,7 +33,7 @@ py::class_<PottsMeshGenerator2 , PottsMeshGenerator2_Overloads , boost::shared_p
         .def(py::init< >())
         .def(
             "GetMesh", 
-            (::boost::shared_ptr<PottsMesh<2> >(PottsMeshGenerator2::*)()) &PottsMeshGenerator2::GetMesh, 
+            (::boost::shared_ptr<PottsMesh<2>>(PottsMeshGenerator2::*)()) &PottsMeshGenerator2::GetMesh, 
             " "  )
     ;
 }

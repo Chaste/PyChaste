@@ -18,7 +18,7 @@ class AbstractPyChasteActorGenerator2_Overloads : public AbstractPyChasteActorGe
     public:
     using AbstractPyChasteActorGenerator2::AbstractPyChasteActorGenerator;
     void AddActor(::vtkSmartPointer<vtkRenderer> pRenderer) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractPyChasteActorGenerator2,
             AddActor,

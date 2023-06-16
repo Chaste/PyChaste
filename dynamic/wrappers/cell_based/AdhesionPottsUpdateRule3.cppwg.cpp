@@ -18,7 +18,7 @@ class AdhesionPottsUpdateRule3_Overloads : public AdhesionPottsUpdateRule3{
     public:
     using AdhesionPottsUpdateRule3::AdhesionPottsUpdateRule;
     double EvaluateHamiltonianContribution(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::PottsBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AdhesionPottsUpdateRule3,
             EvaluateHamiltonianContribution,
@@ -27,7 +27,7 @@ targetNodeIndex,
 rCellPopulation);
     }
     double GetCellCellAdhesionEnergy(::CellPtr pCellA, ::CellPtr pCellB) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AdhesionPottsUpdateRule3,
             GetCellCellAdhesionEnergy,
@@ -35,14 +35,14 @@ rCellPopulation);
 pCellB);
     }
     double GetCellBoundaryAdhesionEnergy(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AdhesionPottsUpdateRule3,
             GetCellBoundaryAdhesionEnergy,
             pCell);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AdhesionPottsUpdateRule3,
             OutputUpdateRuleParameters,

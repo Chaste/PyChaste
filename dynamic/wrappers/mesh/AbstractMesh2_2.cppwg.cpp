@@ -26,56 +26,56 @@ class AbstractMesh2_2_Overloads : public AbstractMesh2_2{
     public:
     using AbstractMesh2_2::AbstractMesh;
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractMesh2_2,
             GetNumNodes,
             );
     }
     unsigned int GetNumAllNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractMesh2_2,
             GetNumAllNodes,
             );
     }
     ::Node<2> * GetNodeOrHaloNode(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_2_gt_Ptr,
             AbstractMesh2_2,
             GetNodeOrHaloNode,
             index);
     }
     void ReadNodesPerProcessorFile(::std::string const & rNodesPerProcessorFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             ReadNodesPerProcessorFile,
             rNodesPerProcessorFile);
     }
     ::DistributedVectorFactory * GetDistributedVectorFactory() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _DistributedVectorFactoryPtr,
             AbstractMesh2_2,
             GetDistributedVectorFactory,
             );
     }
     void SetDistributedVectorFactory(::DistributedVectorFactory * pFactory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             SetDistributedVectorFactory,
             pFactory);
     }
     void PermuteNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             PermuteNodes,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocationA, ::boost::numeric::ublas::c_vector<double, 2> const & rLocationB) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractMesh2_2,
             GetVectorFromAtoB,
@@ -83,28 +83,28 @@ class AbstractMesh2_2_Overloads : public AbstractMesh2_2{
 rLocationB);
     }
     double GetWidth(unsigned int const & rDimension) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractMesh2_2,
             GetWidth,
             rDimension);
     }
     ::ChasteCuboid<2> CalculateBoundingBox() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _ChasteCuboid_lt_2_gt_,
             AbstractMesh2_2,
             CalculateBoundingBox,
             );
     }
     unsigned int GetNearestNodeIndex(::ChastePoint<2> const & rTestPoint) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             AbstractMesh2_2,
             GetNearestNodeIndex,
             rTestPoint);
     }
     void Scale(double const xFactor, double const yFactor, double const zFactor) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             Scale,
@@ -113,28 +113,28 @@ yFactor,
 zFactor);
     }
     void Translate(::boost::numeric::ublas::c_vector<double, 2> const & rDisplacement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             Translate,
             rDisplacement);
     }
     void Rotate(::boost::numeric::ublas::c_matrix<double, 2, 2> rotationMatrix) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             Rotate,
             rotationMatrix);
     }
     void RefreshMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             RefreshMesh,
             );
     }
     void SetElementOwnerships() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractMesh2_2,
             SetElementOwnerships,
@@ -214,7 +214,7 @@ py::class_<AbstractMesh2_2 , AbstractMesh2_2_Overloads , boost::shared_ptr<Abstr
             " "  )
         .def(
             "rGetNodePermutation", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > const &(AbstractMesh2_2::*)() const ) &AbstractMesh2_2::rGetNodePermutation, 
+            (::std::vector<unsigned int> const &(AbstractMesh2_2::*)() const ) &AbstractMesh2_2::rGetNodePermutation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetVectorFromAtoB", 

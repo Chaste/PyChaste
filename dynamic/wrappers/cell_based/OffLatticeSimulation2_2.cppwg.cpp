@@ -18,35 +18,35 @@ class OffLatticeSimulation2_2_Overloads : public OffLatticeSimulation2_2{
     public:
     using OffLatticeSimulation2_2::OffLatticeSimulation;
     void OutputAdditionalSimulationSetup(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OffLatticeSimulation2_2,
             OutputAdditionalSimulationSetup,
             rParamsFile);
     }
     void OutputSimulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OffLatticeSimulation2_2,
             OutputSimulationParameters,
             rParamsFile);
     }
     void UpdateCellLocationsAndTopology() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OffLatticeSimulation2_2,
             UpdateCellLocationsAndTopology,
             );
     }
     void SetupSolve() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OffLatticeSimulation2_2,
             SetupSolve,
             );
     }
     void WriteVisualizerSetupFile() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OffLatticeSimulation2_2,
             WriteVisualizerSetupFile,

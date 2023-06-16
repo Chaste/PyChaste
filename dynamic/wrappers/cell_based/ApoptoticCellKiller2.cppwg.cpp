@@ -18,14 +18,14 @@ class ApoptoticCellKiller2_Overloads : public ApoptoticCellKiller2{
     public:
     using ApoptoticCellKiller2::ApoptoticCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ApoptoticCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ApoptoticCellKiller2,
             OutputCellKillerParameters,
@@ -35,7 +35,7 @@ class ApoptoticCellKiller2_Overloads : public ApoptoticCellKiller2{
 };
 void register_ApoptoticCellKiller2_class(py::module &m){
 py::class_<ApoptoticCellKiller2 , ApoptoticCellKiller2_Overloads , boost::shared_ptr<ApoptoticCellKiller2 >  , AbstractCellKiller<2>  >(m, "ApoptoticCellKiller2")
-        .def(py::init<::AbstractCellPopulation<2, 2> * >(), py::arg("pCellPopulation"))
+        .def(py::init<::AbstractCellPopulation<2> * >(), py::arg("pCellPopulation"))
         .def(
             "CheckAndLabelSingleCellForApoptosis", 
             (void(ApoptoticCellKiller2::*)(::CellPtr)) &ApoptoticCellKiller2::CheckAndLabelSingleCellForApoptosis, 

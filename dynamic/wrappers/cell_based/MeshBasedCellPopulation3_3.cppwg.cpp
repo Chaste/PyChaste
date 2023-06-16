@@ -28,21 +28,21 @@ class MeshBasedCellPopulation3_3_Overloads : public MeshBasedCellPopulation3_3{
     public:
     using MeshBasedCellPopulation3_3::MeshBasedCellPopulation;
     ::TetrahedralMesh<3, 3> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _TetrahedralMesh_lt_3_3_gt_Ptr,
             MeshBasedCellPopulation3_3,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     unsigned int AddNode(::Node<3> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MeshBasedCellPopulation3_3,
             AddNode,
             pNewNode);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<3> & rNewLocation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             SetNode,
@@ -50,28 +50,28 @@ class MeshBasedCellPopulation3_3_Overloads : public MeshBasedCellPopulation3_3{
 rNewLocation);
     }
     double GetDampingConstant(unsigned int nodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             MeshBasedCellPopulation3_3,
             GetDampingConstant,
             nodeIndex);
     }
     void OpenWritersFiles(::OutputFileHandler & rOutputFileHandler) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             OpenWritersFiles,
             rOutputFileHandler);
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MeshBasedCellPopulation3_3,
             RemoveDeadCells,
             );
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             MeshBasedCellPopulation3_3,
             AddCell,
@@ -79,28 +79,28 @@ rNewLocation);
 pParentCell);
     }
     void WriteResultsToFiles(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             WriteResultsToFiles,
             rDirectory);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<3, 3> > pPopulationWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<3, 3> > pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<3, 3> > pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             AcceptCellWriter,
@@ -108,84 +108,84 @@ pParentCell);
 pCell);
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             Update,
             hasHadBirthsOrDeaths);
     }
     ::Node<3> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_3_gt_Ptr,
             MeshBasedCellPopulation3_3,
             GetNode,
             index);
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MeshBasedCellPopulation3_3,
             GetNumNodes,
             );
     }
     void WriteVtkResultsToFile(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             WriteVtkResultsToFile,
             rDirectory);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             MeshBasedCellPopulation3_3,
             GetVolumeOfCell,
             pCell);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             MeshBasedCellPopulation3_3,
             GetWidth,
             rDimension);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             WriteDataToVisualizerSetupFile,
             pVizSetupFile);
     }
     ::std::vector<std::pair<Node<3> *, Node<3> *>, std::allocator<std::pair<Node<3> *, Node<3> *> > > & rGetNodePairs() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_vector_lt_std_pair_lt_Node_lt_3_gt_Ptr_Node_lt_3_gt_Ptr_gt__std_allocator_lt_std_pair_lt_Node_lt_3_gt_Ptr_Node_lt_3_gt_Ptr_gt__gt__gt_Ref,
             MeshBasedCellPopulation3_3,
             rGetNodePairs,
             );
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
             MeshBasedCellPopulation3_3,
             GetNeighbouringNodeIndices,
             index);
     }
     void UpdateGhostNodesAfterReMesh(::NodeMap & rMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             UpdateGhostNodesAfterReMesh,
             rMap);
     }
     void Validate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation3_3,
             Validate,

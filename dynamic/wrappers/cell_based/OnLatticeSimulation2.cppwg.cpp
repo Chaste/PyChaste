@@ -18,28 +18,28 @@ class OnLatticeSimulation2_Overloads : public OnLatticeSimulation2{
     public:
     using OnLatticeSimulation2::OnLatticeSimulation;
     void OutputAdditionalSimulationSetup(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation2,
             OutputAdditionalSimulationSetup,
             rParamsFile);
     }
     void OutputSimulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation2,
             OutputSimulationParameters,
             rParamsFile);
     }
     void UpdateCellPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation2,
             UpdateCellPopulation,
             );
     }
     void UpdateCellLocationsAndTopology() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             OnLatticeSimulation2,
             UpdateCellLocationsAndTopology,
@@ -49,10 +49,10 @@ class OnLatticeSimulation2_Overloads : public OnLatticeSimulation2{
 };
 void register_OnLatticeSimulation2_class(py::module &m){
 py::class_<OnLatticeSimulation2 , OnLatticeSimulation2_Overloads , boost::shared_ptr<OnLatticeSimulation2 >  , AbstractCellBasedSimulation<2, 2>  >(m, "OnLatticeSimulation2")
-        .def(py::init<::AbstractCellPopulation<2, 2> &, bool, bool >(), py::arg("rCellPopulation"), py::arg("deleteCellPopulationInDestructor") = false, py::arg("initialiseCells") = true)
+        .def(py::init<::AbstractCellPopulation<2> &, bool, bool >(), py::arg("rCellPopulation"), py::arg("deleteCellPopulationInDestructor") = false, py::arg("initialiseCells") = true)
         .def(
             "AddUpdateRule", 
-            (void(OnLatticeSimulation2::*)(::boost::shared_ptr<AbstractUpdateRule<2> >)) &OnLatticeSimulation2::AddUpdateRule, 
+            (void(OnLatticeSimulation2::*)(::boost::shared_ptr<AbstractUpdateRule<2>>)) &OnLatticeSimulation2::AddUpdateRule, 
             " " , py::arg("pUpdateRule") )
         .def(
             "RemoveAllUpdateRules", 

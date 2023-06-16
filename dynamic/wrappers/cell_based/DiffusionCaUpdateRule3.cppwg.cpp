@@ -18,7 +18,7 @@ class DiffusionCaUpdateRule3_Overloads : public DiffusionCaUpdateRule3{
     public:
     using DiffusionCaUpdateRule3::DiffusionCaUpdateRule;
     double EvaluateProbability(unsigned int currentNodeIndex, unsigned int targetNodeIndex, ::CaBasedCellPopulation<3> & rCellPopulation, double dt, double deltaX, ::CellPtr cell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             DiffusionCaUpdateRule3,
             EvaluateProbability,
@@ -30,7 +30,7 @@ deltaX,
 cell);
     }
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DiffusionCaUpdateRule3,
             OutputUpdateRuleParameters,

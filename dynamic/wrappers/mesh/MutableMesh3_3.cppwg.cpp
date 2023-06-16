@@ -22,42 +22,42 @@ class MutableMesh3_3_Overloads : public MutableMesh3_3{
     public:
     using MutableMesh3_3::MutableMesh;
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh3_3,
             Clear,
             );
     }
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh3_3,
             GetNumNodes,
             );
     }
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh3_3,
             GetNumElements,
             );
     }
     unsigned int GetNumBoundaryElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh3_3,
             GetNumBoundaryElements,
             );
     }
     unsigned int AddNode(::Node<3> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableMesh3_3,
             AddNode,
             pNewNode);
     }
     void SetNode(unsigned int index, ::ChastePoint<3> point, bool concreteMove) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh3_3,
             SetNode,
@@ -66,21 +66,21 @@ point,
 concreteMove);
     }
     void DeleteNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh3_3,
             DeleteNode,
             index);
     }
     void DeleteElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh3_3,
             DeleteElement,
             index);
     }
     void ReMesh(::NodeMap & map) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableMesh3_3,
             ReMesh,
@@ -91,7 +91,7 @@ concreteMove);
 void register_MutableMesh3_3_class(py::module &m){
 py::class_<MutableMesh3_3 , MutableMesh3_3_Overloads , boost::shared_ptr<MutableMesh3_3 >  , TetrahedralMesh<3, 3>  >(m, "MutableMesh3_3")
         .def(py::init< >())
-        .def(py::init<::std::vector<Node<3> *, std::allocator<Node<3> *> > >(), py::arg("nodes"))
+        .def(py::init<::std::vector<Node<3> *> >(), py::arg("nodes"))
         .def(
             "Clear", 
             (void(MutableMesh3_3::*)()) &MutableMesh3_3::Clear, 

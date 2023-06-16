@@ -22,14 +22,14 @@ class AbstractCentreBasedCellPopulation3_3_Overloads : public AbstractCentreBase
     public:
     using AbstractCentreBasedCellPopulation3_3::AbstractCentreBasedCellPopulation;
     ::boost::numeric::ublas::c_vector<double, 3> GetLocationOfCellCentre(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             AbstractCentreBasedCellPopulation3_3,
             GetLocationOfCellCentre,
             pCell);
     }
     double GetCellDataItemAtPdeNode(unsigned int pdeNodeIndex, ::std::string & rVariableName, bool dirichletBoundaryConditionApplies, double dirichletBoundaryValue) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractCentreBasedCellPopulation3_3,
             GetCellDataItemAtPdeNode,
@@ -39,7 +39,7 @@ dirichletBoundaryConditionApplies,
 dirichletBoundaryValue);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             AbstractCentreBasedCellPopulation3_3,
             AddCell,
@@ -47,21 +47,21 @@ dirichletBoundaryValue);
 pParentCell);
     }
     bool IsCellAssociatedWithADeletedLocation(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCentreBasedCellPopulation3_3,
             IsCellAssociatedWithADeletedLocation,
             pCell);
     }
     ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringLocationIndices(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
             AbstractCentreBasedCellPopulation3_3,
             GetNeighbouringLocationIndices,
             pCell);
     }
     void CheckForStepSizeException(unsigned int nodeIndex, ::boost::numeric::ublas::c_vector<double, 3> & rDisplacement, double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCentreBasedCellPopulation3_3,
             CheckForStepSizeException,
@@ -70,56 +70,56 @@ rDisplacement,
 dt);
     }
     double GetDampingConstant(unsigned int nodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractCentreBasedCellPopulation3_3,
             GetDampingConstant,
             nodeIndex);
     }
     bool IsGhostNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCentreBasedCellPopulation3_3,
             IsGhostNode,
             index);
     }
     bool IsParticle(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCentreBasedCellPopulation3_3,
             IsParticle,
             index);
     }
     ::std::vector<std::pair<Node<3> *, Node<3> *>, std::allocator<std::pair<Node<3> *, Node<3> *> > > & rGetNodePairs() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _std_vector_lt_std_pair_lt_Node_lt_3_gt_Ptr_Node_lt_3_gt_Ptr_gt__std_allocator_lt_std_pair_lt_Node_lt_3_gt_Ptr_Node_lt_3_gt_Ptr_gt__gt__gt_Ref,
             AbstractCentreBasedCellPopulation3_3,
             rGetNodePairs,
             );
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCentreBasedCellPopulation3_3,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     double GetDefaultTimeStep() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractCentreBasedCellPopulation3_3,
             GetDefaultTimeStep,
             );
     }
     void WriteVtkResultsToFile(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCentreBasedCellPopulation3_3,
             WriteVtkResultsToFile,
             rDirectory);
     }
     void AcceptCellWritersAcrossPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCentreBasedCellPopulation3_3,
             AcceptCellWritersAcrossPopulation,

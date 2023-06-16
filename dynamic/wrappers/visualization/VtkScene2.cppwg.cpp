@@ -22,7 +22,6 @@ PYBIND11_VTK_TYPECASTER(vtkRenderer);
 PYBIND11_VTK_TYPECASTER(vtkOpenGLRenderer);
 PYBIND11_VTK_TYPECASTER(vtkUnsignedCharArray);
 
-
 // Only needed if the type's `.get()` goes by another name
 namespace PYBIND11_NAMESPACE { namespace detail {
     template <typename T>
@@ -35,7 +34,7 @@ class VtkScene2_Overloads : public VtkScene2{
     public:
     using VtkScene2::VtkScene;
     void ResetRenderer(unsigned int timeStep) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkScene2,
             ResetRenderer,

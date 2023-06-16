@@ -19,7 +19,7 @@ class CellwiseSourceEllipticPde2_Overloads : public CellwiseSourceEllipticPde2{
     public:
     using CellwiseSourceEllipticPde2::CellwiseSourceEllipticPde;
     double ComputeConstantInUSourceTerm(::ChastePoint<2> const & rX, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceEllipticPde2,
             ComputeConstantInUSourceTerm,
@@ -27,7 +27,7 @@ class CellwiseSourceEllipticPde2_Overloads : public CellwiseSourceEllipticPde2{
 pElement);
     }
     double ComputeLinearInUCoeffInSourceTerm(::ChastePoint<2> const & rX, ::Element<2, 2> * pElement) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceEllipticPde2,
             ComputeLinearInUCoeffInSourceTerm,
@@ -35,14 +35,14 @@ pElement);
 pElement);
     }
     double ComputeLinearInUCoeffInSourceTermAtNode(::Node<2> const & rNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             CellwiseSourceEllipticPde2,
             ComputeLinearInUCoeffInSourceTermAtNode,
             rNode);
     }
     ::boost::numeric::ublas::c_matrix<double, 2, 2> ComputeDiffusionTerm(::ChastePoint<2> const & rX) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_matrix_lt_double_2_2_gt_,
             CellwiseSourceEllipticPde2,
             ComputeDiffusionTerm,
@@ -52,10 +52,10 @@ pElement);
 };
 void register_CellwiseSourceEllipticPde2_class(py::module &m){
 py::class_<CellwiseSourceEllipticPde2 , CellwiseSourceEllipticPde2_Overloads , boost::shared_ptr<CellwiseSourceEllipticPde2 >   >(m, "CellwiseSourceEllipticPde2")
-        .def(py::init<::AbstractCellPopulation<2, 2> &, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0.)
+        .def(py::init<::AbstractCellPopulation<2> &, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0.)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<2, 2> const &(CellwiseSourceEllipticPde2::*)() const ) &CellwiseSourceEllipticPde2::rGetCellPopulation, 
+            (::AbstractCellPopulation<2> const &(CellwiseSourceEllipticPde2::*)() const ) &CellwiseSourceEllipticPde2::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetCoefficient", 

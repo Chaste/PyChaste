@@ -19,7 +19,7 @@ class BuskeAdhesiveForce2_Overloads : public BuskeAdhesiveForce2{
     public:
     using BuskeAdhesiveForce2::BuskeAdhesiveForce;
     ::boost::numeric::ublas::c_vector<double, 2> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             BuskeAdhesiveForce2,
             CalculateForceBetweenNodes,
@@ -28,7 +28,7 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeAdhesiveForce2,
             OutputForceParameters,
@@ -37,7 +37,7 @@ rCellPopulation);
 
 };
 void register_BuskeAdhesiveForce2_class(py::module &m){
-py::class_<BuskeAdhesiveForce2 , BuskeAdhesiveForce2_Overloads , boost::shared_ptr<BuskeAdhesiveForce2 >  , AbstractTwoBodyInteractionForce<2, 2>  >(m, "BuskeAdhesiveForce2")
+py::class_<BuskeAdhesiveForce2 , BuskeAdhesiveForce2_Overloads , boost::shared_ptr<BuskeAdhesiveForce2 > , AbstractTwoBodyInteractionForce<2, 2>  >(m, "BuskeAdhesiveForce2")
         .def(py::init< >())
         .def(
             "GetAdhesionEnergyParameter", 

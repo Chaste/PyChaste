@@ -19,21 +19,21 @@ class AttractingPlaneBoundaryCondition3_3_Overloads : public AttractingPlaneBoun
     public:
     using AttractingPlaneBoundaryCondition3_3::AttractingPlaneBoundaryCondition;
     void ImposeBoundaryCondition(::std::map<Node<3> *, boost::numeric::ublas::c_vector<double, 3>, std::less<Node<3> *>, std::allocator<std::pair<Node<3> *const, boost::numeric::ublas::c_vector<double, 3> > > > const & rOldLocations) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AttractingPlaneBoundaryCondition3_3,
             ImposeBoundaryCondition,
             rOldLocations);
     }
     bool VerifyBoundaryCondition() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AttractingPlaneBoundaryCondition3_3,
             VerifyBoundaryCondition,
             );
     }
     void OutputCellPopulationBoundaryConditionParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AttractingPlaneBoundaryCondition3_3,
             OutputCellPopulationBoundaryConditionParameters,

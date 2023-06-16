@@ -19,14 +19,14 @@ class NullSrnModel_Overloads : public NullSrnModel{
     public:
     using NullSrnModel::NullSrnModel;
     void SimulateToCurrentTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NullSrnModel,
             SimulateToCurrentTime,
             );
     }
     ::AbstractSrnModel * CreateSrnModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractSrnModelPtr,
             NullSrnModel,
             CreateSrnModel,

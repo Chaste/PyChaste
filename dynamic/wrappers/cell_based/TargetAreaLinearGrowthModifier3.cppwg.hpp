@@ -1,0 +1,6 @@
+#ifndef TargetAreaLinearGrowthModifier3_hpp__pyplusplus_wrapper
+#define TargetAreaLinearGrowthModifier3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_TargetAreaLinearGrowthModifier3_class(py::module &m);
+#endif // TargetAreaLinearGrowthModifier3_hpp__pyplusplus_wrapper

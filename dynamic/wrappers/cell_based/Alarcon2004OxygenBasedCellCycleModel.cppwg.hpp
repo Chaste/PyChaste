@@ -1,0 +1,6 @@
+#ifndef Alarcon2004OxygenBasedCellCycleModel_hpp__pyplusplus_wrapper
+#define Alarcon2004OxygenBasedCellCycleModel_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_Alarcon2004OxygenBasedCellCycleModel_class(py::module &m);
+#endif // Alarcon2004OxygenBasedCellCycleModel_hpp__pyplusplus_wrapper

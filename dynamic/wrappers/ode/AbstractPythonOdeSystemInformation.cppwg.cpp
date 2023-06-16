@@ -18,7 +18,7 @@ class AbstractPythonOdeSystemInformation_Overloads : public AbstractPythonOdeSys
     public:
     using AbstractPythonOdeSystemInformation::AbstractPythonOdeSystemInformation;
     void Initialise() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractPythonOdeSystemInformation,
             Initialise,

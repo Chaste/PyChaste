@@ -22,36 +22,36 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class VoronoiDataWriter3_3_Overloads : public VoronoiDataWriter3_3{
     public:
     using VoronoiDataWriter3_3::VoronoiDataWriter;
-    void Visit(::MeshBasedCellPopulation<3, 3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+    void Visit(::MeshBasedCellPopulation<3> * pCellPopulation) override {
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::CaBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::NodeBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::PottsBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
             pCellPopulation);
     }
     void Visit(::VertexBasedCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VoronoiDataWriter3_3,
             Visit,
@@ -64,7 +64,7 @@ py::class_<VoronoiDataWriter3_3 , VoronoiDataWriter3_3_Overloads , boost::shared
         .def(py::init< >())
         .def(
             "Visit", 
-            (void(VoronoiDataWriter3_3::*)(::MeshBasedCellPopulation<3, 3> *)) &VoronoiDataWriter3_3::Visit, 
+            (void(VoronoiDataWriter3_3::*)(::MeshBasedCellPopulation<3> *)) &VoronoiDataWriter3_3::Visit, 
             " " , py::arg("pCellPopulation") )
         .def(
             "Visit", 

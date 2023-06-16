@@ -1,0 +1,6 @@
+#ifndef AbstractBoxDomainPdeModifier3_hpp__pyplusplus_wrapper
+#define AbstractBoxDomainPdeModifier3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_AbstractBoxDomainPdeModifier3_class(py::module &m);
+#endif // AbstractBoxDomainPdeModifier3_hpp__pyplusplus_wrapper
