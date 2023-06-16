@@ -239,7 +239,7 @@ dirichletBoundaryValue);
 
 };
 void register_VertexBasedCellPopulation2_class(py::module &m){
-py::class_<VertexBasedCellPopulation2 , VertexBasedCellPopulation2_Overloads , boost::shared_ptr<VertexBasedCellPopulation2 >   >(m, "VertexBasedCellPopulation2")
+py::class_<VertexBasedCellPopulation2 , VertexBasedCellPopulation2_Overloads , boost::shared_ptr<VertexBasedCellPopulation2 > , AbstractOffLatticeCellPopulation<2, 2>  >(m, "VertexBasedCellPopulation2")
         .def(py::init<::MutableVertexMesh<2, 2> &, ::std::vector<boost::shared_ptr<Cell>> &, bool, bool, ::std::vector<unsigned int> const >(), py::arg("rMesh"), py::arg("rCells"), py::arg("deleteMesh") = false, py::arg("validate") = true, py::arg("locationIndices") = std::vector<unsigned int>())
         .def(py::init<::MutableVertexMesh<2, 2> &, ::VertexBasedPopulationSrn<2> & >(), py::arg("rMesh"), py::arg("rPopSrn"))
         .def(
