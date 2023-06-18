@@ -1,0 +1,6 @@
+#ifndef HeterotypicBoundaryLengthWriter2_2_hpp__pyplusplus_wrapper
+#define HeterotypicBoundaryLengthWriter2_2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_HeterotypicBoundaryLengthWriter2_2_class(py::module &m);
+#endif // HeterotypicBoundaryLengthWriter2_2_hpp__pyplusplus_wrapper

@@ -1,0 +1,6 @@
+#ifndef CellPopulationElementWriter3_3_hpp__pyplusplus_wrapper
+#define CellPopulationElementWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellPopulationElementWriter3_3_class(py::module &m);
+#endif // CellPopulationElementWriter3_3_hpp__pyplusplus_wrapper

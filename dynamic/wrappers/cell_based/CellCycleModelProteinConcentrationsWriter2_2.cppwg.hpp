@@ -1,0 +1,6 @@
+#ifndef CellCycleModelProteinConcentrationsWriter2_2_hpp__pyplusplus_wrapper
+#define CellCycleModelProteinConcentrationsWriter2_2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellCycleModelProteinConcentrationsWriter2_2_class(py::module &m);
+#endif // CellCycleModelProteinConcentrationsWriter2_2_hpp__pyplusplus_wrapper

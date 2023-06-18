@@ -1,0 +1,6 @@
+#ifndef VertexIntersectionSwapLocationsWriter3_3_hpp__pyplusplus_wrapper
+#define VertexIntersectionSwapLocationsWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_VertexIntersectionSwapLocationsWriter3_3_class(py::module &m);
+#endif // VertexIntersectionSwapLocationsWriter3_3_hpp__pyplusplus_wrapper
