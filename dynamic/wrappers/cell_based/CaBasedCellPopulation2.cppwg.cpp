@@ -1,6 +1,41 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include "AbstractCellBasedSimulation.hpp"
+#include "AbstractVertexBasedDivisionRule.hpp"
+#include "BoundaryNodeWriter.hpp"
+#include "CellAgesWriter.hpp"
+#include "CellAncestorWriter.hpp"
+#include "CellAppliedForceWriter.hpp"
+#include "CellCycleModelProteinConcentrationsWriter.hpp"
+#include "CellDataItemWriter.hpp"
+#include "CellDeltaNotchWriter.hpp"
+#include "CellDivisionLocationsWriter.hpp"
+#include "CellIdWriter.hpp"
 #include "CellLabelWriter.hpp"
+#include "CellLocationIndexWriter.hpp"
+#include "CellMutationStatesCountWriter.hpp"
+#include "CellMutationStatesWriter.hpp"
+#include "CellPopulationAdjacencyMatrixWriter.hpp"
+#include "CellPopulationAreaWriter.hpp"
+#include "CellPopulationElementWriter.hpp"
+#include "CellProliferativePhasesCountWriter.hpp"
+#include "CellProliferativePhasesWriter.hpp"
+#include "CellProliferativeTypesCountWriter.hpp"
+#include "CellProliferativeTypesWriter.hpp"
+#include "CellRadiusWriter.hpp"
+#include "CellRemovalLocationsWriter.hpp"
+#include "CellRosetteRankWriter.hpp"
+#include "CellVolumesWriter.hpp"
+#include "HeterotypicBoundaryLengthWriter.hpp"
+#include "LegacyCellProliferativeTypesWriter.hpp"
+#include "NodeLocationWriter.hpp"
+#include "NodeVelocityWriter.hpp"
+#include "PottsMeshWriter.hpp"
+#include "RadialCellDataDistributionWriter.hpp"
+#include "VertexIntersectionSwapLocationsWriter.hpp"
+#include "VertexT1SwapLocationsWriter.hpp"
+#include "VertexT2SwapLocationsWriter.hpp"
+#include "VertexT3SwapLocationsWriter.hpp"
 #include "VoronoiDataWriter.hpp"
 #include <set>
 #include <vector>
@@ -355,7 +390,39 @@ py::class_<CaBasedCellPopulation2 , CaBasedCellPopulation2_Overloads , boost::sh
             "IsPdeNodeAssociatedWithNonApoptoticCell", 
             (bool(CaBasedCellPopulation2::*)(unsigned int)) &CaBasedCellPopulation2::IsPdeNodeAssociatedWithNonApoptoticCell, 
             " " , py::arg("pdeNodeIndex") )
-        .def("AddPopulationWriterVoronoiDataWriter", &CaBasedCellPopulation2::AddPopulationWriter<VoronoiDataWriter>)
+        .def("AddCellWriterCellAgesWriter", &CaBasedCellPopulation2::AddCellWriter<CellAgesWriter>)
+        .def("AddCellWriterCellAncestorWriter", &CaBasedCellPopulation2::AddCellWriter<CellAncestorWriter>)
+        .def("AddCellWriterCellAppliedForceWriter", &CaBasedCellPopulation2::AddCellWriter<CellAppliedForceWriter>)
+        .def("AddCellWriterCellCycleModelProteinConcentrationsWriter", &CaBasedCellPopulation2::AddCellWriter<CellCycleModelProteinConcentrationsWriter>)
+        .def("AddCellWriterCellDataItemWriter", &CaBasedCellPopulation2::AddCellWriter<CellDataItemWriter>)
+        .def("AddCellWriterCellDeltaNotchWriter", &CaBasedCellPopulation2::AddCellWriter<CellDeltaNotchWriter>)
+        .def("AddCellWriterCellIdWriter", &CaBasedCellPopulation2::AddCellWriter<CellIdWriter>)
         .def("AddCellWriterCellLabelWriter", &CaBasedCellPopulation2::AddCellWriter<CellLabelWriter>)
+        .def("AddCellWriterCellLocationIndexWriter", &CaBasedCellPopulation2::AddCellWriter<CellLocationIndexWriter>)
+        .def("AddCellWriterCellMutationStatesWriter", &CaBasedCellPopulation2::AddCellWriter<CellMutationStatesWriter>)
+        .def("AddCellWriterCellProliferativePhasesWriter", &CaBasedCellPopulation2::AddCellWriter<CellProliferativePhasesWriter>)
+        .def("AddCellWriterCellProliferativeTypesWriter", &CaBasedCellPopulation2::AddCellWriter<CellProliferativeTypesWriter>)
+        .def("AddCellWriterCellRadiusWriter", &CaBasedCellPopulation2::AddCellWriter<CellRadiusWriter>)
+        .def("AddCellWriterCellRosetteRankWriter", &CaBasedCellPopulation2::AddCellWriter<CellRosetteRankWriter>)
+        .def("AddCellWriterCellVolumesWriter", &CaBasedCellPopulation2::AddCellWriter<CellVolumesWriter>)
+        .def("AddCellWriterLegacyCellProliferativeTypesWriter", &CaBasedCellPopulation2::AddCellWriter<LegacyCellProliferativeTypesWriter>)
+        .def("AddCellPopulationCountWriterCellMutationStatesCountWriter", &CaBasedCellPopulation2::AddCellPopulationCountWriter<CellMutationStatesCountWriter>)
+        .def("AddCellPopulationCountWriterCellProliferativeTypesCountWriter", &CaBasedCellPopulation2::AddCellPopulationCountWriter<CellProliferativeTypesCountWriter>)
+        .def("AddCellPopulationCountWriterCellProliferativePhasesCountWriter", &CaBasedCellPopulation2::AddCellPopulationCountWriter<CellProliferativePhasesCountWriter>)
+        .def("AddCellPopulationEventWriterCellDivisionLocationsWriter", &CaBasedCellPopulation2::AddCellPopulationEventWriter<CellDivisionLocationsWriter>)
+        .def("AddCellPopulationEventWriterCellRemovalLocationsWriter", &CaBasedCellPopulation2::AddCellPopulationEventWriter<CellRemovalLocationsWriter>)
+        .def("AddPopulationWriterBoundaryNodeWriter", &CaBasedCellPopulation2::AddPopulationWriter<BoundaryNodeWriter>)
+        .def("AddPopulationWriterCellPopulationAdjacencyMatrixWriter", &CaBasedCellPopulation2::AddPopulationWriter<CellPopulationAdjacencyMatrixWriter>)
+        .def("AddPopulationWriterCellPopulationAreaWriter", &CaBasedCellPopulation2::AddPopulationWriter<CellPopulationAreaWriter>)
+        .def("AddPopulationWriterCellPopulationElementWriter", &CaBasedCellPopulation2::AddPopulationWriter<CellPopulationElementWriter>)
+        .def("AddPopulationWriterHeterotypicBoundaryLengthWriter", &CaBasedCellPopulation2::AddPopulationWriter<HeterotypicBoundaryLengthWriter>)
+        .def("AddPopulationWriterNodeLocationWriter", &CaBasedCellPopulation2::AddPopulationWriter<NodeLocationWriter>)
+        .def("AddPopulationWriterNodeVelocityWriter", &CaBasedCellPopulation2::AddPopulationWriter<NodeVelocityWriter>)
+        .def("AddPopulationWriterRadialCellDataDistributionWriter", &CaBasedCellPopulation2::AddPopulationWriter<RadialCellDataDistributionWriter>)
+        .def("AddPopulationWriterVertexIntersectionSwapLocationsWriter", &CaBasedCellPopulation2::AddPopulationWriter<VertexIntersectionSwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT1SwapLocationsWriter", &CaBasedCellPopulation2::AddPopulationWriter<VertexT1SwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT2SwapLocationsWriter", &CaBasedCellPopulation2::AddPopulationWriter<VertexT2SwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT3SwapLocationsWriter", &CaBasedCellPopulation2::AddPopulationWriter<VertexT3SwapLocationsWriter>)
+        .def("AddPopulationWriterVoronoiDataWriter", &CaBasedCellPopulation2::AddPopulationWriter<VoronoiDataWriter>)
     ;
 }

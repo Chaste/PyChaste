@@ -664,23 +664,116 @@ modules:
     - rGetAvailableSpaces 
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   # - name: MeshBasedCellPopulation
   #   excluded_methods: 
   #   - GetVoronoiTessellation
   #   - rGetNodePairs
   #   - GetTetrahedralMeshForPdeModifier
   #   - rGetMesh
-    # custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py 
-    # source_includes:
-    # - CellLabelWriter.hpp 
-    # - VoronoiDataWriter.hpp   
+  #   custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py 
+  #   source_includes:
+  #   - CellAgesWriter.hpp
+  #   - CellAncestorWriter.hpp
+  #   - CellAppliedForceWriter.hpp
+  #   - CellCycleModelProteinConcentrationsWriter.hpp
+  #   - CellDataItemWriter.hpp
+  #   - CellDeltaNotchWriter.hpp
+  #   - CellDivisionLocationsWriter.hpp
+  #   - CellIdWriter.hpp
+  #   - CellLocationIndexWriter.hpp
+  #   - CellMutationStatesCountWriter.hpp
+  #   - CellMutationStatesWriter.hpp
+  #   - CellPopulationAdjacencyMatrixWriter.hpp
+  #   - CellPopulationAreaWriter.hpp
+  #   - CellPopulationElementWriter.hpp
+  #   - CellProliferativePhasesCountWriter.hpp
+  #   - CellProliferativePhasesWriter.hpp
+  #   - CellProliferativeTypesCountWriter.hpp
+  #   - CellProliferativeTypesWriter.hpp
+  #   - CellRadiusWriter.hpp
+  #   - CellRemovalLocationsWriter.hpp
+  #   - CellRosetteRankWriter.hpp
+  #   - CellVolumesWriter.hpp
+  #   - HeterotypicBoundaryLengthWriter.hpp
+  #   - LegacyCellProliferativeTypesWriter.hpp
+  #   - NodeLocationWriter.hpp
+  #   - NodeVelocityWriter.hpp
+  #   - PottsMeshWriter.hpp
+  #   - RadialCellDataDistributionWriter.hpp
+  #   - VertexIntersectionSwapLocationsWriter.hpp
+  #   - VertexT1SwapLocationsWriter.hpp
+  #   - VertexT2SwapLocationsWriter.hpp
+  #   - VertexT3SwapLocationsWriter.hpp
+  #   - VoronoiDataWriter.hpp
   - name: MeshBasedCellPopulationWithGhostNodes
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: VertexBasedCellPopulation
     excluded_methods: 
     - GetElementCorrespondingToCell
@@ -690,9 +783,40 @@ modules:
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
     - AbstractCellBasedSimulation.hpp   
-    - AbstractVertexBasedDivisionRule.hpp
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
+    - AbstractVertexBasedDivisionRule.hppBoundaryNodeWriter.hpp
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: PottsBasedCellPopulation
     excluded_methods: 
     - GetElementCorrespondingToCell
@@ -703,8 +827,39 @@ modules:
     - GetMutableMesh
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py  
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp  
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: NodeBasedCellPopulation
     excluded_methods: 
     - rGetNodePairs
@@ -712,15 +867,77 @@ modules:
     - rGetMesh
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py   
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: NodeBasedCellPopulationWithBuskeUpdate
     excluded_methods:
     - rGetMesh
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py   
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: AbstractTargetAreaModifier 
   - name: ConstantTargetAreaModifier
   - name: SimpleTargetAreaModifier

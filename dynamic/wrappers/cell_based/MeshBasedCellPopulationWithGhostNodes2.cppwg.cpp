@@ -1,6 +1,41 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include "AbstractCellBasedSimulation.hpp"
+#include "AbstractVertexBasedDivisionRule.hpp"
+#include "BoundaryNodeWriter.hpp"
+#include "CellAgesWriter.hpp"
+#include "CellAncestorWriter.hpp"
+#include "CellAppliedForceWriter.hpp"
+#include "CellCycleModelProteinConcentrationsWriter.hpp"
+#include "CellDataItemWriter.hpp"
+#include "CellDeltaNotchWriter.hpp"
+#include "CellDivisionLocationsWriter.hpp"
+#include "CellIdWriter.hpp"
 #include "CellLabelWriter.hpp"
+#include "CellLocationIndexWriter.hpp"
+#include "CellMutationStatesCountWriter.hpp"
+#include "CellMutationStatesWriter.hpp"
+#include "CellPopulationAdjacencyMatrixWriter.hpp"
+#include "CellPopulationAreaWriter.hpp"
+#include "CellPopulationElementWriter.hpp"
+#include "CellProliferativePhasesCountWriter.hpp"
+#include "CellProliferativePhasesWriter.hpp"
+#include "CellProliferativeTypesCountWriter.hpp"
+#include "CellProliferativeTypesWriter.hpp"
+#include "CellRadiusWriter.hpp"
+#include "CellRemovalLocationsWriter.hpp"
+#include "CellRosetteRankWriter.hpp"
+#include "CellVolumesWriter.hpp"
+#include "HeterotypicBoundaryLengthWriter.hpp"
+#include "LegacyCellProliferativeTypesWriter.hpp"
+#include "NodeLocationWriter.hpp"
+#include "NodeVelocityWriter.hpp"
+#include "PottsMeshWriter.hpp"
+#include "RadialCellDataDistributionWriter.hpp"
+#include "VertexIntersectionSwapLocationsWriter.hpp"
+#include "VertexT1SwapLocationsWriter.hpp"
+#include "VertexT2SwapLocationsWriter.hpp"
+#include "VertexT3SwapLocationsWriter.hpp"
 #include "VoronoiDataWriter.hpp"
 #include <set>
 #include <vector>
@@ -148,7 +183,39 @@ py::class_<MeshBasedCellPopulationWithGhostNodes2 , MeshBasedCellPopulationWithG
             "OutputCellPopulationParameters", 
             (void(MeshBasedCellPopulationWithGhostNodes2::*)(::out_stream &)) &MeshBasedCellPopulationWithGhostNodes2::OutputCellPopulationParameters, 
             " " , py::arg("rParamsFile") )
-        .def("AddPopulationWriterVoronoiDataWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<VoronoiDataWriter>)
+        .def("AddCellWriterCellAgesWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellAgesWriter>)
+        .def("AddCellWriterCellAncestorWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellAncestorWriter>)
+        .def("AddCellWriterCellAppliedForceWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellAppliedForceWriter>)
+        .def("AddCellWriterCellCycleModelProteinConcentrationsWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellCycleModelProteinConcentrationsWriter>)
+        .def("AddCellWriterCellDataItemWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellDataItemWriter>)
+        .def("AddCellWriterCellDeltaNotchWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellDeltaNotchWriter>)
+        .def("AddCellWriterCellIdWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellIdWriter>)
         .def("AddCellWriterCellLabelWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellLabelWriter>)
+        .def("AddCellWriterCellLocationIndexWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellLocationIndexWriter>)
+        .def("AddCellWriterCellMutationStatesWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellMutationStatesWriter>)
+        .def("AddCellWriterCellProliferativePhasesWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellProliferativePhasesWriter>)
+        .def("AddCellWriterCellProliferativeTypesWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellProliferativeTypesWriter>)
+        .def("AddCellWriterCellRadiusWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellRadiusWriter>)
+        .def("AddCellWriterCellRosetteRankWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellRosetteRankWriter>)
+        .def("AddCellWriterCellVolumesWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<CellVolumesWriter>)
+        .def("AddCellWriterLegacyCellProliferativeTypesWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellWriter<LegacyCellProliferativeTypesWriter>)
+        .def("AddCellPopulationCountWriterCellMutationStatesCountWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellPopulationCountWriter<CellMutationStatesCountWriter>)
+        .def("AddCellPopulationCountWriterCellProliferativeTypesCountWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellPopulationCountWriter<CellProliferativeTypesCountWriter>)
+        .def("AddCellPopulationCountWriterCellProliferativePhasesCountWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellPopulationCountWriter<CellProliferativePhasesCountWriter>)
+        .def("AddCellPopulationEventWriterCellDivisionLocationsWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellPopulationEventWriter<CellDivisionLocationsWriter>)
+        .def("AddCellPopulationEventWriterCellRemovalLocationsWriter", &MeshBasedCellPopulationWithGhostNodes2::AddCellPopulationEventWriter<CellRemovalLocationsWriter>)
+        .def("AddPopulationWriterBoundaryNodeWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<BoundaryNodeWriter>)
+        .def("AddPopulationWriterCellPopulationAdjacencyMatrixWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<CellPopulationAdjacencyMatrixWriter>)
+        .def("AddPopulationWriterCellPopulationAreaWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<CellPopulationAreaWriter>)
+        .def("AddPopulationWriterCellPopulationElementWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<CellPopulationElementWriter>)
+        .def("AddPopulationWriterHeterotypicBoundaryLengthWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<HeterotypicBoundaryLengthWriter>)
+        .def("AddPopulationWriterNodeLocationWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<NodeLocationWriter>)
+        .def("AddPopulationWriterNodeVelocityWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<NodeVelocityWriter>)
+        .def("AddPopulationWriterRadialCellDataDistributionWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<RadialCellDataDistributionWriter>)
+        .def("AddPopulationWriterVertexIntersectionSwapLocationsWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<VertexIntersectionSwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT1SwapLocationsWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<VertexT1SwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT2SwapLocationsWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<VertexT2SwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT3SwapLocationsWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<VertexT3SwapLocationsWriter>)
+        .def("AddPopulationWriterVoronoiDataWriter", &MeshBasedCellPopulationWithGhostNodes2::AddPopulationWriter<VoronoiDataWriter>)
     ;
 }
