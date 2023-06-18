@@ -35,7 +35,7 @@ class T2SwapCellKiller2_Overloads : public T2SwapCellKiller2{
 };
 void register_T2SwapCellKiller2_class(py::module &m){
 py::class_<T2SwapCellKiller2 , T2SwapCellKiller2_Overloads , boost::shared_ptr<T2SwapCellKiller2 >  , AbstractCellKiller<2>  >(m, "T2SwapCellKiller2")
-        .def(py::init<::AbstractCellPopulation<2> * >(), py::arg("pCellPopulation"))
+        .def(py::init<::AbstractCellPopulation<2, 2> * >(), py::arg("pCellPopulation"))
         .def(
             "CheckAndLabelCellsForApoptosisOrDeath", 
             (void(T2SwapCellKiller2::*)()) &T2SwapCellKiller2::CheckAndLabelCellsForApoptosisOrDeath, 

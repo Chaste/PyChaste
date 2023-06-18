@@ -29,7 +29,7 @@ pCellPdeElementMap);
 };
 void register_VolumeDependentAveragedSourceEllipticPde2_class(py::module &m){
 py::class_<VolumeDependentAveragedSourceEllipticPde2 , VolumeDependentAveragedSourceEllipticPde2_Overloads , boost::shared_ptr<VolumeDependentAveragedSourceEllipticPde2 >  , AveragedSourceEllipticPde<2>  >(m, "VolumeDependentAveragedSourceEllipticPde2")
-        .def(py::init<::AbstractCellPopulation<2> &, double >(), py::arg("rCellPopulation"), py::arg("coefficient") = 0.)
+        .def(py::init<::AbstractCellPopulation<2, 2> &, double >(), py::arg("rCellPopulation"), py::arg("coefficient") = 0.)
         .def(
             "SetupSourceTerms", 
             (void(VolumeDependentAveragedSourceEllipticPde2::*)(::TetrahedralMesh<2, 2> &, ::std::map<boost::shared_ptr<Cell>, unsigned int> *)) &VolumeDependentAveragedSourceEllipticPde2::SetupSourceTerms, 

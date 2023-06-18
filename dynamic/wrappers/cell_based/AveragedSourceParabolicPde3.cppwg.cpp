@@ -62,10 +62,10 @@ pElement);
 };
 void register_AveragedSourceParabolicPde3_class(py::module &m){
 py::class_<AveragedSourceParabolicPde3 , AveragedSourceParabolicPde3_Overloads , boost::shared_ptr<AveragedSourceParabolicPde3 > , AbstractLinearParabolicPde<3, 3>  >(m, "AveragedSourceParabolicPde3")
-        .def(py::init<::AbstractCellPopulation<3> &, double, double, double >(), py::arg("rCellPopulation"), py::arg("duDtCoefficient") = 1., py::arg("diffusionCoefficient") = 1., py::arg("sourceCoefficient") = 0.)
+        .def(py::init<::AbstractCellPopulation<3, 3> &, double, double, double >(), py::arg("rCellPopulation"), py::arg("duDtCoefficient") = 1., py::arg("diffusionCoefficient") = 1., py::arg("sourceCoefficient") = 0.)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<3> const &(AveragedSourceParabolicPde3::*)() const ) &AveragedSourceParabolicPde3::rGetCellPopulation, 
+            (::AbstractCellPopulation<3, 3> const &(AveragedSourceParabolicPde3::*)() const ) &AveragedSourceParabolicPde3::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "SetupSourceTerms", 

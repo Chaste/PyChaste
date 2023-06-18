@@ -22,14 +22,14 @@ typedef ::std::shared_ptr<BoundaryConditionsContainer<2, 2, 1>> _std_shared_ptr_
 class EllipticBoxDomainPdeModifier2_Overloads : public EllipticBoxDomainPdeModifier2{
     public:
     using EllipticBoxDomainPdeModifier2::EllipticBoxDomainPdeModifier;
-    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
+    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             EllipticBoxDomainPdeModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
-    void SetupSolve(::AbstractCellPopulation<2> & rCellPopulation, ::std::string outputDirectory) override {
+    void SetupSolve(::AbstractCellPopulation<2, 2> & rCellPopulation, ::std::string outputDirectory) override {
         PYBIND11_OVERRIDE(
             void,
             EllipticBoxDomainPdeModifier2,
@@ -37,7 +37,7 @@ class EllipticBoxDomainPdeModifier2_Overloads : public EllipticBoxDomainPdeModif
             rCellPopulation, 
 outputDirectory);
     }
-    ::std::shared_ptr<BoundaryConditionsContainer<2, 2, 1>> ConstructBoundaryConditionsContainer(::AbstractCellPopulation<2> & rCellPopulation) override {
+    ::std::shared_ptr<BoundaryConditionsContainer<2, 2, 1>> ConstructBoundaryConditionsContainer(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             _std_shared_ptr_lt_BoundaryConditionsContainer_lt_2_2_1_gt__gt_,
             EllipticBoxDomainPdeModifier2,
@@ -58,11 +58,11 @@ py::class_<EllipticBoxDomainPdeModifier2 , EllipticBoxDomainPdeModifier2_Overloa
         .def(py::init<::boost::shared_ptr<AbstractLinearPde<2>>, ::boost::shared_ptr<AbstractBoundaryCondition<2>>, bool, ::boost::shared_ptr<ChasteCuboid<2>>, double, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<2, 2>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<2>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("pMeshCuboid") = boost::shared_ptr<ChasteCuboid<2>>(), py::arg("stepSize") = 1., py::arg("solution") = nullptr)
         .def(
             "UpdateAtEndOfTimeStep", 
-            (void(EllipticBoxDomainPdeModifier2::*)(::AbstractCellPopulation<2> &)) &EllipticBoxDomainPdeModifier2::UpdateAtEndOfTimeStep, 
+            (void(EllipticBoxDomainPdeModifier2::*)(::AbstractCellPopulation<2, 2> &)) &EllipticBoxDomainPdeModifier2::UpdateAtEndOfTimeStep, 
             " " , py::arg("rCellPopulation") )
         .def(
             "SetupSolve", 
-            (void(EllipticBoxDomainPdeModifier2::*)(::AbstractCellPopulation<2> &, ::std::string)) &EllipticBoxDomainPdeModifier2::SetupSolve, 
+            (void(EllipticBoxDomainPdeModifier2::*)(::AbstractCellPopulation<2, 2> &, ::std::string)) &EllipticBoxDomainPdeModifier2::SetupSolve, 
             " " , py::arg("rCellPopulation"), py::arg("outputDirectory") )
         .def(
             "OutputSimulationModifierParameters", 

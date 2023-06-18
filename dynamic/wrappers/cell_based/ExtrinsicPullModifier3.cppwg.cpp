@@ -17,14 +17,14 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class ExtrinsicPullModifier3_Overloads : public ExtrinsicPullModifier3{
     public:
     using ExtrinsicPullModifier3::ExtrinsicPullModifier;
-    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
+    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             ExtrinsicPullModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
-    void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
+    void SetupSolve(::AbstractCellPopulation<3, 3> & rCellPopulation, ::std::string outputDirectory) override {
         PYBIND11_OVERRIDE(
             void,
             ExtrinsicPullModifier3,
@@ -46,11 +46,11 @@ py::class_<ExtrinsicPullModifier3 , ExtrinsicPullModifier3_Overloads , boost::sh
         .def(py::init< >())
         .def(
             "UpdateAtEndOfTimeStep", 
-            (void(ExtrinsicPullModifier3::*)(::AbstractCellPopulation<3> &)) &ExtrinsicPullModifier3::UpdateAtEndOfTimeStep, 
+            (void(ExtrinsicPullModifier3::*)(::AbstractCellPopulation<3, 3> &)) &ExtrinsicPullModifier3::UpdateAtEndOfTimeStep, 
             " " , py::arg("rCellPopulation") )
         .def(
             "SetupSolve", 
-            (void(ExtrinsicPullModifier3::*)(::AbstractCellPopulation<3> &, ::std::string)) &ExtrinsicPullModifier3::SetupSolve, 
+            (void(ExtrinsicPullModifier3::*)(::AbstractCellPopulation<3, 3> &, ::std::string)) &ExtrinsicPullModifier3::SetupSolve, 
             " " , py::arg("rCellPopulation"), py::arg("outputDirectory") )
         .def(
             "SetApplyExtrinsicPullToAllNodes", 

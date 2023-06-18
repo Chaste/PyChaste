@@ -53,10 +53,10 @@ pElement);
 };
 void register_AveragedSourceEllipticPde3_class(py::module &m){
 py::class_<AveragedSourceEllipticPde3 , AveragedSourceEllipticPde3_Overloads , boost::shared_ptr<AveragedSourceEllipticPde3 >   >(m, "AveragedSourceEllipticPde3")
-        .def(py::init<::AbstractCellPopulation<3> &, double, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0., py::arg("diffusionCoefficient") = 1.)
+        .def(py::init<::AbstractCellPopulation<3, 3> &, double, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0., py::arg("diffusionCoefficient") = 1.)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<3> const &(AveragedSourceEllipticPde3::*)() const ) &AveragedSourceEllipticPde3::rGetCellPopulation, 
+            (::AbstractCellPopulation<3, 3> const &(AveragedSourceEllipticPde3::*)() const ) &AveragedSourceEllipticPde3::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetCoefficient", 

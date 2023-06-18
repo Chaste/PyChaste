@@ -35,7 +35,7 @@ class IsolatedLabelledCellKiller3_Overloads : public IsolatedLabelledCellKiller3
 };
 void register_IsolatedLabelledCellKiller3_class(py::module &m){
 py::class_<IsolatedLabelledCellKiller3 , IsolatedLabelledCellKiller3_Overloads , boost::shared_ptr<IsolatedLabelledCellKiller3 >  , AbstractCellKiller<3>  >(m, "IsolatedLabelledCellKiller3")
-        .def(py::init<::AbstractCellPopulation<3> * >(), py::arg("pCellPopulation"))
+        .def(py::init<::AbstractCellPopulation<3, 3> * >(), py::arg("pCellPopulation"))
         .def(
             "CheckAndLabelCellsForApoptosisOrDeath", 
             (void(IsolatedLabelledCellKiller3::*)()) &IsolatedLabelledCellKiller3::CheckAndLabelCellsForApoptosisOrDeath, 
