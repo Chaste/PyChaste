@@ -19,7 +19,7 @@ class ToroidalHoneycombVertexMeshGenerator_Overloads : public ToroidalHoneycombV
     public:
     using ToroidalHoneycombVertexMeshGenerator::SharedToroidalHoneycombVertexMeshGenerator;
     ::boost::shared_ptr<MutableVertexMesh<2, 2>> GetMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_,
             ToroidalHoneycombVertexMeshGenerator,
             GetMesh,
