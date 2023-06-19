@@ -1,0 +1,6 @@
+#ifndef LegacyCellProliferativeTypesWriter3_3_hpp__pyplusplus_wrapper
+#define LegacyCellProliferativeTypesWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_LegacyCellProliferativeTypesWriter3_3_class(py::module &m);
+#endif // LegacyCellProliferativeTypesWriter3_3_hpp__pyplusplus_wrapper

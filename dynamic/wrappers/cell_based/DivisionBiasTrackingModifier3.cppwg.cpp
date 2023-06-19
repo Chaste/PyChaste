@@ -17,14 +17,14 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class DivisionBiasTrackingModifier3_Overloads : public DivisionBiasTrackingModifier3{
     public:
     using DivisionBiasTrackingModifier3::DivisionBiasTrackingModifier;
-    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
+    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             DivisionBiasTrackingModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
-    void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
+    void SetupSolve(::AbstractCellPopulation<3, 3> & rCellPopulation, ::std::string outputDirectory) override {
         PYBIND11_OVERRIDE(
             void,
             DivisionBiasTrackingModifier3,
@@ -50,15 +50,15 @@ py::class_<DivisionBiasTrackingModifier3 , DivisionBiasTrackingModifier3_Overloa
             " "  , py::return_value_policy::reference_internal)
         .def(
             "UpdateAtEndOfTimeStep", 
-            (void(DivisionBiasTrackingModifier3::*)(::AbstractCellPopulation<3> &)) &DivisionBiasTrackingModifier3::UpdateAtEndOfTimeStep, 
+            (void(DivisionBiasTrackingModifier3::*)(::AbstractCellPopulation<3, 3> &)) &DivisionBiasTrackingModifier3::UpdateAtEndOfTimeStep, 
             " " , py::arg("rCellPopulation") )
         .def(
             "SetupSolve", 
-            (void(DivisionBiasTrackingModifier3::*)(::AbstractCellPopulation<3> &, ::std::string)) &DivisionBiasTrackingModifier3::SetupSolve, 
+            (void(DivisionBiasTrackingModifier3::*)(::AbstractCellPopulation<3, 3> &, ::std::string)) &DivisionBiasTrackingModifier3::SetupSolve, 
             " " , py::arg("rCellPopulation"), py::arg("outputDirectory") )
         .def(
             "UpdateCellData", 
-            (void(DivisionBiasTrackingModifier3::*)(::AbstractCellPopulation<3> &)) &DivisionBiasTrackingModifier3::UpdateCellData, 
+            (void(DivisionBiasTrackingModifier3::*)(::AbstractCellPopulation<3, 3> &)) &DivisionBiasTrackingModifier3::UpdateCellData, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputSimulationModifierParameters", 

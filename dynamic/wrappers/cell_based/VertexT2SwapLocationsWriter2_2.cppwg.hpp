@@ -1,0 +1,6 @@
+#ifndef VertexT2SwapLocationsWriter2_2_hpp__pyplusplus_wrapper
+#define VertexT2SwapLocationsWriter2_2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_VertexT2SwapLocationsWriter2_2_class(py::module &m);
+#endif // VertexT2SwapLocationsWriter2_2_hpp__pyplusplus_wrapper

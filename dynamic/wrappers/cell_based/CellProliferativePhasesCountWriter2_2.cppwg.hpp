@@ -1,0 +1,6 @@
+#ifndef CellProliferativePhasesCountWriter2_2_hpp__pyplusplus_wrapper
+#define CellProliferativePhasesCountWriter2_2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellProliferativePhasesCountWriter2_2_class(py::module &m);
+#endif // CellProliferativePhasesCountWriter2_2_hpp__pyplusplus_wrapper

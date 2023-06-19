@@ -35,7 +35,7 @@ class RandomCellKiller2_Overloads : public RandomCellKiller2{
 };
 void register_RandomCellKiller2_class(py::module &m){
 py::class_<RandomCellKiller2 , RandomCellKiller2_Overloads , boost::shared_ptr<RandomCellKiller2 >  , AbstractCellKiller<2>  >(m, "RandomCellKiller2")
-        .def(py::init<::AbstractCellPopulation<2> *, double >(), py::arg("pCellPopulation"), py::arg("probabilityOfDeathInAnHour"))
+        .def(py::init<::AbstractCellPopulation<2, 2> *, double >(), py::arg("pCellPopulation"), py::arg("probabilityOfDeathInAnHour"))
         .def(
             "GetDeathProbabilityInAnHour", 
             (double(RandomCellKiller2::*)() const ) &RandomCellKiller2::GetDeathProbabilityInAnHour, 

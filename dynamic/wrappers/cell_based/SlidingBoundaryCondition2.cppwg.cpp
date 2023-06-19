@@ -43,7 +43,7 @@ class SlidingBoundaryCondition2_Overloads : public SlidingBoundaryCondition2{
 };
 void register_SlidingBoundaryCondition2_class(py::module &m){
 py::class_<SlidingBoundaryCondition2 , SlidingBoundaryCondition2_Overloads , boost::shared_ptr<SlidingBoundaryCondition2 > , AbstractCellPopulationBoundaryCondition<2, 2>  >(m, "SlidingBoundaryCondition2")
-        .def(py::init<::AbstractCellPopulation<2> *, double >(), py::arg("pCellPopulation"), py::arg("threshold") = 0.80000000000000004)
+        .def(py::init<::AbstractCellPopulation<2, 2> *, double >(), py::arg("pCellPopulation"), py::arg("threshold") = 0.80000000000000004)
         .def(
             "GetThreshold", 
             (double(SlidingBoundaryCondition2::*)() const ) &SlidingBoundaryCondition2::GetThreshold, 

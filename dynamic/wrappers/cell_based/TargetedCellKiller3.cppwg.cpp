@@ -35,7 +35,7 @@ class TargetedCellKiller3_Overloads : public TargetedCellKiller3{
 };
 void register_TargetedCellKiller3_class(py::module &m){
 py::class_<TargetedCellKiller3 , TargetedCellKiller3_Overloads , boost::shared_ptr<TargetedCellKiller3 >  , AbstractCellKiller<3>  >(m, "TargetedCellKiller3")
-        .def(py::init<::AbstractCellPopulation<3> *, unsigned int, bool >(), py::arg("pCellPopulation"), py::arg("targetedIndex"), py::arg("bloodLust") = true)
+        .def(py::init<::AbstractCellPopulation<3, 3> *, unsigned int, bool >(), py::arg("pCellPopulation"), py::arg("targetedIndex"), py::arg("bloodLust") = true)
         .def(
             "GetTargetIndex", 
             (unsigned int(TargetedCellKiller3::*)() const ) &TargetedCellKiller3::GetTargetIndex, 

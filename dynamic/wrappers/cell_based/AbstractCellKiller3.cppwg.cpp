@@ -35,14 +35,14 @@ class AbstractCellKiller3_Overloads : public AbstractCellKiller3{
 };
 void register_AbstractCellKiller3_class(py::module &m){
 py::class_<AbstractCellKiller3 , AbstractCellKiller3_Overloads , boost::shared_ptr<AbstractCellKiller3 >   >(m, "AbstractCellKiller3")
-        .def(py::init<::AbstractCellPopulation<3> * >(), py::arg("pCellPopulation"))
+        .def(py::init<::AbstractCellPopulation<3, 3> * >(), py::arg("pCellPopulation"))
         .def(
             "CheckAndLabelCellsForApoptosisOrDeath", 
             (void(AbstractCellKiller3::*)()) &AbstractCellKiller3::CheckAndLabelCellsForApoptosisOrDeath, 
             " "  )
         .def(
             "GetCellPopulation", 
-            (::AbstractCellPopulation<3> const *(AbstractCellKiller3::*)() const ) &AbstractCellKiller3::GetCellPopulation, 
+            (::AbstractCellPopulation<3, 3> const *(AbstractCellKiller3::*)() const ) &AbstractCellKiller3::GetCellPopulation, 
             " "  , py::return_value_policy::reference)
         .def(
             "OutputCellKillerInfo", 

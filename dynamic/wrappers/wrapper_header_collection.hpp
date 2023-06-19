@@ -169,6 +169,7 @@
 #include "AbstractCellKiller.hpp"
 #include "PlaneBasedCellKiller.hpp"
 #include "ApoptoticCellKiller.hpp"
+#include "AbstractCellPopulation.hpp"
 #include "AbstractCellPopulationBoundaryCondition.hpp"
 #include "PlaneBoundaryCondition.hpp"
 #include "AttractingPlaneBoundaryCondition.hpp"
@@ -177,7 +178,6 @@
 #include "T2SwapCellKiller.hpp"
 #include "IsolatedLabelledCellKiller.hpp"
 #include "SphereGeometryBoundaryCondition.hpp"
-#include "AbstractCellPopulation.hpp"
 #include "AbstractOffLatticeCellPopulation.hpp"
 #include "AbstractCentreBasedCellPopulation.hpp"
 #include "SlidingBoundaryCondition.hpp"
@@ -213,6 +213,45 @@
 #include "ChastePoint.hpp"
 #include "ChasteCuboid.hpp"
 #include "ChasteEllipsoid.hpp"
+#include "AbstractCellBasedWriter.hpp"
+#include "AbstractCellWriter.hpp"
+#include "AbstractCellPopulationWriter.hpp"
+#include "AbstractCellPopulationCountWriter.hpp"
+#include "AbstractCellPopulationEventWriter.hpp"
+#include "BoundaryNodeWriter.hpp"
+#include "CellAgesWriter.hpp"
+#include "CellAncestorWriter.hpp"
+#include "CellAppliedForceWriter.hpp"
+#include "CellCycleModelProteinConcentrationsWriter.hpp"
+#include "CellDataItemWriter.hpp"
+#include "CellDeltaNotchWriter.hpp"
+#include "CellDivisionLocationsWriter.hpp"
+#include "CellIdWriter.hpp"
+#include "CellLocationIndexWriter.hpp"
+#include "CellMutationStatesCountWriter.hpp"
+#include "CellMutationStatesWriter.hpp"
+#include "CellPopulationAdjacencyMatrixWriter.hpp"
+#include "CellPopulationAreaWriter.hpp"
+#include "CellPopulationElementWriter.hpp"
+#include "CellProliferativePhasesCountWriter.hpp"
+#include "CellProliferativePhasesWriter.hpp"
+#include "CellProliferativeTypesCountWriter.hpp"
+#include "CellProliferativeTypesWriter.hpp"
+#include "CellRadiusWriter.hpp"
+#include "CellRemovalLocationsWriter.hpp"
+#include "CellRosetteRankWriter.hpp"
+#include "CellVolumesWriter.hpp"
+#include "HeterotypicBoundaryLengthWriter.hpp"
+#include "LegacyCellProliferativeTypesWriter.hpp"
+#include "NodeLocationWriter.hpp"
+#include "NodeVelocityWriter.hpp"
+#include "PottsMeshWriter.hpp"
+#include "RadialCellDataDistributionWriter.hpp"
+#include "VertexIntersectionSwapLocationsWriter.hpp"
+#include "VertexT1SwapLocationsWriter.hpp"
+#include "VertexT2SwapLocationsWriter.hpp"
+#include "VertexT3SwapLocationsWriter.hpp"
+
 
 // Instantiate Template Classes 
 template class AbstractLinearPde<2,2>;
@@ -407,6 +446,8 @@ template class PlaneBasedCellKiller<2>;
 template class PlaneBasedCellKiller<3>;
 template class ApoptoticCellKiller<2>;
 template class ApoptoticCellKiller<3>;
+template class AbstractCellPopulation<2,2>;
+template class AbstractCellPopulation<3,3>;
 template class AbstractCellPopulationBoundaryCondition<2,2>;
 template class AbstractCellPopulationBoundaryCondition<3,3>;
 template class PlaneBoundaryCondition<2,2>;
@@ -423,8 +464,6 @@ template class IsolatedLabelledCellKiller<2>;
 template class IsolatedLabelledCellKiller<3>;
 template class SphereGeometryBoundaryCondition<2>;
 template class SphereGeometryBoundaryCondition<3>;
-template class AbstractCellPopulation<2,2>;
-template class AbstractCellPopulation<3,3>;
 template class AbstractOffLatticeCellPopulation<2,2>;
 template class AbstractOffLatticeCellPopulation<3,3>;
 template class AbstractCentreBasedCellPopulation<2,2>;
@@ -491,6 +530,82 @@ template class ChasteCuboid<2>;
 template class ChasteCuboid<3>;
 template class ChasteEllipsoid<2>;
 template class ChasteEllipsoid<3>;
+template class AbstractCellBasedWriter<2,2>;
+template class AbstractCellBasedWriter<3,3>;
+template class AbstractCellWriter<2,2>;
+template class AbstractCellWriter<3,3>;
+template class AbstractCellPopulationWriter<2,2>;
+template class AbstractCellPopulationWriter<3,3>;
+template class AbstractCellPopulationCountWriter<2,2>;
+template class AbstractCellPopulationCountWriter<3,3>;
+template class AbstractCellPopulationEventWriter<2,2>;
+template class AbstractCellPopulationEventWriter<3,3>;
+template class BoundaryNodeWriter<2,2>;
+template class BoundaryNodeWriter<3,3>;
+template class CellAgesWriter<2,2>;
+template class CellAgesWriter<3,3>;
+template class CellAncestorWriter<2,2>;
+template class CellAncestorWriter<3,3>;
+template class CellAppliedForceWriter<2,2>;
+template class CellAppliedForceWriter<3,3>;
+template class CellCycleModelProteinConcentrationsWriter<2,2>;
+template class CellCycleModelProteinConcentrationsWriter<3,3>;
+template class CellDataItemWriter<2,2>;
+template class CellDataItemWriter<3,3>;
+template class CellDeltaNotchWriter<2,2>;
+template class CellDeltaNotchWriter<3,3>;
+template class CellDivisionLocationsWriter<2,2>;
+template class CellDivisionLocationsWriter<3,3>;
+template class CellIdWriter<2,2>;
+template class CellIdWriter<3,3>;
+template class CellLocationIndexWriter<2,2>;
+template class CellLocationIndexWriter<3,3>;
+template class CellMutationStatesCountWriter<2,2>;
+template class CellMutationStatesCountWriter<3,3>;
+template class CellMutationStatesWriter<2,2>;
+template class CellMutationStatesWriter<3,3>;
+template class CellPopulationAdjacencyMatrixWriter<2,2>;
+template class CellPopulationAdjacencyMatrixWriter<3,3>;
+template class CellPopulationAreaWriter<2,2>;
+template class CellPopulationAreaWriter<3,3>;
+template class CellPopulationElementWriter<2,2>;
+template class CellPopulationElementWriter<3,3>;
+template class CellProliferativePhasesCountWriter<2,2>;
+template class CellProliferativePhasesCountWriter<3,3>;
+template class CellProliferativePhasesWriter<2,2>;
+template class CellProliferativePhasesWriter<3,3>;
+template class CellProliferativeTypesCountWriter<2,2>;
+template class CellProliferativeTypesCountWriter<3,3>;
+template class CellProliferativeTypesWriter<2,2>;
+template class CellProliferativeTypesWriter<3,3>;
+template class CellRadiusWriter<2,2>;
+template class CellRadiusWriter<3,3>;
+template class CellRemovalLocationsWriter<2,2>;
+template class CellRemovalLocationsWriter<3,3>;
+template class CellRosetteRankWriter<2,2>;
+template class CellRosetteRankWriter<3,3>;
+template class CellVolumesWriter<2,2>;
+template class CellVolumesWriter<3,3>;
+template class HeterotypicBoundaryLengthWriter<2,2>;
+template class HeterotypicBoundaryLengthWriter<3,3>;
+template class LegacyCellProliferativeTypesWriter<2,2>;
+template class LegacyCellProliferativeTypesWriter<3,3>;
+template class NodeLocationWriter<2,2>;
+template class NodeLocationWriter<3,3>;
+template class NodeVelocityWriter<2,2>;
+template class NodeVelocityWriter<3,3>;
+template class PottsMeshWriter<2>;
+template class PottsMeshWriter<3>;
+template class RadialCellDataDistributionWriter<2,2>;
+template class RadialCellDataDistributionWriter<3,3>;
+template class VertexIntersectionSwapLocationsWriter<2,2>;
+template class VertexIntersectionSwapLocationsWriter<3,3>;
+template class VertexT1SwapLocationsWriter<2,2>;
+template class VertexT1SwapLocationsWriter<3,3>;
+template class VertexT2SwapLocationsWriter<2,2>;
+template class VertexT2SwapLocationsWriter<3,3>;
+template class VertexT3SwapLocationsWriter<2,2>;
+template class VertexT3SwapLocationsWriter<3,3>;
 
 // Typedef for nicer naming
 namespace cppwg{ 
@@ -770,6 +885,82 @@ typedef ChasteCuboid<2> ChasteCuboid2;
 typedef ChasteCuboid<3> ChasteCuboid3;
 typedef ChasteEllipsoid<2> ChasteEllipsoid2;
 typedef ChasteEllipsoid<3> ChasteEllipsoid3;
+typedef AbstractCellBasedWriter<2,2> AbstractCellBasedWriter2_2;
+typedef AbstractCellBasedWriter<3,3> AbstractCellBasedWriter3_3;
+typedef AbstractCellWriter<2,2> AbstractCellWriter2_2;
+typedef AbstractCellWriter<3,3> AbstractCellWriter3_3;
+typedef AbstractCellPopulationWriter<2,2> AbstractCellPopulationWriter2_2;
+typedef AbstractCellPopulationWriter<3,3> AbstractCellPopulationWriter3_3;
+typedef AbstractCellPopulationCountWriter<2,2> AbstractCellPopulationCountWriter2_2;
+typedef AbstractCellPopulationCountWriter<3,3> AbstractCellPopulationCountWriter3_3;
+typedef AbstractCellPopulationEventWriter<2,2> AbstractCellPopulationEventWriter2_2;
+typedef AbstractCellPopulationEventWriter<3,3> AbstractCellPopulationEventWriter3_3;
+typedef BoundaryNodeWriter<2,2> BoundaryNodeWriter2_2;
+typedef BoundaryNodeWriter<3,3> BoundaryNodeWriter3_3;
+typedef CellAgesWriter<2,2> CellAgesWriter2_2;
+typedef CellAgesWriter<3,3> CellAgesWriter3_3;
+typedef CellAncestorWriter<2,2> CellAncestorWriter2_2;
+typedef CellAncestorWriter<3,3> CellAncestorWriter3_3;
+typedef CellAppliedForceWriter<2,2> CellAppliedForceWriter2_2;
+typedef CellAppliedForceWriter<3,3> CellAppliedForceWriter3_3;
+typedef CellCycleModelProteinConcentrationsWriter<2,2> CellCycleModelProteinConcentrationsWriter2_2;
+typedef CellCycleModelProteinConcentrationsWriter<3,3> CellCycleModelProteinConcentrationsWriter3_3;
+typedef CellDataItemWriter<2,2> CellDataItemWriter2_2;
+typedef CellDataItemWriter<3,3> CellDataItemWriter3_3;
+typedef CellDeltaNotchWriter<2,2> CellDeltaNotchWriter2_2;
+typedef CellDeltaNotchWriter<3,3> CellDeltaNotchWriter3_3;
+typedef CellDivisionLocationsWriter<2,2> CellDivisionLocationsWriter2_2;
+typedef CellDivisionLocationsWriter<3,3> CellDivisionLocationsWriter3_3;
+typedef CellIdWriter<2,2> CellIdWriter2_2;
+typedef CellIdWriter<3,3> CellIdWriter3_3;
+typedef CellLocationIndexWriter<2,2> CellLocationIndexWriter2_2;
+typedef CellLocationIndexWriter<3,3> CellLocationIndexWriter3_3;
+typedef CellMutationStatesCountWriter<2,2> CellMutationStatesCountWriter2_2;
+typedef CellMutationStatesCountWriter<3,3> CellMutationStatesCountWriter3_3;
+typedef CellMutationStatesWriter<2,2> CellMutationStatesWriter2_2;
+typedef CellMutationStatesWriter<3,3> CellMutationStatesWriter3_3;
+typedef CellPopulationAdjacencyMatrixWriter<2,2> CellPopulationAdjacencyMatrixWriter2_2;
+typedef CellPopulationAdjacencyMatrixWriter<3,3> CellPopulationAdjacencyMatrixWriter3_3;
+typedef CellPopulationAreaWriter<2,2> CellPopulationAreaWriter2_2;
+typedef CellPopulationAreaWriter<3,3> CellPopulationAreaWriter3_3;
+typedef CellPopulationElementWriter<2,2> CellPopulationElementWriter2_2;
+typedef CellPopulationElementWriter<3,3> CellPopulationElementWriter3_3;
+typedef CellProliferativePhasesCountWriter<2,2> CellProliferativePhasesCountWriter2_2;
+typedef CellProliferativePhasesCountWriter<3,3> CellProliferativePhasesCountWriter3_3;
+typedef CellProliferativePhasesWriter<2,2> CellProliferativePhasesWriter2_2;
+typedef CellProliferativePhasesWriter<3,3> CellProliferativePhasesWriter3_3;
+typedef CellProliferativeTypesCountWriter<2,2> CellProliferativeTypesCountWriter2_2;
+typedef CellProliferativeTypesCountWriter<3,3> CellProliferativeTypesCountWriter3_3;
+typedef CellProliferativeTypesWriter<2,2> CellProliferativeTypesWriter2_2;
+typedef CellProliferativeTypesWriter<3,3> CellProliferativeTypesWriter3_3;
+typedef CellRadiusWriter<2,2> CellRadiusWriter2_2;
+typedef CellRadiusWriter<3,3> CellRadiusWriter3_3;
+typedef CellRemovalLocationsWriter<2,2> CellRemovalLocationsWriter2_2;
+typedef CellRemovalLocationsWriter<3,3> CellRemovalLocationsWriter3_3;
+typedef CellRosetteRankWriter<2,2> CellRosetteRankWriter2_2;
+typedef CellRosetteRankWriter<3,3> CellRosetteRankWriter3_3;
+typedef CellVolumesWriter<2,2> CellVolumesWriter2_2;
+typedef CellVolumesWriter<3,3> CellVolumesWriter3_3;
+typedef HeterotypicBoundaryLengthWriter<2,2> HeterotypicBoundaryLengthWriter2_2;
+typedef HeterotypicBoundaryLengthWriter<3,3> HeterotypicBoundaryLengthWriter3_3;
+typedef LegacyCellProliferativeTypesWriter<2,2> LegacyCellProliferativeTypesWriter2_2;
+typedef LegacyCellProliferativeTypesWriter<3,3> LegacyCellProliferativeTypesWriter3_3;
+typedef NodeLocationWriter<2,2> NodeLocationWriter2_2;
+typedef NodeLocationWriter<3,3> NodeLocationWriter3_3;
+typedef NodeVelocityWriter<2,2> NodeVelocityWriter2_2;
+typedef NodeVelocityWriter<3,3> NodeVelocityWriter3_3;
+typedef PottsMeshWriter<2> PottsMeshWriter2;
+typedef PottsMeshWriter<3> PottsMeshWriter3;
+typedef RadialCellDataDistributionWriter<2,2> RadialCellDataDistributionWriter2_2;
+typedef RadialCellDataDistributionWriter<3,3> RadialCellDataDistributionWriter3_3;
+typedef VertexIntersectionSwapLocationsWriter<2,2> VertexIntersectionSwapLocationsWriter2_2;
+typedef VertexIntersectionSwapLocationsWriter<3,3> VertexIntersectionSwapLocationsWriter3_3;
+typedef VertexT1SwapLocationsWriter<2,2> VertexT1SwapLocationsWriter2_2;
+typedef VertexT1SwapLocationsWriter<3,3> VertexT1SwapLocationsWriter3_3;
+typedef VertexT2SwapLocationsWriter<2,2> VertexT2SwapLocationsWriter2_2;
+typedef VertexT2SwapLocationsWriter<3,3> VertexT2SwapLocationsWriter3_3;
+typedef VertexT3SwapLocationsWriter<2,2> VertexT3SwapLocationsWriter2_2;
+typedef VertexT3SwapLocationsWriter<3,3> VertexT3SwapLocationsWriter3_3;
 }
 
 #endif // chaste_project_PyChaste_HEADERS_HPP_

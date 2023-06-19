@@ -1,0 +1,6 @@
+#ifndef AbstractCellPopulationCountWriter3_3_hpp__pyplusplus_wrapper
+#define AbstractCellPopulationCountWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_AbstractCellPopulationCountWriter3_3_class(py::module &m);
+#endif // AbstractCellPopulationCountWriter3_3_hpp__pyplusplus_wrapper

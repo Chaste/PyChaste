@@ -52,10 +52,10 @@ pElement);
 };
 void register_CellwiseSourceEllipticPde3_class(py::module &m){
 py::class_<CellwiseSourceEllipticPde3 , CellwiseSourceEllipticPde3_Overloads , boost::shared_ptr<CellwiseSourceEllipticPde3 >   >(m, "CellwiseSourceEllipticPde3")
-        .def(py::init<::AbstractCellPopulation<3> &, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0.)
+        .def(py::init<::AbstractCellPopulation<3, 3> &, double >(), py::arg("rCellPopulation"), py::arg("sourceCoefficient") = 0.)
         .def(
             "rGetCellPopulation", 
-            (::AbstractCellPopulation<3> const &(CellwiseSourceEllipticPde3::*)() const ) &CellwiseSourceEllipticPde3::rGetCellPopulation, 
+            (::AbstractCellPopulation<3, 3> const &(CellwiseSourceEllipticPde3::*)() const ) &CellwiseSourceEllipticPde3::rGetCellPopulation, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetCoefficient", 

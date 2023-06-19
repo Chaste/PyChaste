@@ -65,6 +65,10 @@ requirements:
 test:
   imports:
     - chaste
+    - chaste.cell_based
+    - chaste.mesh
+    - chaste.ode
+    - chaste.pde
 
 about:
   home: https://chaste.github.io

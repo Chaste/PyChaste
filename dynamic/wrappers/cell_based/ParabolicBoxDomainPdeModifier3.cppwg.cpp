@@ -22,14 +22,14 @@ typedef ::std::shared_ptr<BoundaryConditionsContainer<3, 3, 1>> _std_shared_ptr_
 class ParabolicBoxDomainPdeModifier3_Overloads : public ParabolicBoxDomainPdeModifier3{
     public:
     using ParabolicBoxDomainPdeModifier3::ParabolicBoxDomainPdeModifier;
-    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
+    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             ParabolicBoxDomainPdeModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
-    void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
+    void SetupSolve(::AbstractCellPopulation<3, 3> & rCellPopulation, ::std::string outputDirectory) override {
         PYBIND11_OVERRIDE(
             void,
             ParabolicBoxDomainPdeModifier3,
@@ -37,7 +37,7 @@ class ParabolicBoxDomainPdeModifier3_Overloads : public ParabolicBoxDomainPdeMod
             rCellPopulation, 
 outputDirectory);
     }
-    ::std::shared_ptr<BoundaryConditionsContainer<3, 3, 1>> ConstructBoundaryConditionsContainer(::AbstractCellPopulation<3> & rCellPopulation) override {
+    ::std::shared_ptr<BoundaryConditionsContainer<3, 3, 1>> ConstructBoundaryConditionsContainer(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             _std_shared_ptr_lt_BoundaryConditionsContainer_lt_3_3_1_gt__gt_,
             ParabolicBoxDomainPdeModifier3,
@@ -58,15 +58,15 @@ py::class_<ParabolicBoxDomainPdeModifier3 , ParabolicBoxDomainPdeModifier3_Overl
         .def(py::init<::boost::shared_ptr<AbstractLinearPde<3>>, ::boost::shared_ptr<AbstractBoundaryCondition<3>>, bool, ::boost::shared_ptr<ChasteCuboid<3>>, double, ::Vec >(), py::arg("pPde") = boost::shared_ptr<AbstractLinearPde<3, 3>>(), py::arg("pBoundaryCondition") = boost::shared_ptr<AbstractBoundaryCondition<3>>(), py::arg("isNeumannBoundaryCondition") = true, py::arg("pMeshCuboid") = boost::shared_ptr<ChasteCuboid<3>>(), py::arg("stepSize") = 1., py::arg("solution") = nullptr)
         .def(
             "UpdateAtEndOfTimeStep", 
-            (void(ParabolicBoxDomainPdeModifier3::*)(::AbstractCellPopulation<3> &)) &ParabolicBoxDomainPdeModifier3::UpdateAtEndOfTimeStep, 
+            (void(ParabolicBoxDomainPdeModifier3::*)(::AbstractCellPopulation<3, 3> &)) &ParabolicBoxDomainPdeModifier3::UpdateAtEndOfTimeStep, 
             " " , py::arg("rCellPopulation") )
         .def(
             "SetupSolve", 
-            (void(ParabolicBoxDomainPdeModifier3::*)(::AbstractCellPopulation<3> &, ::std::string)) &ParabolicBoxDomainPdeModifier3::SetupSolve, 
+            (void(ParabolicBoxDomainPdeModifier3::*)(::AbstractCellPopulation<3, 3> &, ::std::string)) &ParabolicBoxDomainPdeModifier3::SetupSolve, 
             " " , py::arg("rCellPopulation"), py::arg("outputDirectory") )
         .def(
             "SetupInitialSolutionVector", 
-            (void(ParabolicBoxDomainPdeModifier3::*)(::AbstractCellPopulation<3> &)) &ParabolicBoxDomainPdeModifier3::SetupInitialSolutionVector, 
+            (void(ParabolicBoxDomainPdeModifier3::*)(::AbstractCellPopulation<3, 3> &)) &ParabolicBoxDomainPdeModifier3::SetupInitialSolutionVector, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputSimulationModifierParameters", 

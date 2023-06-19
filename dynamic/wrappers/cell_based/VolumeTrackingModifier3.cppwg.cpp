@@ -17,14 +17,14 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 class VolumeTrackingModifier3_Overloads : public VolumeTrackingModifier3{
     public:
     using VolumeTrackingModifier3::VolumeTrackingModifier;
-    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3> & rCellPopulation) override {
+    void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
         PYBIND11_OVERRIDE(
             void,
             VolumeTrackingModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
-    void SetupSolve(::AbstractCellPopulation<3> & rCellPopulation, ::std::string outputDirectory) override {
+    void SetupSolve(::AbstractCellPopulation<3, 3> & rCellPopulation, ::std::string outputDirectory) override {
         PYBIND11_OVERRIDE(
             void,
             VolumeTrackingModifier3,
@@ -46,15 +46,15 @@ py::class_<VolumeTrackingModifier3 , VolumeTrackingModifier3_Overloads , boost::
         .def(py::init< >())
         .def(
             "UpdateAtEndOfTimeStep", 
-            (void(VolumeTrackingModifier3::*)(::AbstractCellPopulation<3> &)) &VolumeTrackingModifier3::UpdateAtEndOfTimeStep, 
+            (void(VolumeTrackingModifier3::*)(::AbstractCellPopulation<3, 3> &)) &VolumeTrackingModifier3::UpdateAtEndOfTimeStep, 
             " " , py::arg("rCellPopulation") )
         .def(
             "SetupSolve", 
-            (void(VolumeTrackingModifier3::*)(::AbstractCellPopulation<3> &, ::std::string)) &VolumeTrackingModifier3::SetupSolve, 
+            (void(VolumeTrackingModifier3::*)(::AbstractCellPopulation<3, 3> &, ::std::string)) &VolumeTrackingModifier3::SetupSolve, 
             " " , py::arg("rCellPopulation"), py::arg("outputDirectory") )
         .def(
             "UpdateCellData", 
-            (void(VolumeTrackingModifier3::*)(::AbstractCellPopulation<3> &)) &VolumeTrackingModifier3::UpdateCellData, 
+            (void(VolumeTrackingModifier3::*)(::AbstractCellPopulation<3, 3> &)) &VolumeTrackingModifier3::UpdateCellData, 
             " " , py::arg("rCellPopulation") )
         .def(
             "OutputSimulationModifierParameters", 
