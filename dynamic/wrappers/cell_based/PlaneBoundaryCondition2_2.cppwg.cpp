@@ -14,6 +14,7 @@
 namespace py = pybind11;
 typedef PlaneBoundaryCondition<2,2 > PlaneBoundaryCondition2_2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
+PYBIND11_CVECTOR_TYPECASTER2()
 
 class PlaneBoundaryCondition2_2_Overloads : public PlaneBoundaryCondition2_2{
     public:
