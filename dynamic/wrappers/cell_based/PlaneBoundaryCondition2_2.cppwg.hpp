@@ -1,6 +1,7 @@
 #ifndef PlaneBoundaryCondition2_2_hpp__pyplusplus_wrapper
 #define PlaneBoundaryCondition2_2_hpp__pyplusplus_wrapper
 
-namespace py = pybind11;
-void register_PlaneBoundaryCondition2_2_class(py::module &m);
+#include <pybind11/pybind11.h>
+
+void register_PlaneBoundaryCondition2_2_class(pybind11::module &m);
 #endif // PlaneBoundaryCondition2_2_hpp__pyplusplus_wrapper
