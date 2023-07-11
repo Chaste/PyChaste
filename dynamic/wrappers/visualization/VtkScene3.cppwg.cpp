@@ -10,7 +10,7 @@
 #include <vtkOpenGLRenderer.h>
 #include <vtkUnsignedCharArray.h>
 #include <vtkSmartPointer.h>
-#include "PythonObjectConverters.hpp"
+#include "PythonVtkObjectConverters.hpp"
 
 #include "VtkScene3.cppwg.hpp"
 

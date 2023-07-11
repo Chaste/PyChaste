@@ -6,7 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "PythonObjectConverters.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "PlaneBasedCellKiller.hpp"
 
 #include "PlaneBasedCellKiller3.cppwg.hpp"

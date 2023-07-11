@@ -33,67 +33,17 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef PYTHONOBJECTCONVERTERS_HPP_
-#define PYTHONOBJECTCONVERTERS_HPP_
+#ifndef PYVTKCONVERTERS_HPP_
+#define PYVTKCONVERTERS_HPP_
 
-#include <typeinfo>
-#include <pybind11/stl.h>
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
-#include "UblasIncludes.hpp"
-#include "UblasVectorInclude.hpp"
+#include <pybind11/stl.h>
 
-namespace py = pybind11;
+#include <vtkObjectBase.h>
+#include <vtkPythonUtil.h>
 
-#define PYBIND11_CVECTOR_TYPECASTER(T, N)                                                   \
-  namespace pybind11                                                                        \
-  {                                                                                         \
-    namespace detail                                                                        \
-    {                                                                                       \
-      template <>                                                                           \
-      struct type_caster<boost::numeric::ublas::c_vector<T, N>>                             \
-      {                                                                                     \
-      public:                                                                               \
-        typedef boost::numeric::ublas::c_vector<T, N> c_vector_##T##_##N##_t;               \
-        PYBIND11_TYPE_CASTER(c_vector_##T##_##N##_t, const_name("c_vector_##T##_##N##_t")); \
-        bool load(handle src, bool convert)                                                 \
-        {                                                                                   \
-          if (!convert && !array_t<T>::check_(src))                                         \
-          {                                                                                 \
-            return false;                                                                   \
-          }                                                                                 \
-          auto buf = array_t<T, array::c_style | array::forcecast>::ensure(src);            \
-          if (!buf)                                                                         \
-          {                                                                                 \
-            return false;                                                                   \
-          }                                                                                 \
-          if (buf.ndim() != 1 or buf.shape()[0] != N)                                       \
-          {                                                                                 \
-            return false;                                                                   \
-          }                                                                                 \
-          value.resize(N);                                                                  \
-          for (int i = 0; i < N; i++)                                                       \
-          {                                                                                 \
-            value[i] = buf.data()[i];                                                       \
-          }                                                                                 \
-          return true;                                                                      \
-        }                                                                                   \
-        static handle cast(const boost::numeric::ublas::c_vector<T, N> &src,                \
-                           return_value_policy policy,                                      \
-                           handle parent)                                                   \
-        {                                                                                   \
-          std::vector<size_t> shape(1, N);                                                  \
-          std::vector<size_t> strides(1, sizeof(T));                                        \
-          T *data = src.size() ? const_cast<T *>(&src[0]) : static_cast<T *>(NULL);         \
-          array a(std::move(shape), std::move(strides), data);                              \
-          return a.release();                                                               \
-        }                                                                                   \
-      };                                                                                    \
-    }                                                                                       \
-  }
-
-PYBIND11_CVECTOR_TYPECASTER(double, 2);
-PYBIND11_CVECTOR_TYPECASTER(double, 3);
+#include <typeinfo>
 
 /**
  *  VTK Conversion, from SMTK Source with copyright
@@ -107,9 +57,6 @@ PYBIND11_CVECTOR_TYPECASTER(double, 3);
 //  PURPOSE.  See the above copyright notice for more information.
 //=========================================================================
 */
-
-#include <vtkObjectBase.h>
-#include <vtkPythonUtil.h>
 
 #define PYBIND11_VTK_TYPECASTER(VTK_OBJ)                                                                \
   namespace pybind11                                                                                    \
@@ -149,26 +96,4 @@ PYBIND11_CVECTOR_TYPECASTER(double, 3);
     }                                                                                                   \
   }
 
-template <typename T, unsigned N>
-c_vector<T, N> array_to_c_vector(const py::array_t<T> &src)
-{
-  assert(py::array_t<T>::check_(src) == true);
-
-  auto buf = py::array_t<T, py::array::c_style | py::array::forcecast>::ensure(src);
-  assert(buf);
-  assert(buf.ndim() == 1 && buf.shape()[0] == N);
-
-  c_vector<T, N> value;
-  value.resize(N);
-  for (unsigned i = 0; i < N; ++i)
-  {
-    value[i] = buf.data()[i];
-  }
-
-  return value;
-}
-
-template c_vector<double, 2> array_to_c_vector<double, 2>(const py::array_t<double> &src);
-template c_vector<double, 3> array_to_c_vector<double, 3>(const py::array_t<double> &src);
-
-#endif /*PYTHONOBJECTCONVERTERS_HPP_*/
+#endif /*PYVTKCONVERTERS_HPP_*/

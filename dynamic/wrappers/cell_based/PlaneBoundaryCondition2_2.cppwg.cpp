@@ -1,6 +1,6 @@
 #include "PlaneBoundaryCondition2_2.cppwg.hpp"
 
-#include "PythonObjectConverters.hpp"
+#include "PythonUblasObjectConverters.hpp"
 
 #include "PlaneBoundaryCondition.hpp"
 #include "SmartPointers.hpp"

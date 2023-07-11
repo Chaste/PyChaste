@@ -51,7 +51,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <vtkTextProperty.h>
 #include "UblasIncludes.hpp"
 #include "Exception.hpp"
-//#include "PythonObjectConverters.hpp"
+//#include "PythonUblasObjectConverters.hpp"
+//#include "PythonVtkObjectConverters.hpp"
 
 namespace py = pybind11;
 
