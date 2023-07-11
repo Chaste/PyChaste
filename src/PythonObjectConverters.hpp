@@ -45,99 +45,55 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 namespace py = pybind11;
 
-#define PYBIND11_CVECTOR_TYPECASTER3()                                                             \
-  namespace pybind11                                                                               \
-  {                                                                                                \
-    namespace detail                                                                               \
-    {                                                                                              \
-      template <>                                                                                  \
-      struct type_caster<c_vector<double, 3>>                                                      \
-      {                                                                                            \
-      public:                                                                                      \
-        typedef c_vector<double, 3> CVec3;                                                         \
-        PYBIND11_TYPE_CASTER(CVec3, _("CVector_3"));                                               \
-        bool load(py::handle src, bool convert)                                                    \
-        {                                                                                          \
-          if (!convert && !py::array_t<double>::check_(src))                                       \
-          {                                                                                        \
-            return false;                                                                          \
-          }                                                                                        \
-          auto buf = py::array_t<double, py::array::c_style |                                      \
-                                             py::array::forcecast>::ensure(src);                   \
-          if (!buf)                                                                                \
-          {                                                                                        \
-            return false;                                                                          \
-          }                                                                                        \
-          if (buf.ndim() != 1 or buf.shape()[0] != 3)                                              \
-          {                                                                                        \
-            return false;                                                                          \
-          }                                                                                        \
-          value.resize(3);                                                                         \
-          for (int i = 0; i < 3; i++)                                                              \
-          {                                                                                        \
-            value[i] = buf.data()[i];                                                              \
-          }                                                                                        \
-          return true;                                                                             \
-        }                                                                                          \
-        static py::handle cast(const c_vector<double, 3> &src,                                     \
-                               py::return_value_policy policy, py::handle parent)                  \
-        {                                                                                          \
-          std::vector<size_t> shape(1, 3);                                                         \
-          std::vector<size_t> strides(1, sizeof(double));                                          \
-          double *data = src.size() ? const_cast<double *>(&src[0]) : static_cast<double *>(NULL); \
-          py::array a(std::move(shape), std::move(strides), data);                                 \
-          return a.release();                                                                      \
-        }                                                                                          \
-      };                                                                                           \
-    }                                                                                              \
+#define PYBIND11_CVECTOR_TYPECASTER(T, N)                                                   \
+  namespace pybind11                                                                        \
+  {                                                                                         \
+    namespace detail                                                                        \
+    {                                                                                       \
+      template <>                                                                           \
+      struct type_caster<boost::numeric::ublas::c_vector<T, N>>                             \
+      {                                                                                     \
+      public:                                                                               \
+        typedef boost::numeric::ublas::c_vector<T, N> c_vector_##T##_##N##_t;               \
+        PYBIND11_TYPE_CASTER(c_vector_##T##_##N##_t, const_name("c_vector_##T##_##N##_t")); \
+        bool load(handle src, bool convert)                                                 \
+        {                                                                                   \
+          if (!convert && !array_t<T>::check_(src))                                         \
+          {                                                                                 \
+            return false;                                                                   \
+          }                                                                                 \
+          auto buf = array_t<T, array::c_style | array::forcecast>::ensure(src);            \
+          if (!buf)                                                                         \
+          {                                                                                 \
+            return false;                                                                   \
+          }                                                                                 \
+          if (buf.ndim() != 1 or buf.shape()[0] != N)                                       \
+          {                                                                                 \
+            return false;                                                                   \
+          }                                                                                 \
+          value.resize(N);                                                                  \
+          for (int i = 0; i < N; i++)                                                       \
+          {                                                                                 \
+            value[i] = buf.data()[i];                                                       \
+          }                                                                                 \
+          return true;                                                                      \
+        }                                                                                   \
+        static handle cast(const boost::numeric::ublas::c_vector<T, N> &src,                \
+                           return_value_policy policy,                                      \
+                           handle parent)                                                   \
+        {                                                                                   \
+          std::vector<size_t> shape(1, N);                                                  \
+          std::vector<size_t> strides(1, sizeof(T));                                        \
+          T *data = src.size() ? const_cast<T *>(&src[0]) : static_cast<T *>(NULL);         \
+          array a(std::move(shape), std::move(strides), data);                              \
+          return a.release();                                                               \
+        }                                                                                   \
+      };                                                                                    \
+    }                                                                                       \
   }
 
-#define PYBIND11_CVECTOR_TYPECASTER2()                                                             \
-  namespace pybind11                                                                               \
-  {                                                                                                \
-    namespace detail                                                                               \
-    {                                                                                              \
-      template <>                                                                                  \
-      struct type_caster<c_vector<double, 2>>                                                      \
-      {                                                                                            \
-      public:                                                                                      \
-        typedef c_vector<double, 2> CVec2;                                                         \
-        PYBIND11_TYPE_CASTER(CVec2, _("CVector_2"));                                               \
-        bool load(py::handle src, bool convert)                                                    \
-        {                                                                                          \
-          if (!convert && !py::array_t<double>::check_(src))                                       \
-          {                                                                                        \
-            return false;                                                                          \
-          }                                                                                        \
-          auto buf = py::array_t<double, py::array::c_style |                                      \
-                                             py::array::forcecast>::ensure(src);                   \
-          if (!buf)                                                                                \
-          {                                                                                        \
-            return false;                                                                          \
-          }                                                                                        \
-          if (buf.ndim() != 1 or buf.shape()[0] != 2)                                              \
-          {                                                                                        \
-            return false;                                                                          \
-          }                                                                                        \
-          value.resize(2);                                                                         \
-          for (int i = 0; i < 2; i++)                                                              \
-          {                                                                                        \
-            value[i] = buf.data()[i];                                                              \
-          }                                                                                        \
-          return true;                                                                             \
-        }                                                                                          \
-        static py::handle cast(const c_vector<double, 2> &src,                                     \
-                               py::return_value_policy policy, py::handle parent)                  \
-        {                                                                                          \
-          std::vector<size_t> shape(1, 2);                                                         \
-          std::vector<size_t> strides(1, sizeof(double));                                          \
-          double *data = src.size() ? const_cast<double *>(&src[0]) : static_cast<double *>(NULL); \
-          py::array a(std::move(shape), std::move(strides), data);                                 \
-          return a.release();                                                                      \
-        }                                                                                          \
-      };                                                                                           \
-    }                                                                                              \
-  }
+PYBIND11_CVECTOR_TYPECASTER(double, 2);
+PYBIND11_CVECTOR_TYPECASTER(double, 3);
 
 /**
  *  VTK Conversion, from SMTK Source with copyright
@@ -155,45 +111,42 @@ namespace py = pybind11;
 #include <vtkObjectBase.h>
 #include <vtkPythonUtil.h>
 
-#define PYBIND11_VTK_TYPECASTER(VTK_OBJ)                                 \
-  namespace pybind11                                                     \
-  {                                                                      \
-    namespace detail                                                     \
-    {                                                                    \
-      template <>                                                        \
-      struct type_caster<vtkSmartPointer<VTK_OBJ>>                       \
-      {                                                                  \
-      protected:                                                         \
-        VTK_OBJ *value;                                                  \
-                                                                         \
-      public:                                                            \
-        static constexpr auto name = _(#VTK_OBJ);                        \
-        operator VTK_OBJ *() { return value; }                           \
-        operator VTK_OBJ &() { return *value; }                          \
-        template <typename _T>                                           \
-        using cast_op_type =                                             \
-            pybind11::detail::cast_op_type<_T>;                          \
-        bool load(handle src, bool)                                      \
-        {                                                                \
-          value = dynamic_cast<VTK_OBJ *>(                               \
-              vtkPythonUtil::GetPointerFromObject(src.ptr(), #VTK_OBJ)); \
-          if (!value)                                                    \
-          {                                                              \
-            PyErr_Clear();                                               \
-            throw reference_cast_error();                                \
-          }                                                              \
-          return value != nullptr;                                       \
-        }                                                                \
-        static handle cast(const vtkSmartPointer<VTK_OBJ> &src,          \
-                           return_value_policy, handle)                  \
-        {                                                                \
-          PyObject *obj =                                                \
-              vtkPythonUtil::GetObjectFromPointer(                       \
-                  const_cast<VTK_OBJ *>(src.GetPointer()));              \
-          return obj;                                                    \
-        }                                                                \
-      };                                                                 \
-    }                                                                    \
+#define PYBIND11_VTK_TYPECASTER(VTK_OBJ)                                                                \
+  namespace pybind11                                                                                    \
+  {                                                                                                     \
+    namespace detail                                                                                    \
+    {                                                                                                   \
+      template <>                                                                                       \
+      struct type_caster<vtkSmartPointer<VTK_OBJ>>                                                      \
+      {                                                                                                 \
+      protected:                                                                                        \
+        VTK_OBJ *value;                                                                                 \
+                                                                                                        \
+      public:                                                                                           \
+        static constexpr auto name = _(#VTK_OBJ);                                                       \
+        operator VTK_OBJ *() { return value; }                                                          \
+        operator VTK_OBJ &() { return *value; }                                                         \
+        template <typename _T>                                                                          \
+        using cast_op_type = pybind11::detail::cast_op_type<_T>;                                        \
+        bool load(handle src, bool)                                                                     \
+        {                                                                                               \
+          value = dynamic_cast<VTK_OBJ *>(vtkPythonUtil::GetPointerFromObject(src.ptr(), #VTK_OBJ));    \
+          if (!value)                                                                                   \
+          {                                                                                             \
+            PyErr_Clear();                                                                              \
+            throw reference_cast_error();                                                               \
+          }                                                                                             \
+          return value != nullptr;                                                                      \
+        }                                                                                               \
+        static handle cast(const vtkSmartPointer<VTK_OBJ> &src,                                         \
+                           return_value_policy,                                                         \
+                           handle)                                                                      \
+        {                                                                                               \
+          PyObject *obj = vtkPythonUtil::GetObjectFromPointer(const_cast<VTK_OBJ *>(src.GetPointer())); \
+          return obj;                                                                                   \
+        }                                                                                               \
+      };                                                                                                \
+    }                                                                                                   \
   }
 
 template <typename T, unsigned N>
