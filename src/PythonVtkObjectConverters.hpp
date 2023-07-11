@@ -33,15 +33,15 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef PYVTKCONVERTERS_HPP_
-#define PYVTKCONVERTERS_HPP_
+#ifndef PYTHONVTKOBJECTCONVERTERS_HPP_
+#define PYTHONVTKOBJECTCONVERTERS_HPP_
+
+#include <vtkObjectBase.h>
+#include <vtkPythonUtil.h>
 
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-
-#include <vtkObjectBase.h>
-#include <vtkPythonUtil.h>
 
 #include <typeinfo>
 
@@ -96,4 +96,4 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }                                                                                                   \
   }
 
-#endif /*PYVTKCONVERTERS_HPP_*/
+#endif /*PYTHONVTKOBJECTCONVERTERS_HPP_*/

@@ -33,8 +33,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef PYUBLASCONVERTERS_HPP_
-#define PYUBLASCONVERTERS_HPP_
+#ifndef PYTHONUBLASOBJECTCONVERTERS_HPP_
+#define PYTHONUBLASOBJECTCONVERTERS_HPP_
 
 #include "UblasIncludes.hpp"
 #include "UblasVectorInclude.hpp"
@@ -72,7 +72,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             return false;                                                                   \
           }                                                                                 \
           value.resize(N);                                                                  \
-          for (int i = 0; i < N; i++)                                                       \
+          for (unsigned i = 0; i < N; ++i)                                                  \
           {                                                                                 \
             value[i] = buf.data()[i];                                                       \
           }                                                                                 \
@@ -117,4 +117,4 @@ PYBIND11_CVECTOR_TYPECASTER(double, 3);
 template c_vector<double, 2> array_to_c_vector<double, 2>(const pybind11::array_t<double> &src);
 template c_vector<double, 3> array_to_c_vector<double, 3>(const pybind11::array_t<double> &src);
 
-#endif /*PYUBLASCONVERTERS_HPP_*/
+#endif /*PYTHONUBLASOBJECTCONVERTERS_HPP_*/
