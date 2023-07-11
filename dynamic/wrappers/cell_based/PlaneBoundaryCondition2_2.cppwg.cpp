@@ -47,37 +47,15 @@ public:
             OutputCellPopulationBoundaryConditionParameters,
             rParamsFile);
     }
-};
 
-class PlaneBoundaryCondition2_2Factory
-{
-public:
-  static PlaneBoundaryCondition2_2 create(AbstractCellPopulation<2, 2> * pCellPopulation, py::array_t<double> point_array, py::array_t<double> normal_array)
-  {
-    c_vector<double, 2> point_c_vector_double_2;
-    c_vector<double, 2> normal_c_vector_double_2;
-
-    // Ensure input is a c_style array and try to convert if not
-    auto point_buf = py::array_t<double, py::array::c_style | py::array::forcecast>::ensure(point_array);
-
-    point_c_vector_double_2.resize(2);
-
-    for (int i = 0; i < 2; i++)
+    static PlaneBoundaryCondition2_2 create(AbstractCellPopulation<2, 2> *pCellPopulation,
+                                            py::array_t<double> point_array,
+                                            py::array_t<double> normal_array)
     {
-        point_c_vector_double_2[i] = point_buf.data()[i];
+        c_vector<double, 2> point {array_to_c_vector<double, 2>(point_array)};
+        c_vector<double, 2> normal {array_to_c_vector<double, 2>(normal_array)};
+        return PlaneBoundaryCondition2_2(pCellPopulation, point, normal);
     }
-
-    auto normal_buf = py::array_t<double, py::array::c_style | py::array::forcecast>::ensure(normal_array);
-
-    normal_c_vector_double_2.resize(2);
-
-    for (int i = 0; i < 2; i++)
-    {
-        normal_c_vector_double_2[i] = normal_buf.data()[i];
-    }
-
-    return PlaneBoundaryCondition2_2(pCellPopulation, point_c_vector_double_2, normal_c_vector_double_2);
-  }
 };
 
 void register_PlaneBoundaryCondition2_2_class(py::module &m)
@@ -86,7 +64,7 @@ void register_PlaneBoundaryCondition2_2_class(py::module &m)
                PlaneBoundaryCondition2_2_Overloads,
                AbstractCellPopulationBoundaryCondition<2, 2>,
                boost::shared_ptr<PlaneBoundaryCondition<2, 2>>>(m, "PlaneBoundaryCondition2_2")
-        .def(py::init(&PlaneBoundaryCondition2_2Factory::create))
+        .def(py::init(&PlaneBoundaryCondition2_2_Overloads::create))
         .def(
             "rGetPointOnPlane",
             (c_vector<double, 2> const &(PlaneBoundaryCondition2_2::*)() const) & PlaneBoundaryCondition2_2::rGetPointOnPlane,
