@@ -43,55 +43,53 @@ class VtkScene2_Overloads : public VtkScene2{
 
 };
 void register_VtkScene2_class(py::module &m){
-py::class_<VtkScene2 , VtkScene2_Overloads , boost::shared_ptr<VtkScene2 >   >(m, "VtkScene2")
-        .def(py::init< >())
+    py::class_<VtkScene2, VtkScene2_Overloads, boost::shared_ptr<VtkScene2>>(m, "VtkScene2")
+        .def(py::init<>())
         .def(
-            "End", 
-            (void(VtkScene2::*)()) &VtkScene2::End, 
-            " "  )
+            "End",
+            (void(VtkScene2::*)()) & VtkScene2::End,
+            " ")
         .def(
-            "GetSceneAsCharBuffer", 
-            (::vtkSmartPointer<vtkUnsignedCharArray>(VtkScene2::*)()) &VtkScene2::GetSceneAsCharBuffer, 
-            " "  )
+            "GetSceneAsCharBuffer",
+            (::vtkSmartPointer<vtkUnsignedCharArray>(VtkScene2::*)()) & VtkScene2::GetSceneAsCharBuffer,
+            " ")
         .def(
-            "GetRenderer", 
-            (::vtkSmartPointer<vtkRenderer>(VtkScene2::*)()) &VtkScene2::GetRenderer, 
-            " "  )
+            "GetRenderer",
+            (::vtkSmartPointer<vtkRenderer>(VtkScene2::*)()) & VtkScene2::GetRenderer,
+            " ")
         .def(
-            "GetCellPopulationActorGenerator", 
-            (::boost::shared_ptr<CellPopulationPyChasteActorGenerator<2> >(VtkScene2::*)()) &VtkScene2::GetCellPopulationActorGenerator, 
-            " "  )
+            "GetCellPopulationActorGenerator",
+            (::boost::shared_ptr<CellPopulationPyChasteActorGenerator<2>>(VtkScene2::*)()) & VtkScene2::GetCellPopulationActorGenerator,
+            " ")
         .def(
-            "ResetRenderer", 
-            (void(VtkScene2::*)(unsigned int)) &VtkScene2::ResetRenderer, 
-            " " , py::arg("timeStep") = 0 )
+            "ResetRenderer",
+            (void(VtkScene2::*)(unsigned int)) & VtkScene2::ResetRenderer,
+            " ", py::arg("timeStep") = 0)
         .def(
-            "Start", 
-            (void(VtkScene2::*)()) &VtkScene2::Start, 
-            " "  )
+            "Start",
+            (void(VtkScene2::*)()) & VtkScene2::Start,
+            " ")
+        .def("SetCellPopulation",
+             &VtkScene<2>::SetCellPopulation,
+             py::arg("pCellPopulation"))
         .def(
-            "SetCellPopulation", 
-            (void(VtkScene2::*)(::boost::shared_ptr<AbstractCellPopulation<2, 2> >)) &VtkScene2::SetCellPopulation, 
-            " " , py::arg("pCellPopulation") )
+            "SetOutputFilePath",
+            (void(VtkScene2::*)(::std::string const &)) & VtkScene2::SetOutputFilePath,
+            " ", py::arg("rPath"))
         .def(
-            "SetOutputFilePath", 
-            (void(VtkScene2::*)(::std::string const &)) &VtkScene2::SetOutputFilePath, 
-            " " , py::arg("rPath") )
+            "SetIsInteractive",
+            (void(VtkScene2::*)(bool)) & VtkScene2::SetIsInteractive,
+            " ", py::arg("isInteractive"))
         .def(
-            "SetIsInteractive", 
-            (void(VtkScene2::*)(bool)) &VtkScene2::SetIsInteractive, 
-            " " , py::arg("isInteractive") )
+            "SetSaveAsAnimation",
+            (void(VtkScene2::*)(bool)) & VtkScene2::SetSaveAsAnimation,
+            " ", py::arg("saveAsAnimation"))
         .def(
-            "SetSaveAsAnimation", 
-            (void(VtkScene2::*)(bool)) &VtkScene2::SetSaveAsAnimation, 
-            " " , py::arg("saveAsAnimation") )
+            "SetSaveAsImages",
+            (void(VtkScene2::*)(bool)) & VtkScene2::SetSaveAsImages,
+            " ", py::arg("saveAsImages"))
         .def(
-            "SetSaveAsImages", 
-            (void(VtkScene2::*)(bool)) &VtkScene2::SetSaveAsImages, 
-            " " , py::arg("saveAsImages") )
-        .def(
-            "StartInteractiveEventHandler", 
-            (void(VtkScene2::*)()) &VtkScene2::StartInteractiveEventHandler, 
-            " "  )
-    ;
+            "StartInteractiveEventHandler",
+            (void(VtkScene2::*)()) & VtkScene2::StartInteractiveEventHandler,
+            " ");
 }
