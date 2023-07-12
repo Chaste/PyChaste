@@ -209,125 +209,128 @@ pParentCell);
 
 };
 void register_NodeBasedCellPopulation2_class(py::module &m){
-py::class_<NodeBasedCellPopulation2 , NodeBasedCellPopulation2_Overloads , boost::shared_ptr<NodeBasedCellPopulation2 >   >(m, "NodeBasedCellPopulation2")
-        .def(py::init<::NodesOnlyMesh<2> &, ::std::vector<boost::shared_ptr<Cell>> &, ::std::vector<unsigned int> const, bool, bool >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices") = std::vector<unsigned int>(), py::arg("deleteMesh") = false, py::arg("validate") = true)
-        .def(py::init<::NodesOnlyMesh<2> & >(), py::arg("rMesh"))
+    py::class_<NodeBasedCellPopulation2,
+               NodeBasedCellPopulation2_Overloads,
+               boost::shared_ptr<NodeBasedCellPopulation2>,
+               AbstractCentreBasedCellPopulation<2>>(m, "NodeBasedCellPopulation2")
+        .def(py::init<::NodesOnlyMesh<2> &, ::std::vector<boost::shared_ptr<Cell>> &, ::std::vector<unsigned int> const, bool, bool>(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices") = std::vector<unsigned int>(), py::arg("deleteMesh") = false, py::arg("validate") = true)
+        .def(py::init<::NodesOnlyMesh<2> &>(), py::arg("rMesh"))
         .def(
-            "SetNode", 
-            (void(NodeBasedCellPopulation2::*)(unsigned int, ::ChastePoint<2> &)) &NodeBasedCellPopulation2::SetNode, 
-            " " , py::arg("nodeIndex"), py::arg("rNewLocation") )
+            "SetNode",
+            (void(NodeBasedCellPopulation2::*)(unsigned int, ::ChastePoint<2> &)) & NodeBasedCellPopulation2::SetNode,
+            " ", py::arg("nodeIndex"), py::arg("rNewLocation"))
         .def(
-            "GetNumNodes", 
-            (unsigned int(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::GetNumNodes, 
-            " "  )
+            "GetNumNodes",
+            (unsigned int (NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::GetNumNodes,
+            " ")
         .def(
-            "GetCellUsingLocationIndex", 
-            (::CellPtr(NodeBasedCellPopulation2::*)(unsigned int)) &NodeBasedCellPopulation2::GetCellUsingLocationIndex, 
-            " " , py::arg("index") )
+            "GetCellUsingLocationIndex",
+            (::CellPtr(NodeBasedCellPopulation2::*)(unsigned int)) & NodeBasedCellPopulation2::GetCellUsingLocationIndex,
+            " ", py::arg("index"))
         .def(
-            "GetNode", 
-            (::Node<2> *(NodeBasedCellPopulation2::*)(unsigned int)) &NodeBasedCellPopulation2::GetNode, 
-            " " , py::arg("index") , py::return_value_policy::reference)
+            "GetNode",
+            (::Node<2> * (NodeBasedCellPopulation2::*)(unsigned int)) & NodeBasedCellPopulation2::GetNode,
+            " ", py::arg("index"), py::return_value_policy::reference)
         .def(
-            "RemoveDeadCells", 
-            (unsigned int(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::RemoveDeadCells, 
-            " "  )
+            "RemoveDeadCells",
+            (unsigned int (NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::RemoveDeadCells,
+            " ")
         .def(
-            "Clear", 
-            (void(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::Clear, 
-            " "  )
+            "Clear",
+            (void(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::Clear,
+            " ")
         .def(
-            "Update", 
-            (void(NodeBasedCellPopulation2::*)(bool)) &NodeBasedCellPopulation2::Update, 
-            " " , py::arg("hasHadBirthsOrDeaths") = true )
+            "Update",
+            (void(NodeBasedCellPopulation2::*)(bool)) & NodeBasedCellPopulation2::Update,
+            " ", py::arg("hasHadBirthsOrDeaths") = true)
         .def(
-            "OutputCellPopulationParameters", 
-            (void(NodeBasedCellPopulation2::*)(::out_stream &)) &NodeBasedCellPopulation2::OutputCellPopulationParameters, 
-            " " , py::arg("rParamsFile") )
+            "OutputCellPopulationParameters",
+            (void(NodeBasedCellPopulation2::*)(::out_stream &)) & NodeBasedCellPopulation2::OutputCellPopulationParameters,
+            " ", py::arg("rParamsFile"))
         .def(
-            "AcceptPopulationWriter", 
-            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>>)) &NodeBasedCellPopulation2::AcceptPopulationWriter, 
-            " " , py::arg("pPopulationWriter") )
+            "AcceptPopulationWriter",
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>>)) & NodeBasedCellPopulation2::AcceptPopulationWriter,
+            " ", py::arg("pPopulationWriter"))
         .def(
-            "AcceptPopulationCountWriter", 
-            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>>)) &NodeBasedCellPopulation2::AcceptPopulationCountWriter, 
-            " " , py::arg("pPopulationCountWriter") )
+            "AcceptPopulationCountWriter",
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>>)) & NodeBasedCellPopulation2::AcceptPopulationCountWriter,
+            " ", py::arg("pPopulationCountWriter"))
         .def(
-            "AcceptPopulationEventWriter", 
-            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>>)) &NodeBasedCellPopulation2::AcceptPopulationEventWriter, 
-            " " , py::arg("pPopulationEventWriter") )
+            "AcceptPopulationEventWriter",
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>>)) & NodeBasedCellPopulation2::AcceptPopulationEventWriter,
+            " ", py::arg("pPopulationEventWriter"))
         .def(
-            "AcceptCellWriter", 
-            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2>>, ::CellPtr)) &NodeBasedCellPopulation2::AcceptCellWriter, 
-            " " , py::arg("pCellWriter"), py::arg("pCell") )
+            "AcceptCellWriter",
+            (void(NodeBasedCellPopulation2::*)(::boost::shared_ptr<AbstractCellWriter<2, 2>>, ::CellPtr)) & NodeBasedCellPopulation2::AcceptCellWriter,
+            " ", py::arg("pCellWriter"), py::arg("pCell"))
         .def(
-            "GetMechanicsCutOffLength", 
-            (double(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::GetMechanicsCutOffLength, 
-            " "  )
+            "GetMechanicsCutOffLength",
+            (double(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::GetMechanicsCutOffLength,
+            " ")
         .def(
-            "GetUseVariableRadii", 
-            (bool(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::GetUseVariableRadii, 
-            " "  )
+            "GetUseVariableRadii",
+            (bool(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::GetUseVariableRadii,
+            " ")
         .def(
-            "SetUseVariableRadii", 
-            (void(NodeBasedCellPopulation2::*)(bool)) &NodeBasedCellPopulation2::SetUseVariableRadii, 
-            " " , py::arg("useVariableRadii") = true )
+            "SetUseVariableRadii",
+            (void(NodeBasedCellPopulation2::*)(bool)) & NodeBasedCellPopulation2::SetUseVariableRadii,
+            " ", py::arg("useVariableRadii") = true)
         .def(
-            "SetLoadBalanceMesh", 
-            (void(NodeBasedCellPopulation2::*)(bool)) &NodeBasedCellPopulation2::SetLoadBalanceMesh, 
-            " " , py::arg("loadBalanceMesh") )
+            "SetLoadBalanceMesh",
+            (void(NodeBasedCellPopulation2::*)(bool)) & NodeBasedCellPopulation2::SetLoadBalanceMesh,
+            " ", py::arg("loadBalanceMesh"))
         .def(
-            "SetLoadBalanceFrequency", 
-            (void(NodeBasedCellPopulation2::*)(unsigned int)) &NodeBasedCellPopulation2::SetLoadBalanceFrequency, 
-            " " , py::arg("loadBalanceFrequency") )
+            "SetLoadBalanceFrequency",
+            (void(NodeBasedCellPopulation2::*)(unsigned int)) & NodeBasedCellPopulation2::SetLoadBalanceFrequency,
+            " ", py::arg("loadBalanceFrequency"))
         .def(
-            "GetWidth", 
-            (double(NodeBasedCellPopulation2::*)(unsigned int const &)) &NodeBasedCellPopulation2::GetWidth, 
-            " " , py::arg("rDimension") )
+            "GetWidth",
+            (double(NodeBasedCellPopulation2::*)(unsigned int const &)) & NodeBasedCellPopulation2::GetWidth,
+            " ", py::arg("rDimension"))
         .def(
-            "GetSizeOfCellPopulation", 
-            (::boost::numeric::ublas::c_vector<double, 2>(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::GetSizeOfCellPopulation, 
-            " "  )
+            "GetSizeOfCellPopulation",
+            (::boost::numeric::ublas::c_vector<double, 2>(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::GetSizeOfCellPopulation,
+            " ")
         .def(
-            "GetNodesWithinNeighbourhoodRadius", 
-            (::std::set<unsigned int>(NodeBasedCellPopulation2::*)(unsigned int, double)) &NodeBasedCellPopulation2::GetNodesWithinNeighbourhoodRadius, 
-            " " , py::arg("index"), py::arg("neighbourhoodRadius") )
+            "GetNodesWithinNeighbourhoodRadius",
+            (::std::set<unsigned int>(NodeBasedCellPopulation2::*)(unsigned int, double)) & NodeBasedCellPopulation2::GetNodesWithinNeighbourhoodRadius,
+            " ", py::arg("index"), py::arg("neighbourhoodRadius"))
         .def(
-            "GetNeighbouringNodeIndices", 
-            (::std::set<unsigned int>(NodeBasedCellPopulation2::*)(unsigned int)) &NodeBasedCellPopulation2::GetNeighbouringNodeIndices, 
-            " " , py::arg("index") )
+            "GetNeighbouringNodeIndices",
+            (::std::set<unsigned int>(NodeBasedCellPopulation2::*)(unsigned int)) & NodeBasedCellPopulation2::GetNeighbouringNodeIndices,
+            " ", py::arg("index"))
         .def(
-            "AddCell", 
-            (::CellPtr(NodeBasedCellPopulation2::*)(::CellPtr, ::CellPtr)) &NodeBasedCellPopulation2::AddCell, 
-            " " , py::arg("pNewCell"), py::arg("pParentCell") )
+            "AddCell",
+            (::CellPtr(NodeBasedCellPopulation2::*)(::CellPtr, ::CellPtr)) & NodeBasedCellPopulation2::AddCell,
+            " ", py::arg("pNewCell"), py::arg("pParentCell"))
         .def(
-            "GetVolumeOfCell", 
-            (double(NodeBasedCellPopulation2::*)(::CellPtr)) &NodeBasedCellPopulation2::GetVolumeOfCell, 
-            " " , py::arg("pCell") )
+            "GetVolumeOfCell",
+            (double(NodeBasedCellPopulation2::*)(::CellPtr)) & NodeBasedCellPopulation2::GetVolumeOfCell,
+            " ", py::arg("pCell"))
         .def(
-            "SendCellsToNeighbourProcesses", 
-            (void(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::SendCellsToNeighbourProcesses, 
-            " "  )
+            "SendCellsToNeighbourProcesses",
+            (void(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::SendCellsToNeighbourProcesses,
+            " ")
         .def(
-            "NonBlockingSendCellsToNeighbourProcesses", 
-            (void(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::NonBlockingSendCellsToNeighbourProcesses, 
-            " "  )
+            "NonBlockingSendCellsToNeighbourProcesses",
+            (void(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::NonBlockingSendCellsToNeighbourProcesses,
+            " ")
         .def(
-            "GetReceivedCells", 
-            (void(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::GetReceivedCells, 
-            " "  )
+            "GetReceivedCells",
+            (void(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::GetReceivedCells,
+            " ")
         .def(
-            "GetCellNodePair", 
-            (::std::pair<boost::shared_ptr<Cell>, Node<2> *>(NodeBasedCellPopulation2::*)(unsigned int)) &NodeBasedCellPopulation2::GetCellNodePair, 
-            " " , py::arg("nodeIndex") )
+            "GetCellNodePair",
+            (::std::pair<boost::shared_ptr<Cell>, Node<2> *>(NodeBasedCellPopulation2::*)(unsigned int)) & NodeBasedCellPopulation2::GetCellNodePair,
+            " ", py::arg("nodeIndex"))
         .def(
-            "AddReceivedCells", 
-            (void(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::AddReceivedCells, 
-            " "  )
+            "AddReceivedCells",
+            (void(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::AddReceivedCells,
+            " ")
         .def(
-            "UpdateCellProcessLocation", 
-            (void(NodeBasedCellPopulation2::*)()) &NodeBasedCellPopulation2::UpdateCellProcessLocation, 
-            " "  )
+            "UpdateCellProcessLocation",
+            (void(NodeBasedCellPopulation2::*)()) & NodeBasedCellPopulation2::UpdateCellProcessLocation,
+            " ")
         .def("AddCellWriterCellAgesWriter", &NodeBasedCellPopulation2::AddCellWriter<CellAgesWriter>)
         .def("AddCellWriterCellAncestorWriter", &NodeBasedCellPopulation2::AddCellWriter<CellAncestorWriter>)
         .def("AddCellWriterCellAppliedForceWriter", &NodeBasedCellPopulation2::AddCellWriter<CellAppliedForceWriter>)
@@ -361,6 +364,5 @@ py::class_<NodeBasedCellPopulation2 , NodeBasedCellPopulation2_Overloads , boost
         .def("AddPopulationWriterVertexT1SwapLocationsWriter", &NodeBasedCellPopulation2::AddPopulationWriter<VertexT1SwapLocationsWriter>)
         .def("AddPopulationWriterVertexT2SwapLocationsWriter", &NodeBasedCellPopulation2::AddPopulationWriter<VertexT2SwapLocationsWriter>)
         .def("AddPopulationWriterVertexT3SwapLocationsWriter", &NodeBasedCellPopulation2::AddPopulationWriter<VertexT3SwapLocationsWriter>)
-        .def("AddPopulationWriterVoronoiDataWriter", &NodeBasedCellPopulation2::AddPopulationWriter<VoronoiDataWriter>)
-    ;
+        .def("AddPopulationWriterVoronoiDataWriter", &NodeBasedCellPopulation2::AddPopulationWriter<VoronoiDataWriter>);
 }
