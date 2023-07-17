@@ -55,8 +55,6 @@ modules:
   - name: RelativeTo # enum
     source_file: FileFinder.hpp
   - name: FileFinder
-    source_includes:
-    - BoostFilesystem.hpp
   - name: OutputFileHandler
     source_includes:
     - FileFinder.hpp # forward decl

@@ -1,6 +1,5 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-#include "BoostFilesystem.hpp"
 #include <set>
 #include <vector>
 #include <string>

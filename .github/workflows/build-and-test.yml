@@ -18,14 +18,15 @@ jobs:
       CHASTE_TEST_OUTPUT: ${{ github.workspace }}/chaste-test-dir
       
     steps:
-    - name: checkout chaste repository
+    - name: checkout Chaste repository
       uses: actions/checkout@v3
       with:
         repository: Chaste/Chaste
+        ref: develop
         path: Chaste
         submodules: recursive
 
-    - name: checkout pychaste repository
+    - name: checkout PyChaste repository
       uses: actions/checkout@v3
       with:
         path: Chaste/projects/PyChaste
