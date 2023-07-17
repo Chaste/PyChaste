@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "ChastePoint.hpp"
 
 #include "ChastePoint2.cppwg.hpp"

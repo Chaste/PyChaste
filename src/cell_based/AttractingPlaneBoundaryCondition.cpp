@@ -36,6 +36,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "AbstractCentreBasedCellPopulation.hpp"
 #include "AttractingPlaneBoundaryCondition.hpp"
 #include "VertexBasedCellPopulation.hpp"
+#include "UblasIncludes.hpp"
 
 template<unsigned ELEMENT_DIM, unsigned SPACE_DIM>
 AttractingPlaneBoundaryCondition<ELEMENT_DIM,SPACE_DIM>::AttractingPlaneBoundaryCondition(

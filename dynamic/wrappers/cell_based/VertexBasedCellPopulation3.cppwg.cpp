@@ -45,6 +45,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "VertexBasedCellPopulation.hpp"
 
 #include "VertexBasedCellPopulation3.cppwg.hpp"

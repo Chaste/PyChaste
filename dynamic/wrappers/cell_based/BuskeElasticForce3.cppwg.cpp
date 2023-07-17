@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "BuskeElasticForce.hpp"
 
 #include "BuskeElasticForce3.cppwg.hpp"

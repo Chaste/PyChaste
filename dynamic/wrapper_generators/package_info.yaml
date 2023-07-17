@@ -630,16 +630,16 @@ modules:
   # - name: AbstractCellPopulationBoundaryCondition
   # - name: PlaneBoundaryCondition
   #   source_includes:
-  #   - PythonObjectConverters.hpp
+  #   - PythonUblasObjectConverters.hpp
   # - name: AttractingPlaneBoundaryCondition
   #   source_includes:
-  #   - PythonObjectConverters.hpp
+  #   - PythonUblasObjectConverters.hpp
   - name: SphereGeometryBoundaryCondition
     source_includes:
-    - PythonObjectConverters.hpp
+    - PythonUblasObjectConverters.hpp
   - name: SlidingBoundaryCondition
     source_includes:
-    - PythonObjectConverters.hpp
+    - PythonUblasObjectConverters.hpp
   # - name: AbstractCellPopulation
   #   excluded_methods: 
   #   - rGetCells

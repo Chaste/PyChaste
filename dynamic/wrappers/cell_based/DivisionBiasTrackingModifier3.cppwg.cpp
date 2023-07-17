@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "DivisionBiasTrackingModifier.hpp"
 
 #include "DivisionBiasTrackingModifier3.cppwg.hpp"

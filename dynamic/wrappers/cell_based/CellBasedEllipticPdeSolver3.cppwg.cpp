@@ -8,6 +8,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "CellBasedEllipticPdeSolver.hpp"
 
 #include "CellBasedEllipticPdeSolver3.cppwg.hpp"

@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractCellPopulationBoundaryCondition.hpp"
 
 #include "AbstractCellPopulationBoundaryCondition2_2.cppwg.hpp"

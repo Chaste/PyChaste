@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "Cylindrical2dVertexMesh.hpp"
 
 #include "Cylindrical2dVertexMesh.cppwg.hpp"

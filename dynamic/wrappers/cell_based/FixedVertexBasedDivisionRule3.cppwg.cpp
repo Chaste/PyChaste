@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "FixedVertexBasedDivisionRule.hpp"
 
 #include "FixedVertexBasedDivisionRule3.cppwg.hpp"

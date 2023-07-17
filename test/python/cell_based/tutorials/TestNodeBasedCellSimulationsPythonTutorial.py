@@ -83,15 +83,13 @@ class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
 
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumNodes(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumNodes(), transit_type)
 
         ## Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`. 
         ## In general, this class associates a collection of cells with a mesh. For this test, 
         ## because we have a `NodesOnlyMesh`, we use a particular type of cell population called a `NodeBasedCellPopulation`.
 
-        cell_population = chaste.cell_based.NodeBasedCellPopulation2(mesh,
-                                                                     cells)
+        cell_population = chaste.cell_based.NodeBasedCellPopulation2(mesh, cells)
 
         ## We can set up a `VtkScene` to do a quick visualization of the population before running the analysis.
 
@@ -164,15 +162,13 @@ class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
 
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformCellCycleModel_3()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumNodes(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumNodes(), transit_type)
 
         ## Now we have a mesh and a set of cells to go with it, we can create a `CellPopulation`. 
         ## In general, this class associates a collection of cells with a mesh. For this test, 
         ## because we have a `NodesOnlyMesh`, we use a particular type of cell population called a `NodeBasedCellPopulation`.
 
-        cell_population = chaste.cell_based.NodeBasedCellPopulation3(mesh,
-                                                                     cells)
+        cell_population = chaste.cell_based.NodeBasedCellPopulation3(mesh, cells)
 
         ## We can set up a `VtkScene` to do a quick visualization of the population before running the analysis.
 
@@ -209,8 +205,7 @@ class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
         ## If different simulation input parameters are being explored the lines should be removed.
 
         self.assertEqual(cell_population.GetNumRealCells(), 8)
-        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(),
-                               10.0, 6)
+        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(), 10.0, 6)
 
         # JUPYTER_TEARDOWN
 
@@ -239,10 +234,8 @@ class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
 
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformCellCycleModel_3()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumNodes(),
-                                                   transit_type)
-        cell_population = chaste.cell_based.NodeBasedCellPopulation3(mesh,
-                                                                     cells)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumNodes(), transit_type)
+        cell_population = chaste.cell_based.NodeBasedCellPopulation3(mesh, cells)
 
         ## We can set up a `VtkScene` to do a quick visualization of the population before running the analysis.
 
@@ -270,9 +263,7 @@ class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
         centre = np.array([0.0, 0.0, 1.0])
         radius = 5.0
         point2 = chaste.mesh.ChastePoint3(centre)
-        boundary_condition = chaste.cell_based.SphereGeometryBoundaryCondition3(cell_population,
-                                                                                point2.rGetLocation(),
-                                                                                radius)
+        boundary_condition = chaste.cell_based.SphereGeometryBoundaryCondition3(cell_population, point2.rGetLocation(), radius)
         simulator.AddCellPopulationBoundaryCondition(boundary_condition)
 
         ## Save snapshot images of the population during the simulation

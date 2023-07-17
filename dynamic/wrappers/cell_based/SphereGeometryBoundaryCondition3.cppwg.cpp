@@ -1,12 +1,13 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-#include "PythonObjectConverters.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include <set>
 #include <vector>
 #include <string>
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "SphereGeometryBoundaryCondition.hpp"
 
 #include "SphereGeometryBoundaryCondition3.cppwg.hpp"
@@ -40,29 +41,44 @@ class SphereGeometryBoundaryCondition3_Overloads : public SphereGeometryBoundary
             rParamsFile);
     }
 
+    static SphereGeometryBoundaryCondition3 create(AbstractCellPopulation<3, 3> *pCellPopulation,
+                                                   py::array_t<double> centre_array,
+                                                   double radius,
+                                                   double distance = 1.0e-5)
+    {
+        c_vector<double, 3> centre{array_to_c_vector<double, 3>(centre_array)};
+        return SphereGeometryBoundaryCondition3(pCellPopulation, centre, radius, distance);
+    }
 };
-void register_SphereGeometryBoundaryCondition3_class(py::module &m){
-py::class_<SphereGeometryBoundaryCondition3 , SphereGeometryBoundaryCondition3_Overloads , boost::shared_ptr<SphereGeometryBoundaryCondition3 > , AbstractCellPopulationBoundaryCondition<3, 3>  >(m, "SphereGeometryBoundaryCondition3")
-        .def(py::init<::AbstractCellPopulation<3, 3> *, ::boost::numeric::ublas::c_vector<double, 3>, double, double >(), py::arg("pCellPopulation"), py::arg("centre"), py::arg("radius"), py::arg("distance") = 1.0000000000000001E-5)
+
+void register_SphereGeometryBoundaryCondition3_class(py::module &m)
+{
+    py::class_<SphereGeometryBoundaryCondition3,
+               SphereGeometryBoundaryCondition3_Overloads,
+               boost::shared_ptr<SphereGeometryBoundaryCondition3>,
+               AbstractCellPopulationBoundaryCondition<3, 3>>(m, "SphereGeometryBoundaryCondition3")
+        .def(py::init(&SphereGeometryBoundaryCondition3_Overloads::create),
+             py::arg("pCellPopulation"),
+             py::arg("centre"),
+             py::arg("radius"),
+             py::arg("distance") = 1.0000000000000000E-5)
+        .def("rGetCentreOfSphere",
+             &SphereGeometryBoundaryCondition3::rGetCentreOfSphere,
+             py::return_value_policy::reference)
         .def(
-            "rGetCentreOfSphere", 
-            (::boost::numeric::ublas::c_vector<double, 3> const &(SphereGeometryBoundaryCondition3::*)() const ) &SphereGeometryBoundaryCondition3::rGetCentreOfSphere, 
-            " "  , py::return_value_policy::reference_internal)
+            "GetRadiusOfSphere",
+            (double(SphereGeometryBoundaryCondition3::*)() const) & SphereGeometryBoundaryCondition3::GetRadiusOfSphere,
+            " ")
         .def(
-            "GetRadiusOfSphere", 
-            (double(SphereGeometryBoundaryCondition3::*)() const ) &SphereGeometryBoundaryCondition3::GetRadiusOfSphere, 
-            " "  )
+            "ImposeBoundaryCondition",
+            (void(SphereGeometryBoundaryCondition3::*)(::std::map<Node<3> *, boost::numeric::ublas::c_vector<double, 3>> const &)) & SphereGeometryBoundaryCondition3::ImposeBoundaryCondition,
+            " ", py::arg("rOldLocations"))
         .def(
-            "ImposeBoundaryCondition", 
-            (void(SphereGeometryBoundaryCondition3::*)(::std::map<Node<3> *, boost::numeric::ublas::c_vector<double, 3>> const &)) &SphereGeometryBoundaryCondition3::ImposeBoundaryCondition, 
-            " " , py::arg("rOldLocations") )
+            "VerifyBoundaryCondition",
+            (bool(SphereGeometryBoundaryCondition3::*)()) & SphereGeometryBoundaryCondition3::VerifyBoundaryCondition,
+            " ")
         .def(
-            "VerifyBoundaryCondition", 
-            (bool(SphereGeometryBoundaryCondition3::*)()) &SphereGeometryBoundaryCondition3::VerifyBoundaryCondition, 
-            " "  )
-        .def(
-            "OutputCellPopulationBoundaryConditionParameters", 
-            (void(SphereGeometryBoundaryCondition3::*)(::out_stream &)) &SphereGeometryBoundaryCondition3::OutputCellPopulationBoundaryConditionParameters, 
-            " " , py::arg("rParamsFile") )
-    ;
+            "OutputCellPopulationBoundaryConditionParameters",
+            (void(SphereGeometryBoundaryCondition3::*)(::out_stream &)) & SphereGeometryBoundaryCondition3::OutputCellPopulationBoundaryConditionParameters,
+            " ", py::arg("rParamsFile"));
 }
