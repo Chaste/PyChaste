@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "RandomDirectionVertexBasedDivisionRule.hpp"
 
 #include "RandomDirectionVertexBasedDivisionRule2.cppwg.hpp"

@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "PottsMesh.hpp"
 
 #include "PottsMesh2.cppwg.hpp"

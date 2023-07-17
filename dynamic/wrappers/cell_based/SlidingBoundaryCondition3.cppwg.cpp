@@ -7,6 +7,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "SlidingBoundaryCondition.hpp"
 
 #include "SlidingBoundaryCondition3.cppwg.hpp"

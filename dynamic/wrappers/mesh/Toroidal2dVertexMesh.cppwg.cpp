@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "Toroidal2dVertexMesh.hpp"
 
 #include "Toroidal2dVertexMesh.cppwg.hpp"

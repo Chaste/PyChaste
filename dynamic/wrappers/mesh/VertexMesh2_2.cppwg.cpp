@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "VertexMesh.hpp"
 
 #include "VertexMesh2_2.cppwg.hpp"

@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "TetrahedralMesh.hpp"
 
 #include "TetrahedralMesh2_2.cppwg.hpp"

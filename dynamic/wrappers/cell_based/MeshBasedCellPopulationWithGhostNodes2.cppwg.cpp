@@ -43,6 +43,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "MeshBasedCellPopulationWithGhostNodes.hpp"
 
 #include "MeshBasedCellPopulationWithGhostNodes2.cppwg.hpp"

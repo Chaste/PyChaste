@@ -34,6 +34,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 #include "SmartPointers.hpp"
+#include "UblasIncludes.hpp"
 #include "SharedVoronoiVertexMeshGenerator.hpp"
 
 #if BOOST_VERSION >= 105200

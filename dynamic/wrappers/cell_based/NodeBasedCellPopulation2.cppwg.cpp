@@ -43,6 +43,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "NodeBasedCellPopulation.hpp"
 
 #include "NodeBasedCellPopulation2.cppwg.hpp"

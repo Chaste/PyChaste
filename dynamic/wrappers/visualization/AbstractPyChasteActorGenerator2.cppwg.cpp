@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractPyChasteActorGenerator.hpp"
 
 #include "AbstractPyChasteActorGenerator2.cppwg.hpp"
