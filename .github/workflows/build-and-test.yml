@@ -16,7 +16,8 @@ jobs:
 
     env:
       CHASTE_TEST_OUTPUT: ${{ github.workspace }}/chaste-test-dir
-
+      
+    steps:
     - name: checkout chaste repository
       uses: actions/checkout@v3
       with:
