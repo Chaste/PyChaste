@@ -936,8 +936,7 @@ modules:
     - VertexT2SwapLocationsWriter.hpp
     - VertexT3SwapLocationsWriter.hpp
     - VoronoiDataWriter.hpp
-  - name: AbstractTargetAreaModifier 
-  - name: ConstantTargetAreaModifier
+  - name: AbstractTargetAreaModifier
   - name: SimpleTargetAreaModifier
   - name: DivisionBiasTrackingModifier
   - name: ExtrinsicPullModifier

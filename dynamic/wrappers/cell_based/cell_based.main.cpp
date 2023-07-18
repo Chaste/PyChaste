@@ -242,8 +242,6 @@
 #include "NodeBasedCellPopulationWithParticles3.cppwg.hpp"
 #include "AbstractTargetAreaModifier2.cppwg.hpp"
 #include "AbstractTargetAreaModifier3.cppwg.hpp"
-#include "ConstantTargetAreaModifier2.cppwg.hpp"
-#include "ConstantTargetAreaModifier3.cppwg.hpp"
 #include "SimpleTargetAreaModifier2.cppwg.hpp"
 #include "SimpleTargetAreaModifier3.cppwg.hpp"
 #include "DivisionBiasTrackingModifier2.cppwg.hpp"
@@ -516,8 +514,6 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_NodeBasedCellPopulationWithParticles3_class(m);
     register_AbstractTargetAreaModifier2_class(m);
     register_AbstractTargetAreaModifier3_class(m);
-    register_ConstantTargetAreaModifier2_class(m);
-    register_ConstantTargetAreaModifier3_class(m);
     register_SimpleTargetAreaModifier2_class(m);
     register_SimpleTargetAreaModifier3_class(m);
     register_DivisionBiasTrackingModifier2_class(m);
