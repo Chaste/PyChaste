@@ -106,7 +106,7 @@ jobs:
 
     - name: run tests
       run: |
-        python3 -m unittest -v \
+        xvfb-run --server-args="-screen 0 1024x768x24" python3 -m unittest -v \
           cell_based/Test*.py \
           cell_based/tutorials/Test*.py \
           core/Test*.py \
