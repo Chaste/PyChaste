@@ -59,7 +59,10 @@ void register_AttractingPlaneBoundaryCondition2_2_class(py::module &m)
                AttractingPlaneBoundaryCondition2_2_Overloads,
                boost::shared_ptr<AttractingPlaneBoundaryCondition<2, 2>>,
                AbstractCellPopulationBoundaryCondition<2, 2>>(m, "AttractingPlaneBoundaryCondition2_2")
-        .def(py::init(&AttractingPlaneBoundaryCondition2_2_Overloads::create))
+        .def(py::init(&AttractingPlaneBoundaryCondition2_2_Overloads::create),
+             py::arg("pCellPopulation"),
+             py::arg("point"),
+             py::arg("normal"))
         .def(py::init<AbstractCellPopulation<2, 2> *,
                       c_vector<double, 2>,
                       c_vector<double, 2>>(),

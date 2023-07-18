@@ -59,7 +59,10 @@ void register_AttractingPlaneBoundaryCondition3_3_class(py::module &m)
                AttractingPlaneBoundaryCondition3_3_Overloads,
                boost::shared_ptr<AttractingPlaneBoundaryCondition3_3>,
                AbstractCellPopulationBoundaryCondition<3, 3>>(m, "AttractingPlaneBoundaryCondition3_3")
-        .def(py::init(&AttractingPlaneBoundaryCondition3_3_Overloads::create))
+        .def(py::init(&AttractingPlaneBoundaryCondition3_3_Overloads::create),
+             py::arg("pCellPopulation"),
+             py::arg("point"),
+             py::arg("normal"))
         .def("rGetPointOnPlane",
              &AttractingPlaneBoundaryCondition<3, 3>::rGetPointOnPlane,
              py::return_value_policy::reference)

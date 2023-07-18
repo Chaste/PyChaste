@@ -59,7 +59,10 @@ void register_PlaneBoundaryCondition2_2_class(py::module &m)
                 boost::shared_ptr<PlaneBoundaryCondition<2, 2>>,
                 AbstractCellPopulationBoundaryCondition<2, 2>>(m, "PlaneBoundaryCondition2_2")
 
-         .def(py::init(&PlaneBoundaryCondition2_2_Overloads::create))
+         .def(py::init(&PlaneBoundaryCondition2_2_Overloads::create),
+              py::arg("pCellPopulation"),
+              py::arg("point"),
+              py::arg("normal"))
 
          .def("rGetPointOnPlane",
               &PlaneBoundaryCondition2_2::rGetPointOnPlane,
