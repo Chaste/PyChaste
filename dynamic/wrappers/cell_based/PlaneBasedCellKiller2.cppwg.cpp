@@ -32,20 +32,13 @@ class PlaneBasedCellKiller2_Overloads : public PlaneBasedCellKiller2{
             OutputCellKillerParameters,
             rParamsFile);
     }
-
-    static PlaneBasedCellKiller2 create(AbstractCellPopulation<2, 2> *pCellPopulation,
-                                            py::array_t<double> point_array,
-                                            py::array_t<double> normal_array)
-    {
-        c_vector<double, 2> point {array_to_c_vector<double, 2>(point_array)};
-        c_vector<double, 2> normal {array_to_c_vector<double, 2>(normal_array)};
-        return PlaneBasedCellKiller2(pCellPopulation, point, normal);
-    }
 };
 
 void register_PlaneBasedCellKiller2_class(py::module &m){
 py::class_<PlaneBasedCellKiller2 , PlaneBasedCellKiller2_Overloads , boost::shared_ptr<PlaneBasedCellKiller2 >  , AbstractCellKiller<2>  >(m, "PlaneBasedCellKiller2")
-        .def(py::init(&PlaneBasedCellKiller2_Overloads::create),
+        .def(py::init<::AbstractCellPopulation<2, 2> *,
+                      ::boost::numeric::ublas::c_vector<double, 2>,
+                      ::boost::numeric::ublas::c_vector<double, 2>>(),
              py::arg("pCellPopulation"),
              py::arg("point"),
              py::arg("normal"))

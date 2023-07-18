@@ -40,15 +40,6 @@ class SphereGeometryBoundaryCondition3_Overloads : public SphereGeometryBoundary
             OutputCellPopulationBoundaryConditionParameters,
             rParamsFile);
     }
-
-    static SphereGeometryBoundaryCondition3 create(AbstractCellPopulation<3, 3> *pCellPopulation,
-                                                   py::array_t<double> centre_array,
-                                                   double radius,
-                                                   double distance = 1.0e-5)
-    {
-        c_vector<double, 3> centre{array_to_c_vector<double, 3>(centre_array)};
-        return SphereGeometryBoundaryCondition3(pCellPopulation, centre, radius, distance);
-    }
 };
 
 void register_SphereGeometryBoundaryCondition3_class(py::module &m)
@@ -57,11 +48,14 @@ void register_SphereGeometryBoundaryCondition3_class(py::module &m)
                SphereGeometryBoundaryCondition3_Overloads,
                boost::shared_ptr<SphereGeometryBoundaryCondition3>,
                AbstractCellPopulationBoundaryCondition<3, 3>>(m, "SphereGeometryBoundaryCondition3")
-        .def(py::init(&SphereGeometryBoundaryCondition3_Overloads::create),
+        .def(py::init<::AbstractCellPopulation<3, 3> *,
+                      ::boost::numeric::ublas::c_vector<double, 3>,
+                      double,
+                      double>(),
              py::arg("pCellPopulation"),
              py::arg("centre"),
              py::arg("radius"),
-             py::arg("distance") = 1.0000000000000000E-5)
+             py::arg("distance") = 1.0000000000000001E-5)
         .def("rGetCentreOfSphere",
              &SphereGeometryBoundaryCondition3::rGetCentreOfSphere,
              py::return_value_policy::reference)
