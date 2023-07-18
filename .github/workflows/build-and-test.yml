@@ -101,9 +101,15 @@ jobs:
       working-directory: Chaste/build
 
     - name: install PyChaste
-      run: pip install --user .
+      run: pip3 install --user .
       working-directory: Chaste/build/projects/PyChaste/python
 
-    # - name: run test packs
-    #   run: python ./ode/TestOdeSystemPython.py
-    #   working-directory: Chaste/projects/PyChaste/test/python
+    - name: run tests
+      run: |
+        python3 -m unittest -v \
+          cell_based/Test*.py \
+          cell_based/tutorials/Test*.py \
+          core/Test*.py \
+          mesh/Test*.py \
+          ode/Test*.py
+      working-directory: Chaste/projects/PyChaste/test/python
