@@ -40,7 +40,7 @@ py::class_<FileFinder , FileFinder_Overloads , boost::shared_ptr<FileFinder >   
         .def(py::init< >())
         .def(py::init<::std::string const &, ::RelativeTo::Value >(), py::arg("rPath"), py::arg("relativeTo"))
         .def(py::init<::std::string const &, ::FileFinder const & >(), py::arg("rLeafName"), py::arg("rParentOrSibling"))
-        .def(py::init<::boost::filesystem::path const & >(), py::arg("rPath"))
+        .def(py::init<::std::filesystem::path const & >(), py::arg("rPath"))
         .def(
             "SetPath", 
             (void(FileFinder::*)(::std::string const &, ::RelativeTo::Value)) &FileFinder::SetPath, 
