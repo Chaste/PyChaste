@@ -32,20 +32,16 @@ class PlaneBasedCellKiller3_Overloads : public PlaneBasedCellKiller3{
             OutputCellKillerParameters,
             rParamsFile);
     }
-
-    static PlaneBasedCellKiller3 create(AbstractCellPopulation<3, 3> *pCellPopulation,
-                                            py::array_t<double> point_array,
-                                            py::array_t<double> normal_array)
-    {
-        c_vector<double, 3> point {array_to_c_vector<double, 3>(point_array)};
-        c_vector<double, 3> normal {array_to_c_vector<double, 3>(normal_array)};
-        return PlaneBasedCellKiller3(pCellPopulation, point, normal);
-    }
 };
 
 void register_PlaneBasedCellKiller3_class(py::module &m){
 py::class_<PlaneBasedCellKiller3 , PlaneBasedCellKiller3_Overloads , boost::shared_ptr<PlaneBasedCellKiller3 >  , AbstractCellKiller<3>  >(m, "PlaneBasedCellKiller3")
-        .def(py::init(&PlaneBasedCellKiller3_Overloads::create))
+        .def(py::init<::AbstractCellPopulation<3, 3> *,
+                      ::boost::numeric::ublas::c_vector<double, 3>,
+                      ::boost::numeric::ublas::c_vector<double, 3>>(),
+             py::arg("pCellPopulation"),
+             py::arg("point"),
+             py::arg("normal"))
         .def(
             "rGetPointOnPlane", 
             (::boost::numeric::ublas::c_vector<double, 3> const &(PlaneBasedCellKiller3::*)() const ) &PlaneBasedCellKiller3::rGetPointOnPlane, 

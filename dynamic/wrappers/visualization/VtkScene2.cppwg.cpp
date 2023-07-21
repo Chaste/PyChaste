@@ -17,18 +17,6 @@
 namespace py = pybind11;
 typedef VtkScene<2 > VtkScene2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_DECLARE_HOLDER_TYPE(T, vtkSmartPointer<T>);
-PYBIND11_VTK_TYPECASTER(vtkRenderer);
-PYBIND11_VTK_TYPECASTER(vtkOpenGLRenderer);
-PYBIND11_VTK_TYPECASTER(vtkUnsignedCharArray);
-
-// Only needed if the type's `.get()` goes by another name
-namespace PYBIND11_NAMESPACE { namespace detail {
-    template <typename T>
-    struct holder_helper<vtkSmartPointer<T>> { // <-- specialization
-        static const T *get(const vtkSmartPointer<T> &p) { return p.Get(); }
-    };
-}}
 
 class VtkScene2_Overloads : public VtkScene2{
     public:

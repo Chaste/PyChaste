@@ -8,6 +8,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "AbstractPdeModifier.hpp"
 
 #include "AbstractPdeModifier3.cppwg.hpp"
@@ -15,8 +16,6 @@
 namespace py = pybind11;
 typedef AbstractPdeModifier<3 > AbstractPdeModifier3;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 
 class AbstractPdeModifier3_Overloads : public AbstractPdeModifier3{
     public:

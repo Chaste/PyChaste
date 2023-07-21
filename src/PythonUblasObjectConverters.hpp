@@ -92,29 +92,9 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
     }                                                                                         \
   }
 
-template <typename T, unsigned N>
-c_vector<T, N> array_to_c_vector(const pybind11::array_t<T> &src)
-{
-  assert(pybind11::array_t<T>::check_(src) == true);
-
-  auto buf = pybind11::array_t<T, pybind11::array::c_style | pybind11::array::forcecast>::ensure(src);
-  assert(buf);
-  assert(buf.ndim() == 1 && buf.shape()[0] == N);
-
-  c_vector<T, N> value;
-  value.resize(N);
-  for (unsigned i = 0; i < N; ++i)
-  {
-    value[i] = buf.data()[i];
-  }
-
-  return value;
-}
-
 PYBIND11_CVECTOR_TYPECASTER(double, 2);
 PYBIND11_CVECTOR_TYPECASTER(double, 3);
 
-template c_vector<double, 2> array_to_c_vector<double, 2>(const pybind11::array_t<double> &src);
-template c_vector<double, 3> array_to_c_vector<double, 3>(const pybind11::array_t<double> &src);
+#undef PYBIND11_CVECTOR_TYPECASTER
 
 #endif /*PYTHONUBLASOBJECTCONVERTERS_HPP_*/

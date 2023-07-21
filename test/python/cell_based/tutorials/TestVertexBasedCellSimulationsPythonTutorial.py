@@ -74,15 +74,13 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
 
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), transit_type)
 
         ## Now we have a mesh and a set of cells to go with it, we can create a CellPopulation. 
         ## In general, this class associates a collection of cells with a mesh. For this test, because we have a MutableVertexMesh, 
         ## we use a particular type of cell population called a VertexBasedCellPopulation.
 
-        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh,
-                                                                       cells)
+        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh, cells)
 
         ## We can set up a `VtkScene` to do a quick visualization of the population before running the analysis.
 
@@ -138,8 +136,7 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
         ## If different simulation input parameters are being explored the lines should be removed.
 
         self.assertEqual(cell_population.GetNumRealCells(), 7)
-        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(),
-                               5.0, 6)
+        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(), 5.0, 6)
 
         # JUPYTER_TEARDOWN
 
@@ -164,13 +161,11 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
 
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), transit_type)
 
         ## Now we have a mesh and a set of cells to go with it, we can create a CellPopulation. This is also the same as in the above test.
 
-        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh,
-                                                                       cells)
+        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh, cells)
 
         ## We then pass in the cell population into an `OffLatticeSimulation`, and set the output directory, output multiple and end time
 
@@ -200,9 +195,7 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
         normal = np.array([0.0, -1.0])
 
         ## We can now make a PlaneBoundaryCondition (passing the point and normal to the plane) and pass it to the OffLatticeSimulation.
-        bc = chaste.cell_based.PlaneBoundaryCondition2_2(cell_population,
-                                                         point,
-                                                         normal)
+        bc = chaste.cell_based.PlaneBoundaryCondition2_2(cell_population, point, normal)
         simulator.AddCellPopulationBoundaryCondition(bc)
 
         ## We now create one or more CellKillers, which determine how cells are removed from the simulation. 
@@ -214,22 +207,17 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
         normal = np.array([0.0, 1.0])
 
         ## Finally we now make a PlaneBasedCellKiller (passing the point and normal to the plane) and pass it to the OffLatticeSimulation.
-
-        killer = chaste.cell_based.PlaneBasedCellKiller2(cell_population,
-                                                         point,
-                                                         normal)
+        killer = chaste.cell_based.PlaneBasedCellKiller2(cell_population, point, normal)
         simulator.AddCellKiller(killer)
 
         ## To run the simulation, we call `Solve()`.
-
         simulator.Solve()
 
         ## The next two lines are for test purposes only and are not part of this tutorial. 
         ## If different simulation input parameters are being explored the lines should be removed.
 
         self.assertEqual(cell_population.GetNumRealCells(), 12)
-        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(),
-                               1.0, 6)
+        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(), 1.0, 6)
 
         # JUPYTER_TEARDOWN 
 

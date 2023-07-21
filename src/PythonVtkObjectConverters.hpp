@@ -37,7 +37,9 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #define PYTHONVTKOBJECTCONVERTERS_HPP_
 
 #include <vtkObjectBase.h>
+#include <vtkOpenGLRenderer.h>
 #include <vtkPythonUtil.h>
+#include <vtkSmartPointer.h>
 
 #include <pybind11/numpy.h>
 #include <pybind11/pybind11.h>
@@ -95,5 +97,25 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
       };                                                                                                \
     }                                                                                                   \
   }
+
+PYBIND11_DECLARE_HOLDER_TYPE(T, vtkSmartPointer<T>);
+// Only needed if the type's `.get()` goes by another name
+namespace PYBIND11_NAMESPACE
+{
+  namespace detail
+  {
+    template <typename T>
+    struct holder_helper<vtkSmartPointer<T>> // <-- specialization
+    {
+      static const T *get(const vtkSmartPointer<T> &p) { return p.Get(); }
+    };
+  }
+}
+
+PYBIND11_VTK_TYPECASTER(vtkRenderer);
+PYBIND11_VTK_TYPECASTER(vtkOpenGLRenderer);
+PYBIND11_VTK_TYPECASTER(vtkUnsignedCharArray);
+
+#undef PYBIND11_VTK_TYPECASTER
 
 #endif /*PYTHONVTKOBJECTCONVERTERS_HPP_*/

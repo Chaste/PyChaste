@@ -8,6 +8,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "AbstractBoxDomainPdeModifier.hpp"
 
 #include "AbstractBoxDomainPdeModifier2.cppwg.hpp"
@@ -15,8 +16,6 @@
 namespace py = pybind11;
 typedef AbstractBoxDomainPdeModifier<2 > AbstractBoxDomainPdeModifier2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 
 class AbstractBoxDomainPdeModifier2_Overloads : public AbstractBoxDomainPdeModifier2{
     public:

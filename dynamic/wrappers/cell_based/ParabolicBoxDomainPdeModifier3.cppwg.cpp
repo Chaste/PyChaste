@@ -8,6 +8,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "ParabolicBoxDomainPdeModifier.hpp"
 
 #include "ParabolicBoxDomainPdeModifier3.cppwg.hpp"
@@ -15,8 +16,6 @@
 namespace py = pybind11;
 typedef ParabolicBoxDomainPdeModifier<3 > ParabolicBoxDomainPdeModifier3;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 typedef ::std::shared_ptr<BoundaryConditionsContainer<3, 3, 1>> _std_shared_ptr_lt_BoundaryConditionsContainer_lt_3_3_1_gt__gt_;
 
 class ParabolicBoxDomainPdeModifier3_Overloads : public ParabolicBoxDomainPdeModifier3{

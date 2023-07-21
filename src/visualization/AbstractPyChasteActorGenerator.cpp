@@ -68,7 +68,6 @@ Copyright (c) 2005-2016, University of Oxford.
 
  */
 
-#include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 #define _BACKWARD_BACKWARD_WARNING_H 1 //Cut out the vtk deprecated warning
 #include <vtkPoints.h>

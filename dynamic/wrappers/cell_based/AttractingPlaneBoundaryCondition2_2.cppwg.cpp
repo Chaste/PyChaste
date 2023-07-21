@@ -42,15 +42,6 @@ public:
             OutputCellPopulationBoundaryConditionParameters,
             rParamsFile);
     }
-
-    static AttractingPlaneBoundaryCondition2_2 create(AbstractCellPopulation<2, 2> *pCellPopulation,
-                                                      py::array_t<double> point_array,
-                                                      py::array_t<double> normal_array)
-    {
-        c_vector<double, 2> point{array_to_c_vector<double, 2>(point_array)};
-        c_vector<double, 2> normal{array_to_c_vector<double, 2>(normal_array)};
-        return AttractingPlaneBoundaryCondition2_2(pCellPopulation, point, normal);
-    }
 };
 
 void register_AttractingPlaneBoundaryCondition2_2_class(py::module &m)
@@ -59,7 +50,12 @@ void register_AttractingPlaneBoundaryCondition2_2_class(py::module &m)
                AttractingPlaneBoundaryCondition2_2_Overloads,
                boost::shared_ptr<AttractingPlaneBoundaryCondition<2, 2>>,
                AbstractCellPopulationBoundaryCondition<2, 2>>(m, "AttractingPlaneBoundaryCondition2_2")
-        .def(py::init(&AttractingPlaneBoundaryCondition2_2_Overloads::create))
+        .def(py::init<::AbstractCellPopulation<2, 2> *,
+                      ::boost::numeric::ublas::c_vector<double, 2>,
+                      ::boost::numeric::ublas::c_vector<double, 2>>(),
+             py::arg("pCellPopulation"),
+             py::arg("point"),
+             py::arg("normal"))
         .def(py::init<AbstractCellPopulation<2, 2> *,
                       c_vector<double, 2>,
                       c_vector<double, 2>>(),

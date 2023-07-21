@@ -42,14 +42,6 @@ public:
               OutputCellPopulationBoundaryConditionParameters,
               rParamsFile);
      }
-     static PlaneBoundaryCondition2_2 create(AbstractCellPopulation<2, 2> *pCellPopulation,
-                                             py::array_t<double> point_array,
-                                             py::array_t<double> normal_array)
-     {
-          c_vector<double, 2> point{array_to_c_vector<double, 2>(point_array)};
-          c_vector<double, 2> normal{array_to_c_vector<double, 2>(normal_array)};
-          return PlaneBoundaryCondition2_2(pCellPopulation, point, normal);
-     }
 };
 
 void register_PlaneBoundaryCondition2_2_class(py::module &m)
@@ -59,7 +51,12 @@ void register_PlaneBoundaryCondition2_2_class(py::module &m)
                 boost::shared_ptr<PlaneBoundaryCondition<2, 2>>,
                 AbstractCellPopulationBoundaryCondition<2, 2>>(m, "PlaneBoundaryCondition2_2")
 
-         .def(py::init(&PlaneBoundaryCondition2_2_Overloads::create))
+         .def(py::init<::AbstractCellPopulation<2, 2> *,
+                       ::boost::numeric::ublas::c_vector<double, 2>,
+                       ::boost::numeric::ublas::c_vector<double, 2>>(),
+              py::arg("pCellPopulation"),
+              py::arg("point"),
+              py::arg("normal"))
 
          .def("rGetPointOnPlane",
               &PlaneBoundaryCondition2_2::rGetPointOnPlane,

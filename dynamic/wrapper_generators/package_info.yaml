@@ -41,22 +41,16 @@ modules:
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: ReplicatableVector
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: Timer
   - name: RelativeTo # enum
     source_file: FileFinder.hpp
   - name: FileFinder
-    source_includes:
-    - BoostFilesystem.hpp
   - name: OutputFileHandler
     source_includes:
     - FileFinder.hpp # forward decl
@@ -305,57 +299,43 @@ modules:
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: AbstractBoxDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: AbstractGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: EllipticGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: ParabolicGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp" 
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: EllipticBoxDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp" 
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: ParabolicBoxDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: AbstractCellBasedWriter
@@ -938,8 +918,7 @@ modules:
     - VertexT2SwapLocationsWriter.hpp
     - VertexT3SwapLocationsWriter.hpp
     - VoronoiDataWriter.hpp
-  - name: AbstractTargetAreaModifier 
-  - name: ConstantTargetAreaModifier
+  - name: AbstractTargetAreaModifier
   - name: SimpleTargetAreaModifier
   - name: DivisionBiasTrackingModifier
   - name: ExtrinsicPullModifier

@@ -8,15 +8,14 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "PetscTools.hpp"
 
 #include "PetscTools.cppwg.hpp"
 
 namespace py = pybind11;
-typedef PetscTools PetscTools;
+
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 
 void register_PetscTools_class(py::module &m){
 py::class_<PetscTools  , boost::shared_ptr<PetscTools >   >(m, "PetscTools")

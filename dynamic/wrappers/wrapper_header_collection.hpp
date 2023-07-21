@@ -191,7 +191,6 @@
 #include "NodeBasedCellPopulation.hpp"
 #include "NodeBasedCellPopulationWithBuskeUpdate.hpp"
 #include "AbstractTargetAreaModifier.hpp"
-#include "ConstantTargetAreaModifier.hpp"
 #include "SimpleTargetAreaModifier.hpp"
 #include "DivisionBiasTrackingModifier.hpp"
 #include "ExtrinsicPullModifier.hpp"
@@ -490,8 +489,6 @@ template class NodeBasedCellPopulationWithBuskeUpdate<2>;
 template class NodeBasedCellPopulationWithBuskeUpdate<3>;
 template class AbstractTargetAreaModifier<2>;
 template class AbstractTargetAreaModifier<3>;
-template class ConstantTargetAreaModifier<2>;
-template class ConstantTargetAreaModifier<3>;
 template class SimpleTargetAreaModifier<2>;
 template class SimpleTargetAreaModifier<3>;
 template class DivisionBiasTrackingModifier<2>;
@@ -845,8 +842,6 @@ typedef NodeBasedCellPopulationWithBuskeUpdate<2> NodeBasedCellPopulationWithBus
 typedef NodeBasedCellPopulationWithBuskeUpdate<3> NodeBasedCellPopulationWithBuskeUpdate3;
 typedef AbstractTargetAreaModifier<2> AbstractTargetAreaModifier2;
 typedef AbstractTargetAreaModifier<3> AbstractTargetAreaModifier3;
-typedef ConstantTargetAreaModifier<2> ConstantTargetAreaModifier2;
-typedef ConstantTargetAreaModifier<3> ConstantTargetAreaModifier3;
 typedef SimpleTargetAreaModifier<2> SimpleTargetAreaModifier2;
 typedef SimpleTargetAreaModifier<3> SimpleTargetAreaModifier3;
 typedef DivisionBiasTrackingModifier<2> DivisionBiasTrackingModifier2;

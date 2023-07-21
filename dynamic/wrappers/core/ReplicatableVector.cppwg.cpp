@@ -8,6 +8,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "ReplicatableVector.hpp"
 
 #include "ReplicatableVector.cppwg.hpp"
@@ -15,8 +16,6 @@
 namespace py = pybind11;
 typedef ReplicatableVector ReplicatableVector;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 
 void register_ReplicatableVector_class(py::module &m){
 py::class_<ReplicatableVector  , boost::shared_ptr<ReplicatableVector >   >(m, "ReplicatableVector")
@@ -39,5 +38,8 @@ py::class_<ReplicatableVector  , boost::shared_ptr<ReplicatableVector >   >(m, "
             "ReplicatePetscVector", 
             (void(ReplicatableVector::*)(::Vec)) &ReplicatableVector::ReplicatePetscVector, 
             " " , py::arg("vec") )
-    ;
+        .def(
+            "__getitem__",
+            [](ReplicatableVector &self, unsigned index) { return self[index]; });
+        ;
 }
