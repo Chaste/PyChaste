@@ -41,16 +41,12 @@ modules:
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: ReplicatableVector
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: Timer
   - name: RelativeTo # enum
     source_file: FileFinder.hpp
@@ -303,57 +299,43 @@ modules:
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: AbstractBoxDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: AbstractGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: EllipticGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: ParabolicGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp" 
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: EllipticBoxDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp" 
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: ParabolicBoxDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
   - name: AbstractCellBasedWriter
