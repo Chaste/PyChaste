@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "BuskeElasticForce.hpp"
 
 #include "BuskeElasticForce3.cppwg.hpp"
@@ -19,7 +20,7 @@ class BuskeElasticForce3_Overloads : public BuskeElasticForce3{
     public:
     using BuskeElasticForce3::BuskeElasticForce;
     ::boost::numeric::ublas::c_vector<double, 3> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             BuskeElasticForce3,
             CalculateForceBetweenNodes,
@@ -28,7 +29,7 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeElasticForce3,
             OutputForceParameters,
@@ -37,7 +38,7 @@ rCellPopulation);
 
 };
 void register_BuskeElasticForce3_class(py::module &m){
-py::class_<BuskeElasticForce3 , BuskeElasticForce3_Overloads , boost::shared_ptr<BuskeElasticForce3 >  , AbstractTwoBodyInteractionForce<3, 3>  >(m, "BuskeElasticForce3")
+py::class_<BuskeElasticForce3 , BuskeElasticForce3_Overloads , boost::shared_ptr<BuskeElasticForce3 > , AbstractTwoBodyInteractionForce<3, 3>  >(m, "BuskeElasticForce3")
         .def(py::init< >())
         .def(
             "GetDeformationEnergyParameter", 

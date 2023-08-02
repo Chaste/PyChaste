@@ -18,14 +18,14 @@ class AbstractCellKiller2_Overloads : public AbstractCellKiller2{
     public:
     using AbstractCellKiller2::AbstractCellKiller;
     void CheckAndLabelCellsForApoptosisOrDeath() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellKiller2,
             CheckAndLabelCellsForApoptosisOrDeath,
             );
     }
     void OutputCellKillerParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellKiller2,
             OutputCellKillerParameters,

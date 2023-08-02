@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "BuskeAdhesiveForce.hpp"
 
 #include "BuskeAdhesiveForce3.cppwg.hpp"
@@ -19,7 +20,7 @@ class BuskeAdhesiveForce3_Overloads : public BuskeAdhesiveForce3{
     public:
     using BuskeAdhesiveForce3::BuskeAdhesiveForce;
     ::boost::numeric::ublas::c_vector<double, 3> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             BuskeAdhesiveForce3,
             CalculateForceBetweenNodes,
@@ -28,7 +29,7 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeAdhesiveForce3,
             OutputForceParameters,
@@ -37,7 +38,7 @@ rCellPopulation);
 
 };
 void register_BuskeAdhesiveForce3_class(py::module &m){
-py::class_<BuskeAdhesiveForce3 , BuskeAdhesiveForce3_Overloads , boost::shared_ptr<BuskeAdhesiveForce3 >  , AbstractTwoBodyInteractionForce<3, 3>  >(m, "BuskeAdhesiveForce3")
+py::class_<BuskeAdhesiveForce3 , BuskeAdhesiveForce3_Overloads , boost::shared_ptr<BuskeAdhesiveForce3 > , AbstractTwoBodyInteractionForce<3, 3>  >(m, "BuskeAdhesiveForce3")
         .def(py::init< >())
         .def(
             "GetAdhesionEnergyParameter", 

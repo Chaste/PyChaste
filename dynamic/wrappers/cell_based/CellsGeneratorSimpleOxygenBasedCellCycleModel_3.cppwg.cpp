@@ -4,6 +4,18 @@
 #include "UniformCellCycleModel.hpp"
 #include "SimpleOxygenBasedCellCycleModel.hpp"
 #include "UniformG1GenerationalCellCycleModel.hpp"
+#include "BiasedBernoulliTrialCellCycleModel.hpp"
+#include "LabelDependentBernoulliTrialCellCycleModel.hpp"
+#include "AlwaysDivideCellCycleModel.hpp"
+#include "ContactInhibitionCellCycleModel.hpp"
+#include "StochasticOxygenBasedCellCycleModel.hpp"
+#include "GammaG1CellCycleModel.hpp"
+#include "ExponentialG1GenerationalCellCycleModel.hpp"
+#include "TysonNovakCellCycleModel.hpp"
+#include "Alarcon2004OxygenBasedCellCycleModel.hpp"
+#include "FixedSequenceCellCycleModel.hpp"
+#include "BernoulliTrialCellCycleModel.hpp"
+#include "FixedG1GenerationalCellCycleModel.hpp"
 #include <set>
 #include <vector>
 #include <string>
@@ -47,15 +59,15 @@ py::class_<CellsGeneratorSimpleOxygenBasedCellCycleModel_3  , boost::shared_ptr<
         .def(py::init< >())
         .def(
             "GenerateBasic", 
-            (void(CellsGeneratorSimpleOxygenBasedCellCycleModel_3::*)(::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, unsigned int, ::std::vector<unsigned int, std::allocator<unsigned int> > const, ::boost::shared_ptr<AbstractCellProperty>)) &CellsGeneratorSimpleOxygenBasedCellCycleModel_3::GenerateBasic, 
+            (void(CellsGeneratorSimpleOxygenBasedCellCycleModel_3::*)(::std::vector<boost::shared_ptr<Cell>> &, unsigned int, ::std::vector<unsigned int> const, ::boost::shared_ptr<AbstractCellProperty>)) &CellsGeneratorSimpleOxygenBasedCellCycleModel_3::GenerateBasic, 
             " " , py::arg("rCells"), py::arg("numCells"), py::arg("locationIndices") = std::vector<unsigned int>(), py::arg("pCellProliferativeType") = boost::shared_ptr<AbstractCellProperty>() )
         .def(
             "GenerateBasicRandom", 
-            (void(CellsGeneratorSimpleOxygenBasedCellCycleModel_3::*)(::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, unsigned int, ::boost::shared_ptr<AbstractCellProperty>)) &CellsGeneratorSimpleOxygenBasedCellCycleModel_3::GenerateBasicRandom, 
+            (void(CellsGeneratorSimpleOxygenBasedCellCycleModel_3::*)(::std::vector<boost::shared_ptr<Cell>> &, unsigned int, ::boost::shared_ptr<AbstractCellProperty>)) &CellsGeneratorSimpleOxygenBasedCellCycleModel_3::GenerateBasicRandom, 
             " " , py::arg("rCells"), py::arg("numCells"), py::arg("pCellProliferativeType") = boost::shared_ptr<AbstractCellProperty>() )
         .def(
             "GenerateGivenLocationIndices", 
-            (void(CellsGeneratorSimpleOxygenBasedCellCycleModel_3::*)(::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, ::std::vector<unsigned int, std::allocator<unsigned int> > const, ::boost::shared_ptr<AbstractCellProperty>)) &CellsGeneratorSimpleOxygenBasedCellCycleModel_3::GenerateGivenLocationIndices, 
+            (void(CellsGeneratorSimpleOxygenBasedCellCycleModel_3::*)(::std::vector<boost::shared_ptr<Cell>> &, ::std::vector<unsigned int> const, ::boost::shared_ptr<AbstractCellProperty>)) &CellsGeneratorSimpleOxygenBasedCellCycleModel_3::GenerateGivenLocationIndices, 
             " " , py::arg("rCells"), py::arg("locationIndices"), py::arg("pCellProliferativeType") = boost::shared_ptr<AbstractCellProperty>() )
         .def("GenerateBasic",
             (std::vector<CellPtr>(CellsGeneratorSimpleOxygenBasedCellCycleModel_3::*)(unsigned int, const std::vector<unsigned>, boost::shared_ptr<AbstractCellProperty>)) 

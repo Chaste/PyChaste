@@ -18,7 +18,7 @@ class AbstractOdeSystemInformation_Overloads : public AbstractOdeSystemInformati
     public:
     using AbstractOdeSystemInformation::AbstractOdeSystemInformation;
     void Initialise() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOdeSystemInformation,
             Initialise,
@@ -43,7 +43,7 @@ py::class_<AbstractOdeSystemInformation , AbstractOdeSystemInformation_Overloads
             " "  )
         .def(
             "SetDefaultInitialConditions", 
-            (void(AbstractOdeSystemInformation::*)(::std::vector<double, std::allocator<double> > const &)) &AbstractOdeSystemInformation::SetDefaultInitialConditions, 
+            (void(AbstractOdeSystemInformation::*)(::std::vector<double> const &)) &AbstractOdeSystemInformation::SetDefaultInitialConditions, 
             " " , py::arg("rInitialConditions") )
         .def(
             "SetDefaultInitialCondition", 
@@ -51,15 +51,15 @@ py::class_<AbstractOdeSystemInformation , AbstractOdeSystemInformation_Overloads
             " " , py::arg("index"), py::arg("initialCondition") )
         .def(
             "GetInitialConditions", 
-            (::std::vector<double, std::allocator<double> >(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::GetInitialConditions, 
+            (::std::vector<double>(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::GetInitialConditions, 
             " "  )
         .def(
             "rGetStateVariableNames", 
-            (::std::vector<std::basic_string<char>, std::allocator<std::basic_string<char> > > const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetStateVariableNames, 
+            (::std::vector<std::basic_string<char>> const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetStateVariableNames, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetStateVariableUnits", 
-            (::std::vector<std::basic_string<char>, std::allocator<std::basic_string<char> > > const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetStateVariableUnits, 
+            (::std::vector<std::basic_string<char>> const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetStateVariableUnits, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetStateVariableIndex", 
@@ -75,11 +75,11 @@ py::class_<AbstractOdeSystemInformation , AbstractOdeSystemInformation_Overloads
             " " , py::arg("index") )
         .def(
             "rGetParameterNames", 
-            (::std::vector<std::basic_string<char>, std::allocator<std::basic_string<char> > > const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetParameterNames, 
+            (::std::vector<std::basic_string<char>> const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetParameterNames, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetParameterUnits", 
-            (::std::vector<std::basic_string<char>, std::allocator<std::basic_string<char> > > const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetParameterUnits, 
+            (::std::vector<std::basic_string<char>> const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetParameterUnits, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetParameterIndex", 
@@ -111,11 +111,11 @@ py::class_<AbstractOdeSystemInformation , AbstractOdeSystemInformation_Overloads
             " " , py::arg("index") )
         .def(
             "rGetDerivedQuantityNames", 
-            (::std::vector<std::basic_string<char>, std::allocator<std::basic_string<char> > > const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetDerivedQuantityNames, 
+            (::std::vector<std::basic_string<char>> const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetDerivedQuantityNames, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetDerivedQuantityUnits", 
-            (::std::vector<std::basic_string<char>, std::allocator<std::basic_string<char> > > const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetDerivedQuantityUnits, 
+            (::std::vector<std::basic_string<char>> const &(AbstractOdeSystemInformation::*)() const ) &AbstractOdeSystemInformation::rGetDerivedQuantityUnits, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetDerivedQuantityIndex", 

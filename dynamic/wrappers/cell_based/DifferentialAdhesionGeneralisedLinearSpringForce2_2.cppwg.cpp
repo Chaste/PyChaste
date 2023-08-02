@@ -18,7 +18,7 @@ class DifferentialAdhesionGeneralisedLinearSpringForce2_2_Overloads : public Dif
     public:
     using DifferentialAdhesionGeneralisedLinearSpringForce2_2::DifferentialAdhesionGeneralisedLinearSpringForce;
     double VariableSpringConstantMultiplicationFactor(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<2, 2> & rCellPopulation, bool isCloserThanRestLength) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             DifferentialAdhesionGeneralisedLinearSpringForce2_2,
             VariableSpringConstantMultiplicationFactor,
@@ -28,7 +28,7 @@ rCellPopulation,
 isCloserThanRestLength);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DifferentialAdhesionGeneralisedLinearSpringForce2_2,
             OutputForceParameters,

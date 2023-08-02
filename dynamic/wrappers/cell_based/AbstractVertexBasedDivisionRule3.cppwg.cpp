@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractVertexBasedDivisionRule.hpp"
 
 #include "AbstractVertexBasedDivisionRule3.cppwg.hpp"
@@ -19,7 +20,7 @@ class AbstractVertexBasedDivisionRule3_Overloads : public AbstractVertexBasedDiv
     public:
     using AbstractVertexBasedDivisionRule3::AbstractVertexBasedDivisionRule;
     ::boost::numeric::ublas::c_vector<double, 3> CalculateCellDivisionVector(::CellPtr pParentCell, ::VertexBasedCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             AbstractVertexBasedDivisionRule3,
             CalculateCellDivisionVector,
@@ -27,7 +28,7 @@ class AbstractVertexBasedDivisionRule3_Overloads : public AbstractVertexBasedDiv
 rCellPopulation);
     }
     void OutputCellVertexBasedDivisionRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractVertexBasedDivisionRule3,
             OutputCellVertexBasedDivisionRuleParameters,

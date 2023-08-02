@@ -79,15 +79,19 @@ py::class_<ChasteBuildInfo  , boost::shared_ptr<ChasteBuildInfo >   >(m, "Chaste
             " "  , py::return_value_policy::reference)
         .def_static(
             "rGetProjectVersions", 
-            (::std::map<std::basic_string<char>, std::basic_string<char>, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > > const &(*)()) &ChasteBuildInfo::rGetProjectVersions, 
+            (::std::map<std::basic_string<char>, std::basic_string<char>> const &(*)()) &ChasteBuildInfo::rGetProjectVersions, 
             " "  , py::return_value_policy::reference_internal)
         .def_static(
             "rGetIfProjectsModified", 
-            (::std::map<std::basic_string<char>, std::basic_string<char>, std::less<std::basic_string<char> >, std::allocator<std::pair<const std::basic_string<char>, std::basic_string<char> > > > const &(*)()) &ChasteBuildInfo::rGetIfProjectsModified, 
+            (::std::map<std::basic_string<char>, std::basic_string<char>> const &(*)()) &ChasteBuildInfo::rGetIfProjectsModified, 
             " "  , py::return_value_policy::reference_internal)
         .def_static(
             "GetProvenanceString", 
             (::std::string(*)()) &ChasteBuildInfo::GetProvenanceString, 
+            " "  )
+        .def_static(
+            "GetChasteCodegenVersion", 
+            (::std::string(*)()) &ChasteBuildInfo::GetChasteCodegenVersion, 
             " "  )
     ;
 }

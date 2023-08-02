@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "NodesOnlyMesh.hpp"
 
 #include "NodesOnlyMesh3.cppwg.hpp"
@@ -23,56 +24,56 @@ class NodesOnlyMesh3_Overloads : public NodesOnlyMesh3{
     public:
     using NodesOnlyMesh3::NodesOnlyMesh;
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodesOnlyMesh3,
             Clear,
             );
     }
     unsigned int SolveNodeMapping(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodesOnlyMesh3,
             SolveNodeMapping,
             index);
     }
     ::Node<3> * GetNodeOrHaloNode(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_3_gt_Ptr,
             NodesOnlyMesh3,
             GetNodeOrHaloNode,
             index);
     }
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodesOnlyMesh3,
             GetNumNodes,
             );
     }
     unsigned int GetMaximumNodeIndex() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodesOnlyMesh3,
             GetMaximumNodeIndex,
             );
     }
     double GetWidth(unsigned int const & rDimension) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NodesOnlyMesh3,
             GetWidth,
             rDimension);
     }
     void ReMesh(::NodeMap & rMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodesOnlyMesh3,
             ReMesh,
             rMap);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<3> point, bool concreteMove) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodesOnlyMesh3,
             SetNode,
@@ -81,35 +82,35 @@ point,
 concreteMove);
     }
     unsigned int AddNode(::Node<3> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             NodesOnlyMesh3,
             AddNode,
             pNewNode);
     }
     void DeleteNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodesOnlyMesh3,
             DeleteNode,
             index);
     }
     void ConstructFromMeshReader(::AbstractMeshReader<3, 3> & rMeshReader) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NodesOnlyMesh3,
             ConstructFromMeshReader,
             rMeshReader);
     }
-    void SetUpBoxCollection(double cutOffLength, ::boost::numeric::ublas::c_vector<double, 6> domainSize, int numLocalRows, bool isPeriodic) override {
-        PYBIND11_OVERLOAD(
+    void SetUpBoxCollection(double cutOffLength, ::boost::numeric::ublas::c_vector<double, 6> domainSize, int numLocalRows, ::boost::numeric::ublas::c_vector<bool, 3> isDimPeriodic) override {
+        PYBIND11_OVERRIDE(
             void,
             NodesOnlyMesh3,
             SetUpBoxCollection,
             cutOffLength, 
 domainSize, 
 numLocalRows, 
-isPeriodic);
+isDimPeriodic);
     }
 
 };
@@ -118,11 +119,11 @@ py::class_<NodesOnlyMesh3 , NodesOnlyMesh3_Overloads , boost::shared_ptr<NodesOn
         .def(py::init< >())
         .def(
             "ConstructNodesWithoutMesh", 
-            (void(NodesOnlyMesh3::*)(::std::vector<Node<3> *, std::allocator<Node<3> *> > const &, double)) &NodesOnlyMesh3::ConstructNodesWithoutMesh, 
+            (void(NodesOnlyMesh3::*)(::std::vector<Node<3> *> const &, double)) &NodesOnlyMesh3::ConstructNodesWithoutMesh, 
             " " , py::arg("rNodes"), py::arg("maxInteractionDistance") )
         .def(
             "ConstructNodesWithoutMesh", 
-            (void(NodesOnlyMesh3::*)(::std::vector<boost::shared_ptr<Node<3> >, std::allocator<boost::shared_ptr<Node<3> > > > const &, double)) &NodesOnlyMesh3::ConstructNodesWithoutMesh, 
+            (void(NodesOnlyMesh3::*)(::std::vector<boost::shared_ptr<Node<3>>> const &, double)) &NodesOnlyMesh3::ConstructNodesWithoutMesh, 
             " " , py::arg("rNodes"), py::arg("maxInteractionDistance") )
         .def(
             "ConstructNodesWithoutMesh", 
@@ -130,7 +131,7 @@ py::class_<NodesOnlyMesh3 , NodesOnlyMesh3_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("rGeneratingMesh"), py::arg("maxInteractionDistance") )
         .def(
             "rGetInitiallyOwnedNodes", 
-            (::std::vector<bool, std::allocator<bool> > &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetInitiallyOwnedNodes, 
+            (::std::vector<bool> &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetInitiallyOwnedNodes, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "Clear", 
@@ -174,11 +175,11 @@ py::class_<NodesOnlyMesh3 , NodesOnlyMesh3_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("calculateNodeNeighbours") )
         .def(
             "CalculateInteriorNodePairs", 
-            (void(NodesOnlyMesh3::*)(::std::vector<std::pair<Node<3> *, Node<3> *>, std::allocator<std::pair<Node<3> *, Node<3> *> > > &)) &NodesOnlyMesh3::CalculateInteriorNodePairs, 
+            (void(NodesOnlyMesh3::*)(::std::vector<std::pair<Node<3> *, Node<3> *>> &)) &NodesOnlyMesh3::CalculateInteriorNodePairs, 
             " " , py::arg("rNodePairs") )
         .def(
             "CalculateBoundaryNodePairs", 
-            (void(NodesOnlyMesh3::*)(::std::vector<std::pair<Node<3> *, Node<3> *>, std::allocator<std::pair<Node<3> *, Node<3> *> > > &)) &NodesOnlyMesh3::CalculateBoundaryNodePairs, 
+            (void(NodesOnlyMesh3::*)(::std::vector<std::pair<Node<3> *, Node<3> *>> &)) &NodesOnlyMesh3::CalculateBoundaryNodePairs, 
             " " , py::arg("rNodePairs") )
         .def(
             "ReMesh", 
@@ -197,6 +198,10 @@ py::class_<NodesOnlyMesh3 , NodesOnlyMesh3_Overloads , boost::shared_ptr<NodesOn
             (void(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::ResizeBoxCollection, 
             " "  )
         .def(
+            "GetIsPeriodicAcrossProcsFromBoxCollection", 
+            (bool(NodesOnlyMesh3::*)() const ) &NodesOnlyMesh3::GetIsPeriodicAcrossProcsFromBoxCollection, 
+            " "  )
+        .def(
             "AddNodesToBoxes", 
             (void(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::AddNodesToBoxes, 
             " "  )
@@ -210,23 +215,23 @@ py::class_<NodesOnlyMesh3 , NodesOnlyMesh3_Overloads , boost::shared_ptr<NodesOn
             " "  )
         .def(
             "rGetNodesToSendLeft", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetNodesToSendLeft, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetNodesToSendLeft, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetNodesToSendRight", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetNodesToSendRight, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetNodesToSendRight, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetHaloNodesToSendRight", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetHaloNodesToSendRight, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetHaloNodesToSendRight, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetHaloNodesToSendLeft", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetHaloNodesToSendLeft, 
+            (::std::vector<unsigned int> &(NodesOnlyMesh3::*)()) &NodesOnlyMesh3::rGetHaloNodesToSendLeft, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "AddHaloNode", 
-            (void(NodesOnlyMesh3::*)(::boost::shared_ptr<Node<3> >)) &NodesOnlyMesh3::AddHaloNode, 
+            (void(NodesOnlyMesh3::*)(::boost::shared_ptr<Node<3>>)) &NodesOnlyMesh3::AddHaloNode, 
             " " , py::arg("pNewNode") )
         .def(
             "ClearHaloNodes", 
@@ -242,7 +247,7 @@ py::class_<NodesOnlyMesh3 , NodesOnlyMesh3_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("pNewNode") )
         .def(
             "AddMovedNode", 
-            (void(NodesOnlyMesh3::*)(::boost::shared_ptr<Node<3> >)) &NodesOnlyMesh3::AddMovedNode, 
+            (void(NodesOnlyMesh3::*)(::boost::shared_ptr<Node<3>>)) &NodesOnlyMesh3::AddMovedNode, 
             " " , py::arg("pMovedNode") )
         .def(
             "DeleteNode", 
@@ -266,7 +271,7 @@ py::class_<NodesOnlyMesh3 , NodesOnlyMesh3_Overloads , boost::shared_ptr<NodesOn
             " " , py::arg("rMeshReader") )
         .def(
             "GetAllNodeIndices", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> >(NodesOnlyMesh3::*)() const ) &NodesOnlyMesh3::GetAllNodeIndices, 
+            (::std::vector<unsigned int>(NodesOnlyMesh3::*)() const ) &NodesOnlyMesh3::GetAllNodeIndices, 
             " "  )
     ;
 }

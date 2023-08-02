@@ -7,6 +7,10 @@
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
 #include "VtkScene.hpp"
+#include <vtkOpenGLRenderer.h>
+#include <vtkUnsignedCharArray.h>
+#include <vtkSmartPointer.h>
+#include "PythonVtkObjectConverters.hpp"
 
 #include "VtkScene3.cppwg.hpp"
 
@@ -18,7 +22,7 @@ class VtkScene3_Overloads : public VtkScene3{
     public:
     using VtkScene3::VtkScene;
     void ResetRenderer(unsigned int timeStep) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkScene3,
             ResetRenderer,

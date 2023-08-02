@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractTwoBodyInteractionForce.hpp"
 
 #include "AbstractTwoBodyInteractionForce2_2.cppwg.hpp"
@@ -19,7 +20,7 @@ class AbstractTwoBodyInteractionForce2_2_Overloads : public AbstractTwoBodyInter
     public:
     using AbstractTwoBodyInteractionForce2_2::AbstractTwoBodyInteractionForce;
     ::boost::numeric::ublas::c_vector<double, 2> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractTwoBodyInteractionForce2_2,
             CalculateForceBetweenNodes,
@@ -28,21 +29,21 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void AddForceContribution(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTwoBodyInteractionForce2_2,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTwoBodyInteractionForce2_2,
             OutputForceParameters,
             rParamsFile);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTwoBodyInteractionForce2_2,
             WriteDataToVisualizerSetupFile,

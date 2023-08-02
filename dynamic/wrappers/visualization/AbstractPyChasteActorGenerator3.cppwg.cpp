@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractPyChasteActorGenerator.hpp"
 
 #include "AbstractPyChasteActorGenerator3.cppwg.hpp"
@@ -18,7 +19,7 @@ class AbstractPyChasteActorGenerator3_Overloads : public AbstractPyChasteActorGe
     public:
     using AbstractPyChasteActorGenerator3::AbstractPyChasteActorGenerator;
     void AddActor(::vtkSmartPointer<vtkRenderer> pRenderer) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractPyChasteActorGenerator3,
             AddActor,

@@ -1,0 +1,6 @@
+#ifndef EllipticBoxDomainPdeModifier3_hpp__pyplusplus_wrapper
+#define EllipticBoxDomainPdeModifier3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_EllipticBoxDomainPdeModifier3_class(py::module &m);
+#endif // EllipticBoxDomainPdeModifier3_hpp__pyplusplus_wrapper

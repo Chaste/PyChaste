@@ -1,6 +1,41 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
+#include "AbstractCellBasedSimulation.hpp"
+#include "AbstractVertexBasedDivisionRule.hpp"
+#include "BoundaryNodeWriter.hpp"
+#include "CellAgesWriter.hpp"
+#include "CellAncestorWriter.hpp"
+#include "CellAppliedForceWriter.hpp"
+#include "CellCycleModelProteinConcentrationsWriter.hpp"
+#include "CellDataItemWriter.hpp"
+#include "CellDeltaNotchWriter.hpp"
+#include "CellDivisionLocationsWriter.hpp"
+#include "CellIdWriter.hpp"
 #include "CellLabelWriter.hpp"
+#include "CellLocationIndexWriter.hpp"
+#include "CellMutationStatesCountWriter.hpp"
+#include "CellMutationStatesWriter.hpp"
+#include "CellPopulationAdjacencyMatrixWriter.hpp"
+#include "CellPopulationAreaWriter.hpp"
+#include "CellPopulationElementWriter.hpp"
+#include "CellProliferativePhasesCountWriter.hpp"
+#include "CellProliferativePhasesWriter.hpp"
+#include "CellProliferativeTypesCountWriter.hpp"
+#include "CellProliferativeTypesWriter.hpp"
+#include "CellRadiusWriter.hpp"
+#include "CellRemovalLocationsWriter.hpp"
+#include "CellRosetteRankWriter.hpp"
+#include "CellVolumesWriter.hpp"
+#include "HeterotypicBoundaryLengthWriter.hpp"
+#include "LegacyCellProliferativeTypesWriter.hpp"
+#include "NodeLocationWriter.hpp"
+#include "NodeVelocityWriter.hpp"
+#include "PottsMeshWriter.hpp"
+#include "RadialCellDataDistributionWriter.hpp"
+#include "VertexIntersectionSwapLocationsWriter.hpp"
+#include "VertexT1SwapLocationsWriter.hpp"
+#include "VertexT2SwapLocationsWriter.hpp"
+#include "VertexT3SwapLocationsWriter.hpp"
 #include "VoronoiDataWriter.hpp"
 #include <set>
 #include <vector>
@@ -28,21 +63,21 @@ class MeshBasedCellPopulation2_2_Overloads : public MeshBasedCellPopulation2_2{
     public:
     using MeshBasedCellPopulation2_2::MeshBasedCellPopulation;
     ::TetrahedralMesh<2, 2> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _TetrahedralMesh_lt_2_2_gt_Ptr,
             MeshBasedCellPopulation2_2,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     unsigned int AddNode(::Node<2> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MeshBasedCellPopulation2_2,
             AddNode,
             pNewNode);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> & rNewLocation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             SetNode,
@@ -50,28 +85,28 @@ class MeshBasedCellPopulation2_2_Overloads : public MeshBasedCellPopulation2_2{
 rNewLocation);
     }
     double GetDampingConstant(unsigned int nodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             MeshBasedCellPopulation2_2,
             GetDampingConstant,
             nodeIndex);
     }
     void OpenWritersFiles(::OutputFileHandler & rOutputFileHandler) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             OpenWritersFiles,
             rOutputFileHandler);
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MeshBasedCellPopulation2_2,
             RemoveDeadCells,
             );
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             MeshBasedCellPopulation2_2,
             AddCell,
@@ -79,28 +114,28 @@ rNewLocation);
 pParentCell);
     }
     void WriteResultsToFiles(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             WriteResultsToFiles,
             rDirectory);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2> > pPopulationWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2> > pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2> > pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             AcceptCellWriter,
@@ -108,84 +143,84 @@ pParentCell);
 pCell);
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             Update,
             hasHadBirthsOrDeaths);
     }
     ::Node<2> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_2_gt_Ptr,
             MeshBasedCellPopulation2_2,
             GetNode,
             index);
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MeshBasedCellPopulation2_2,
             GetNumNodes,
             );
     }
     void WriteVtkResultsToFile(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             WriteVtkResultsToFile,
             rDirectory);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             MeshBasedCellPopulation2_2,
             GetVolumeOfCell,
             pCell);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             MeshBasedCellPopulation2_2,
             GetWidth,
             rDimension);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             WriteDataToVisualizerSetupFile,
             pVizSetupFile);
     }
     ::std::vector<std::pair<Node<2> *, Node<2> *>, std::allocator<std::pair<Node<2> *, Node<2> *> > > & rGetNodePairs() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_vector_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__std_allocator_lt_std_pair_lt_Node_lt_2_gt_Ptr_Node_lt_2_gt_Ptr_gt__gt__gt_Ref,
             MeshBasedCellPopulation2_2,
             rGetNodePairs,
             );
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
             MeshBasedCellPopulation2_2,
             GetNeighbouringNodeIndices,
             index);
     }
     void UpdateGhostNodesAfterReMesh(::NodeMap & rMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             UpdateGhostNodesAfterReMesh,
             rMap);
     }
     void Validate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MeshBasedCellPopulation2_2,
             Validate,
@@ -330,14 +365,6 @@ py::class_<MeshBasedCellPopulation2_2 , MeshBasedCellPopulation2_2_Overloads , b
             (bool(MeshBasedCellPopulation2_2::*)()) &MeshBasedCellPopulation2_2::GetWriteVtkAsPoints, 
             " "  )
         .def(
-            "SetOutputMeshInVtk", 
-            (void(MeshBasedCellPopulation2_2::*)(bool)) &MeshBasedCellPopulation2_2::SetOutputMeshInVtk, 
-            " " , py::arg("outputMeshInVtk") )
-        .def(
-            "GetOutputMeshInVtk", 
-            (bool(MeshBasedCellPopulation2_2::*)()) &MeshBasedCellPopulation2_2::GetOutputMeshInVtk, 
-            " "  )
-        .def(
             "GetNeighbouringNodeIndices", 
             (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> >(MeshBasedCellPopulation2_2::*)(unsigned int)) &MeshBasedCellPopulation2_2::GetNeighbouringNodeIndices, 
             " " , py::arg("index") )
@@ -353,7 +380,39 @@ py::class_<MeshBasedCellPopulation2_2 , MeshBasedCellPopulation2_2_Overloads , b
             "SetRestLength", 
             (void(MeshBasedCellPopulation2_2::*)(unsigned int, unsigned int, double)) &MeshBasedCellPopulation2_2::SetRestLength, 
             " " , py::arg("indexA"), py::arg("indexB"), py::arg("restLength") )
-        .def("AddPopulationWriterVoronoiDataWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<VoronoiDataWriter>)
+        .def("AddCellWriterCellAgesWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellAgesWriter>)
+        .def("AddCellWriterCellAncestorWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellAncestorWriter>)
+        .def("AddCellWriterCellAppliedForceWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellAppliedForceWriter>)
+        .def("AddCellWriterCellCycleModelProteinConcentrationsWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellCycleModelProteinConcentrationsWriter>)
+        .def("AddCellWriterCellDataItemWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellDataItemWriter>)
+        .def("AddCellWriterCellDeltaNotchWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellDeltaNotchWriter>)
+        .def("AddCellWriterCellIdWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellIdWriter>)
         .def("AddCellWriterCellLabelWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellLabelWriter>)
+        .def("AddCellWriterCellLocationIndexWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellLocationIndexWriter>)
+        .def("AddCellWriterCellMutationStatesWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellMutationStatesWriter>)
+        .def("AddCellWriterCellProliferativePhasesWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellProliferativePhasesWriter>)
+        .def("AddCellWriterCellProliferativeTypesWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellProliferativeTypesWriter>)
+        .def("AddCellWriterCellRadiusWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellRadiusWriter>)
+        .def("AddCellWriterCellRosetteRankWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellRosetteRankWriter>)
+        .def("AddCellWriterCellVolumesWriter", &MeshBasedCellPopulation2_2::AddCellWriter<CellVolumesWriter>)
+        .def("AddCellWriterLegacyCellProliferativeTypesWriter", &MeshBasedCellPopulation2_2::AddCellWriter<LegacyCellProliferativeTypesWriter>)
+        .def("AddCellPopulationCountWriterCellMutationStatesCountWriter", &MeshBasedCellPopulation2_2::AddCellPopulationCountWriter<CellMutationStatesCountWriter>)
+        .def("AddCellPopulationCountWriterCellProliferativeTypesCountWriter", &MeshBasedCellPopulation2_2::AddCellPopulationCountWriter<CellProliferativeTypesCountWriter>)
+        .def("AddCellPopulationCountWriterCellProliferativePhasesCountWriter", &MeshBasedCellPopulation2_2::AddCellPopulationCountWriter<CellProliferativePhasesCountWriter>)
+        .def("AddCellPopulationEventWriterCellDivisionLocationsWriter", &MeshBasedCellPopulation2_2::AddCellPopulationEventWriter<CellDivisionLocationsWriter>)
+        .def("AddCellPopulationEventWriterCellRemovalLocationsWriter", &MeshBasedCellPopulation2_2::AddCellPopulationEventWriter<CellRemovalLocationsWriter>)
+        .def("AddPopulationWriterBoundaryNodeWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<BoundaryNodeWriter>)
+        .def("AddPopulationWriterCellPopulationAdjacencyMatrixWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<CellPopulationAdjacencyMatrixWriter>)
+        .def("AddPopulationWriterCellPopulationAreaWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<CellPopulationAreaWriter>)
+        .def("AddPopulationWriterCellPopulationElementWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<CellPopulationElementWriter>)
+        .def("AddPopulationWriterHeterotypicBoundaryLengthWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<HeterotypicBoundaryLengthWriter>)
+        .def("AddPopulationWriterNodeLocationWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<NodeLocationWriter>)
+        .def("AddPopulationWriterNodeVelocityWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<NodeVelocityWriter>)
+        .def("AddPopulationWriterRadialCellDataDistributionWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<RadialCellDataDistributionWriter>)
+        .def("AddPopulationWriterVertexIntersectionSwapLocationsWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<VertexIntersectionSwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT1SwapLocationsWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<VertexT1SwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT2SwapLocationsWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<VertexT2SwapLocationsWriter>)
+        .def("AddPopulationWriterVertexT3SwapLocationsWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<VertexT3SwapLocationsWriter>)
+        .def("AddPopulationWriterVoronoiDataWriter", &MeshBasedCellPopulation2_2::AddPopulationWriter<VoronoiDataWriter>)
     ;
 }

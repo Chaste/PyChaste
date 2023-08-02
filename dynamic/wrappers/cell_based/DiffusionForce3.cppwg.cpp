@@ -18,14 +18,14 @@ class DiffusionForce3_Overloads : public DiffusionForce3{
     public:
     using DiffusionForce3::DiffusionForce;
     void AddForceContribution(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DiffusionForce3,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             DiffusionForce3,
             OutputForceParameters,
@@ -34,7 +34,7 @@ class DiffusionForce3_Overloads : public DiffusionForce3{
 
 };
 void register_DiffusionForce3_class(py::module &m){
-py::class_<DiffusionForce3 , DiffusionForce3_Overloads , boost::shared_ptr<DiffusionForce3 >  , AbstractForce<3, 3>  >(m, "DiffusionForce3")
+py::class_<DiffusionForce3 , DiffusionForce3_Overloads , boost::shared_ptr<DiffusionForce3 > , AbstractForce<3, 3>  >(m, "DiffusionForce3")
         .def(py::init< >())
         .def(
             "SetAbsoluteTemperature", 

@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "Node.hpp"
 
 #include "Node2.cppwg.hpp"
@@ -17,7 +18,7 @@ PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 void register_Node2_class(py::module &m){
 py::class_<Node2  , boost::shared_ptr<Node2 >   >(m, "Node2")
         .def(py::init<unsigned int, ::ChastePoint<2>, bool >(), py::arg("index"), py::arg("point"), py::arg("isBoundaryNode") = false)
-        .def(py::init<unsigned int, ::std::vector<double, std::allocator<double> >, bool >(), py::arg("index"), py::arg("coords"), py::arg("isBoundaryNode") = false)
+        .def(py::init<unsigned int, ::std::vector<double>, bool >(), py::arg("index"), py::arg("coords"), py::arg("isBoundaryNode") = false)
         .def(py::init<unsigned int, ::boost::numeric::ublas::c_vector<double, 2>, bool >(), py::arg("index"), py::arg("location"), py::arg("isBoundaryNode") = false)
         .def(py::init<unsigned int, bool, double, double, double >(), py::arg("index"), py::arg("isBoundaryNode") = false, py::arg("v1") = 0, py::arg("v2") = 0, py::arg("v3") = 0)
         .def(py::init<unsigned int, double *, bool >(), py::arg("index"), py::arg("location"), py::arg("isBoundaryNode") = false)
@@ -99,15 +100,15 @@ py::class_<Node2  , boost::shared_ptr<Node2 >   >(m, "Node2")
             " "  )
         .def(
             "rGetNeighbours", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> > &(Node2::*)()) &Node2::rGetNeighbours, 
+            (::std::vector<unsigned int> &(Node2::*)()) &Node2::rGetNeighbours, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetContainingElementIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > &(Node2::*)()) &Node2::rGetContainingElementIndices, 
+            (::std::set<unsigned int> &(Node2::*)()) &Node2::rGetContainingElementIndices, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "rGetNodeAttributes", 
-            (::std::vector<double, std::allocator<double> > &(Node2::*)()) &Node2::rGetNodeAttributes, 
+            (::std::vector<double> &(Node2::*)()) &Node2::rGetNodeAttributes, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetNumNodeAttributes", 
@@ -119,7 +120,7 @@ py::class_<Node2  , boost::shared_ptr<Node2 >   >(m, "Node2")
             " "  )
         .def(
             "rGetContainingBoundaryElementIndices", 
-            (::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > &(Node2::*)()) &Node2::rGetContainingBoundaryElementIndices, 
+            (::std::set<unsigned int> &(Node2::*)()) &Node2::rGetContainingBoundaryElementIndices, 
             " "  , py::return_value_policy::reference_internal)
         .def(
             "GetNumContainingElements", 

@@ -1,0 +1,6 @@
+#ifndef CellMutationStatesCountWriter3_3_hpp__pyplusplus_wrapper
+#define CellMutationStatesCountWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellMutationStatesCountWriter3_3_class(py::module &m);
+#endif // CellMutationStatesCountWriter3_3_hpp__pyplusplus_wrapper

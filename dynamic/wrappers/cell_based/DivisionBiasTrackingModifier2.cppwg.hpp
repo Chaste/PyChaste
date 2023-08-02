@@ -1,0 +1,6 @@
+#ifndef DivisionBiasTrackingModifier2_hpp__pyplusplus_wrapper
+#define DivisionBiasTrackingModifier2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_DivisionBiasTrackingModifier2_class(py::module &m);
+#endif // DivisionBiasTrackingModifier2_hpp__pyplusplus_wrapper

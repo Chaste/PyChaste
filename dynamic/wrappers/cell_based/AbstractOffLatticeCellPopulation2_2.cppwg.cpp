@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractOffLatticeCellPopulation.hpp"
 
 #include "AbstractOffLatticeCellPopulation2_2.cppwg.hpp"
@@ -19,14 +20,14 @@ class AbstractOffLatticeCellPopulation2_2_Overloads : public AbstractOffLatticeC
     public:
     using AbstractOffLatticeCellPopulation2_2::AbstractOffLatticeCellPopulation;
     unsigned int AddNode(::Node<2> * pNewNode) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             unsignedint,
             AbstractOffLatticeCellPopulation2_2,
             AddNode,
             pNewNode);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> & rNewLocation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOffLatticeCellPopulation2_2,
             SetNode,
@@ -34,14 +35,14 @@ class AbstractOffLatticeCellPopulation2_2_Overloads : public AbstractOffLatticeC
 rNewLocation);
     }
     void UpdateNodeLocations(double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOffLatticeCellPopulation2_2,
             UpdateNodeLocations,
             dt);
     }
     void CheckForStepSizeException(unsigned int nodeIndex, ::boost::numeric::ublas::c_vector<double, 2> & rDisplacement, double dt) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractOffLatticeCellPopulation2_2,
             CheckForStepSizeException,
@@ -50,14 +51,14 @@ rDisplacement,
 dt);
     }
     double GetDampingConstant(unsigned int nodeIndex) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractOffLatticeCellPopulation2_2,
             GetDampingConstant,
             nodeIndex);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractOffLatticeCellPopulation2_2,
             OutputCellPopulationParameters,

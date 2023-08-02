@@ -18,14 +18,14 @@ class VtkSceneModifier3_Overloads : public VtkSceneModifier3{
     public:
     using VtkSceneModifier3::VtkSceneModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkSceneModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3, 3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkSceneModifier3,
             SetupSolve,
@@ -33,7 +33,7 @@ class VtkSceneModifier3_Overloads : public VtkSceneModifier3{
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             VtkSceneModifier3,
             OutputSimulationModifierParameters,
@@ -42,7 +42,7 @@ outputDirectory);
 
 };
 void register_VtkSceneModifier3_class(py::module &m){
-py::class_<VtkSceneModifier3 , VtkSceneModifier3_Overloads , boost::shared_ptr<VtkSceneModifier3 >  , AbstractCellBasedSimulationModifier<3, 3>  >(m, "VtkSceneModifier3")
+py::class_<VtkSceneModifier3 , VtkSceneModifier3_Overloads , boost::shared_ptr<VtkSceneModifier3 > , AbstractCellBasedSimulationModifier<3, 3>  >(m, "VtkSceneModifier3")
         .def(py::init< >())
         .def(
             "GetVtkScene", 

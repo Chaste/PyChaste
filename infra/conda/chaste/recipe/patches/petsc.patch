@@ -1,0 +1,13 @@
+--- a/petscsys.h
++++ b/petscsys.h
+@@ -233,8 +233,8 @@
+ #elif defined(PETSC_HAVE_MPICH_NUMVERSION)
+ #  if !defined(MPICH_NUMVERSION) || defined(MVAPICH2_NUMVERSION) || defined(I_MPI_NUMVERSION)
+ #    error "PETSc was configured with MPICH but now appears to be compiling using a non-MPICH mpi.h"
+-#  elif (MPICH_NUMVERSION/100000 != PETSC_HAVE_MPICH_NUMVERSION/100000) || (MPICH_NUMVERSION%100000/1000 < PETSC_HAVE_MPICH_NUMVERSION%100000/1000)
+-#    error "PETSc was configured with one MPICH mpi.h version but now appears to be compiling using a different MPICH mpi.h version"
++//#  elif (MPICH_NUMVERSION/100000 != PETSC_HAVE_MPICH_NUMVERSION/100000) || (MPICH_NUMVERSION%100000/1000 < PETSC_HAVE_MPICH_NUMVERSION%100000/1000)
++//#    error "PETSc was configured with one MPICH mpi.h version but now appears to be compiling using a different MPICH mpi.h version"
+ #  endif
+ #elif defined(PETSC_HAVE_OMPI_MAJOR_VERSION)
+ #  if !defined(OMPI_MAJOR_VERSION)

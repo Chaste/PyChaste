@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractCellPopulationBoundaryCondition.hpp"
 
 #include "AbstractCellPopulationBoundaryCondition3_3.cppwg.hpp"
@@ -18,21 +19,21 @@ class AbstractCellPopulationBoundaryCondition3_3_Overloads : public AbstractCell
     public:
     using AbstractCellPopulationBoundaryCondition3_3::AbstractCellPopulationBoundaryCondition;
     void ImposeBoundaryCondition(::std::map<Node<3> *, boost::numeric::ublas::c_vector<double, 3>, std::less<Node<3> *>, std::allocator<std::pair<Node<3> *const, boost::numeric::ublas::c_vector<double, 3> > > > const & rOldLocations) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulationBoundaryCondition3_3,
             ImposeBoundaryCondition,
             rOldLocations);
     }
     bool VerifyBoundaryCondition() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             bool,
             AbstractCellPopulationBoundaryCondition3_3,
             VerifyBoundaryCondition,
             );
     }
     void OutputCellPopulationBoundaryConditionParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulationBoundaryCondition3_3,
             OutputCellPopulationBoundaryConditionParameters,

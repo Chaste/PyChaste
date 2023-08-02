@@ -18,21 +18,21 @@ class AbstractForce3_3_Overloads : public AbstractForce3_3{
     public:
     using AbstractForce3_3::AbstractForce;
     void AddForceContribution(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractForce3_3,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractForce3_3,
             OutputForceParameters,
             rParamsFile);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractForce3_3,
             WriteDataToVisualizerSetupFile,

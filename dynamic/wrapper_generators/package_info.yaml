@@ -41,22 +41,16 @@ modules:
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: ReplicatableVector
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: Timer
   - name: RelativeTo # enum
     source_file: FileFinder.hpp
   - name: FileFinder
-    source_includes:
-    - BoostFilesystem.hpp
   - name: OutputFileHandler
     source_includes:
     - FileFinder.hpp # forward decl
@@ -74,13 +68,22 @@ modules:
   - name: AbstractOdeSystemInformation
   - name: AbstractPythonOdeSystemInformation
   - name: AbstractOdeSystem
+  - name: DeltaNotchEdgeOdeSystem
+  - name: DeltaNotchInteriorOdeSystem
+  - name: Alarcon2004OxygenBasedCellCycleOdeSystem
+  - name: Goldbeter1991OdeSystem
+  - name: TysonNovak2001OdeSystem
+    excluded_methods:
+    - AnalyticJacobian # double ** jacobian
+  - name: DeltaNotchOdeSystem
 - name: pde
   source_locations:
   - pde/src
   classes:
-  - name: AbstractLinearPde
-  - name: AbstractLinearParabolicPde
+  # - name: AbstractLinearPde
+  # - name: AbstractLinearParabolicPde
   - name: AbstractLinearEllipticPde
+  # - name: AbstractLinearParabolicPdeSystemForCoupledOdeSystem
   - name: AbstractNonlinearEllipticPde
   - name: AbstractBoundaryCondition
   - name: ConstBoundaryCondition
@@ -90,11 +93,17 @@ modules:
   - mesh/src
   classes:
   - name: ChastePoint
+  - name: AbstractChasteRegion
+  - name: ChasteCuboid
+  - name: ChasteEllipsoid
   - name: NodeAttributes
   - name: Node
   - name: Element
     excluded_methods: 
     - CalculateCircumsphereVolume #  method not found!
+  - name: Edge
+  # - name: EdgeHelper
+  - name: EdgeOperation
   - name: AbstractMesh
   - name: AbstractTetrahedralMesh
   - name: TetrahedralMesh
@@ -113,17 +122,39 @@ modules:
   - name: VertexMesh
     excluded_methods: 
     - GetFace # dont have mixed dim elements
+    - GetEdgeHelper
     constructor_arg_type_excludes: 
     - TetrahedralMesh<3, 3>
     - TetrahedralMesh<2, 2>
   - name: MutableVertexMesh
   - name: Cylindrical2dVertexMesh
+  - name: Toroidal2dMesh
+    excluded_methods:
+    - GetInstanceOfMismatchedBoundaryNodes
+  - name: PeriodicNodesOnlyMesh
+    excluded_methods:
+    - SetUpBoxCollection # boost::numeric::ublas::zero_vector
+  - name: Cylindrical2dNodesOnlyMesh
+    excluded_methods:
+    - SetUpBoxCollection # boost::numeric::ublas::unit_vector
+  - name: Cylindrical2dMesh
+    excluded_methods:
+    - GetInstanceOfMismatchedBoundaryNodes
+  - name: Toroidal2dVertexMesh
   - name: SharedHoneycombMeshGenerator
     name_override: HoneycombMeshGenerator
   - name: SharedHoneycombVertexMeshGenerator
     name_override: HoneycombVertexMeshGenerator
+  - name: SharedCylindricalHoneycombMeshGenerator
+    name_override: CylindricalHoneycombMeshGenerator
   - name: SharedCylindricalHoneycombVertexMeshGenerator
     name_override: CylindricalHoneycombVertexMeshGenerator
+  - name: SharedToroidalHoneycombMeshGenerator
+    name_override: ToroidalHoneycombMeshGenerator
+  - name: SharedToroidalHoneycombVertexMeshGenerator
+    name_override: ToroidalHoneycombVertexMeshGenerator
+  - name: SharedVoronoiVertexMeshGenerator
+    name_override: VoronoiVertexMeshGenerator
 - name: cell_based
   source_locations:
   - cell_based/src
@@ -137,10 +168,26 @@ modules:
   - name: SimpleOxygenBasedCellCycleModel
   - name: UniformG1GenerationalCellCycleModel
   - name: NoCellCycleModel
+  - name: BiasedBernoulliTrialCellCycleModel
+  - name: LabelDependentBernoulliTrialCellCycleModel
+  - name: AlwaysDivideCellCycleModel
+  - name: AbstractOdeBasedCellCycleModel
+  - name: ContactInhibitionCellCycleModel
+  - name: StochasticOxygenBasedCellCycleModel
+  - name: GammaG1CellCycleModel
+  - name: ExponentialG1GenerationalCellCycleModel
+  - name: AbstractOdeBasedPhaseBasedCellCycleModel
+  - name: TysonNovakCellCycleModel
+  - name: Alarcon2004OxygenBasedCellCycleModel
+  - name: FixedSequenceCellCycleModel
+  - name: BernoulliTrialCellCycleModel
+  - name: FixedG1GenerationalCellCycleModel
   - name: AbstractCellCycleModelOdeSolver
+  # - name: CellCycleModelOdeSolver
   - name: AbstractCellProperty
     excluded_methods: 
     - IsType  # exclude templated method
+  # - name: CellwiseOdeSystemInformation
   - name: CellPropertyCollection
     excluded_methods: 
     - GetCellPropertyRegistry
@@ -159,13 +206,21 @@ modules:
   - name: CellLabel
   - name: CellAncestor
   - name: CellId
+  - name: CellEdgeData
   - name: CellPropertyRegistry
     excluded_methods: 
     - rGetAllCellProperties
     - TakeOwnership
     - Get
   - name: AbstractSrnModel
+  - name: AbstractOdeSrnModel
   - name: NullSrnModel
+  - name: CellSrnModel
+  - name: DeltaNotchSrnModel
+  - name: DeltaNotchEdgeSrnModel
+  - name: DeltaNotchInteriorSrnModel
+  - name: Goldbeter1991SrnModel
+  - name: VertexBasedPopulationSrn
   - name: Cell
     excluded_methods: 
     - rGetCellPropertyCollection
@@ -182,16 +237,61 @@ modules:
         - [SimpleOxygenBasedCellCycleModel, 3]
         - [UniformG1GenerationalCellCycleModel, 2]
         - [UniformG1GenerationalCellCycleModel, 3]
+        - [BiasedBernoulliTrialCellCycleModel, 2]
+        - [BiasedBernoulliTrialCellCycleModel, 3]
+        - [LabelDependentBernoulliTrialCellCycleModel, 2]
+        - [LabelDependentBernoulliTrialCellCycleModel, 3]
+        - [AlwaysDivideCellCycleModel, 2]
+        - [AlwaysDivideCellCycleModel, 3]
+        - [ContactInhibitionCellCycleModel, 2]
+        - [ContactInhibitionCellCycleModel, 3]
+        - [StochasticOxygenBasedCellCycleModel, 2]
+        - [StochasticOxygenBasedCellCycleModel, 3]
+        - [GammaG1CellCycleModel, 2]
+        - [GammaG1CellCycleModel, 3]
+        - [ExponentialG1GenerationalCellCycleModel, 2]
+        - [ExponentialG1GenerationalCellCycleModel, 3]
+        - [TysonNovakCellCycleModel, 2]
+        - [TysonNovakCellCycleModel, 3]
+        - [Alarcon2004OxygenBasedCellCycleModel, 2]
+        - [Alarcon2004OxygenBasedCellCycleModel, 3]
+        - [FixedSequenceCellCycleModel, 2]
+        - [FixedSequenceCellCycleModel, 3]
+        - [BernoulliTrialCellCycleModel, 2]
+        - [BernoulliTrialCellCycleModel, 3]
+        - [FixedG1GenerationalCellCycleModel, 2]
+        - [FixedG1GenerationalCellCycleModel, 3]
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/CellsGenerator_custom.py
     source_includes:
     - NoCellCycleModel.hpp
     - UniformCellCycleModel.hpp
     - SimpleOxygenBasedCellCycleModel.hpp
     - UniformG1GenerationalCellCycleModel.hpp
+    - BiasedBernoulliTrialCellCycleModel.hpp
+    - LabelDependentBernoulliTrialCellCycleModel.hpp
+    - AlwaysDivideCellCycleModel.hpp
+    - ContactInhibitionCellCycleModel.hpp
+    - StochasticOxygenBasedCellCycleModel.hpp
+    - GammaG1CellCycleModel.hpp
+    - ExponentialG1GenerationalCellCycleModel.hpp
+    - TysonNovakCellCycleModel.hpp
+    - Alarcon2004OxygenBasedCellCycleModel.hpp
+    - FixedSequenceCellCycleModel.hpp
+    - BernoulliTrialCellCycleModel.hpp
+    - FixedG1GenerationalCellCycleModel.hpp
   - name: CellwiseSourceEllipticPde
   - name: AveragedSourceEllipticPde
+  - name: VolumeDependentAveragedSourceEllipticPde
+  - name: UniformSourceEllipticPde
   - name: CellwiseSourceParabolicPde
-  - name: AbstractCellBasedSimulationModifier  
+  - name: UniformSourceParabolicPde
+  - name: AveragedSourceParabolicPde
+  - name: CellBasedEllipticPdeSolver
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+  - name: CellBasedParabolicPdeSolver
+  # - name: AbstractCellBasedSimulationModifier  
   - name: AbstractPdeModifier
     excluded_methods: 
     - GetSolution
@@ -199,25 +299,254 @@ modules:
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
+  - name: AbstractBoxDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    - "PythonPetscObjectConverters.hpp"
   - name: AbstractGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
   - name: EllipticGrowingDomainPdeModifier
     source_includes:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
-    prefix_code:
-    - PYBIND11_MAKE_OPAQUE(Vec); 
-    - PYBIND11_MAKE_OPAQUE(Mat); 
+    - "PythonPetscObjectConverters.hpp"
     excluded_methods: 
     - ConstructBoundaryConditionsContainer
+  - name: ParabolicGrowingDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    - "PythonPetscObjectConverters.hpp" 
+    excluded_methods: 
+    - ConstructBoundaryConditionsContainer
+  - name: EllipticBoxDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    - "PythonPetscObjectConverters.hpp" 
+    excluded_methods: 
+    - ConstructBoundaryConditionsContainer
+  - name: ParabolicBoxDomainPdeModifier
+    source_includes:
+    - <petsc/private/vecimpl.h> # forward decl
+    - <petsc/private/matimpl.h> # forward decl
+    - "PythonPetscObjectConverters.hpp"
+    excluded_methods: 
+    - ConstructBoundaryConditionsContainer
+  - name: AbstractCellBasedWriter
+  - name: AbstractCellWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: AbstractCellPopulationWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: AbstractCellPopulationCountWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: AbstractCellPopulationEventWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: BoundaryNodeWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellAgesWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellAncestorWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellAppliedForceWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellCycleModelProteinConcentrationsWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellDataItemWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellDeltaNotchWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellDivisionLocationsWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellIdWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellLocationIndexWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellMutationStatesCountWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellMutationStatesWriter
+    - AbstractCellPopulation.hpp
+  - name: CellPopulationAdjacencyMatrixWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellPopulationAreaWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellPopulationElementWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellProliferativePhasesCountWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellProliferativePhasesWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellProliferativeTypesCountWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellProliferativeTypesWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellRadiusWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellRemovalLocationsWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: CellRosetteRankWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: CellVolumesWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: HeterotypicBoundaryLengthWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: LegacyCellProliferativeTypesWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+  - name: NodeLocationWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: NodeVelocityWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: PottsMeshWriter
+  - name: RadialCellDataDistributionWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: VertexIntersectionSwapLocationsWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: VertexT1SwapLocationsWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: VertexT2SwapLocationsWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
+  - name: VertexT3SwapLocationsWriter
+    source_includes:
+    - AbstractCellPopulation.hpp
+    - MeshBasedCellPopulation.hpp
+    - PottsBasedCellPopulation.hpp
+    - CaBasedCellPopulation.hpp
+    - NodeBasedCellPopulation.hpp
+    - VertexBasedCellPopulation.hpp
   - name: VoronoiDataWriter 
     source_includes:
     - VertexBasedCellPopulation.hpp
@@ -237,14 +566,27 @@ modules:
   - name: AdhesionPottsUpdateRule
   - name: DifferentialAdhesionPottsUpdateRule 
   - name: AbstractVertexBasedDivisionRule
-  - name: AbstractForce 
-  - name: AbstractTwoBodyInteractionForce
+  - name: RandomDirectionVertexBasedDivisionRule
+  - name: VonMisesVertexBasedDivisionRule
+  - name: FixedVertexBasedDivisionRule
+  - name: AbstractCaBasedDivisionRule
+  - name: ShovingCaBasedDivisionRule
+  - name: ExclusionCaBasedDivisionRule
+  # - name: RandomDirectionCentreBasedDivisionRule
+  # - name: FixedCentreBasedDivisionRule
+  # - name: AbstractCentreBasedDivisionRule
+  - name: ShortAxisVertexBasedDivisionRule
+  - name: RandomCaSwitchingUpdateRule
+  - name: ChemotaxisPottsUpdateRule
+  - name: AbstractCaSwitchingUpdateRule
+  # - name: AbstractForce 
+  # - name: AbstractTwoBodyInteractionForce
   - name: BuskeAdhesiveForce
   - name: BuskeCompressionForce
   - name: BuskeElasticForce
   - name: ChemotacticForce
-  - name: GeneralisedLinearSpringForce
-  - name: DifferentialAdhesionGeneralisedLinearSpringForce 
+  # - name: GeneralisedLinearSpringForce
+  # - name: DifferentialAdhesionGeneralisedLinearSpringForce 
   - name: NagaiHondaForce
   - name: DiffusionForce
   - name: RepulsionForce
@@ -252,37 +594,48 @@ modules:
   - name: FarhadifarForce
     excluded_methods: 
     - GetLineTensionParameter
+  - name: PlanarPolarisedFarhadifarForce
+    excluded_methods:
+    - GetLineTensionParameter
   - name: NagaiHondaDifferentialAdhesionForce
     excluded_methods: 
     - GetAdhesionParameter
   - name: AbstractCellKiller 
   - name: PlaneBasedCellKiller
   - name: ApoptoticCellKiller
-  - name: AbstractCellPopulationBoundaryCondition
-  - name: PlaneBoundaryCondition
-    source_includes:
-    - PythonObjectConverters.hpp
-  - name: AttractingPlaneBoundaryCondition
-    source_includes:
-    - PythonObjectConverters.hpp
+  - name: TargetedCellKiller
+  - name: RandomCellKiller
+  - name: T2SwapCellKiller
+  - name: IsolatedLabelledCellKiller
+  # - name: AbstractCellPopulationBoundaryCondition
+  # - name: PlaneBoundaryCondition
+  #   source_includes:
+  #   - PythonUblasObjectConverters.hpp
+  # - name: AttractingPlaneBoundaryCondition
+  #   source_includes:
+  #   - PythonUblasObjectConverters.hpp
   - name: SphereGeometryBoundaryCondition
     source_includes:
-    - PythonObjectConverters.hpp
-  - name: AbstractCellPopulation
-    excluded_methods: 
-    - rGetCells
+    - PythonUblasObjectConverters.hpp
+  - name: SlidingBoundaryCondition
     source_includes:
-    - AbstractCellBasedSimulation.hpp  
-  - name: AbstractOffLatticeCellPopulation
-  - name: AbstractCentreBasedCellPopulation  
-    excluded_methods: 
-    - MarkSpring
-    - UnmarkSpring       
+    - PythonUblasObjectConverters.hpp
+  # - name: AbstractCellPopulation
+  #   excluded_methods: 
+  #   - rGetCells
+    # source_includes:
+    # - AbstractCellBasedSimulation.hpp  
+  # - name: AbstractOffLatticeCellPopulation
+  # - name: AbstractCentreBasedCellPopulation  
+  #   excluded_methods: 
+  #   - MarkSpring
+  #   - UnmarkSpring       
   - name: AbstractOnLatticeCellPopulation
     excluded_methods: 
     - GetNodeCorrespondingToCell
     - MarkSpring
     - UnmarkSpring
+  - name: NodeBasedCellPopulationWithParticles
   - name: CaBasedCellPopulation
     excluded_methods: 
     - rGetMesh
@@ -291,23 +644,116 @@ modules:
     - rGetAvailableSpaces 
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
-  - name: MeshBasedCellPopulation
-    excluded_methods: 
-    - GetVoronoiTessellation
-    - rGetNodePairs
-    - GetTetrahedralMeshForPdeModifier
-    - rGetMesh
-    custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py 
-    source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp   
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
+  # - name: MeshBasedCellPopulation
+  #   excluded_methods: 
+  #   - GetVoronoiTessellation
+  #   - rGetNodePairs
+  #   - GetTetrahedralMeshForPdeModifier
+  #   - rGetMesh
+  #   custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py 
+  #   source_includes:
+  #   - CellAgesWriter.hpp
+  #   - CellAncestorWriter.hpp
+  #   - CellAppliedForceWriter.hpp
+  #   - CellCycleModelProteinConcentrationsWriter.hpp
+  #   - CellDataItemWriter.hpp
+  #   - CellDeltaNotchWriter.hpp
+  #   - CellDivisionLocationsWriter.hpp
+  #   - CellIdWriter.hpp
+  #   - CellLocationIndexWriter.hpp
+  #   - CellMutationStatesCountWriter.hpp
+  #   - CellMutationStatesWriter.hpp
+  #   - CellPopulationAdjacencyMatrixWriter.hpp
+  #   - CellPopulationAreaWriter.hpp
+  #   - CellPopulationElementWriter.hpp
+  #   - CellProliferativePhasesCountWriter.hpp
+  #   - CellProliferativePhasesWriter.hpp
+  #   - CellProliferativeTypesCountWriter.hpp
+  #   - CellProliferativeTypesWriter.hpp
+  #   - CellRadiusWriter.hpp
+  #   - CellRemovalLocationsWriter.hpp
+  #   - CellRosetteRankWriter.hpp
+  #   - CellVolumesWriter.hpp
+  #   - HeterotypicBoundaryLengthWriter.hpp
+  #   - LegacyCellProliferativeTypesWriter.hpp
+  #   - NodeLocationWriter.hpp
+  #   - NodeVelocityWriter.hpp
+  #   - PottsMeshWriter.hpp
+  #   - RadialCellDataDistributionWriter.hpp
+  #   - VertexIntersectionSwapLocationsWriter.hpp
+  #   - VertexT1SwapLocationsWriter.hpp
+  #   - VertexT2SwapLocationsWriter.hpp
+  #   - VertexT3SwapLocationsWriter.hpp
+  #   - VoronoiDataWriter.hpp
   - name: MeshBasedCellPopulationWithGhostNodes
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: VertexBasedCellPopulation
     excluded_methods: 
     - GetElementCorrespondingToCell
@@ -317,9 +763,40 @@ modules:
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
     - AbstractCellBasedSimulation.hpp   
-    - AbstractVertexBasedDivisionRule.hpp
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
+    - AbstractVertexBasedDivisionRule.hppBoundaryNodeWriter.hpp
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: PottsBasedCellPopulation
     excluded_methods: 
     - GetElementCorrespondingToCell
@@ -330,8 +807,39 @@ modules:
     - GetMutableMesh
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py  
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp  
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: NodeBasedCellPopulation
     excluded_methods: 
     - rGetNodePairs
@@ -339,17 +847,92 @@ modules:
     - rGetMesh
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py   
     source_includes:
-    - CellLabelWriter.hpp 
-    - VoronoiDataWriter.hpp 
-  - name: AbstractTargetAreaModifier 
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
+  - name: NodeBasedCellPopulationWithBuskeUpdate
+    excluded_methods:
+    - rGetMesh
+    custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py   
+    source_includes:
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
+  - name: AbstractTargetAreaModifier
   - name: SimpleTargetAreaModifier
+  - name: DivisionBiasTrackingModifier
+  - name: ExtrinsicPullModifier
+  - name: DeltaNotchEdgeInteriorTrackingModifier
+  - name: DeltaNotchTrackingModifier
+  - name: TargetAreaLinearGrowthModifier
+  - name: VolumeTrackingModifier
   - name: VtkSceneModifier
   - name: AbstractCellBasedSimulation
     excluded_methods: 
     - GetSimulationModifiers  
   - name: SimulationTime 
   - name: OnLatticeSimulation 
-  - name: OffLatticeSimulation
+  # - name: OffLatticeSimulation
   - name: PythonSimulationModifier
 - name: tutorial
   source_locations:

@@ -1,0 +1,6 @@
+#ifndef CellsGeneratorFixedSequenceCellCycleModel_3_hpp__pyplusplus_wrapper
+#define CellsGeneratorFixedSequenceCellCycleModel_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellsGeneratorFixedSequenceCellCycleModel_3_class(py::module &m);
+#endif // CellsGeneratorFixedSequenceCellCycleModel_3_hpp__pyplusplus_wrapper

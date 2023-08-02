@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "MutableVertexMesh.hpp"
 
 #include "MutableVertexMesh2_2.cppwg.hpp"
@@ -20,7 +21,7 @@ class MutableVertexMesh2_2_Overloads : public MutableVertexMesh2_2{
     public:
     using MutableVertexMesh2_2::MutableVertexMesh;
     void SetNode(unsigned int nodeIndex, ::ChastePoint<2> point) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh2_2,
             SetNode,
@@ -28,53 +29,45 @@ class MutableVertexMesh2_2_Overloads : public MutableVertexMesh2_2{
 point);
     }
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableVertexMesh2_2,
             GetNumNodes,
             );
     }
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             MutableVertexMesh2_2,
             GetNumElements,
             );
     }
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh2_2,
             Clear,
             );
     }
     void ReMesh(::VertexElementMap & rElementMap) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh2_2,
             ReMesh,
             rElementMap);
     }
     bool CheckForSwapsFromShortEdges() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             MutableVertexMesh2_2,
             CheckForSwapsFromShortEdges,
             );
     }
     void IdentifySwapType(::Node<2> * pNodeA, ::Node<2> * pNodeB) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableVertexMesh2_2,
             IdentifySwapType,
-            pNodeA, 
-pNodeB);
-    }
-    void HandleHighOrderJunctions(::Node<2> * pNodeA, ::Node<2> * pNodeB) override {
-        PYBIND11_OVERLOAD(
-            void,
-            MutableVertexMesh2_2,
-            HandleHighOrderJunctions,
             pNodeA, 
 pNodeB);
     }
@@ -82,8 +75,12 @@ pNodeB);
 };
 void register_MutableVertexMesh2_2_class(py::module &m){
 py::class_<MutableVertexMesh2_2 , MutableVertexMesh2_2_Overloads , boost::shared_ptr<MutableVertexMesh2_2 >  , VertexMesh<2, 2>  >(m, "MutableVertexMesh2_2")
-        .def(py::init<::std::vector<Node<2> *, std::allocator<Node<2> *> >, ::std::vector<VertexElement<2, 2> *, std::allocator<VertexElement<2, 2> *> >, double, double, double, double, double, double >(), py::arg("nodes"), py::arg("vertexElements"), py::arg("cellRearrangementThreshold") = 0.01, py::arg("t2Threshold") = 0.001, py::arg("cellRearrangementRatio") = 1.5, py::arg("protorosetteFormationProbability") = 0., py::arg("protorosetteResolutionProbabilityPerTimestep") = 0., py::arg("rosetteResolutionProbabilityPerTimestep") = 0.)
+        .def(py::init<::std::vector<Node<2> *>, ::std::vector<VertexElement<2, 2> *>, double, double, double, double, double, double >(), py::arg("nodes"), py::arg("vertexElements"), py::arg("cellRearrangementThreshold") = 0.01, py::arg("t2Threshold") = 0.001, py::arg("cellRearrangementRatio") = 1.5, py::arg("protorosetteFormationProbability") = 0., py::arg("protorosetteResolutionProbabilityPerTimestep") = 0., py::arg("rosetteResolutionProbabilityPerTimestep") = 0.)
         .def(py::init< >())
+        .def(
+            "PerformNodeMerge", 
+            (void(MutableVertexMesh2_2::*)(::Node<2> *, ::Node<2> *)) &MutableVertexMesh2_2::PerformNodeMerge, 
+            " " , py::arg("pNodeA"), py::arg("pNodeB") )
         .def(
             "SetCellRearrangementThreshold", 
             (void(MutableVertexMesh2_2::*)(double)) &MutableVertexMesh2_2::SetCellRearrangementThreshold, 
@@ -116,6 +113,10 @@ py::class_<MutableVertexMesh2_2 , MutableVertexMesh2_2_Overloads , boost::shared
             "SetCheckForInternalIntersections", 
             (void(MutableVertexMesh2_2::*)(bool)) &MutableVertexMesh2_2::SetCheckForInternalIntersections, 
             " " , py::arg("checkForInternalIntersections") )
+        .def(
+            "SetCheckForT3Swaps", 
+            (void(MutableVertexMesh2_2::*)(bool)) &MutableVertexMesh2_2::SetCheckForT3Swaps, 
+            " " , py::arg("checkForT3Swaps") )
         .def(
             "GetCellRearrangementThreshold", 
             (double(MutableVertexMesh2_2::*)() const ) &MutableVertexMesh2_2::GetCellRearrangementThreshold, 
@@ -161,8 +162,12 @@ py::class_<MutableVertexMesh2_2 , MutableVertexMesh2_2_Overloads , boost::shared
             (bool(MutableVertexMesh2_2::*)() const ) &MutableVertexMesh2_2::GetCheckForInternalIntersections, 
             " "  )
         .def(
+            "GetCheckForT3Swaps", 
+            (bool(MutableVertexMesh2_2::*)() const ) &MutableVertexMesh2_2::GetCheckForT3Swaps, 
+            " "  )
+        .def(
             "GetLocationsOfT1Swaps", 
-            (::std::vector<boost::numeric::ublas::c_vector<double, 2>, std::allocator<boost::numeric::ublas::c_vector<double, 2> > >(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::GetLocationsOfT1Swaps, 
+            (::std::vector<boost::numeric::ublas::c_vector<double, 2>>(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::GetLocationsOfT1Swaps, 
             " "  )
         .def(
             "GetLastT2SwapLocation", 
@@ -170,7 +175,11 @@ py::class_<MutableVertexMesh2_2 , MutableVertexMesh2_2_Overloads , boost::shared
             " "  )
         .def(
             "GetLocationsOfT3Swaps", 
-            (::std::vector<boost::numeric::ublas::c_vector<double, 2>, std::allocator<boost::numeric::ublas::c_vector<double, 2> > >(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::GetLocationsOfT3Swaps, 
+            (::std::vector<boost::numeric::ublas::c_vector<double, 2>>(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::GetLocationsOfT3Swaps, 
+            " "  )
+        .def(
+            "GetLocationsOfIntersectionSwaps", 
+            (::std::vector<boost::numeric::ublas::c_vector<double, 2>>(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::GetLocationsOfIntersectionSwaps, 
             " "  )
         .def(
             "ClearLocationsOfT1Swaps", 
@@ -179,6 +188,10 @@ py::class_<MutableVertexMesh2_2 , MutableVertexMesh2_2_Overloads , boost::shared
         .def(
             "ClearLocationsOfT3Swaps", 
             (void(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::ClearLocationsOfT3Swaps, 
+            " "  )
+        .def(
+            "ClearLocationsOfIntersectionSwaps", 
+            (void(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::ClearLocationsOfIntersectionSwaps, 
             " "  )
         .def(
             "AddNode", 
@@ -232,5 +245,13 @@ py::class_<MutableVertexMesh2_2 , MutableVertexMesh2_2_Overloads , boost::shared
             "ReMesh", 
             (void(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::ReMesh, 
             " "  )
+        .def(
+            "SetMeshOperationTracking", 
+            (void(MutableVertexMesh2_2::*)(bool const)) &MutableVertexMesh2_2::SetMeshOperationTracking, 
+            " " , py::arg("track") )
+        .def(
+            "GetOperationRecorder", 
+            (::VertexMeshOperationRecorder<2, 2> *(MutableVertexMesh2_2::*)()) &MutableVertexMesh2_2::GetOperationRecorder, 
+            " "  , py::return_value_policy::reference)
     ;
 }

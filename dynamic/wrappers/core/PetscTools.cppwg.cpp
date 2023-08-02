@@ -8,15 +8,14 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "PetscTools.hpp"
 
 #include "PetscTools.cppwg.hpp"
 
 namespace py = pybind11;
-typedef PetscTools PetscTools;
+
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 
 void register_PetscTools_class(py::module &m){
 py::class_<PetscTools  , boost::shared_ptr<PetscTools >   >(m, "PetscTools")
@@ -79,7 +78,7 @@ py::class_<PetscTools  , boost::shared_ptr<PetscTools >   >(m, "PetscTools")
             " " , py::arg("size"), py::arg("localSize") = -1, py::arg("ignoreOffProcEntries") = true , py::return_value_policy::reference)
         .def_static(
             "CreateVec", 
-            (::Vec(*)(::std::vector<double, std::allocator<double> >)) &PetscTools::CreateVec, 
+            (::Vec(*)(::std::vector<double>)) &PetscTools::CreateVec, 
             " " , py::arg("data") , py::return_value_policy::reference)
         .def_static(
             "CreateAndSetVec", 
@@ -109,5 +108,9 @@ py::class_<PetscTools  , boost::shared_ptr<PetscTools >   >(m, "PetscTools")
             "SetOption", 
             (void(*)(char const *, char const *)) &PetscTools::SetOption, 
             " " , py::arg("pOptionName"), py::arg("pOptionValue") )
+        .def_static(
+            "ChasteMatCopy", 
+            (::PetscErrorCode(*)(::Mat, ::Mat, ::MatStructure)) &PetscTools::ChasteMatCopy, 
+            " " , py::arg("A"), py::arg("B"), py::arg("str") )
     ;
 }

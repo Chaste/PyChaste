@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2005-2017, University of Oxford.
+Copyright (c) 2005-2023, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -33,8 +33,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 */
 
-#ifndef SharedHoneycombVertexMeshGenerator_HPP_
-#define SharedHoneycombVertexMeshGenerator_HPP_
+#ifndef SHAREDHONEYCOMBVERTEXMESHGENERATOR_HPP_
+#define SHAREDHONEYCOMBVERTEXMESHGENERATOR_HPP_
 
 #include <cmath>
 #include <vector>
@@ -91,4 +91,4 @@ public:
     virtual boost::shared_ptr<MutableVertexMesh<2,2> > GetMesh();
 };
 
-#endif /*SharedHoneycombVertexMeshGenerator_HPP_*/
+#endif /*SHAREDHONEYCOMBVERTEXMESHGENERATOR_HPP_*/

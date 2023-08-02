@@ -1,6 +1,5 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
-#include "BoostFilesystem.hpp"
 #include <set>
 #include <vector>
 #include <string>
@@ -19,7 +18,7 @@ class FileFinder_Overloads : public FileFinder{
     public:
     using FileFinder::FileFinder;
     void SetPath(::std::string const & rPath, ::RelativeTo::Value relativeTo) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FileFinder,
             SetPath,
@@ -27,7 +26,7 @@ class FileFinder_Overloads : public FileFinder{
 relativeTo);
     }
     void SetPath(::std::string const & rLeafName, ::FileFinder const & rParentOrSibling) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             FileFinder,
             SetPath,
@@ -41,7 +40,7 @@ py::class_<FileFinder , FileFinder_Overloads , boost::shared_ptr<FileFinder >   
         .def(py::init< >())
         .def(py::init<::std::string const &, ::RelativeTo::Value >(), py::arg("rPath"), py::arg("relativeTo"))
         .def(py::init<::std::string const &, ::FileFinder const & >(), py::arg("rLeafName"), py::arg("rParentOrSibling"))
-        .def(py::init<::boost::filesystem::path const & >(), py::arg("rPath"))
+        .def(py::init<::std::filesystem::path const & >(), py::arg("rPath"))
         .def(
             "SetPath", 
             (void(FileFinder::*)(::std::string const &, ::RelativeTo::Value)) &FileFinder::SetPath, 
@@ -112,7 +111,7 @@ py::class_<FileFinder , FileFinder_Overloads , boost::shared_ptr<FileFinder >   
             " "  )
         .def(
             "FindMatches", 
-            (::std::vector<FileFinder, std::allocator<FileFinder> >(FileFinder::*)(::std::string const &) const ) &FileFinder::FindMatches, 
+            (::std::vector<FileFinder>(FileFinder::*)(::std::string const &) const ) &FileFinder::FindMatches, 
             " " , py::arg("rPattern") )
         .def_static(
             "IsAbsolutePath", 

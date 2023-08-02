@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "TetrahedralMesh.hpp"
 
 #include "TetrahedralMesh2_2.cppwg.hpp"
@@ -21,49 +22,49 @@ class TetrahedralMesh2_2_Overloads : public TetrahedralMesh2_2{
     public:
     using TetrahedralMesh2_2::TetrahedralMesh;
     void ConstructFromMeshReader(::AbstractMeshReader<2, 2> & rMeshReader) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             ConstructFromMeshReader,
             rMeshReader);
     }
     void ReadNodesPerProcessorFile(::std::string const & rNodesPerProcessorFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             ReadNodesPerProcessorFile,
             rNodesPerProcessorFile);
     }
     void RefreshMesh() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             RefreshMesh,
             );
     }
     void PermuteNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             PermuteNodes,
             );
     }
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             Clear,
             );
     }
     void RefreshJacobianCachedData() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             RefreshJacobianCachedData,
             );
     }
     void GetJacobianForElement(unsigned int elementIndex, ::boost::numeric::ublas::c_matrix<double, 2, 2> & rJacobian, double & rJacobianDeterminant) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             GetJacobianForElement,
@@ -72,7 +73,7 @@ rJacobian,
 rJacobianDeterminant);
     }
     void GetInverseJacobianForElement(unsigned int elementIndex, ::boost::numeric::ublas::c_matrix<double, 2, 2> & rJacobian, double & rJacobianDeterminant, ::boost::numeric::ublas::c_matrix<double, 2, 2> & rInverseJacobian) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             GetInverseJacobianForElement,
@@ -82,7 +83,7 @@ rJacobianDeterminant,
 rInverseJacobian);
     }
     void GetWeightedDirectionForElement(unsigned int elementIndex, ::boost::numeric::ublas::c_vector<double, 2> & rWeightedDirection, double & rJacobianDeterminant) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             GetWeightedDirectionForElement,
@@ -91,7 +92,7 @@ rWeightedDirection,
 rJacobianDeterminant);
     }
     void GetWeightedDirectionForBoundaryElement(unsigned int elementIndex, ::boost::numeric::ublas::c_vector<double, 2> & rWeightedDirection, double & rJacobianDeterminant) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             TetrahedralMesh2_2,
             GetWeightedDirectionForBoundaryElement,
@@ -100,21 +101,21 @@ rWeightedDirection,
 rJacobianDeterminant);
     }
     unsigned int SolveNodeMapping(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             TetrahedralMesh2_2,
             SolveNodeMapping,
             index);
     }
     unsigned int SolveElementMapping(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             TetrahedralMesh2_2,
             SolveElementMapping,
             index);
     }
     unsigned int SolveBoundaryElementMapping(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             TetrahedralMesh2_2,
             SolveBoundaryElementMapping,
@@ -155,7 +156,7 @@ py::class_<TetrahedralMesh2_2 , TetrahedralMesh2_2_Overloads , boost::shared_ptr
             " "  )
         .def(
             "PermuteNodes", 
-            (void(TetrahedralMesh2_2::*)(::std::vector<unsigned int, std::allocator<unsigned int> > const &)) &TetrahedralMesh2_2::PermuteNodes, 
+            (void(TetrahedralMesh2_2::*)(::std::vector<unsigned int> const &)) &TetrahedralMesh2_2::PermuteNodes, 
             " " , py::arg("perm") )
         .def(
             "GetContainingElementIndexWithInitialGuess", 
@@ -167,7 +168,7 @@ py::class_<TetrahedralMesh2_2 , TetrahedralMesh2_2_Overloads , boost::shared_ptr
             " " , py::arg("rTestPoint") )
         .def(
             "GetContainingElementIndices", 
-            (::std::vector<unsigned int, std::allocator<unsigned int> >(TetrahedralMesh2_2::*)(::ChastePoint<2> const &)) &TetrahedralMesh2_2::GetContainingElementIndices, 
+            (::std::vector<unsigned int>(TetrahedralMesh2_2::*)(::ChastePoint<2> const &)) &TetrahedralMesh2_2::GetContainingElementIndices, 
             " " , py::arg("rTestPoint") )
         .def(
             "Clear", 

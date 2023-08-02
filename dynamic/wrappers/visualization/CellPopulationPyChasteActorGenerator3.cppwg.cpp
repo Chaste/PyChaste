@@ -18,7 +18,7 @@ class CellPopulationPyChasteActorGenerator3_Overloads : public CellPopulationPyC
     public:
     using CellPopulationPyChasteActorGenerator3::CellPopulationPyChasteActorGenerator;
     void AddActor(::vtkSmartPointer<vtkRenderer> pRenderer) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             CellPopulationPyChasteActorGenerator3,
             AddActor,
@@ -51,7 +51,7 @@ py::class_<CellPopulationPyChasteActorGenerator3 , CellPopulationPyChasteActorGe
             " " , py::arg("pRenderer") )
         .def(
             "SetCellPopulation", 
-            (void(CellPopulationPyChasteActorGenerator3::*)(::boost::shared_ptr<AbstractCellPopulation<3, 3> >)) &CellPopulationPyChasteActorGenerator3::SetCellPopulation, 
+            (void(CellPopulationPyChasteActorGenerator3::*)(::boost::shared_ptr<AbstractCellPopulation<3, 3>>)) &CellPopulationPyChasteActorGenerator3::SetCellPopulation, 
             " " , py::arg("pCellPopulation") )
         .def(
             "SetShowVoronoiMeshEdges", 

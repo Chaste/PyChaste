@@ -18,14 +18,14 @@ class BuskeCompressionForce3_Overloads : public BuskeCompressionForce3{
     public:
     using BuskeCompressionForce3::BuskeCompressionForce;
     void AddForceContribution(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeCompressionForce3,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             BuskeCompressionForce3,
             OutputForceParameters,
@@ -34,7 +34,7 @@ class BuskeCompressionForce3_Overloads : public BuskeCompressionForce3{
 
 };
 void register_BuskeCompressionForce3_class(py::module &m){
-py::class_<BuskeCompressionForce3 , BuskeCompressionForce3_Overloads , boost::shared_ptr<BuskeCompressionForce3 >  , AbstractForce<3, 3>  >(m, "BuskeCompressionForce3")
+py::class_<BuskeCompressionForce3 , BuskeCompressionForce3_Overloads , boost::shared_ptr<BuskeCompressionForce3 > , AbstractForce<3, 3>  >(m, "BuskeCompressionForce3")
         .def(py::init< >())
         .def(
             "GetCompressionEnergyParameter", 

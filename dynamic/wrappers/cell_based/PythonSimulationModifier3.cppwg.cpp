@@ -18,14 +18,14 @@ class PythonSimulationModifier3_Overloads : public PythonSimulationModifier3{
     public:
     using PythonSimulationModifier3::PythonSimulationModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier3,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<3, 3> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier3,
             SetupSolve,
@@ -33,14 +33,14 @@ class PythonSimulationModifier3_Overloads : public PythonSimulationModifier3{
 outputDirectory);
     }
     void UpdateCellData(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier3,
             UpdateCellData,
             rCellPopulation);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             PythonSimulationModifier3,
             OutputSimulationModifierParameters,
@@ -49,7 +49,7 @@ outputDirectory);
 
 };
 void register_PythonSimulationModifier3_class(py::module &m){
-py::class_<PythonSimulationModifier3 , PythonSimulationModifier3_Overloads , boost::shared_ptr<PythonSimulationModifier3 >  , AbstractCellBasedSimulationModifier<3, 3>  >(m, "PythonSimulationModifier3")
+py::class_<PythonSimulationModifier3 , PythonSimulationModifier3_Overloads , boost::shared_ptr<PythonSimulationModifier3 > , AbstractCellBasedSimulationModifier<3, 3>  >(m, "PythonSimulationModifier3")
         .def(py::init< >())
         .def(
             "UpdateAtEndOfTimeStep", 

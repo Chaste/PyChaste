@@ -19,35 +19,35 @@ class NoCellCycleModel_Overloads : public NoCellCycleModel{
     public:
     using NoCellCycleModel::NoCellCycleModel;
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             NoCellCycleModel,
             ReadyToDivide,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _AbstractCellCycleModelPtr,
             NoCellCycleModel,
             CreateCellCycleModel,
             );
     }
     double GetAverageTransitCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NoCellCycleModel,
             GetAverageTransitCellCycleTime,
             );
     }
     double GetAverageStemCellCycleTime() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             NoCellCycleModel,
             GetAverageStemCellCycleTime,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NoCellCycleModel,
             OutputCellCycleModelParameters,

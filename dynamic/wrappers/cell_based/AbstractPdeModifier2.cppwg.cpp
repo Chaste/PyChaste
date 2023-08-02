@@ -8,6 +8,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "AbstractPdeModifier.hpp"
 
 #include "AbstractPdeModifier2.cppwg.hpp"
@@ -15,14 +16,12 @@
 namespace py = pybind11;
 typedef AbstractPdeModifier<2 > AbstractPdeModifier2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 
 class AbstractPdeModifier2_Overloads : public AbstractPdeModifier2{
     public:
     using AbstractPdeModifier2::AbstractPdeModifier;
     void SetupSolve(::AbstractCellPopulation<2, 2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier2,
             SetupSolve,
@@ -30,28 +29,28 @@ class AbstractPdeModifier2_Overloads : public AbstractPdeModifier2{
 outputDirectory);
     }
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractPdeModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void UpdateAtEndOfOutputTimeStep(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier2,
             UpdateAtEndOfOutputTimeStep,
             rCellPopulation);
     }
     void UpdateAtEndOfSolve(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier2,
             UpdateAtEndOfSolve,
             rCellPopulation);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractPdeModifier2,
             OutputSimulationModifierParameters,
@@ -60,14 +59,14 @@ outputDirectory);
 
 };
 void register_AbstractPdeModifier2_class(py::module &m){
-py::class_<AbstractPdeModifier2 , AbstractPdeModifier2_Overloads , boost::shared_ptr<AbstractPdeModifier2 >  , AbstractCellBasedSimulationModifier<2, 2>  >(m, "AbstractPdeModifier2")
+py::class_<AbstractPdeModifier2 , AbstractPdeModifier2_Overloads , boost::shared_ptr<AbstractPdeModifier2 > , AbstractCellBasedSimulationModifier<2, 2>  >(m, "AbstractPdeModifier2")
         .def(
             "GetPde", 
-            (::boost::shared_ptr<AbstractLinearPde<2, 2> >(AbstractPdeModifier2::*)()) &AbstractPdeModifier2::GetPde, 
+            (::boost::shared_ptr<AbstractLinearPde<2, 2>>(AbstractPdeModifier2::*)()) &AbstractPdeModifier2::GetPde, 
             " "  )
         .def(
             "GetBoundaryCondition", 
-            (::boost::shared_ptr<AbstractBoundaryCondition<2> >(AbstractPdeModifier2::*)()) &AbstractPdeModifier2::GetBoundaryCondition, 
+            (::boost::shared_ptr<AbstractBoundaryCondition<2>>(AbstractPdeModifier2::*)()) &AbstractPdeModifier2::GetBoundaryCondition, 
             " "  )
         .def(
             "IsNeumannBoundaryCondition", 
@@ -87,7 +86,7 @@ py::class_<AbstractPdeModifier2 , AbstractPdeModifier2_Overloads , boost::shared
             " "  )
         .def(
             "SetUpSourceTermsForAveragedSourcePde", 
-            (void(AbstractPdeModifier2::*)(::TetrahedralMesh<2, 2> *, ::std::map<boost::shared_ptr<Cell>, unsigned int, std::less<boost::shared_ptr<Cell> >, std::allocator<std::pair<const boost::shared_ptr<Cell>, unsigned int> > > *)) &AbstractPdeModifier2::SetUpSourceTermsForAveragedSourcePde, 
+            (void(AbstractPdeModifier2::*)(::TetrahedralMesh<2, 2> *, ::std::map<boost::shared_ptr<Cell>, unsigned int> *)) &AbstractPdeModifier2::SetUpSourceTermsForAveragedSourcePde, 
             " " , py::arg("pMesh"), py::arg("pCellPdeElementMap") = nullptr )
         .def(
             "SetupSolve", 

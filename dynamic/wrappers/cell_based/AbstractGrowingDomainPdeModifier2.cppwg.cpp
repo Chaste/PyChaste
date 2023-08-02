@@ -8,6 +8,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonPetscObjectConverters.hpp"
 #include "AbstractGrowingDomainPdeModifier.hpp"
 
 #include "AbstractGrowingDomainPdeModifier2.cppwg.hpp"
@@ -15,14 +16,12 @@
 namespace py = pybind11;
 typedef AbstractGrowingDomainPdeModifier<2 > AbstractGrowingDomainPdeModifier2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
-PYBIND11_MAKE_OPAQUE(Vec);
-PYBIND11_MAKE_OPAQUE(Mat);
 
 class AbstractGrowingDomainPdeModifier2_Overloads : public AbstractGrowingDomainPdeModifier2{
     public:
     using AbstractGrowingDomainPdeModifier2::AbstractGrowingDomainPdeModifier;
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractGrowingDomainPdeModifier2,
             OutputSimulationModifierParameters,

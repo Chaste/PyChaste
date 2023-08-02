@@ -18,7 +18,7 @@ class AbstractUpdateRule2_Overloads : public AbstractUpdateRule2{
     public:
     using AbstractUpdateRule2::AbstractUpdateRule;
     void OutputUpdateRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractUpdateRule2,
             OutputUpdateRuleParameters,

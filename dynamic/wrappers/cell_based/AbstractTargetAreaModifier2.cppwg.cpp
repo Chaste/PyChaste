@@ -18,14 +18,14 @@ class AbstractTargetAreaModifier2_Overloads : public AbstractTargetAreaModifier2
     public:
     using AbstractTargetAreaModifier2::AbstractTargetAreaModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2, 2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTargetAreaModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<2, 2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTargetAreaModifier2,
             SetupSolve,
@@ -33,14 +33,14 @@ class AbstractTargetAreaModifier2_Overloads : public AbstractTargetAreaModifier2
 outputDirectory);
     }
     void UpdateTargetAreaOfCell(::CellPtr const pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractTargetAreaModifier2,
             UpdateTargetAreaOfCell,
             pCell);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractTargetAreaModifier2,
             OutputSimulationModifierParameters,
@@ -49,7 +49,7 @@ outputDirectory);
 
 };
 void register_AbstractTargetAreaModifier2_class(py::module &m){
-py::class_<AbstractTargetAreaModifier2 , AbstractTargetAreaModifier2_Overloads , boost::shared_ptr<AbstractTargetAreaModifier2 >  , AbstractCellBasedSimulationModifier<2, 2>  >(m, "AbstractTargetAreaModifier2")
+py::class_<AbstractTargetAreaModifier2 , AbstractTargetAreaModifier2_Overloads , boost::shared_ptr<AbstractTargetAreaModifier2 > , AbstractCellBasedSimulationModifier<2, 2>  >(m, "AbstractTargetAreaModifier2")
         .def(
             "UpdateAtEndOfTimeStep", 
             (void(AbstractTargetAreaModifier2::*)(::AbstractCellPopulation<2, 2> &)) &AbstractTargetAreaModifier2::UpdateAtEndOfTimeStep, 

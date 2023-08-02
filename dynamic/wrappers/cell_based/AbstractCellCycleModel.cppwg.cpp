@@ -19,70 +19,70 @@ class AbstractCellCycleModel_Overloads : public AbstractCellCycleModel{
     public:
     using AbstractCellCycleModel::AbstractCellCycleModel;
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             Initialise,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             InitialiseDaughterCell,
             );
     }
     void SetBirthTime(double birthTime) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             SetBirthTime,
             birthTime);
     }
     bool ReadyToDivide() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             bool,
             AbstractCellCycleModel,
             ReadyToDivide,
             );
     }
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellCycleModel,
             ResetForDivision,
             );
     }
     ::AbstractCellCycleModel * CreateCellCycleModel() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _AbstractCellCycleModelPtr,
             AbstractCellCycleModel,
             CreateCellCycleModel,
             );
     }
     bool CanCellTerminallyDifferentiate() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellCycleModel,
             CanCellTerminallyDifferentiate,
             );
     }
     double GetAverageTransitCellCycleTime() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellCycleModel,
             GetAverageTransitCellCycleTime,
             );
     }
     double GetAverageStemCellCycleTime() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellCycleModel,
             GetAverageStemCellCycleTime,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellCycleModel,
             OutputCellCycleModelParameters,

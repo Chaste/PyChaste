@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "GeneralisedLinearSpringForce.hpp"
 
 #include "GeneralisedLinearSpringForce3_3.cppwg.hpp"
@@ -19,7 +20,7 @@ class GeneralisedLinearSpringForce3_3_Overloads : public GeneralisedLinearSpring
     public:
     using GeneralisedLinearSpringForce3_3::GeneralisedLinearSpringForce;
     double VariableSpringConstantMultiplicationFactor(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3, 3> & rCellPopulation, bool isCloserThanRestLength) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             GeneralisedLinearSpringForce3_3,
             VariableSpringConstantMultiplicationFactor,
@@ -29,7 +30,7 @@ rCellPopulation,
 isCloserThanRestLength);
     }
     ::boost::numeric::ublas::c_vector<double, 3> CalculateForceBetweenNodes(unsigned int nodeAGlobalIndex, unsigned int nodeBGlobalIndex, ::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             GeneralisedLinearSpringForce3_3,
             CalculateForceBetweenNodes,
@@ -38,7 +39,7 @@ nodeBGlobalIndex,
 rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             GeneralisedLinearSpringForce3_3,
             OutputForceParameters,

@@ -18,21 +18,21 @@ class AbstractSimpleGenerationalCellCycleModel_Overloads : public AbstractSimple
     public:
     using AbstractSimpleGenerationalCellCycleModel::AbstractSimpleGenerationalCellCycleModel;
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimpleGenerationalCellCycleModel,
             ResetForDivision,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimpleGenerationalCellCycleModel,
             InitialiseDaughterCell,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimpleGenerationalCellCycleModel,
             OutputCellCycleModelParameters,

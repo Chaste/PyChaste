@@ -18,42 +18,42 @@ class AbstractSimplePhaseBasedCellCycleModel_Overloads : public AbstractSimplePh
     public:
     using AbstractSimplePhaseBasedCellCycleModel::AbstractSimplePhaseBasedCellCycleModel;
     void ResetForDivision() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimplePhaseBasedCellCycleModel,
             ResetForDivision,
             );
     }
     void UpdateCellCyclePhase() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimplePhaseBasedCellCycleModel,
             UpdateCellCyclePhase,
             );
     }
     void InitialiseDaughterCell() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimplePhaseBasedCellCycleModel,
             InitialiseDaughterCell,
             );
     }
     void Initialise() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimplePhaseBasedCellCycleModel,
             Initialise,
             );
     }
     void OutputCellCycleModelParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimplePhaseBasedCellCycleModel,
             OutputCellCycleModelParameters,
             rParamsFile);
     }
     void SetG1Duration() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractSimplePhaseBasedCellCycleModel,
             SetG1Duration,

@@ -1,0 +1,6 @@
+#ifndef CellPopulationAdjacencyMatrixWriter3_3_hpp__pyplusplus_wrapper
+#define CellPopulationAdjacencyMatrixWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_CellPopulationAdjacencyMatrixWriter3_3_class(py::module &m);
+#endif // CellPopulationAdjacencyMatrixWriter3_3_hpp__pyplusplus_wrapper

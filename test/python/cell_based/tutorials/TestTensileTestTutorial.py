@@ -1,5 +1,5 @@
 
-"""Copyright (c) 2005-2017, University of Oxford.
+"""Copyright (c) 2005-2023, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -68,8 +68,7 @@ class TestTensileTestTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
         differentiated_type = chaste.cell_based.DifferentiatedCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   differentiated_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), differentiated_type)
 
         ## Next, create the cell population 
 
@@ -105,9 +104,7 @@ class TestTensileTestTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
         simulator.AddCellPopulationBoundaryCondition(bc)
         point = np.array([0.0, 15.5])
         normal = np.array([0.0, -1.0])
-        bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition2_2(cell_population,
-                                                                    point,
-                                                                    normal)
+        bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition2_2(cell_population, point, normal)
         simulator.AddCellPopulationBoundaryCondition(bc2)
 
         ## We want to displace our top boundary over time. We could write a custom boundary condition class to do this.

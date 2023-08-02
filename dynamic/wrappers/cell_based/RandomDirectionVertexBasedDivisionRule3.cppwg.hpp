@@ -1,0 +1,6 @@
+#ifndef RandomDirectionVertexBasedDivisionRule3_hpp__pyplusplus_wrapper
+#define RandomDirectionVertexBasedDivisionRule3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_RandomDirectionVertexBasedDivisionRule3_class(py::module &m);
+#endif // RandomDirectionVertexBasedDivisionRule3_hpp__pyplusplus_wrapper

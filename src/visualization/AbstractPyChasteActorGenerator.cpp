@@ -1,6 +1,6 @@
 /*
 
-Copyright (c) 2005-2017, University of Oxford.
+Copyright (c) 2005-2023, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -35,7 +35,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 /*
 
-Copyright (c) 2005-2016, University of Oxford.
+Copyright (c) 2005-2023, University of Oxford.
  All rights reserved.
 
  University of Oxford means the Chancellor, Masters and Scholars of the
@@ -68,7 +68,6 @@ Copyright (c) 2005-2016, University of Oxford.
 
  */
 
-#include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
 #define _BACKWARD_BACKWARD_WARNING_H 1 //Cut out the vtk deprecated warning
 #include <vtkPoints.h>

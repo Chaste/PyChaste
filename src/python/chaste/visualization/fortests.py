@@ -2,7 +2,7 @@
 """Helper classes for running tests
 """
 
-__copyright__ = """Copyright (c) 2005-2019, University of Oxford.
+__copyright__ = """Copyright (c) 2005-2023, University of Oxford.
 All rights reserved.
 
 University of Oxford means the Chancellor, Masters and Scholars of the
@@ -40,6 +40,8 @@ PYCHASTE_CAN_IMPORT_VTK = True
 from six.moves import StringIO
 import os.path
 from pkg_resources import resource_filename
+from xvfbwrapper import Xvfb
+
 import chaste.cell_based
 
 try:
@@ -51,7 +53,7 @@ try:
     import vtk                    
 except ImportError:
     PYCHASTE_CAN_IMPORT_VTK = False      
-    
+
 if PYCHASTE_CAN_IMPORT_IPYTHON:
     #from IPython import display
     from IPython.display import Image, HTML, display
@@ -63,20 +65,38 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
         Takes a Scene instance and returns an IPython Image with the rendering.
         """
         
-        data = str(buffer(scene.GetSceneAsCharBuffer()))
+        data = memoryview(scene.GetSceneAsCharBuffer())
         
         return Image(data)
     
     if PYCHASTE_CAN_IMPORT_VTK:
         
-        class JupyterNotebookManager():
+        class JupyterNotebookManager(object):
             
             interactive_plotting_loaded = False
             three_js_dir = resource_filename('chaste', os.path.join('external'))
             container_id = 0
-            
-            def __init__(self):
-                pass
+
+            def __new__(cls, *args, **kwds):
+                it = cls.__dict__.get("__it__")
+                if it is not None:
+                    return it
+                cls.__it__ = it = object.__new__(cls)
+                it.init(*args, **kwds)
+                return it
+
+            def init(self, *args, **kwds):
+                try:
+                    self.vdisplay = Xvfb()
+                    self.vdisplay.start()
+                except OSError:
+                    self.vdisplay = None
+
+                self.renderWindow = vtk.vtkRenderWindow()
+
+            def __del__(self):
+                if self.vdisplay:
+                    self.vdisplay.stop()
             
             def interactive_plot_init(self):
                 
@@ -129,29 +149,28 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
                 
                 scene.ResetRenderer(0)
                 
-                renderWindow = vtk.vtkRenderWindow()
-                renderWindow.SetOffScreenRendering(1)
-                renderWindow.AddRenderer(scene.GetRenderer())
-                renderWindow.SetSize(width, height)
-                renderWindow.Render()
+                self.renderWindow.SetOffScreenRendering(1)
+                self.renderWindow.AddRenderer(scene.GetRenderer())
+                self.renderWindow.SetSize(width, height)
+                self.renderWindow.Render()
                 
                 if output_format == "wrl":
                     exporter = vtk.vtkVRMLExporter()
-                    exporter.SetInput(renderWindow)
+                    exporter.SetInput(self.renderWindow)
                     exporter.SetFileName(os.getcwd() + "/temp_scene.wrl")
                     exporter.Write()
                     self.interactive_plot_show(width, height, "temp_scene.wrl", increment)
                  
                 else:
                     windowToImageFilter = vtk.vtkWindowToImageFilter()
-                    windowToImageFilter.SetInput(renderWindow)
+                    windowToImageFilter.SetInput(self.renderWindow)
                     windowToImageFilter.Update()
                       
                     writer = vtk.vtkPNGWriter()
                     writer.SetWriteToMemory(1)
                     writer.SetInputConnection(windowToImageFilter.GetOutputPort())
                     writer.Write()
-                    data = str(buffer(writer.GetResult()))
+                    data = memoryview(writer.GetResult())
                      
                     return Image(data)
                 

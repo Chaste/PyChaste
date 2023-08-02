@@ -7,6 +7,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "AbstractCellPopulation.hpp"
 
 #include "AbstractCellPopulation3_3.cppwg.hpp"
@@ -28,21 +29,21 @@ class AbstractCellPopulation3_3_Overloads : public AbstractCellPopulation3_3{
     public:
     using AbstractCellPopulation3_3::AbstractCellPopulation;
     ::TetrahedralMesh<3, 3> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _TetrahedralMesh_lt_3_3_gt_Ptr,
             AbstractCellPopulation3_3,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     bool IsPdeNodeAssociatedWithNonApoptoticCell(unsigned int pdeNodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellPopulation3_3,
             IsPdeNodeAssociatedWithNonApoptoticCell,
             pdeNodeIndex);
     }
     double GetCellDataItemAtPdeNode(unsigned int pdeNodeIndex, ::std::string & rVariableName, bool dirichletBoundaryConditionApplies, double dirichletBoundaryValue) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation3_3,
             GetCellDataItemAtPdeNode,
@@ -52,28 +53,28 @@ dirichletBoundaryConditionApplies,
 dirichletBoundaryValue);
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             unsignedint,
             AbstractCellPopulation3_3,
             GetNumNodes,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 3> GetLocationOfCellCentre(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             AbstractCellPopulation3_3,
             GetLocationOfCellCentre,
             pCell);
     }
     ::Node<3> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _Node_lt_3_gt_Ptr,
             AbstractCellPopulation3_3,
             GetNode,
             index);
     }
     void SetNode(unsigned int nodeIndex, ::ChastePoint<3> & rNewLocation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             SetNode,
@@ -81,21 +82,21 @@ dirichletBoundaryValue);
 rNewLocation);
     }
     bool IsCellAssociatedWithADeletedLocation(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             bool,
             AbstractCellPopulation3_3,
             IsCellAssociatedWithADeletedLocation,
             pCell);
     }
     void WriteDataToVisualizerSetupFile(::out_stream & pVizSetupFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             WriteDataToVisualizerSetupFile,
             pVizSetupFile);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _CellPtr,
             AbstractCellPopulation3_3,
             AddCell,
@@ -103,42 +104,42 @@ rNewLocation);
 pParentCell);
     }
     double GetDefaultTimeStep() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation3_3,
             GetDefaultTimeStep,
             );
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             unsignedint,
             AbstractCellPopulation3_3,
             RemoveDeadCells,
             );
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             Update,
             hasHadBirthsOrDeaths);
     }
     ::CellPtr GetCellUsingLocationIndex(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             AbstractCellPopulation3_3,
             GetCellUsingLocationIndex,
             index);
     }
     bool IsCellAttachedToLocationIndex(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellPopulation3_3,
             IsCellAttachedToLocationIndex,
             index);
     }
     void AddCellUsingLocationIndex(unsigned int index, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             AddCellUsingLocationIndex,
@@ -146,7 +147,7 @@ pParentCell);
 pCell);
     }
     void RemoveCellUsingLocationIndex(unsigned int index, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             RemoveCellUsingLocationIndex,
@@ -154,70 +155,70 @@ pCell);
 pCell);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation3_3,
             GetWidth,
             rDimension);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractCellPopulation3_3,
             GetVolumeOfCell,
             pCell);
     }
     ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
             AbstractCellPopulation3_3,
             GetNeighbouringNodeIndices,
             index);
     }
     ::std::set<unsigned int, std::less<unsigned int>, std::allocator<unsigned int> > GetNeighbouringLocationIndices(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _std_set_lt_unsignedint_std_less_lt_unsignedint_gt__std_allocator_lt_unsignedint_gt__gt_,
             AbstractCellPopulation3_3,
             GetNeighbouringLocationIndices,
             pCell);
     }
     void UpdateCellProcessLocation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             UpdateCellProcessLocation,
             );
     }
     void OpenWritersFiles(::OutputFileHandler & rOutputFileHandler) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             OpenWritersFiles,
             rOutputFileHandler);
     }
     void WriteResultsToFiles(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             WriteResultsToFiles,
             rDirectory);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<3, 3> > pPopulationWriter) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<3, 3> > pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<3, 3> > pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             AcceptCellWriter,
@@ -225,42 +226,42 @@ pCell);
 pCell);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     void SimulationSetupHook(::AbstractCellBasedSimulation<3, 3> * pSimulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             SimulationSetupHook,
             pSimulation);
     }
     bool IsRoomToDivide(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             AbstractCellPopulation3_3,
             IsRoomToDivide,
             pCell);
     }
     void Validate() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             Validate,
             );
     }
     void WriteVtkResultsToFile(::std::string const & rDirectory) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractCellPopulation3_3,
             WriteVtkResultsToFile,
             rDirectory);
     }
     void AcceptCellWritersAcrossPopulation() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCellPopulation3_3,
             AcceptCellWritersAcrossPopulation,
@@ -270,7 +271,6 @@ pCell);
 };
 void register_AbstractCellPopulation3_3_class(py::module &m){
 py::class_<AbstractCellPopulation3_3 , AbstractCellPopulation3_3_Overloads , boost::shared_ptr<AbstractCellPopulation3_3 >   >(m, "AbstractCellPopulation3_3")
-        .def(py::init<::AbstractMesh<3, 3> &, ::std::vector<boost::shared_ptr<Cell>, std::allocator<boost::shared_ptr<Cell> > > &, ::std::vector<unsigned int, std::allocator<unsigned int> > const >(), py::arg("rMesh"), py::arg("rCells"), py::arg("locationIndices") = std::vector<unsigned int>())
         .def(
             "InitialiseCells", 
             (void(AbstractCellPopulation3_3::*)()) &AbstractCellPopulation3_3::InitialiseCells, 

@@ -1,0 +1,6 @@
+#ifndef ExponentialG1GenerationalCellCycleModel_hpp__pyplusplus_wrapper
+#define ExponentialG1GenerationalCellCycleModel_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ExponentialG1GenerationalCellCycleModel_class(py::module &m);
+#endif // ExponentialG1GenerationalCellCycleModel_hpp__pyplusplus_wrapper

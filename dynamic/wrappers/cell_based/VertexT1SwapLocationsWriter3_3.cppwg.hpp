@@ -1,0 +1,6 @@
+#ifndef VertexT1SwapLocationsWriter3_3_hpp__pyplusplus_wrapper
+#define VertexT1SwapLocationsWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_VertexT1SwapLocationsWriter3_3_class(py::module &m);
+#endif // VertexT1SwapLocationsWriter3_3_hpp__pyplusplus_wrapper

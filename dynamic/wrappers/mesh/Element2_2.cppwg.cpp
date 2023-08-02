@@ -6,6 +6,7 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
+#include "PythonUblasObjectConverters.hpp"
 #include "Element.hpp"
 
 #include "Element2_2.cppwg.hpp"
@@ -18,21 +19,21 @@ class Element2_2_Overloads : public Element2_2{
     public:
     using Element2_2::Element;
     void RegisterWithNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element2_2,
             RegisterWithNodes,
             );
     }
     void MarkAsDeleted() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element2_2,
             MarkAsDeleted,
             );
     }
     void UpdateNode(unsigned int const & rIndex, ::Node<2> * pNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             Element2_2,
             UpdateNode,
@@ -43,7 +44,7 @@ pNode);
 };
 void register_Element2_2_class(py::module &m){
 py::class_<Element2_2 , Element2_2_Overloads , boost::shared_ptr<Element2_2 >   >(m, "Element2_2")
-        .def(py::init<unsigned int, ::std::vector<Node<2> *, std::allocator<Node<2> *> > const &, bool >(), py::arg("index"), py::arg("rNodes"), py::arg("registerWithNodes") = true)
+        .def(py::init<unsigned int, ::std::vector<Node<2> *> const &, bool >(), py::arg("index"), py::arg("rNodes"), py::arg("registerWithNodes") = true)
         .def(py::init<::Element<2, 2> const &, unsigned int const >(), py::arg("rElement"), py::arg("index"))
         .def(
             "RegisterWithNodes", 

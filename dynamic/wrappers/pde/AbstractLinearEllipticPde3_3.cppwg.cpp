@@ -19,7 +19,7 @@ class AbstractLinearEllipticPde3_3_Overloads : public AbstractLinearEllipticPde3
     public:
     using AbstractLinearEllipticPde3_3::AbstractLinearEllipticPde;
     double ComputeConstantInUSourceTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearEllipticPde3_3,
             ComputeConstantInUSourceTerm,
@@ -27,7 +27,7 @@ class AbstractLinearEllipticPde3_3_Overloads : public AbstractLinearEllipticPde3
 pElement);
     }
     double ComputeLinearInUCoeffInSourceTerm(::ChastePoint<3> const & rX, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearEllipticPde3_3,
             ComputeLinearInUCoeffInSourceTerm,
@@ -35,21 +35,21 @@ pElement);
 pElement);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeDiffusionTerm(::ChastePoint<3> const & rX) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             AbstractLinearEllipticPde3_3,
             ComputeDiffusionTerm,
             rX);
     }
     double ComputeConstantInUSourceTermAtNode(::Node<3> const & rNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractLinearEllipticPde3_3,
             ComputeConstantInUSourceTermAtNode,
             rNode);
     }
     double ComputeLinearInUCoeffInSourceTermAtNode(::Node<3> const & rNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractLinearEllipticPde3_3,
             ComputeLinearInUCoeffInSourceTermAtNode,
@@ -58,7 +58,7 @@ pElement);
 
 };
 void register_AbstractLinearEllipticPde3_3_class(py::module &m){
-py::class_<AbstractLinearEllipticPde3_3 , AbstractLinearEllipticPde3_3_Overloads , boost::shared_ptr<AbstractLinearEllipticPde3_3 >  , AbstractLinearPde<3, 3>  >(m, "AbstractLinearEllipticPde3_3")
+py::class_<AbstractLinearEllipticPde3_3 , AbstractLinearEllipticPde3_3_Overloads , boost::shared_ptr<AbstractLinearEllipticPde3_3 > , AbstractLinearPde<3, 3>  >(m, "AbstractLinearEllipticPde3_3")
         .def(py::init< >())
         .def(
             "ComputeConstantInUSourceTerm", 

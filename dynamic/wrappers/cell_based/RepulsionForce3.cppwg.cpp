@@ -18,14 +18,14 @@ class RepulsionForce3_Overloads : public RepulsionForce3{
     public:
     using RepulsionForce3::RepulsionForce;
     void AddForceContribution(::AbstractCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             RepulsionForce3,
             AddForceContribution,
             rCellPopulation);
     }
     void OutputForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             RepulsionForce3,
             OutputForceParameters,
@@ -34,7 +34,7 @@ class RepulsionForce3_Overloads : public RepulsionForce3{
 
 };
 void register_RepulsionForce3_class(py::module &m){
-py::class_<RepulsionForce3 , RepulsionForce3_Overloads , boost::shared_ptr<RepulsionForce3 >  , GeneralisedLinearSpringForce<3, 3>  >(m, "RepulsionForce3")
+py::class_<RepulsionForce3 , RepulsionForce3_Overloads , boost::shared_ptr<RepulsionForce3 > , GeneralisedLinearSpringForce<3, 3>  >(m, "RepulsionForce3")
         .def(py::init< >())
         .def(
             "AddForceContribution", 
