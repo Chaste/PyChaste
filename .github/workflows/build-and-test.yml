@@ -81,7 +81,8 @@ jobs:
           python3-vtk7 \
           python3-xvfbwrapper \
           xvfb
-        sudo pip3 install pygccxml pyyaml
+        sudo python3 -m pip install --upgrade pip
+        sudo pip install pygccxml pyyaml
 
     - name: make build and test directories
       run: |
@@ -101,7 +102,7 @@ jobs:
       working-directory: Chaste/build
 
     - name: install PyChaste
-      run: pip3 install --user .
+      run: pip install --user .
       working-directory: Chaste/build/projects/PyChaste/python
 
     - name: run tests
