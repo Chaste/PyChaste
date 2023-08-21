@@ -148,9 +148,10 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
                 """
                 
                 scene.ResetRenderer(0)
+                renderer = scene.GetRenderer()
                 
                 self.renderWindow.SetOffScreenRendering(1)
-                self.renderWindow.AddRenderer(scene.GetRenderer())
+                self.renderWindow.AddRenderer(renderer)
                 self.renderWindow.SetSize(width, height)
                 self.renderWindow.Render()
                 
@@ -160,6 +161,7 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
                     exporter.SetFileName(os.getcwd() + "/temp_scene.wrl")
                     exporter.Write()
                     self.interactive_plot_show(width, height, "temp_scene.wrl", increment)
+                    self.renderWindow.RemoveRenderer(renderer)
                  
                 else:
                     windowToImageFilter = vtk.vtkWindowToImageFilter()
@@ -171,6 +173,7 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
                     writer.SetInputConnection(windowToImageFilter.GetOutputPort())
                     writer.Write()
                     data = memoryview(writer.GetResult())
+                    self.renderWindow.RemoveRenderer(renderer)
                      
                     return Image(data)
                 
