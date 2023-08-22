@@ -93,10 +93,6 @@ if PYCHASTE_CAN_IMPORT_IPYTHON:
                     self.vdisplay = None
 
                 self.renderWindow = vtk.vtkRenderWindow()
-
-            def __del__(self):
-                if self.vdisplay:
-                    self.vdisplay.stop()
             
             def interactive_plot_init(self):
                 
