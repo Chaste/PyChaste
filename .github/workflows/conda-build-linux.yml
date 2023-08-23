@@ -12,12 +12,9 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v3
-      
-    - name: test docker
-      run: sudo docker run hello-world
 
     - name: build conda package
-      run: build-py310.sh
+      run: ./build-py310.sh
       working-directory: infra/conda/chaste
       
     - name: upload conda package
