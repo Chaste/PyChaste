@@ -81,7 +81,8 @@ jobs:
           python3-vtk7 \
           python3-xvfbwrapper \
           xvfb
-        sudo pip3 install pygccxml pyyaml
+        sudo python3 -m pip install --upgrade pip
+        sudo pip install pygccxml pyyaml
 
     - name: make build and test directories
       run: |
@@ -101,15 +102,9 @@ jobs:
       working-directory: Chaste/build
 
     - name: install PyChaste
-      run: pip3 install --user .
+      run: pip install --user .
       working-directory: Chaste/build/projects/PyChaste/python
 
     - name: run tests
-      run: |
-        xvfb-run --server-args="-screen 0 1024x768x24" python3 -m unittest -v \
-          cell_based/Test*.py \
-          cell_based/tutorials/Test*.py \
-          core/Test*.py \
-          mesh/Test*.py \
-          ode/Test*.py
-      working-directory: Chaste/projects/PyChaste/test/python
+      run: xvfb-run --server-args="-screen 0 1024x768x24" ctest -j2 -L PyChaste --output-on-failure
+      working-directory: Chaste/build
