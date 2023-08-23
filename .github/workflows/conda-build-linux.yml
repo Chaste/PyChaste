@@ -13,10 +13,8 @@ jobs:
     - name: checkout
       uses: actions/checkout@v3
       
-    - name: install podman
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install podman podman-docker
+    - name: test docker
+      run: sudo docker run hello-world
 
     - name: build conda package
       run: build-py310.sh
