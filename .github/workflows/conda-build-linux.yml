@@ -12,3 +12,19 @@ jobs:
     steps:
     - name: checkout
       uses: actions/checkout@v3
+      
+    - name: install podman
+      run: |
+        sudo apt-get update
+        sudo apt-get -y install podman podman-docker
+
+    - name: build conda package
+      run: build-py310.sh
+      working-directory: infra/conda/chaste
+      
+    - name: upload conda package
+      uses: actions/upload-artifact@v3
+      with:
+        name: pychaste-conda
+        path: build_artifacts/linux-64
+        working-directory: infra/conda/chaste
