@@ -55,7 +55,7 @@ conda list --show-channel-urls
 cp "${FEEDSTOCK_ROOT}/LICENSE.txt" "${RECIPE_ROOT}/recipe-scripts-license.txt"
 
 git clone --recursive --branch develop --depth 1 https://github.com/Chaste/Chaste.git /tmp/Chaste
-git clone --recursive --branch update --depth 1 https://github.com/kwabenantim/PyChaste.git /tmp/Chaste/projects/PyChaste
+git clone --recursive --branch develop --depth 1 https://github.com/kwabenantim/PyChaste.git /tmp/Chaste/projects/PyChaste
 
 mkdir -p /tmp/patches
 cp "${RECIPE_ROOT}"/patches/* /tmp/patches/
