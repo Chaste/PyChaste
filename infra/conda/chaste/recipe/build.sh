@@ -18,34 +18,19 @@ mkdir build
 cd build || exit
 
 cmake \
-    -DCMAKE_BUILD_TYPE=RELEASE \
-    -DPYTHON_EXECUTABLE:FILEPATH=${PYTHON} \
-    -DCMAKE_LIBRARY_PATH=${PREFIX}/lib \
-    -DCMAKE_PREFIX_PATH=${PREFIX} \
-    -DHDF5_C_COMPILER_EXECUTABLE:FILEPATH=${PREFIX}/bin/h5pcc \
-    -DBUILD_SHARED_LIBS:BOOL=ON \
-    -DCMAKE_INSTALL_PREFIX=${PREFIX} \
-    -DBOOST_ROOT=${PREFIX} \
-    -DVTK_DIR=${PREFIX} \
-    -DXERCESC_LIBRARY=${PREFIX}/lib/libxerces-c.so \
-    -DXERCESC_INCLUDE=${PREFIX}/include \
-    -DXSD_EXECUTABLE=${PREFIX}/bin/xsd \
-    -DChaste_ENABLE_TESTING=ON \
-    -DChaste_UPDATE_PROVENANCE=OFF \
-    -DChaste_ENABLE_heart_TESTING=OFF \
-    -DChaste_ENABLE_lung_TESTING=OFF \
-    -DChaste_ENABLE_crypt_TESTING=OFF \
-    -DChaste_ENABLE_global_TESTING=OFF \
-    -DChaste_ENABLE_linalg_TESTING=OFF \
-    -DChaste_ENABLE_io_TESTING=OFF \
-    -DChaste_ENABLE_mesh_TESTING=OFF \
-    -DChaste_ENABLE_ode_TESTING=OFF \
-    -DChaste_ENABLE_pde_TESTING=OFF \
-    -DChaste_ENABLE_cell_based_TESTING=OFF \
-    -DChaste_ENABLE_continuum_mechanics_TESTING=OFF \
-    -DChaste_ENABLE_project_PyChaste_TESTING=OFF \
-    -DChaste_ERROR_ON_WARNING=OFF \
-    $SRC_DIR
+  -DCMAKE_BUILD_TYPE=${BUILD_CONFIG} \
+  -DCMAKE_LIBRARY_PATH="${PREFIX}/lib" \
+  -DCMAKE_PREFIX_PATH="${PREFIX}" \
+  -DCMAKE_INSTALL_PREFIX="${PREFIX}" \
+  -DBUILD_SHARED_LIBS=ON \
+  -DBOOST_ROOT="${PREFIX}" \
+  -DHDF5_C_COMPILER_EXECUTABLE="${PREFIX}/bin/h5pcc" \
+  -DPYTHON_EXECUTABLE=${PYTHON} \
+  -DVTK_DIR=${PREFIX} \
+  -DXERCESC_INCLUDE="${PREFIX}/include" \
+  -DXERCESC_LIBRARY="${PREFIX}/lib/libxerces-c.so" \
+  -DXSD_EXECUTABLE="${PREFIX}/bin/xsd" \
+  $SRC_DIR
 
 # Revert pip environment settings
 export PIP_NO_DEPENDENCIES="True"
