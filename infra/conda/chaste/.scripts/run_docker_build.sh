@@ -2,9 +2,6 @@
 
 set -xeo pipefail
 
-THISDIR="$( cd "$( dirname "$0" )" >/dev/null && pwd )"
-PROVIDER_DIR="$(basename $THISDIR)"
-
 FEEDSTOCK_ROOT="$( cd "$( dirname "$0" )/.." >/dev/null && pwd )"
 RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
 
@@ -16,12 +13,12 @@ mkdir -p "${ARTIFACTS}"
 DONE_CANARY="${ARTIFACTS}/conda-forge-build-done-${CONFIG}"
 rm -f "${DONE_CANARY}"
 
-DOCKER_IMAGE="${DOCKER_IMAGE:-quay.io/condaforge/linux-anvil-cos7-x86_64}"
-export HOST_USER_ID=$(id -u)
-
 docker info
 
+DOCKER_IMAGE="${DOCKER_IMAGE:-quay.io/condaforge/linux-anvil-cos7-x86_64}"
 docker pull "${DOCKER_IMAGE}"
+
+export HOST_USER_ID=$(id -u)
 docker run \
   --mount type=bind,source="${RECIPE_ROOT}",target=/home/conda/recipe_root \
   --mount type=bind,source="${FEEDSTOCK_ROOT}",target=/home/conda/feedstock_root \
@@ -32,6 +29,6 @@ docker run \
   -e CPU_COUNT \
   -e HOST_USER_ID \
   "${DOCKER_IMAGE}" \
-  bash "/home/conda/feedstock_root/${PROVIDER_DIR}/build_steps.sh"
+  bash "/home/conda/feedstock_root/.scripts/build_steps.sh"
 
 test -f "${DONE_CANARY}"

@@ -50,7 +50,7 @@ conda info
 conda config --env --show-sources
 conda list --show-channel-urls
 
-/usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel
+/usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel patch
 
 CHASTE_GIT_BRANCH="${CHASTE_BRANCH:-develop}"
 PYCHASTE_GIT_BRANCH="${PYCHASTE_BRANCH:-develop}"
