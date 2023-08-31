@@ -50,12 +50,13 @@ conda info
 conda config --env --show-sources
 conda list --show-channel-urls
 
-/usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel
+/usr/bin/sudo -n yum install -y libXt-devel mesa-libGLU-devel patch
 
-cp "${FEEDSTOCK_ROOT}/LICENSE.txt" "${RECIPE_ROOT}/recipe-scripts-license.txt"
+CHASTE_GIT_BRANCH="${CHASTE_BRANCH:-develop}"
+PYCHASTE_GIT_BRANCH="${PYCHASTE_BRANCH:-develop}"
 
-git clone --recursive --branch develop --depth 1 https://github.com/Chaste/Chaste.git /tmp/Chaste
-git clone --recursive --branch update --depth 1 https://github.com/kwabenantim/PyChaste.git /tmp/Chaste/projects/PyChaste
+git clone --recursive --branch ${CHASTE_GIT_BRANCH} --depth 1 https://github.com/Chaste/Chaste.git /tmp/Chaste
+git clone --recursive --branch ${PYCHASTE_GIT_BRANCH} --depth 1 https://github.com/Chaste/PyChaste.git /tmp/Chaste/projects/PyChaste
 
 mkdir -p /tmp/patches
 cp "${RECIPE_ROOT}"/patches/* /tmp/patches/
@@ -66,12 +67,6 @@ if [[ "${BUILD_WITH_CONDA_DEBUG:-0}" == 1 ]]; then
     /bin/bash
 else
     conda mambabuild "${RECIPE_ROOT}" -m "${CONFIG_FILE}"
-
-    # if [[ "${UPLOAD_PACKAGES}" != 'False' ]]; then
-    #   anaconda -q --show-traceback -t ${anaconda_token} upload \
-    #   -u 'pychaste' \
-    #   ${CONDA_BLD_PATH}/linux-64/chaste*.tar.bz2
-    # fi
 fi
 
 touch "${CONDA_BLD_PATH}/conda-forge-build-done-${CONFIG}"
