@@ -114,6 +114,7 @@ modules:
     excluded_methods: 
     - SplitLongEdges # can't work with vec<c_vec>
     - RescaleMeshFromBoundaryNode  # method not found!
+  - name: MutableElement
   - name: NodesOnlyMesh
   - name: PottsElement
   - name: PottsMesh
