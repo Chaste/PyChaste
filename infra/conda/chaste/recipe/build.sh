@@ -9,6 +9,9 @@ BUILD_CONFIG=Release
 cd ${PREFIX}/include
 patch -t -p1 < /tmp/patches/petsc.patch
 
+cd ${PREFIX}/lib/cmake/vtk-7.1
+patch -t -p1 < /tmp/patches/vtk.patch
+
 # Modify pip environment for chaste_codegen
 export PIP_NO_DEPENDENCIES="False"
 export PIP_NO_INDEX="False"
