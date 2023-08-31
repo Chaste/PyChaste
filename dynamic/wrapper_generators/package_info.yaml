@@ -80,10 +80,10 @@ modules:
   source_locations:
   - pde/src
   classes:
-  # - name: AbstractLinearPde
-  # - name: AbstractLinearParabolicPde
+  - name: AbstractLinearPde
+  - name: AbstractLinearParabolicPde
   - name: AbstractLinearEllipticPde
-  # - name: AbstractLinearParabolicPdeSystemForCoupledOdeSystem
+  - name: AbstractLinearParabolicPdeSystemForCoupledOdeSystem
   - name: AbstractNonlinearEllipticPde
   - name: AbstractBoundaryCondition
   - name: ConstBoundaryCondition
@@ -102,7 +102,7 @@ modules:
     excluded_methods: 
     - CalculateCircumsphereVolume #  method not found!
   - name: Edge
-  # - name: EdgeHelper
+  - name: EdgeHelper
   - name: EdgeOperation
   - name: AbstractMesh
   - name: AbstractTetrahedralMesh
@@ -114,6 +114,7 @@ modules:
     excluded_methods: 
     - SplitLongEdges # can't work with vec<c_vec>
     - RescaleMeshFromBoundaryNode  # method not found!
+  - name: AbstractElement
   - name: MutableElement
   - name: NodesOnlyMesh
   - name: PottsElement
@@ -184,11 +185,11 @@ modules:
   - name: BernoulliTrialCellCycleModel
   - name: FixedG1GenerationalCellCycleModel
   - name: AbstractCellCycleModelOdeSolver
-  # - name: CellCycleModelOdeSolver
+  - name: CellCycleModelOdeSolver
   - name: AbstractCellProperty
     excluded_methods: 
     - IsType  # exclude templated method
-  # - name: CellwiseOdeSystemInformation
+  - name: CellwiseOdeSystemInformation
   - name: CellPropertyCollection
     excluded_methods: 
     - GetCellPropertyRegistry
@@ -292,7 +293,7 @@ modules:
     - <petsc/private/vecimpl.h> # forward decl
     - <petsc/private/matimpl.h> # forward decl
   - name: CellBasedParabolicPdeSolver
-  # - name: AbstractCellBasedSimulationModifier  
+  - name: AbstractCellBasedSimulationModifier
   - name: AbstractPdeModifier
     excluded_methods: 
     - GetSolution
@@ -416,6 +417,7 @@ modules:
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellMutationStatesWriter
+    source_includes:
     - AbstractCellPopulation.hpp
   - name: CellPopulationAdjacencyMatrixWriter
     source_includes:
@@ -573,21 +575,21 @@ modules:
   - name: AbstractCaBasedDivisionRule
   - name: ShovingCaBasedDivisionRule
   - name: ExclusionCaBasedDivisionRule
-  # - name: RandomDirectionCentreBasedDivisionRule
-  # - name: FixedCentreBasedDivisionRule
-  # - name: AbstractCentreBasedDivisionRule
+  - name: RandomDirectionCentreBasedDivisionRule
+  - name: FixedCentreBasedDivisionRule
+  - name: AbstractCentreBasedDivisionRule
   - name: ShortAxisVertexBasedDivisionRule
   - name: RandomCaSwitchingUpdateRule
   - name: ChemotaxisPottsUpdateRule
   - name: AbstractCaSwitchingUpdateRule
-  # - name: AbstractForce 
-  # - name: AbstractTwoBodyInteractionForce
+  - name: AbstractForce
+  - name: AbstractTwoBodyInteractionForce
   - name: BuskeAdhesiveForce
   - name: BuskeCompressionForce
   - name: BuskeElasticForce
   - name: ChemotacticForce
-  # - name: GeneralisedLinearSpringForce
-  # - name: DifferentialAdhesionGeneralisedLinearSpringForce 
+  - name: GeneralisedLinearSpringForce
+  - name: DifferentialAdhesionGeneralisedLinearSpringForce
   - name: NagaiHondaForce
   - name: DiffusionForce
   - name: RepulsionForce
@@ -608,29 +610,29 @@ modules:
   - name: RandomCellKiller
   - name: T2SwapCellKiller
   - name: IsolatedLabelledCellKiller
-  # - name: AbstractCellPopulationBoundaryCondition
-  # - name: PlaneBoundaryCondition
-  #   source_includes:
-  #   - PythonUblasObjectConverters.hpp
-  # - name: AttractingPlaneBoundaryCondition
-  #   source_includes:
-  #   - PythonUblasObjectConverters.hpp
+  - name: AbstractCellPopulationBoundaryCondition
+  - name: PlaneBoundaryCondition
+    source_includes:
+    - PythonUblasObjectConverters.hpp
+  - name: AttractingPlaneBoundaryCondition
+    source_includes:
+    - PythonUblasObjectConverters.hpp
   - name: SphereGeometryBoundaryCondition
     source_includes:
     - PythonUblasObjectConverters.hpp
   - name: SlidingBoundaryCondition
     source_includes:
     - PythonUblasObjectConverters.hpp
-  # - name: AbstractCellPopulation
-  #   excluded_methods: 
-  #   - rGetCells
-    # source_includes:
-    # - AbstractCellBasedSimulation.hpp  
-  # - name: AbstractOffLatticeCellPopulation
-  # - name: AbstractCentreBasedCellPopulation  
-  #   excluded_methods: 
-  #   - MarkSpring
-  #   - UnmarkSpring       
+  - name: AbstractCellPopulation
+    excluded_methods:
+    - rGetCells
+    source_includes:
+    - AbstractCellBasedSimulation.hpp
+  - name: AbstractOffLatticeCellPopulation
+  - name: AbstractCentreBasedCellPopulation
+    excluded_methods: 
+    - MarkSpring
+    - UnmarkSpring       
   - name: AbstractOnLatticeCellPopulation
     excluded_methods: 
     - GetNodeCorrespondingToCell
@@ -678,47 +680,47 @@ modules:
     - VertexT2SwapLocationsWriter.hpp
     - VertexT3SwapLocationsWriter.hpp
     - VoronoiDataWriter.hpp
-  # - name: MeshBasedCellPopulation
-  #   excluded_methods: 
-  #   - GetVoronoiTessellation
-  #   - rGetNodePairs
-  #   - GetTetrahedralMeshForPdeModifier
-  #   - rGetMesh
-  #   custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py 
-  #   source_includes:
-  #   - CellAgesWriter.hpp
-  #   - CellAncestorWriter.hpp
-  #   - CellAppliedForceWriter.hpp
-  #   - CellCycleModelProteinConcentrationsWriter.hpp
-  #   - CellDataItemWriter.hpp
-  #   - CellDeltaNotchWriter.hpp
-  #   - CellDivisionLocationsWriter.hpp
-  #   - CellIdWriter.hpp
-  #   - CellLocationIndexWriter.hpp
-  #   - CellMutationStatesCountWriter.hpp
-  #   - CellMutationStatesWriter.hpp
-  #   - CellPopulationAdjacencyMatrixWriter.hpp
-  #   - CellPopulationAreaWriter.hpp
-  #   - CellPopulationElementWriter.hpp
-  #   - CellProliferativePhasesCountWriter.hpp
-  #   - CellProliferativePhasesWriter.hpp
-  #   - CellProliferativeTypesCountWriter.hpp
-  #   - CellProliferativeTypesWriter.hpp
-  #   - CellRadiusWriter.hpp
-  #   - CellRemovalLocationsWriter.hpp
-  #   - CellRosetteRankWriter.hpp
-  #   - CellVolumesWriter.hpp
-  #   - HeterotypicBoundaryLengthWriter.hpp
-  #   - LegacyCellProliferativeTypesWriter.hpp
-  #   - NodeLocationWriter.hpp
-  #   - NodeVelocityWriter.hpp
-  #   - PottsMeshWriter.hpp
-  #   - RadialCellDataDistributionWriter.hpp
-  #   - VertexIntersectionSwapLocationsWriter.hpp
-  #   - VertexT1SwapLocationsWriter.hpp
-  #   - VertexT2SwapLocationsWriter.hpp
-  #   - VertexT3SwapLocationsWriter.hpp
-  #   - VoronoiDataWriter.hpp
+  - name: MeshBasedCellPopulation
+    excluded_methods: 
+    - GetVoronoiTessellation
+    - rGetNodePairs
+    - GetTetrahedralMeshForPdeModifier
+    - rGetMesh
+    custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py 
+    source_includes:
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
   - name: MeshBasedCellPopulationWithGhostNodes
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
@@ -933,7 +935,7 @@ modules:
     - GetSimulationModifiers  
   - name: SimulationTime 
   - name: OnLatticeSimulation 
-  # - name: OffLatticeSimulation
+  - name: OffLatticeSimulation
   - name: PythonSimulationModifier
 - name: tutorial
   source_locations:
