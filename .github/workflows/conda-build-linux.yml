@@ -21,5 +21,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: pychaste-conda
-        path: build_artifacts/linux-64
-        working-directory: infra/conda/chaste
+        path: infra/conda/chaste/build_artifacts/linux-64
