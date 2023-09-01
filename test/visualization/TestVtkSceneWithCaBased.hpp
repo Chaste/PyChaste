@@ -80,7 +80,7 @@ public:
         OutputFileHandler file_handler1 = OutputFileHandler("TestVtkSceneWithCaBasedPopulation/2d");
 
         PottsMeshGenerator<2> generator(10, 0, 0, 10, 0, 0);
-        PottsMesh<2>* p_mesh = generator.GetMesh();
+        boost::shared_ptr<PottsMesh<2> > p_mesh = generator.GetMesh();
 
         // Fill with cells
         std::vector<unsigned> location_indices;
@@ -119,7 +119,7 @@ public:
     {
         OutputFileHandler file_handler1 = OutputFileHandler("TestVtkSceneWithCaBasedPopulation/3d");
         PottsMeshGenerator<3> generator(10, 0, 0, 10, 0, 0, 3, 0, 0);
-        PottsMesh<3>* p_mesh = generator.GetMesh();
+        boost::shared_ptr<PottsMesh<3> > p_mesh = generator.GetMesh();
         std::vector<unsigned> location_indices;
         for(unsigned idx=0; idx<100; idx++)
         {

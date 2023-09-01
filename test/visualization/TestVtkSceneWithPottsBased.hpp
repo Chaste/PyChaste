@@ -80,7 +80,7 @@ public:
         OutputFileHandler file_handler1 = OutputFileHandler("TestVtkSceneWithMeshBasedPopulation/2d/");
 
         PottsMeshGenerator<2> generator(50, 2, 4, 50, 2, 4);
-        PottsMesh<2>* p_mesh = generator.GetMesh();
+        boost::shared_ptr<PottsMesh<2> > p_mesh = generator.GetMesh();
 
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);
@@ -125,7 +125,7 @@ public:
         OutputFileHandler file_handler1 = OutputFileHandler("TestVtkSceneWithMeshBasedPopulation/3d/");
 
         PottsMeshGenerator<3> generator(50, 2, 4, 50, 2, 4, 50, 2, 4);
-        PottsMesh<3>* p_mesh = generator.GetMesh();
+        boost::shared_ptr<PottsMesh<3> > p_mesh = generator.GetMesh();
 
         std::vector<CellPtr> cells;
         MAKE_PTR(TransitCellProliferativeType, p_transit_type);

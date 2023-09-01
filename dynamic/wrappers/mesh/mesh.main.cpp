@@ -19,6 +19,10 @@
 #include "EdgeHelper2.cppwg.hpp"
 #include "EdgeHelper3.cppwg.hpp"
 #include "EdgeOperation.cppwg.hpp"
+#include "AbstractElement2_2.cppwg.hpp"
+#include "AbstractElement3_3.cppwg.hpp"
+#include "MutableElement2_2.cppwg.hpp"
+#include "MutableElement3_3.cppwg.hpp"
 #include "AbstractMesh2_2.cppwg.hpp"
 #include "AbstractMesh3_3.cppwg.hpp"
 #include "AbstractTetrahedralMesh2_2.cppwg.hpp"
@@ -77,6 +81,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_EdgeHelper2_class(m);
     register_EdgeHelper3_class(m);
     register_EdgeOperation_class(m);
+    register_AbstractElement2_2_class(m);
+    register_AbstractElement3_3_class(m);
+    register_MutableElement2_2_class(m);
+    register_MutableElement3_3_class(m);
     register_AbstractMesh2_2_class(m);
     register_AbstractMesh3_3_class(m);
     register_AbstractTetrahedralMesh2_2_class(m);

@@ -36,6 +36,8 @@
 #include "Edge.hpp"
 #include "EdgeHelper.hpp"
 #include "EdgeOperation.hpp"
+#include "AbstractElement.hpp"
+#include "MutableElement.hpp"
 #include "AbstractMesh.hpp"
 #include "AbstractTetrahedralMesh.hpp"
 #include "TetrahedralMesh.hpp"
@@ -277,6 +279,10 @@ template class Edge<2>;
 template class Edge<3>;
 template class EdgeHelper<2>;
 template class EdgeHelper<3>;
+template class AbstractElement<2,2>;
+template class AbstractElement<3,3>;
+template class MutableElement<2,2>;
+template class MutableElement<3,3>;
 template class AbstractMesh<2,2>;
 template class AbstractMesh<3,3>;
 template class AbstractTetrahedralMesh<2,2>;
@@ -630,6 +636,10 @@ typedef Edge<2> Edge2;
 typedef Edge<3> Edge3;
 typedef EdgeHelper<2> EdgeHelper2;
 typedef EdgeHelper<3> EdgeHelper3;
+typedef AbstractElement<2,2> AbstractElement2_2;
+typedef AbstractElement<3,3> AbstractElement3_3;
+typedef MutableElement<2,2> MutableElement2_2;
+typedef MutableElement<3,3> MutableElement3_3;
 typedef AbstractMesh<2,2> AbstractMesh2_2;
 typedef AbstractMesh<3,3> AbstractMesh3_3;
 typedef AbstractTetrahedralMesh<2,2> AbstractTetrahedralMesh2_2;
