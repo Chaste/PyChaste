@@ -6,18 +6,18 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "SharedToroidalHoneycombMeshGenerator.hpp"
+#include "ToroidalHoneycombMeshGenerator.hpp"
 
 #include "ToroidalHoneycombMeshGenerator.cppwg.hpp"
 
 namespace py = pybind11;
-typedef SharedToroidalHoneycombMeshGenerator ToroidalHoneycombMeshGenerator;
+typedef ToroidalHoneycombMeshGenerator ToroidalHoneycombMeshGenerator;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 typedef ::boost::shared_ptr<MutableMesh<2, 2>> _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_;
 
 class ToroidalHoneycombMeshGenerator_Overloads : public ToroidalHoneycombMeshGenerator{
     public:
-    using ToroidalHoneycombMeshGenerator::SharedToroidalHoneycombMeshGenerator;
+    using ToroidalHoneycombMeshGenerator::ToroidalHoneycombMeshGenerator;
     ::boost::shared_ptr<MutableMesh<2, 2>> GetMesh() override {
         PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_MutableMesh_lt_2_2_gt__gt_,

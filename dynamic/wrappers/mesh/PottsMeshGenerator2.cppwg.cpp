@@ -6,18 +6,18 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "SharedPottsMeshGenerator.hpp"
+#include "PottsMeshGenerator.hpp"
 
 #include "PottsMeshGenerator2.cppwg.hpp"
 
 namespace py = pybind11;
-typedef SharedPottsMeshGenerator<2 > PottsMeshGenerator2;
+typedef PottsMeshGenerator<2 > PottsMeshGenerator2;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 typedef ::boost::shared_ptr<PottsMesh<2>> _boost_shared_ptr_lt_PottsMesh_lt_2_gt__gt_;
 
 class PottsMeshGenerator2_Overloads : public PottsMeshGenerator2{
     public:
-    using PottsMeshGenerator2::SharedPottsMeshGenerator;
+    using PottsMeshGenerator2::PottsMeshGenerator;
     ::boost::shared_ptr<PottsMesh<2>> GetMesh() override {
         PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_PottsMesh_lt_2_gt__gt_,
