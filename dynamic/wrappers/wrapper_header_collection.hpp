@@ -45,7 +45,7 @@
 #include "NodesOnlyMesh.hpp"
 #include "PottsElement.hpp"
 #include "PottsMesh.hpp"
-#include "SharedPottsMeshGenerator.hpp"
+#include "PottsMeshGenerator.hpp"
 #include "VertexMesh.hpp"
 #include "MutableVertexMesh.hpp"
 #include "Cylindrical2dVertexMesh.hpp"
@@ -54,13 +54,13 @@
 #include "Cylindrical2dNodesOnlyMesh.hpp"
 #include "Cylindrical2dMesh.hpp"
 #include "Toroidal2dVertexMesh.hpp"
-#include "SharedHoneycombMeshGenerator.hpp"
-#include "SharedHoneycombVertexMeshGenerator.hpp"
-#include "SharedCylindricalHoneycombVertexMeshGenerator.hpp"
-#include "SharedCylindricalHoneycombMeshGenerator.hpp"
-#include "SharedToroidalHoneycombMeshGenerator.hpp"
-#include "SharedToroidalHoneycombVertexMeshGenerator.hpp"
-#include "SharedVoronoiVertexMeshGenerator.hpp"
+#include "HoneycombMeshGenerator.hpp"
+#include "HoneycombVertexMeshGenerator.hpp"
+#include "CylindricalHoneycombVertexMeshGenerator.hpp"
+#include "CylindricalHoneycombMeshGenerator.hpp"
+#include "ToroidalHoneycombMeshGenerator.hpp"
+#include "ToroidalHoneycombVertexMeshGenerator.hpp"
+#include "VoronoiVertexMeshGenerator.hpp"
 #include "AbstractCellCycleModel.hpp"
 #include "AbstractPhaseBasedCellCycleModel.hpp"
 #include "AbstractSimpleCellCycleModel.hpp"
@@ -297,8 +297,8 @@ template class PottsElement<2>;
 template class PottsElement<3>;
 template class PottsMesh<2>;
 template class PottsMesh<3>;
-template class SharedPottsMeshGenerator<2>;
-template class SharedPottsMeshGenerator<3>;
+template class PottsMeshGenerator<2>;
+template class PottsMeshGenerator<3>;
 template class VertexMesh<2,2>;
 template class VertexMesh<3,3>;
 template class MutableVertexMesh<2,2>;
@@ -654,8 +654,8 @@ typedef PottsElement<2> PottsElement2;
 typedef PottsElement<3> PottsElement3;
 typedef PottsMesh<2> PottsMesh2;
 typedef PottsMesh<3> PottsMesh3;
-typedef SharedPottsMeshGenerator<2> PottsMeshGenerator2;
-typedef SharedPottsMeshGenerator<3> PottsMeshGenerator3;
+typedef PottsMeshGenerator<2> PottsMeshGenerator2;
+typedef PottsMeshGenerator<3> PottsMeshGenerator3;
 typedef VertexMesh<2,2> VertexMesh2_2;
 typedef VertexMesh<3,3> VertexMesh3_3;
 typedef MutableVertexMesh<2,2> MutableVertexMesh2_2;

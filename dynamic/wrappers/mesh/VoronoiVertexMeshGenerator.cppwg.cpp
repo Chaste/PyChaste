@@ -6,12 +6,12 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "SharedVoronoiVertexMeshGenerator.hpp"
+#include "VoronoiVertexMeshGenerator.hpp"
 
 #include "VoronoiVertexMeshGenerator.cppwg.hpp"
 
 namespace py = pybind11;
-typedef SharedVoronoiVertexMeshGenerator VoronoiVertexMeshGenerator;
+typedef VoronoiVertexMeshGenerator VoronoiVertexMeshGenerator;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 typedef ::boost::shared_ptr<MutableVertexMesh<2, 2>> _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_;
 typedef ::boost::shared_ptr<MutableVertexMesh<2, 2>> _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_;
@@ -19,7 +19,7 @@ typedef ::boost::shared_ptr<Toroidal2dVertexMesh> _boost_shared_ptr_lt_Toroidal2
 
 class VoronoiVertexMeshGenerator_Overloads : public VoronoiVertexMeshGenerator{
     public:
-    using VoronoiVertexMeshGenerator::SharedVoronoiVertexMeshGenerator;
+    using VoronoiVertexMeshGenerator::VoronoiVertexMeshGenerator;
     ::boost::shared_ptr<MutableVertexMesh<2, 2>> GetMesh() override {
         PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_,

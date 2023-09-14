@@ -119,8 +119,7 @@ modules:
   - name: NodesOnlyMesh
   - name: PottsElement
   - name: PottsMesh
-  - name: SharedPottsMeshGenerator
-    name_override: PottsMeshGenerator
+  - name: PottsMeshGenerator
   - name: VertexMesh
     excluded_methods: 
     - GetFace # dont have mixed dim elements
@@ -143,20 +142,13 @@ modules:
     excluded_methods:
     - GetInstanceOfMismatchedBoundaryNodes
   - name: Toroidal2dVertexMesh
-  - name: SharedHoneycombMeshGenerator
-    name_override: HoneycombMeshGenerator
-  - name: SharedHoneycombVertexMeshGenerator
-    name_override: HoneycombVertexMeshGenerator
-  - name: SharedCylindricalHoneycombMeshGenerator
-    name_override: CylindricalHoneycombMeshGenerator
-  - name: SharedCylindricalHoneycombVertexMeshGenerator
-    name_override: CylindricalHoneycombVertexMeshGenerator
-  - name: SharedToroidalHoneycombMeshGenerator
-    name_override: ToroidalHoneycombMeshGenerator
-  - name: SharedToroidalHoneycombVertexMeshGenerator
-    name_override: ToroidalHoneycombVertexMeshGenerator
-  - name: SharedVoronoiVertexMeshGenerator
-    name_override: VoronoiVertexMeshGenerator
+  - name: HoneycombMeshGenerator
+  - name: HoneycombVertexMeshGenerator
+  - name: CylindricalHoneycombMeshGenerator
+  - name: CylindricalHoneycombVertexMeshGenerator
+  - name: ToroidalHoneycombMeshGenerator
+  - name: ToroidalHoneycombVertexMeshGenerator
+  - name: VoronoiVertexMeshGenerator
 - name: cell_based
   source_locations:
   - cell_based/src
