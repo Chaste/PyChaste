@@ -8,7 +8,7 @@ PROVIDER_DIR="$(basename $THISDIR)"
 FEEDSTOCK_ROOT="$( cd "$( dirname "$0" )/.." >/dev/null && pwd )"
 RECIPE_ROOT="${FEEDSTOCK_ROOT}/recipe"
 
-docker info
+sudo -E docker info
 
 HOST_USER_ID=$(id -u)
 
@@ -20,8 +20,8 @@ rm -f "${DONE_CANARY}"
 
 UPLOAD_PACKAGES="${UPLOAD_PACKAGES:-False}"
 
-docker pull "${DOCKER_IMAGE}"
-docker run --rm -it \
+sudo -E docker pull "${DOCKER_IMAGE}"
+sudo -E docker run --rm -it \
            -v "${RECIPE_ROOT}":/home/conda/recipe_root:rw,z,delegated \
            -v "${FEEDSTOCK_ROOT}":/home/conda/feedstock_root:rw,z,delegated \
            -e CONFIG \
