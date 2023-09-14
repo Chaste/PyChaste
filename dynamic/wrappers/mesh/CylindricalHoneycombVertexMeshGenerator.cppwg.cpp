@@ -6,18 +6,18 @@
 #include <map>
 #include "SmartPointers.hpp"
 #include "UblasIncludes.hpp"
-#include "SharedCylindricalHoneycombVertexMeshGenerator.hpp"
+#include "CylindricalHoneycombVertexMeshGenerator.hpp"
 
 #include "CylindricalHoneycombVertexMeshGenerator.cppwg.hpp"
 
 namespace py = pybind11;
-typedef SharedCylindricalHoneycombVertexMeshGenerator CylindricalHoneycombVertexMeshGenerator;
+typedef CylindricalHoneycombVertexMeshGenerator CylindricalHoneycombVertexMeshGenerator;
 PYBIND11_DECLARE_HOLDER_TYPE(T, boost::shared_ptr<T>);
 typedef ::boost::shared_ptr<MutableVertexMesh<2, 2>> _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_;
 
 class CylindricalHoneycombVertexMeshGenerator_Overloads : public CylindricalHoneycombVertexMeshGenerator{
     public:
-    using CylindricalHoneycombVertexMeshGenerator::SharedCylindricalHoneycombVertexMeshGenerator;
+    using CylindricalHoneycombVertexMeshGenerator::CylindricalHoneycombVertexMeshGenerator;
     ::boost::shared_ptr<MutableVertexMesh<2, 2>> GetMesh() override {
         PYBIND11_OVERRIDE(
             _boost_shared_ptr_lt_MutableVertexMesh_lt_2_2_gt__gt_,
