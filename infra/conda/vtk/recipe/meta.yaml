@@ -58,17 +58,17 @@ requirements:
     - jsoncpp
     - expat
     - glew
-    - boost-cpp >=1.68,<1.76
-    - hdf5 >=1.10,<1.11
+    - boost-cpp
+    - hdf5
     - hdf5 * mpi_mpich*
-    - metis >=4
-    - mpich >=3
+    - metis
+    - mpich
     - mpi4py
-    - parmetis >=4
-    - petsc >=3.12,<3.17
+    - parmetis
+    - petsc
     - petsc4py
-    - sundials >=3.0,<6.0
-    - xerces-c >=3
+    - sundials
+    - xerces-c
     - xsd 4.*
 
   run:
@@ -83,17 +83,17 @@ requirements:
     - jsoncpp
     - expat
     - glew
-    - boost-cpp >=1.68,<1.76
-    - hdf5 >=1.10,<1.11
+    - boost-cpp
+    - hdf5
     - hdf5 * mpi_mpich*
-    - metis >=4
-    - mpich >=3
+    - metis
+    - mpich
     - mpi4py
-    - parmetis >=4
-    - petsc >=3.12,<3.17
+    - parmetis
+    - petsc
     - petsc4py
-    - sundials >=3.0,<6.0
-    - xerces-c >=3
+    - sundials
+    - xerces-c
     - xsd 4.*
 
 test:
