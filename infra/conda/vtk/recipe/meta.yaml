@@ -16,6 +16,8 @@ source:
   patches:
     - patches/vtk7.1.1.patch
     - patches/netcdf4-nc_type.patch
+    - patches/netcdf4-nc4file.patch
+    - patches/netcdf4-nc4hdf.patch
 
 build:
   number: {{ build }}
