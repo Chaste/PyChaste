@@ -1,4 +1,4 @@
-{% set version = "3.4.4" %}
+{% set version = "2023.10.dev1" %}
 {% set build = 0 %}
 
 {% set build_string = "py{}h{}_{}".format(CONDA_PY, PKG_HASH, build) %}
@@ -31,33 +31,33 @@ requirements:
 
   host:
     - python
-    - boost-cpp >=1.68,<1.76
-    - hdf5 >=1.10,<1.11
+    - boost-cpp
+    - hdf5
     - hdf5 * mpi_mpich*
-    - metis >=4
-    - mpich >=3
-    - parmetis >=4
-    - petsc >=3.12,<3.17
+    - metis
+    - mpich
+    - parmetis
+    - petsc
     - petsc4py
-    - sundials >=3.0,<6.0
-    - vtk 7.1.1
-    - xerces-c >=3
+    - sundials
+    - vtk
+    - xerces-c
     - xsd 4.*
     - xvfbwrapper
 
   run:
     - python
-    - boost-cpp >=1.68,<1.76
-    - hdf5 >=1.10,<1.11
+    - boost-cpp
+    - hdf5
     - hdf5 * mpi_mpich*
-    - metis >=4
-    - mpich >=3
-    - parmetis >=4
-    - petsc >=3.12,<3.17
+    - metis
+    - mpich
+    - parmetis
+    - petsc
     - petsc4py
-    - sundials >=3.0,<6.0
-    - vtk 7.1.1
-    - xerces-c >=3
+    - sundials
+    - vtk
+    - xerces-c
     - xsd 4.*
     - xvfbwrapper
     - matplotlib
