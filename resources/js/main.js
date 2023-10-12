@@ -19,7 +19,7 @@ function getOS() {
 $(document).ready(function(){
 
   // background image on frontpage
-  $(".splash").backstretch("https://jmsgrogan.github.io/PyChaste/resources/img/landing.png");
+  $(".splash").backstretch("https://chaste.github.io/PyChaste/resources/img/landing.png");
 
   // tooltips (front page)
   $(".marker").mouseover(function(){ $(".tip").show(); });
@@ -564,7 +564,7 @@ $(document).ready(function(){
   }
 
   $.ajax({
-    url: "https://jmsgrogan.github.io/PyChaste/resources/php/typesafe-feed-events.php",
+    url: "https://chaste.github.io/PyChaste/resources/php/typesafe-feed-events.php",
     type: "GET",
     dataType: "json",
     success: onEventsAjaxSuccess,
@@ -706,7 +706,7 @@ $(document).ready(function(){
   }
 
   $.ajax({
-    url: "https://jmsgrogan.github.io/PyChaste/resources/php/typesafe-feed-trainings.php",
+    url: "https://chaste.github.io/PyChaste/resources/php/typesafe-feed-trainings.php",
     type: "GET",
     dataType: "json",
     success: onTrainingsAjaxSuccess,
