@@ -1,0 +1,71 @@
+name: Update PyChaste Tutorials
+
+on:
+  pull_request:
+    branches:
+      - '**'
+  push:
+    branches:
+      - develop
+  workflow_dispatch:
+
+jobs:
+  
+  generate-pychaste-tutorials-markdown:
+    if: ${{ !contains(github.event.pull_request.labels.*.name, 'ci:off') }}
+
+    runs-on: ubuntu-latest
+      
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v4
+
+    - name: setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+      
+    - name: generate pychaste tutorials markdown
+      run: |
+        python GenerateWikiPages.py --format=markdown
+      working-directory: infra
+
+    - name: upload archive files
+      uses: actions/upload-artifact@v3
+      with:
+        name: pychaste-tutorials-markdown
+        path: doc/tutorials/*.md
+
+  upload-to-website:
+    if: github.event_name == 'push'
+    
+    needs: generate-pychaste-tutorials-markdown
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download pychaste-tutorials markdown
+        uses: actions/download-artifact@v3
+        with:
+          name: pychaste-tutorials markdown
+
+      - name: Checkout website repository
+        uses: actions/checkout@v4
+        with:
+          repository: Chaste/Chaste.github.io
+          token: ${{ secrets.WEBSITE_ACCESS }}
+          path: chaste-website
+          fetch-depth: 0  # Fetch all history for all tags and branches
+
+      - name: Copy markdown to website repository
+        run: |
+          cp *.md chaste-website/site/content/pychaste/tutorials
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-action"
+          git config user.email "github-action"
+          git add --all
+          git commit -m "update pychaste-tutorials" || echo "No changes to commit"
+          git push
+        working-directory: chaste-website
