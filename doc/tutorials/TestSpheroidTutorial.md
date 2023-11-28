@@ -1,9 +1,14 @@
+
 ---
-layout: page-full-width 
-title: Test Spheroid Tutorial
+title : "Test Spheroid Tutorial"
+summary: ""
+draft: false
+images: []
+toc: true
+layout: "single"
 ---
-This tutorial is automatically generated from the file test/python/cell_based/tutorials/TestSpheroidTutorial.py.
-[Go to the Jupyter Notebook version.]({{ site.baseurl}}/documentation/md_tutorials/TestSpheroidTutorial_nb.html)
+
+This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestSpheroidTutorial.py .
 Note that the code is given in full at the bottom of the page.
 
 

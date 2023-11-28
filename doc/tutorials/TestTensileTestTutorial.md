@@ -1,9 +1,14 @@
+
 ---
-layout: page-full-width 
-title: Test Tensile Test Tutorial
+title : "Test Tensile Test Tutorial"
+summary: ""
+draft: false
+images: []
+toc: true
+layout: "single"
 ---
-This tutorial is automatically generated from the file test/python/cell_based/tutorials/TestTensileTestTutorial.py.
-[Go to the Jupyter Notebook version.]({{ site.baseurl}}/documentation/md_tutorials/TestTensileTestTutorial_nb.html)
+
+This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestTensileTestTutorial.py .
 Note that the code is given in full at the bottom of the page.
 
 
@@ -49,8 +54,7 @@ Now set up the cells, again we want to avoid proliferation.
 ```python
         differentiated_type = chaste.cell_based.DifferentiatedCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   differentiated_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), differentiated_type)
 
 ```
 Next, create the cell population
@@ -96,9 +100,7 @@ fixing lateral degress of freedom for simplicity, since we are using an over-dam
         simulator.AddCellPopulationBoundaryCondition(bc)
         point = np.array([0.0, 15.5])
         normal = np.array([0.0, -1.0])
-        bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition2_2(cell_population,
-                                                                    point,
-                                                                    normal)
+        bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition2_2(cell_population, point, normal)
         simulator.AddCellPopulationBoundaryCondition(bc2)
 
 ```
@@ -193,8 +195,7 @@ class TestTensileTestTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
         differentiated_type = chaste.cell_based.DifferentiatedCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   differentiated_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), differentiated_type)
 
         cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh,
                                                                        cells)
@@ -216,9 +217,7 @@ class TestTensileTestTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
         simulator.AddCellPopulationBoundaryCondition(bc)
         point = np.array([0.0, 15.5])
         normal = np.array([0.0, -1.0])
-        bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition2_2(cell_population,
-                                                                    point,
-                                                                    normal)
+        bc2 = chaste.cell_based.AttractingPlaneBoundaryCondition2_2(cell_population, point, normal)
         simulator.AddCellPopulationBoundaryCondition(bc2)
 
         class BoundaryConditionModifier(chaste.cell_based.PythonSimulationModifier2):

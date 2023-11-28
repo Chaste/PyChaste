@@ -1,9 +1,14 @@
+
 ---
-layout: page-full-width 
-title: Test Scratch Assay Tutorial
+title : "Test Scratch Assay Tutorial"
+summary: ""
+draft: false
+images: []
+toc: true
+layout: "single"
 ---
-This tutorial is automatically generated from the file test/python/cell_based/tutorials/TestScratchAssayTutorial.py.
-[Go to the Jupyter Notebook version.]({{ site.baseurl}}/documentation/md_tutorials/TestScratchAssayTutorial_nb.html)
+
+This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestScratchAssayTutorial.py .
 Note that the code is given in full at the bottom of the page.
 
 
