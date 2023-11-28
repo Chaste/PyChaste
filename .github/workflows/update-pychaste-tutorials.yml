@@ -44,10 +44,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download pychaste-tutorials markdown
+      - name: Download pychaste-tutorials-markdown
         uses: actions/download-artifact@v3
         with:
-          name: pychaste-tutorials markdown
+          name: pychaste-tutorials-markdown
 
       - name: Checkout website repository
         uses: actions/checkout@v4
