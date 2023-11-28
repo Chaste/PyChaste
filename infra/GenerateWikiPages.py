@@ -44,34 +44,39 @@ import ntpath
 import subprocess
 
 if __name__ == '__main__':
+    output_format = ""
+    
+    if len(sys.argv) > 1:
+      output_format = sys.argv[1]
+    
+    if output_format not in ["markdown", "jupyter"]:
+        output_format = "markdown"
 
     # Find all the tutorial files.
     tutorial_files = []
-    for root, dirs, files in os.walk('test'):
+    for root, dirs, files in os.walk('../test'):
         for file in files:
             if fnmatch.fnmatch(file, 'Test*LiteratePaper*') or fnmatch.fnmatch(file, 'Test*Tutorial*'):
                 if not fnmatch.fnmatch(file, '*.pyc'):
                     tutorial_files.append([root, file])
-                    
-    output_format = "jupyter"
     
     if output_format == "markdown":
                      
         # Generate the markdown for each
         for eachFile in tutorial_files:
-            outfile = " doc/tutorials/" + os.path.splitext(ntpath.basename(eachFile[1]))[0] +".md"
+            outfile = "../doc/tutorials/" + os.path.splitext(ntpath.basename(eachFile[1]))[0] +".md"
             inputfile = eachFile[0] + "/" + eachFile[1]
-            launch_string = "infra/CreateMarkdownTutorial.py " + inputfile + outfile 
+            launch_string = f"../infra/CreateMarkdownTutorial.py {inputfile} {outfile}"
             os.system(launch_string)
             
     elif output_format == "jupyter":
         
         # Generate the jupyter notebooks for each
         for eachFile in tutorial_files:
-            outfile = " doc/tutorials/" + os.path.splitext(ntpath.basename(eachFile[1]))[0] +".ipynb"
+            outfile = "../doc/tutorials/" + os.path.splitext(ntpath.basename(eachFile[1]))[0] +".ipynb"
             inputfile = eachFile[0] + "/" + eachFile[1]
-            launch_string = "infra/CreateJupyterNotebookTutorial.py " + inputfile + outfile 
+            launch_string = f"../infra/CreateJupyterNotebookTutorial.py {inputfile} {outfile}"
             os.system(launch_string)
             
-            subprocess.call("jupyter nbconvert " + outfile, shell=True)
+            subprocess.call(f"jupyter nbconvert --to notebook {outfile}", shell=True)
 

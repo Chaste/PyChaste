@@ -1,9 +1,14 @@
+
 ---
-layout: page-full-width 
-title: Test Vertex Based Cell Simulations Python Tutorial
+title : "Test Vertex Based Cell Simulations Python Tutorial"
+summary: ""
+draft: false
+images: []
+toc: true
+layout: "single"
 ---
-This tutorial is automatically generated from the file test/python/cell_based/tutorials/TestVertexBasedCellSimulationsPythonTutorial.py.
-[Go to the Jupyter Notebook version.]({{ site.baseurl}}/documentation/md_tutorials/TestVertexBasedCellSimulationsPythonTutorial_nb.html)
+
+This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestVertexBasedCellSimulationsPythonTutorial.py .
 Note that the code is given in full at the bottom of the page.
 
 
@@ -56,8 +61,7 @@ the third argument specifies the proliferative type of the cell.
 ```python
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), transit_type)
 
 ```
 Now we have a mesh and a set of cells to go with it, we can create a CellPopulation.
@@ -65,8 +69,7 @@ In general, this class associates a collection of cells with a mesh. For this te
 we use a particular type of cell population called a VertexBasedCellPopulation.
 
 ```python
-        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh,
-                                                                       cells)
+        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh, cells)
 
 ```
 We can set up a `VtkScene` to do a quick visualization of the population before running the analysis.
@@ -138,8 +141,7 @@ If different simulation input parameters are being explored the lines should be 
 
 ```python
         self.assertEqual(cell_population.GetNumRealCells(), 7)
-        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(),
-                               5.0, 6)
+        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(), 5.0, 6)
 
         # JUPYTER_TEARDOWN
 
@@ -170,15 +172,13 @@ Having created a mesh, we now create a VectorSharedPtrCells. This is exactly the
 ```python
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), transit_type)
 
 ```
 Now we have a mesh and a set of cells to go with it, we can create a CellPopulation. This is also the same as in the above test.
 
 ```python
-        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh,
-                                                                       cells)
+        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh, cells)
 
 ```
 We then pass in the cell population into an `OffLatticeSimulation`, and set the output directory, output multiple and end time
@@ -217,10 +217,8 @@ The first step is to define a point on the plane boundary and a normal to the pl
 
 ```
 We can now make a PlaneBoundaryCondition (passing the point and normal to the plane) and pass it to the OffLatticeSimulation.
-bc = chaste.cell_based.PlaneBoundaryCondition2_2(cell_population,
+bc = chaste.cell_based.PlaneBoundaryCondition2_2(cell_population, point, normal)
 ```python
-                                                         point,
-                                                         normal)
         simulator.AddCellPopulationBoundaryCondition(bc)
 
 ```
@@ -235,27 +233,20 @@ The first step is to define a point on the plane boundary and a normal to the pl
 
 ```
 Finally we now make a PlaneBasedCellKiller (passing the point and normal to the plane) and pass it to the OffLatticeSimulation.
-
+killer = chaste.cell_based.PlaneBasedCellKiller2(cell_population, point, normal)
 ```python
-        killer = chaste.cell_based.PlaneBasedCellKiller2(cell_population,
-                                                         point,
-                                                         normal)
         simulator.AddCellKiller(killer)
 
 ```
 To run the simulation, we call `Solve()`.
+simulator.Solve()
 
-```python
-        simulator.Solve()
-
-```
 The next two lines are for test purposes only and are not part of this tutorial.
 If different simulation input parameters are being explored the lines should be removed.
 
 ```python
         self.assertEqual(cell_population.GetNumRealCells(), 12)
-        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(),
-                               1.0, 6)
+        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(), 1.0, 6)
 
         # JUPYTER_TEARDOWN
 
@@ -292,11 +283,9 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
 
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), transit_type)
 
-        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh,
-                                                                       cells)
+        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh, cells)
 
         scene = chaste.visualization.VtkScene2()
         scene.SetCellPopulation(cell_population)
@@ -325,8 +314,7 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
         scene.End()
 
         self.assertEqual(cell_population.GetNumRealCells(), 7)
-        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(),
-                               5.0, 6)
+        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(), 5.0, 6)
 
         # JUPYTER_TEARDOWN
 
@@ -339,11 +327,9 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
 
         transit_type = chaste.cell_based.TransitCellProliferativeType()
         cell_generator = chaste.cell_based.CellsGeneratorUniformG1GenerationalCellCycleModel_2()
-        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(),
-                                                   transit_type)
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), transit_type)
 
-        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh,
-                                                                       cells)
+        cell_population = chaste.cell_based.VertexBasedCellPopulation2(mesh, cells)
 
         simulator = chaste.cell_based.OffLatticeSimulation2_2(cell_population)
         simulator.SetOutputDirectory("Python/TestPeriodicVertexBasedCellPopulation")
@@ -359,23 +345,15 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
         point = np.array([0.0, 0.0])
         normal = np.array([0.0, -1.0])
 
-                                                         point,
-                                                         normal)
         simulator.AddCellPopulationBoundaryCondition(bc)
 
         point = np.array([0.0, 3.0])
         normal = np.array([0.0, 1.0])
 
-        killer = chaste.cell_based.PlaneBasedCellKiller2(cell_population,
-                                                         point,
-                                                         normal)
         simulator.AddCellKiller(killer)
 
-        simulator.Solve()
-
         self.assertEqual(cell_population.GetNumRealCells(), 12)
-        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(),
-                               1.0, 6)
+        self.assertAlmostEqual(chaste.cell_based.SimulationTime.Instance().GetTime(), 1.0, 6)
 
         # JUPYTER_TEARDOWN
 

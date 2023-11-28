@@ -1,9 +1,14 @@
+
 ---
-layout: page-full-width 
-title: Test Mesh Based Cell Simulations Python Tutorial
+title : "Test Mesh Based Cell Simulations Python Tutorial"
+summary: ""
+draft: false
+images: []
+toc: true
+layout: "single"
 ---
-This tutorial is automatically generated from the file test/python/cell_based/tutorials/TestMeshBasedCellSimulationsPythonTutorial.py.
-[Go to the Jupyter Notebook version.]({{ site.baseurl}}/documentation/md_tutorials/TestMeshBasedCellSimulationsPythonTutorial_nb.html)
+
+This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestMeshBasedCellSimulationsPythonTutorial.py .
 Note that the code is given in full at the bottom of the page.
 
 

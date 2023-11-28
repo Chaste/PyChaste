@@ -210,14 +210,27 @@ def ConvertTutorialToMarkdownText(test_file_path, test_file, other_files, revisi
         revision = ' at revision r' + str(revision)
     output = []
     # Header
-    regex = re.compile(ur'(?!^)(?=[A-Z])', re.MULTILINE)
+    regex = re.compile(r'(?!^)(?=[A-Z])', re.MULTILINE)
     ugly_file_name = os.path.splitext(os.path.basename(test_file_path))[0] 
     nice_file_name = re.sub(regex, " ", ugly_file_name)
+
+    page_header = f"""
+---
+title : "{nice_file_name}"
+summary: ""
+draft: false
+images: []
+toc: true
+layout: "single"
+---
+
+This tutorial is automatically generated from the file {test_file_path} {revision}.
+Note that the code is given in full at the bottom of the page.
+
+
+"""
     
-    output.append('---\nlayout: page-full-width \ntitle: ' + nice_file_name + '\n---\n')
-    output.append('This tutorial is automatically generated from the file ' + test_file_path + revision + '.\n')
-    output.append('[Go to the Jupyter Notebook version.]({{ site.baseurl}}/documentation/md_tutorials/'+ ugly_file_name + '_nb.html)\n')
-    output.append('Note that the code is given in full at the bottom of the page.\n\n\n')  
+    output.append(page_header)
     
     # Convert each file in turn
     test_output, test_code = ConvertFileToMarkdownText(test_file, test_file_path)
@@ -233,7 +246,7 @@ def ConvertTutorialToMarkdownText(test_file_path, test_file, other_files, revisi
     # Now output the C++ code for all files
     output.append('\n\n# Code \nThe full code is given below\n')
     AddCodeOutput(os.path.basename(test_file_path), test_code, output)
-    for filename, code in other_code.iteritems():
+    for filename, code in other_code.items():
         AddCodeOutput(filename, code, output)
     return ''.join(output)
 
