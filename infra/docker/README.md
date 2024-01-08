@@ -18,7 +18,7 @@ To tag the image with the `latest` tag and upload it to Docker Hub:
 ```bash
 [sudo] docker tag <image_id> chaste/pychaste:latest
 docker login
-docker push chaste/pychaste
+docker push chaste/pychaste:latest
 ```
 
 ## Working with the local image
@@ -27,5 +27,5 @@ docker push chaste/pychaste
 [sudo] docker run --init -it -p 8888:8888 pychaste
 ```
 
-Then go to [htpp://localhost::8888](htpp://localhost::8888) in a web browser.
+Then go to [http://localhost::8888](http://localhost::8888) in a web browser.
 

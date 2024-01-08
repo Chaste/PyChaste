@@ -13,7 +13,7 @@ RUN apt-get update && \
     rm -rf /tmp/*
 
 USER $MAMBA_USER
-RUN micromamba install -y -n base -c pychaste -c conda-forge -c bioconda chaste notebook && \
+RUN micromamba install -y -n base -c pychaste -c conda-forge -c bioconda chaste boost-cpp=1.74 notebook && \
     micromamba clean --all --yes && \
     rm -rf /opt/conda/pkgs/*
 
