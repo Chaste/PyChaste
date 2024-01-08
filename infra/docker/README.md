@@ -24,7 +24,7 @@ docker push chaste/pychaste
 ## Working with the local image
 
 ```bash
-[sudo] docker run -it -p 8888:8888 pychaste
+[sudo] docker run --init -it -p 8888:8888 pychaste
 ```
 
 Then go to [htpp://localhost::8888](htpp://localhost::8888) in a web browser.
