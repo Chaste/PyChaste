@@ -1,4 +1,12 @@
 FROM mambaorg/micromamba:1.5-jammy
+LABEL maintainer="Kwabena N. Amponsah <kwabenantim@gmail.com>" \
+    author.orcid="https://orcid.org/0000-0002-7506-9040" \
+    org.opencontainers.image.authors="Kwabena N. Amponsah" \
+    org.opencontainers.image.url="https://github.com/Chaste/PyChaste" \
+    org.opencontainers.image.licenses="3-Clause BSD" \
+    org.opencontainers.image.title="PyChaste Docker Image" \
+    org.opencontainers.image.description="PyChaste: Python Bindings for Chaste" \
+    org.opencontainers.image.documentation="https://chaste.github.io/pychaste/"
 
 USER root
 RUN apt-get update && \
