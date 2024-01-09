@@ -1,3 +1,6 @@
+# docker build -t pychaste .
+# docker run -it --init --rm -p 8888:8888 pychaste
+
 FROM mambaorg/micromamba:1.5-jammy
 LABEL maintainer="Kwabena N. Amponsah <kwabenantim@gmail.com>" \
     author.orcid="https://orcid.org/0000-0002-7506-9040" \
