@@ -1,15 +1,20 @@
- FROM continuumio/miniconda
- RUN apt-get install build-essential lsb-release libgl1-mesa-dev:amd64 libxt-dev:amd64 libatlas-base-dev xvfb -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
- RUN conda config --add channels conda-forge && conda config --add channels jmsgrogan
- RUN conda install chaste && conda install libgcc --force && conda clean --yes --all && rm -rf /opt/conda/pkgs/*
- #RUN conda install vtk jupyter && conda install libgcc && conda clean --yes --all && rm -rf /opt/conda/pkgs/*
+FROM mambaorg/micromamba:1.5-jammy
 
- # Add Tini. Tini operates as a process subreaper for jupyter. This prevents
- # kernel crashes.
- ENV TINI_VERSION v0.6.0
- ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/bin/tini
- RUN chmod +x /usr/bin/tini 
+USER root
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        libgl1-mesa-dev \
+        libxt-dev \
+        xvfb && \
+    apt-get -y clean && \
+    rm -rf /var/cache/apt && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/tmp/* && \
+    rm -rf /tmp/*
 
- ENTRYPOINT ["/usr/bin/tini", "--"]
+USER $MAMBA_USER
+RUN micromamba install -y -n base -c pychaste -c conda-forge -c bioconda chaste boost-cpp=1.74 notebook && \
+    micromamba clean --all --yes && \
+    rm -rf /opt/conda/pkgs/*
 
- CMD xvfb-run --server-args="-screen 0 1024x768x24" jupyter notebook --port=8888 --no-browser --ip=0.0.0.0
+CMD xvfb-run --server-args="-screen 0 1024x768x24" jupyter notebook --port=8888 --no-browser --ip=0.0.0.0
