@@ -19,7 +19,7 @@ jobs:
       
     steps:
     - name: checkout Chaste repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         repository: Chaste/Chaste
         ref: develop
@@ -27,7 +27,7 @@ jobs:
         submodules: recursive
 
     - name: checkout PyChaste repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         path: Chaste/projects/PyChaste
         submodules: recursive
