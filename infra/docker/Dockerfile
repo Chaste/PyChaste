@@ -13,8 +13,9 @@ RUN apt-get update && \
     rm -rf /tmp/*
 
 USER $MAMBA_USER
-RUN micromamba install -y -n base -c pychaste -c conda-forge -c bioconda chaste boost-cpp=1.74 notebook && \
+RUN micromamba install -y -n base -c pychaste -c conda-forge -c bioconda chaste boost-cpp=1.74 jupyterlab && \
     micromamba clean --all --yes && \
+    rm -rf $HOME/micromamba/pkgs/* && \
     rm -rf /opt/conda/pkgs/*
 
-CMD xvfb-run --server-args="-screen 0 1024x768x24" jupyter notebook --port=8888 --no-browser --ip=0.0.0.0
+CMD xvfb-run --server-args="-screen 0 1024x768x24" jupyter lab --port=8888 --no-browser --ip=0.0.0.0
