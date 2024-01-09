@@ -27,5 +27,5 @@ docker push chaste/pychaste:latest
 [sudo] docker run --init -it -p 8888:8888 pychaste
 ```
 
-Then go to [http://localhost::8888](http://localhost::8888) in a web browser.
+Then go to [http://127.0.0.1:8888](http://127.0.0.1:8888) in a web browser.
 
