@@ -6,6 +6,15 @@ The `pychaste` docker image is on the channel `chaste` on the Docker Hub. This d
 [sudo] docker build -t pychaste .
 ```
 
+## Working with the local image
+
+```bash
+[sudo] docker run --init -it -p 8888:8888 pychaste
+```
+
+Then go to [http://127.0.0.1:8888](http://127.0.0.1:8888) in a web browser.
+
+## Uploading the image
 If you are happy with the package it can be tagged and uploaded to Docker Hub.
 To find the image id, run:
 
@@ -20,12 +29,3 @@ To tag the image with the `latest` tag and upload it to Docker Hub:
 docker login
 docker push chaste/pychaste:latest
 ```
-
-## Working with the local image
-
-```bash
-[sudo] docker run --init -it -p 8888:8888 pychaste
-```
-
-Then go to [http://127.0.0.1:8888](http://127.0.0.1:8888) in a web browser.
-
