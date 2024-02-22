@@ -33,12 +33,12 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef
 #define TRIGGER_WIKI
 
-## # Introduction
+## ## Introduction
 ## In this tutorial we show how Chaste can be used to create, run and visualize vertex-based simulations. 
 ## Full details of the mechanical model proposed by T. Nagai and H. Honda ("A dynamic cell model for the formation of epithelial tissues", 
 ## Philosophical Magazine Part B 81:699-719).
 ##
-## ## The Test
+## ### The Test
 
 import unittest  # Python testing framework
 import matplotlib.pyplot as plt  # Plotting
@@ -50,7 +50,7 @@ import chaste.visualization  # Visualization tools
 chaste.init()  # Set up MPI
 
 class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
-    ## ## Test 1 - A basic vertex-based simulation
+    ## ### Test 1 - A basic vertex-based simulation
     ## In the first test, we run a simple vertex-based simulation, in which we create a monolayer of cells, 
     ## using a mutable vertex mesh. Each cell is assigned a stochastic cell-cycle model.
 
@@ -140,7 +140,7 @@ class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBa
 
         # JUPYTER_TEARDOWN
 
-    ## ## Test 2 - introducing periodicity, boundaries and cell killers
+    ## ### Test 2 - introducing periodicity, boundaries and cell killers
     ## In the second test, we run a simple vertex-based simulation, in which we create a monolayer of cells in a periodic geometry, 
     ## using a cylindrical vertex mesh. We also include a fixed boundary which cells can't pass through and a cell killer which removes
     ## cells once they leave a region. As before each cell is assigned a stochastic cell-cycle model.

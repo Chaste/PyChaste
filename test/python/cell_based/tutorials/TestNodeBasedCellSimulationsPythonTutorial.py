@@ -33,11 +33,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef
 #define TRIGGER_WIKI
 
-## # Introduction
+## ## Introduction
 ## In this tutorial we show how Chaste can be used to create, run and visualize node-based simulations. Full details of the mechanical model can be found in Pathamathan et 
 ## al "A computational study of discrete mechanical tissue models", Physical Biology. Vol. 6. No. 3. 2009.. DOI (10.1088/1478-3975/6/3/036001). 
 ##
-## ## The Test
+## ### The Test
 
 import unittest  # Python testing framework
 import numpy as np  # Matrix tools
@@ -49,7 +49,7 @@ chaste.init()  # Set up MPI
 
 
 class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
-    ## ## Test 1 - A basic node-based simulation
+    ## ### Test 1 - A basic node-based simulation
     ## In the first test, we run a simple node-based simulation, in which we create a monolayer of cells, 
     ## using a nodes only mesh. Each cell is assigned a uniform cell-cycle model.
 
@@ -131,7 +131,7 @@ class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
 
         # JUPYTER_TEARDOWN
 
-    ## ## Test 2 - a basic node-based simulation in 3D
+    ## ### Test 2 - a basic node-based simulation in 3D
     ## In the second test we run a simple node-based simulation in 3D. This is very similar to the 2D test with the dimension changed from 2 to 3 and 
     ## instead of using a mesh generator we generate the nodes directly.
 
@@ -209,7 +209,7 @@ class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
 
         # JUPYTER_TEARDOWN
 
-    ## ## Test 3 - a node-based simulation on a restricted geometry
+    ## ### Test 3 - a node-based simulation on a restricted geometry
     ## In the second test we run a simple node-based simulation in 3D. This is very similar to the 2D test with the dimension changed from 2 to 3 and 
     ## instead of using a mesh generator we generate the nodes directly.
 
