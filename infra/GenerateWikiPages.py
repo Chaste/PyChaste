@@ -66,6 +66,9 @@ if __name__ == "__main__":
                 if not fnmatch.fnmatch(file, "*.pyc"):
                     tutorial_files.append([root, file])
 
+    # Get git revision
+    revision = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+
     if args.format == "markdown":
         # Generate the markdown for each
         for eachFile in tutorial_files:
@@ -75,7 +78,7 @@ if __name__ == "__main__":
                 + ".md"
             )
             inputfile = eachFile[0] + "/" + eachFile[1]
-            launch_string = f"../infra/CreateMarkdownTutorial.py {inputfile} {outfile}"
+            launch_string = f"../infra/CreateMarkdownTutorial.py {inputfile} {outfile} --revision {revision}"
             os.system(launch_string)
 
     elif args.format == "jupyter":
