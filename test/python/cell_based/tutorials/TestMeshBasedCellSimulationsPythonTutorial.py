@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## In this tutorial we show how Chaste can be used to create, run and visualize mesh-based simulations. 
 ## Full details of the mathematical model can be found in van Leeuwen et al. (2009) [doi:10.1111/j.1365-2184.2009.00627.x].
 ##
-## ### Imports and Setup
+## ## The Test
 
 import unittest  # Python testing framework
 import matplotlib.pyplot as plt  # Plotting

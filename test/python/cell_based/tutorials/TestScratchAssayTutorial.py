@@ -44,6 +44,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## * Simulating cell migration on the mesh
 ## * Real-time visualization of the cell population and plotting of population statistics
 ##
+## ## The Test
 
 import unittest # Python testing framework
 import matplotlib.pyplot as plt # Plotting

@@ -37,7 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## In this tutorial we show how Chaste can be used to create, run and visualize Potts-based simulations. 
 ## Full details of the mathematical model can be found in Graner, F. and Glazier, J. A. (1992). 
 ##
-## ### The Test
+## ## The Test
 
 import unittest  # Python testing framework
 import chaste  # The PyChaste module

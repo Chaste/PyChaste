@@ -40,7 +40,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## * Setting up a cell cycle model with oxygen dependence
 ## * Setting up and solving an oxygen transport PDE
 ## * Setting up a cell killer
-## ### Imports and Setup
+##
+## ## The Test
 
 import unittest # Python testing framework
 import matplotlib.pyplot as plt # Plotting

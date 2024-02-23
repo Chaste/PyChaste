@@ -40,7 +40,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## * Applying boundary conditions
 ## * Working with forces
 ##
-## ### The Test
+## ## The Test
 
 import unittest  # Python testing framework
 import numpy as np  # Matrix tools

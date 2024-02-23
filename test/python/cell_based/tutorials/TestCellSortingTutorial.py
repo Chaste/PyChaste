@@ -39,7 +39,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## * How to set up a Potts simulation
 ## * Working with labels
 ##
-## ### The Test
+## ## The Test
 
 import unittest # Python testing framework
 import matplotlib.pyplot as plt # Plotting

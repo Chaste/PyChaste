@@ -38,7 +38,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ## Full details of the mechanical model proposed by T. Nagai and H. Honda ("A dynamic cell model for the formation of epithelial tissues", 
 ## Philosophical Magazine Part B 81:699-719).
 ##
-## ### The Test
+## ## The Test
 
 import unittest  # Python testing framework
 import matplotlib.pyplot as plt  # Plotting
