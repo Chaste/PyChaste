@@ -8,16 +8,15 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestNodeBasedCellSimulationsPythonTutorial.py .
+This tutorial is automatically generated from [TestNodeBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestNodeBasedCellSimulationsPythonTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
 Note that the code is given in full at the bottom of the page.
 
 
-
-# Introduction
+## Introduction
 In this tutorial we show how Chaste can be used to create, run and visualize node-based simulations. Full details of the mechanical model can be found in Pathamathan et
 al "A computational study of discrete mechanical tissue models", Physical Biology. Vol. 6. No. 3. 2009.. DOI (10.1088/1478-3975/6/3/036001).
 
-## The Test
+### The Test
 
 ```python
 import unittest  # Python testing framework
@@ -30,7 +29,7 @@ chaste.init()  # Set up MPI
 
 class TestRunningNodeBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 ```
-## Test 1 - A basic node-based simulation
+### Test 1 - A basic node-based simulation
 In the first test, we run a simple node-based simulation, in which we create a monolayer of cells,
 using a nodes only mesh. Each cell is assigned a uniform cell-cycle model.
 
@@ -136,7 +135,7 @@ If different simulation input parameters are being explored the lines should be 
         # JUPYTER_TEARDOWN
 
 ```
-## Test 2 - a basic node-based simulation in 3D
+### Test 2 - a basic node-based simulation in 3D
 In the second test we run a simple node-based simulation in 3D. This is very similar to the 2D test with the dimension changed from 2 to 3 and
 instead of using a mesh generator we generate the nodes directly.
 
@@ -238,7 +237,7 @@ If different simulation input parameters are being explored the lines should be 
         # JUPYTER_TEARDOWN
 
 ```
-## Test 3 - a node-based simulation on a restricted geometry
+### Test 3 - a node-based simulation on a restricted geometry
 In the second test we run a simple node-based simulation in 3D. This is very similar to the 2D test with the dimension changed from 2 to 3 and
 instead of using a mesh generator we generate the nodes directly.
 
@@ -339,11 +338,11 @@ if __name__ == '__main__':
 ```
 
 
-# Code 
+## Code 
 The full code is given below
 
 
-## File name `TestNodeBasedCellSimulationsPythonTutorial.py` 
+### File name TestNodeBasedCellSimulationsPythonTutorial.py 
 
 ```python
 import unittest  # Python testing framework

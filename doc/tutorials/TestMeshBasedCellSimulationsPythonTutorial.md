@@ -8,16 +8,15 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestMeshBasedCellSimulationsPythonTutorial.py .
+This tutorial is automatically generated from [TestMeshBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestMeshBasedCellSimulationsPythonTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
 Note that the code is given in full at the bottom of the page.
 
 
-
-# Introduction
+## Introduction
 In this tutorial we show how Chaste can be used to create, run and visualize mesh-based simulations.
 Full details of the mathematical model can be found in van Leeuwen et al. (2009) [doi:10.1111/j.1365-2184.2009.00627.x].
 
-## Imports and Setup
+### Imports and Setup
 
 ```python
 import unittest  # Python testing framework
@@ -32,7 +31,7 @@ import chaste.visualization  # Visualization tools
 class TestRunningMeshBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
 ```
-## Test 1 - a basic mesh-based simulation
+### Test 1 - a basic mesh-based simulation
 In the first test, we run a simple mesh-based simulation,
 in which we create a monolayer of cells, using a mutable mesh. Each cell is assigned a stochastic cell-cycle model.
 
@@ -139,7 +138,7 @@ To run the simulation, we call `Solve()`. We can again do a quick rendering of t
 ```
 Full results can be visualized in Paraview from the `file_handler.GetOutputDirectoryFullPath()` directory.
 
-## Test 2 -  a basic mesh-based simulation with ghost nodes
+### Test 2 -  a basic mesh-based simulation with ghost nodes
 In the second test, we run a simple mesh-based simulation with ghost nodes, in which we create a monolayer of cells, using a mutable mesh.
 Each cell is assigned a stochastic cell-cycle model.
 
@@ -256,11 +255,11 @@ if __name__ == '__main__':
 ```
 
 
-# Code 
+## Code 
 The full code is given below
 
 
-## File name `TestMeshBasedCellSimulationsPythonTutorial.py` 
+### File name TestMeshBasedCellSimulationsPythonTutorial.py 
 
 ```python
 import unittest  # Python testing framework

@@ -8,18 +8,17 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestCellSortingTutorial.py .
+This tutorial is automatically generated from [TestCellSortingTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestCellSortingTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
 Note that the code is given in full at the bottom of the page.
 
 
-
-# Introduction
+## Introduction
 This test is a demonstration of cell sorting using a Cellular Potts based framework.
 It shows:
  * How to set up a Potts simulation
  * Working with labels
  
-## The Test
+### The Test
 
 ```python
 import unittest # Python testing framework
@@ -34,7 +33,7 @@ import chaste.visualization # Visualization tools
 class TestCellSortingTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
 ```
-## Test 1 - Cell sorting
+### Test 1 - Cell sorting
 The next test generates a collection of cells, there are two types of cells, labelled ones and non labelled ones,
 there is differential adhesion between the cell types. For the parameters specified, the cells sort into separate types.
 
@@ -150,11 +149,11 @@ if __name__ == '__main__':
 ```
 
 
-# Code 
+## Code 
 The full code is given below
 
 
-## File name `TestCellSortingTutorial.py` 
+### File name TestCellSortingTutorial.py 
 
 ```python
 import unittest # Python testing framework

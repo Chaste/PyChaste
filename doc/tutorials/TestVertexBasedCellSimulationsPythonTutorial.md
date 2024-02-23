@@ -8,17 +8,16 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestVertexBasedCellSimulationsPythonTutorial.py .
+This tutorial is automatically generated from [TestVertexBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestVertexBasedCellSimulationsPythonTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
 Note that the code is given in full at the bottom of the page.
 
 
-
-# Introduction
+## Introduction
 In this tutorial we show how Chaste can be used to create, run and visualize vertex-based simulations.
 Full details of the mechanical model proposed by T. Nagai and H. Honda ("A dynamic cell model for the formation of epithelial tissues",
 Philosophical Magazine Part B 81:699-719).
 
-## The Test
+### The Test
 
 ```python
 import unittest  # Python testing framework
@@ -32,7 +31,7 @@ chaste.init()  # Set up MPI
 
 class TestRunningVertexBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 ```
-## Test 1 - A basic vertex-based simulation
+### Test 1 - A basic vertex-based simulation
 In the first test, we run a simple vertex-based simulation, in which we create a monolayer of cells,
 using a mutable vertex mesh. Each cell is assigned a stochastic cell-cycle model.
 
@@ -146,7 +145,7 @@ If different simulation input parameters are being explored the lines should be 
         # JUPYTER_TEARDOWN
 
 ```
-## Test 2 - introducing periodicity, boundaries and cell killers
+### Test 2 - introducing periodicity, boundaries and cell killers
 In the second test, we run a simple vertex-based simulation, in which we create a monolayer of cells in a periodic geometry,
 using a cylindrical vertex mesh. We also include a fixed boundary which cells can't pass through and a cell killer which removes
 cells once they leave a region. As before each cell is assigned a stochastic cell-cycle model.
@@ -256,11 +255,11 @@ if __name__ == '__main__':
 ```
 
 
-# Code 
+## Code 
 The full code is given below
 
 
-## File name `TestVertexBasedCellSimulationsPythonTutorial.py` 
+### File name TestVertexBasedCellSimulationsPythonTutorial.py 
 
 ```python
 import unittest  # Python testing framework
