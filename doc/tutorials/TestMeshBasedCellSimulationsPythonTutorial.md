@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestMeshBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestMeshBasedCellSimulationsPythonTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
+This tutorial is automatically generated from [TestMeshBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestMeshBasedCellSimulationsPythonTutorial.py) at revision [f810861a](https://github.com/Chaste/PyChaste/commit/f810861afe376ba19bd791e14e85f29583993205).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -16,7 +16,7 @@ Note that the code is given in full at the bottom of the page.
 In this tutorial we show how Chaste can be used to create, run and visualize mesh-based simulations.
 Full details of the mathematical model can be found in van Leeuwen et al. (2009) [doi:10.1111/j.1365-2184.2009.00627.x].
 
-### Imports and Setup
+## The Test
 
 ```python
 import unittest  # Python testing framework
@@ -255,11 +255,10 @@ if __name__ == '__main__':
 ```
 
 
-## Code 
-The full code is given below
+## Full code 
 
 
-### File name TestMeshBasedCellSimulationsPythonTutorial.py 
+**File name:** `TestMeshBasedCellSimulationsPythonTutorial.py` 
 
 ```python
 import unittest  # Python testing framework

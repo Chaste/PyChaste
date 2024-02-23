@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestCellSortingTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestCellSortingTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
+This tutorial is automatically generated from [TestCellSortingTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestCellSortingTutorial.py) at revision [f810861a](https://github.com/Chaste/PyChaste/commit/f810861afe376ba19bd791e14e85f29583993205).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -18,7 +18,7 @@ It shows:
  * How to set up a Potts simulation
  * Working with labels
  
-### The Test
+## The Test
 
 ```python
 import unittest # Python testing framework
@@ -149,11 +149,10 @@ if __name__ == '__main__':
 ```
 
 
-## Code 
-The full code is given below
+## Full code 
 
 
-### File name TestCellSortingTutorial.py 
+**File name:** `TestCellSortingTutorial.py` 
 
 ```python
 import unittest # Python testing framework

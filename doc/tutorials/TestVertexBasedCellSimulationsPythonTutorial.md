@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestVertexBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestVertexBasedCellSimulationsPythonTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
+This tutorial is automatically generated from [TestVertexBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestVertexBasedCellSimulationsPythonTutorial.py) at revision [f810861a](https://github.com/Chaste/PyChaste/commit/f810861afe376ba19bd791e14e85f29583993205).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -17,7 +17,7 @@ In this tutorial we show how Chaste can be used to create, run and visualize ver
 Full details of the mechanical model proposed by T. Nagai and H. Honda ("A dynamic cell model for the formation of epithelial tissues",
 Philosophical Magazine Part B 81:699-719).
 
-### The Test
+## The Test
 
 ```python
 import unittest  # Python testing framework
@@ -255,11 +255,10 @@ if __name__ == '__main__':
 ```
 
 
-## Code 
-The full code is given below
+## Full code 
 
 
-### File name TestVertexBasedCellSimulationsPythonTutorial.py 
+**File name:** `TestVertexBasedCellSimulationsPythonTutorial.py` 
 
 ```python
 import unittest  # Python testing framework

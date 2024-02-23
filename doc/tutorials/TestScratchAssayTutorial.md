@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestScratchAssayTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestScratchAssayTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
+This tutorial is automatically generated from [TestScratchAssayTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestScratchAssayTutorial.py) at revision [f810861a](https://github.com/Chaste/PyChaste/commit/f810861afe376ba19bd791e14e85f29583993205).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -23,6 +23,8 @@ representation of cells. It will cover the following techniques:
  * Simulating cell migration on the mesh
  * Real-time visualization of the cell population and plotting of population statistics
  
+## The Test
+
 ```python
 import unittest # Python testing framework
 import matplotlib.pyplot as plt # Plotting
@@ -226,11 +228,10 @@ if __name__ == '__main__':
 ```
 
 
-## Code 
-The full code is given below
+## Full code 
 
 
-### File name TestScratchAssayTutorial.py 
+**File name:** `TestScratchAssayTutorial.py` 
 
 ```python
 import unittest # Python testing framework

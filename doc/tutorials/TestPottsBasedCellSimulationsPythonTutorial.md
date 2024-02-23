@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestPottsBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestPottsBasedCellSimulationsPythonTutorial.py) at revision [be59762f](https://github.com/Chaste/PyChaste/commit/be59762fe3e4709aa796fb442199fd23cadfd269).
+This tutorial is automatically generated from [TestPottsBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestPottsBasedCellSimulationsPythonTutorial.py) at revision [f810861a](https://github.com/Chaste/PyChaste/commit/f810861afe376ba19bd791e14e85f29583993205).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -16,7 +16,7 @@ Note that the code is given in full at the bottom of the page.
 In this tutorial we show how Chaste can be used to create, run and visualize Potts-based simulations.
 Full details of the mathematical model can be found in Graner, F. and Glazier, J. A. (1992).
 
-### The Test
+## The Test
 
 ```python
 import unittest  # Python testing framework
@@ -383,11 +383,10 @@ if __name__ == '__main__':
 ```
 
 
-## Code 
-The full code is given below
+## Full code 
 
 
-### File name TestPottsBasedCellSimulationsPythonTutorial.py 
+**File name:** `TestPottsBasedCellSimulationsPythonTutorial.py` 
 
 ```python
 import unittest  # Python testing framework
