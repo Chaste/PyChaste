@@ -193,7 +193,7 @@ def CodeBlockOpener(file_name):
     return '```' + highlight_code
 
 def AddCodeOutput(file_name, code, output):
-    output.append('\n\n### File name %s \n\n' % file_name)
+    output.append('\n\n**File name:** `%s` \n\n' % file_name)
     output.append(CodeBlockOpener(file_name))
     output.append('\n'.join(code))
     output.append('\n```\n\n')
@@ -253,7 +253,7 @@ Note that the code is given in full at the bottom of the page.
         if file_code:
             other_code[other_file[0]] = file_code
     # Now output the C++ code for all files
-    output.append('\n\n## Code \nThe full code is given below\n')
+    output.append('\n\n## Full code \n')
     AddCodeOutput(os.path.basename(test_file_path), test_code, output)
     for filename, code in other_code.items():
         AddCodeOutput(filename, code, output)
