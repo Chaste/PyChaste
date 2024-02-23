@@ -60,6 +60,7 @@ import optparse
 import os
 import sys
 import re
+import subprocess
 
 # This had better match GenerateHowTo.py!
 HOWTO_TAG = "HOW_TO_TAG"
@@ -217,7 +218,12 @@ def ConvertTutorialToMarkdownText(test_file_path, test_file, other_files, revisi
     ugly_file_name = os.path.splitext(os.path.basename(test_file_path))[0] 
     nice_file_name = re.sub(regex, " ", ugly_file_name)
 
-    link_path = f"https://github.com/Chaste/PyChaste/blob/develop/test/tutorials/{ugly_file_name}.py"
+    root_dir = (
+        subprocess.check_output(["git", "rev-parse", "--show-toplevel"]).decode("ascii").strip()
+    )
+    link_path = os.path.relpath(os.path.abspath(test_file_path), root_dir)
+    link_path = f"https://github.com/Chaste/PyChaste/blob/develop/{link_path}"
+
     page_header = f"""
 ---
 title : "{nice_file_name}"

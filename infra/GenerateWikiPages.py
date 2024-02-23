@@ -37,6 +37,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 This script converts Python tutorials to markdown and jupyter notebook formats for use on the 
 PyChaste website.
 """
+
 import argparse
 import fnmatch
 import ntpath
@@ -56,43 +57,57 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
+    # Get the repository root directory
+    root_dir = (
+        subprocess.check_output(["git", "rev-parse", "--show-toplevel"])
+        .decode("ascii")
+        .strip()
+    )
+
     # Find all the tutorial files.
     tutorial_files = []
-    for root, dirs, files in os.walk("../test"):
+    for root, dirs, files in os.walk(os.path.join(root_dir, "test")):
         for file in files:
-            if fnmatch.fnmatch(file, "Test*LiteratePaper*") or fnmatch.fnmatch(
-                file, "Test*Tutorial*"
+            if fnmatch.fnmatch(file, "Test*LiteratePaper*.py") or fnmatch.fnmatch(
+                file, "Test*Tutorial*.py"
             ):
-                if not fnmatch.fnmatch(file, "*.pyc"):
-                    tutorial_files.append([root, file])
+                tutorial_files.append((root, file))
 
-    # Get git revision
-    revision = subprocess.check_output(['git', 'rev-parse', 'HEAD']).decode('ascii').strip()
+    # Get the git revision
+    revision = (
+        subprocess.check_output(["git", "rev-parse", "HEAD"]).decode("ascii").strip()
+    )
 
     if args.format == "markdown":
-        # Generate the markdown for each
-        for eachFile in tutorial_files:
-            outfile = (
-                "../doc/tutorials/"
-                + os.path.splitext(ntpath.basename(eachFile[1]))[0]
-                + ".md"
+        # Generate a markdown file for each tutorial
+        for tutorial_file in tutorial_files:
+            input_filepath = os.path.join(tutorial_file[0], tutorial_file[1])
+
+            output_filename = (
+                os.path.splitext(os.path.basename(tutorial_file[1]))[0] + ".md"
             )
-            inputfile = eachFile[0] + "/" + eachFile[1]
-            launch_string = f"../infra/CreateMarkdownTutorial.py {inputfile} {outfile} --revision {revision}"
+            output_filepath = os.path.join(
+                root_dir, "doc", "tutorials", output_filename
+            )
+
+            launch_string = f"{root_dir}/infra/CreateMarkdownTutorial.py {input_filepath} {output_filepath} --revision {revision}"
             os.system(launch_string)
 
     elif args.format == "jupyter":
-        # Generate the jupyter notebooks for each
-        for eachFile in tutorial_files:
-            outfile = (
-                "../doc/tutorials/"
-                + os.path.splitext(ntpath.basename(eachFile[1]))[0]
-                + ".ipynb"
+        # Generate a jupyter notebook for each tutorial
+        for tutorial_file in tutorial_files:
+            input_filepath = os.path.join(tutorial_file[0], tutorial_file[1])
+
+            output_filename = (
+                os.path.splitext(os.path.basename(tutorial_file[1]))[0] + ".ipynb"
             )
-            inputfile = eachFile[0] + "/" + eachFile[1]
-            launch_string = (
-                f"../infra/CreateJupyterNotebookTutorial.py {inputfile} {outfile}"
+            output_filepath = os.path.join(
+                root_dir, "doc", "tutorials", output_filename
             )
+
+            launch_string = f"{root_dir}/infra/CreateJupyterNotebookTutorial.py {input_filepath} {output_filepath}"
             os.system(launch_string)
 
-            subprocess.call(f"jupyter nbconvert --to notebook {outfile}", shell=True)
+            subprocess.call(
+                f"jupyter nbconvert --to notebook {output_filepath}", shell=True
+            )
