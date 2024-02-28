@@ -9,6 +9,7 @@
 #include "AbstractCellPopulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "CaBasedCellPopulation.hpp"
+#include "ImmersedBoundaryCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
@@ -65,6 +66,13 @@ class AbstractCellPopulationCountWriter2_2_Overloads : public AbstractCellPopula
             Visit,
             pCellPopulation);
     }
+    void Visit(::ImmersedBoundaryCellPopulation<2> * pCellPopulation) override {
+        PYBIND11_OVERRIDE_PURE(
+            void,
+            AbstractCellPopulationCountWriter2_2,
+            Visit,
+            pCellPopulation);
+    }
 
 };
 void register_AbstractCellPopulationCountWriter2_2_class(py::module &m){
@@ -93,6 +101,10 @@ py::class_<AbstractCellPopulationCountWriter2_2 , AbstractCellPopulationCountWri
         .def(
             "Visit", 
             (void(AbstractCellPopulationCountWriter2_2::*)(::VertexBasedCellPopulation<2> *)) &AbstractCellPopulationCountWriter2_2::Visit, 
+            " " , py::arg("pCellPopulation") )
+        .def(
+            "Visit", 
+            (void(AbstractCellPopulationCountWriter2_2::*)(::ImmersedBoundaryCellPopulation<2> *)) &AbstractCellPopulationCountWriter2_2::Visit, 
             " " , py::arg("pCellPopulation") )
     ;
 }

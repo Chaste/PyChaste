@@ -4,6 +4,7 @@
 #include "MeshBasedCellPopulation.hpp"
 #include "PottsBasedCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
+#include "ImmersedBoundaryCellPopulation.hpp"
 #include "CaBasedCellPopulation.hpp"
 #include <set>
 #include <vector>
@@ -57,6 +58,13 @@ class VoronoiDataWriter2_2_Overloads : public VoronoiDataWriter2_2{
             Visit,
             pCellPopulation);
     }
+    void Visit(::ImmersedBoundaryCellPopulation<2> * pCellPopulation) override {
+        PYBIND11_OVERRIDE(
+            void,
+            VoronoiDataWriter2_2,
+            Visit,
+            pCellPopulation);
+    }
 
 };
 void register_VoronoiDataWriter2_2_class(py::module &m){
@@ -81,6 +89,10 @@ py::class_<VoronoiDataWriter2_2 , VoronoiDataWriter2_2_Overloads , boost::shared
         .def(
             "Visit", 
             (void(VoronoiDataWriter2_2::*)(::VertexBasedCellPopulation<2> *)) &VoronoiDataWriter2_2::Visit, 
+            " " , py::arg("pCellPopulation") )
+        .def(
+            "Visit", 
+            (void(VoronoiDataWriter2_2::*)(::ImmersedBoundaryCellPopulation<2> *)) &VoronoiDataWriter2_2::Visit, 
             " " , py::arg("pCellPopulation") )
     ;
 }
