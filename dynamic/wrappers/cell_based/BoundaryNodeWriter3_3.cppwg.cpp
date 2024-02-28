@@ -9,6 +9,7 @@
 #include "AbstractCellPopulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "CaBasedCellPopulation.hpp"
+#include "ImmersedBoundaryCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
@@ -58,6 +59,13 @@ class BoundaryNodeWriter3_3_Overloads : public BoundaryNodeWriter3_3{
             Visit,
             pCellPopulation);
     }
+    void Visit(::ImmersedBoundaryCellPopulation<3> * pCellPopulation) override {
+        PYBIND11_OVERRIDE(
+            void,
+            BoundaryNodeWriter3_3,
+            Visit,
+            pCellPopulation);
+    }
 
 };
 void register_BoundaryNodeWriter3_3_class(py::module &m){
@@ -86,6 +94,10 @@ py::class_<BoundaryNodeWriter3_3 , BoundaryNodeWriter3_3_Overloads , boost::shar
         .def(
             "Visit", 
             (void(BoundaryNodeWriter3_3::*)(::VertexBasedCellPopulation<3> *)) &BoundaryNodeWriter3_3::Visit, 
+            " " , py::arg("pCellPopulation") )
+        .def(
+            "Visit", 
+            (void(BoundaryNodeWriter3_3::*)(::ImmersedBoundaryCellPopulation<3> *)) &BoundaryNodeWriter3_3::Visit, 
             " " , py::arg("pCellPopulation") )
     ;
 }

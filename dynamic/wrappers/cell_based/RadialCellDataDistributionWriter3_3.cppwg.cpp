@@ -9,6 +9,7 @@
 #include "AbstractCellPopulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "CaBasedCellPopulation.hpp"
+#include "ImmersedBoundaryCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
@@ -58,6 +59,13 @@ class RadialCellDataDistributionWriter3_3_Overloads : public RadialCellDataDistr
             Visit,
             pCellPopulation);
     }
+    void Visit(::ImmersedBoundaryCellPopulation<3> * pCellPopulation) override {
+        PYBIND11_OVERRIDE(
+            void,
+            RadialCellDataDistributionWriter3_3,
+            Visit,
+            pCellPopulation);
+    }
 
 };
 void register_RadialCellDataDistributionWriter3_3_class(py::module &m){
@@ -86,6 +94,10 @@ py::class_<RadialCellDataDistributionWriter3_3 , RadialCellDataDistributionWrite
         .def(
             "Visit", 
             (void(RadialCellDataDistributionWriter3_3::*)(::VertexBasedCellPopulation<3> *)) &RadialCellDataDistributionWriter3_3::Visit, 
+            " " , py::arg("pCellPopulation") )
+        .def(
+            "Visit", 
+            (void(RadialCellDataDistributionWriter3_3::*)(::ImmersedBoundaryCellPopulation<3> *)) &RadialCellDataDistributionWriter3_3::Visit, 
             " " , py::arg("pCellPopulation") )
         .def(
             "SetVariableName", 
