@@ -119,6 +119,8 @@ modules:
   - name: NodesOnlyMesh
   - name: PottsElement
   - name: PottsMesh
+  - name: FluidSource
+  - name: ImmersedBoundaryElement
   - name: PottsMeshGenerator
   - name: VertexMesh
     excluded_methods: 
@@ -142,6 +144,7 @@ modules:
     excluded_methods:
     - GetInstanceOfMismatchedBoundaryNodes
   - name: Toroidal2dVertexMesh
+  - name: ImmersedBoundaryMesh
   - name: HoneycombMeshGenerator
   - name: HoneycombVertexMeshGenerator
   - name: CylindricalHoneycombMeshGenerator
@@ -149,6 +152,8 @@ modules:
   - name: ToroidalHoneycombMeshGenerator
   - name: ToroidalHoneycombVertexMeshGenerator
   - name: VoronoiVertexMeshGenerator
+  - name: ImmersedBoundaryHoneycombMeshGenerator
+  - name: ImmersedBoundaryPalisadeMeshGenerator
 - name: cell_based
   source_locations:
   - cell_based/src
@@ -342,6 +347,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: AbstractCellPopulationCountWriter
@@ -350,6 +356,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: AbstractCellPopulationEventWriter
@@ -358,6 +365,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: BoundaryNodeWriter
@@ -366,6 +374,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellAgesWriter
@@ -392,6 +401,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellIdWriter
@@ -406,6 +416,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellMutationStatesWriter
@@ -417,6 +428,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellPopulationAreaWriter
@@ -425,6 +437,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellPopulationElementWriter
@@ -433,6 +446,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellProliferativePhasesCountWriter
@@ -441,6 +455,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellProliferativePhasesWriter
@@ -452,6 +467,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellProliferativeTypesWriter
@@ -466,6 +482,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: CellRosetteRankWriter
@@ -480,6 +497,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: LegacyCellProliferativeTypesWriter
@@ -491,6 +509,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: NodeVelocityWriter
@@ -499,6 +518,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: PottsMeshWriter
@@ -508,6 +528,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: VertexIntersectionSwapLocationsWriter
@@ -516,6 +537,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: VertexT1SwapLocationsWriter
@@ -524,6 +546,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: VertexT2SwapLocationsWriter
@@ -532,6 +555,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: VertexT3SwapLocationsWriter
@@ -540,6 +564,7 @@ modules:
     - MeshBasedCellPopulation.hpp
     - PottsBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - VertexBasedCellPopulation.hpp
   - name: VoronoiDataWriter 
@@ -549,6 +574,13 @@ modules:
     - PottsBasedCellPopulation.hpp
     - NodeBasedCellPopulation.hpp
     - CaBasedCellPopulation.hpp
+    - ImmersedBoundaryCellPopulation.hpp
+  - name: ImmersedBoundaryBoundaryCellWriter 
+    source_includes:
+    - ImmersedBoundaryCellPopulation.hpp
+  - name: ImmersedBoundaryNeighbourNumberWriter 
+    source_includes:
+    - ImmersedBoundaryCellPopulation.hpp
   - name: CellLabelWriter
     source_includes:
     - AbstractCellPopulation.hpp
@@ -571,6 +603,8 @@ modules:
   - name: FixedCentreBasedDivisionRule
   - name: AbstractCentreBasedDivisionRule
   - name: ShortAxisVertexBasedDivisionRule
+  - name: AbstractImmersedBoundaryDivisionRule
+  - name: ShortAxisImmersedBoundaryDivisionRule
   - name: RandomCaSwitchingUpdateRule
   - name: ChemotaxisPottsUpdateRule
   - name: AbstractCaSwitchingUpdateRule
@@ -595,6 +629,13 @@ modules:
   - name: NagaiHondaDifferentialAdhesionForce
     excluded_methods: 
     - GetAdhesionParameter
+  - name: AbstractImmersedBoundaryForce
+  - name: ImmersedBoundaryKinematicFeedbackForce
+  - name: ImmersedBoundaryLinearDifferentialAdhesionForce
+  - name: ImmersedBoundaryLinearInteractionForce
+  - name: ImmersedBoundaryLinearMembraneForce
+  - name: ImmersedBoundaryMorseInteractionForce
+  - name: ImmersedBoundaryMorseMembraneForce
   - name: AbstractCellKiller 
   - name: PlaneBasedCellKiller
   - name: ApoptoticCellKiller
@@ -637,6 +678,45 @@ modules:
     - GetTetrahedralMeshForPdeModifier
     - GetNodeCorrespondingToCell
     - rGetAvailableSpaces 
+    custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
+    source_includes:
+    - CellAgesWriter.hpp
+    - CellAncestorWriter.hpp
+    - CellAppliedForceWriter.hpp
+    - CellCycleModelProteinConcentrationsWriter.hpp
+    - CellDataItemWriter.hpp
+    - CellDeltaNotchWriter.hpp
+    - CellDivisionLocationsWriter.hpp
+    - CellIdWriter.hpp
+    - CellLocationIndexWriter.hpp
+    - CellMutationStatesCountWriter.hpp
+    - CellMutationStatesWriter.hpp
+    - CellPopulationAdjacencyMatrixWriter.hpp
+    - CellPopulationAreaWriter.hpp
+    - CellPopulationElementWriter.hpp
+    - CellProliferativePhasesCountWriter.hpp
+    - CellProliferativePhasesWriter.hpp
+    - CellProliferativeTypesCountWriter.hpp
+    - CellProliferativeTypesWriter.hpp
+    - CellRadiusWriter.hpp
+    - CellRemovalLocationsWriter.hpp
+    - CellRosetteRankWriter.hpp
+    - CellVolumesWriter.hpp
+    - HeterotypicBoundaryLengthWriter.hpp
+    - LegacyCellProliferativeTypesWriter.hpp
+    - NodeLocationWriter.hpp
+    - NodeVelocityWriter.hpp
+    - PottsMeshWriter.hpp
+    - RadialCellDataDistributionWriter.hpp
+    - VertexIntersectionSwapLocationsWriter.hpp
+    - VertexT1SwapLocationsWriter.hpp
+    - VertexT2SwapLocationsWriter.hpp
+    - VertexT3SwapLocationsWriter.hpp
+    - VoronoiDataWriter.hpp
+  - name: ImmersedBoundaryCellPopulation
+    excluded_methods: 
+    - rGetMesh
+    - GetTetrahedralMeshForPdeModifier
     custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
     source_includes:
     - CellAgesWriter.hpp
@@ -922,6 +1002,9 @@ modules:
   - name: TargetAreaLinearGrowthModifier
   - name: VolumeTrackingModifier
   - name: VtkSceneModifier
+  - name: ImmersedBoundarySimulationModifier
+  - name: ImmersedBoundarySvgWriter
+  - name: NormallyDistributedTargetAreaModifier
   - name: AbstractCellBasedSimulation
     excluded_methods: 
     - GetSimulationModifiers  
