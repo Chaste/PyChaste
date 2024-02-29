@@ -36,7 +36,7 @@ add_compile_options(-Wno-unused-local-typedefs)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 
 # Used for binding generation
-set(CASTXML_EXE_LOC "/usr/bin/castxml" CACHE FILEPATH "Path to the castxml executable.")
+find_program(CASTXML_EXE_LOC castxml)
 
 # Find the Chaste and third party dependency header files.
 include_directories(${Chaste_INCLUDE_DIRS} ${Chaste_THIRD_PARTY_INCLUDE_DIRS})
