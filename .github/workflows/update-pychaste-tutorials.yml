@@ -11,7 +11,7 @@ on:
 
 # Limit concurrent deployments to one per branch
 concurrency:
-  group: build-and-test-${{ github.ref }}
+  group: update-pychaste-tutorials-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
