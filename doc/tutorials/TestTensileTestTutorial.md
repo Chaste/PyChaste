@@ -8,12 +8,11 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestTensileTestTutorial.py .
+This tutorial is automatically generated from [TestTensileTestTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestTensileTestTutorial.py) at revision [f810861a](https://github.com/Chaste/PyChaste/commit/f810861afe376ba19bd791e14e85f29583993205).
 Note that the code is given in full at the bottom of the page.
 
 
-
-# Introduction
+## Introduction
 In this tutorial we will demonstrate a simulated tensile test on an epithelial sheet. This test
 demonstrates:
  * Working with vertex based off lattice populations
@@ -34,7 +33,7 @@ chaste.init()  # Set up MPI
 class TestTensileTestTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
 ```
-## Test 1 - A 2d test
+### Test 1 - A 2D test
 
 ```python
     def test_monolayer(self):
@@ -169,11 +168,10 @@ if __name__ == '__main__':
 ```
 
 
-# Code 
-The full code is given below
+## Full code 
 
 
-## File name `TestTensileTestTutorial.py` 
+**File name:** `TestTensileTestTutorial.py` 
 
 ```python
 import unittest  # Python testing framework

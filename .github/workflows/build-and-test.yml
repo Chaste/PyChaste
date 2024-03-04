@@ -6,6 +6,11 @@ on:
     branches:
       - '**'
 
+# Limit concurrent deployments to one per branch
+concurrency:
+  group: build-and-test-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   
   build-and-test:

@@ -33,14 +33,15 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef
 #define TRIGGER_WIKI
 
-## # Introduction
+## ## Introduction
 ## This tutorial is an example of modelling spheroid growth with a nutrient.
 ## It covers:
 ## * Setting up an off-lattice cell population
 ## * Setting up a cell cycle model with oxygen dependence
 ## * Setting up and solving an oxygen transport PDE
 ## * Setting up a cell killer
-## ## Imports and Setup
+##
+## ## The Test
 
 import unittest # Python testing framework
 import matplotlib.pyplot as plt # Plotting
@@ -55,7 +56,7 @@ chaste.init() # Set up MPI
 
 class TestSpheroidTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
-    ## ## Test 1 - a 2D mesh-based spheroid
+    ## ### Test 1 - a 2D mesh-based spheroid
     ## In this test we set up a spheroid with a plentiful supply of oxygen on the boundary and watch it grow
     ## over time. Cells can gradually become apoptotic if the oxygen tension is too low.
 

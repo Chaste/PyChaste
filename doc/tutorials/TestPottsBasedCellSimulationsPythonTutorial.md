@@ -8,12 +8,11 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file ../test/python/cell_based/tutorials/TestPottsBasedCellSimulationsPythonTutorial.py .
+This tutorial is automatically generated from [TestPottsBasedCellSimulationsPythonTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestPottsBasedCellSimulationsPythonTutorial.py) at revision [f810861a](https://github.com/Chaste/PyChaste/commit/f810861afe376ba19bd791e14e85f29583993205).
 Note that the code is given in full at the bottom of the page.
 
 
-
-# Introduction
+## Introduction
 In this tutorial we show how Chaste can be used to create, run and visualize Potts-based simulations.
 Full details of the mathematical model can be found in Graner, F. and Glazier, J. A. (1992).
 
@@ -29,7 +28,7 @@ chaste.init()  # Set up MPI
 
 class TestRunningPottsBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 ```
-## Test 1 - A basic node-based simulation
+### Test 1 - A basic node-based simulation
 In the first test, we run a simple Potts-based simulation, in which we create a monolayer of cells, using a Potts mesh.
 Each cell is assigned a stochastic cell-cycle model.
 
@@ -174,7 +173,7 @@ If different simulation input parameters are being explored the lines should be 
         # JUPYTER_TEARDOWN
 
 ```
-## Test 2 - Cell sorting
+### Test 2 - Cell sorting
 The next test generates a collection of cells, there are two types of cells, labelled ones and non labelled ones,
 there is differential adhesion between the cell types. For the parameters specified, the cells sort into separate types.
 
@@ -276,7 +275,7 @@ If different simulation input parameters are being explored the lines should be 
         # JUPYTER_TEARDOWN
 
 ```
-## Test 3 - 3D Cell Sorting
+### Test 3 - 3D Cell Sorting
 The next test extends the previous example to three dimensions.
 
 ```python
@@ -384,11 +383,10 @@ if __name__ == '__main__':
 ```
 
 
-# Code 
-The full code is given below
+## Full code 
 
 
-## File name `TestPottsBasedCellSimulationsPythonTutorial.py` 
+**File name:** `TestPottsBasedCellSimulationsPythonTutorial.py` 
 
 ```python
 import unittest  # Python testing framework

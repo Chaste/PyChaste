@@ -33,11 +33,11 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef
 #define TRIGGER_WIKI
 
-## # Introduction
+## ## Introduction
 ## In this tutorial we show how Chaste can be used to create, run and visualize mesh-based simulations. 
 ## Full details of the mathematical model can be found in van Leeuwen et al. (2009) [doi:10.1111/j.1365-2184.2009.00627.x].
 ##
-## ## Imports and Setup
+## ## The Test
 
 import unittest  # Python testing framework
 import matplotlib.pyplot as plt  # Plotting
@@ -51,7 +51,7 @@ import chaste.visualization  # Visualization tools
 
 class TestRunningMeshBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
-    ## ## Test 1 - a basic mesh-based simulation
+    ## ### Test 1 - a basic mesh-based simulation
     ## In the first test, we run a simple mesh-based simulation, 
     ## in which we create a monolayer of cells, using a mutable mesh. Each cell is assigned a stochastic cell-cycle model.
 
@@ -136,7 +136,7 @@ class TestRunningMeshBasedSimulationsTutorial(chaste.cell_based.AbstractCellBase
 
         ## Full results can be visualized in Paraview from the `file_handler.GetOutputDirectoryFullPath()` directory.
 
-    ## ## Test 2 -  a basic mesh-based simulation with ghost nodes
+    ## ### Test 2 -  a basic mesh-based simulation with ghost nodes
     ## In the second test, we run a simple mesh-based simulation with ghost nodes, in which we create a monolayer of cells, using a mutable mesh. 
     ## Each cell is assigned a stochastic cell-cycle model.
 

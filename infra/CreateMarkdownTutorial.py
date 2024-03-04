@@ -60,6 +60,7 @@ import optparse
 import os
 import sys
 import re
+import subprocess
 
 # This had better match GenerateHowTo.py!
 HOWTO_TAG = "HOW_TO_TAG"
@@ -192,7 +193,7 @@ def CodeBlockOpener(file_name):
     return '```' + highlight_code
 
 def AddCodeOutput(file_name, code, output):
-    output.append('\n\n## File name `%s` \n\n' % file_name)
+    output.append('\n\n**File name:** `%s` \n\n' % file_name)
     output.append(CodeBlockOpener(file_name))
     output.append('\n'.join(code))
     output.append('\n```\n\n')
@@ -207,12 +208,21 @@ def ConvertTutorialToMarkdownText(test_file_path, test_file, other_files, revisi
     the contents as for test_file.
     """
     if revision:
-        revision = ' at revision r' + str(revision)
+        revision_text = f' at revision [{revision[:8]}](https://github.com/Chaste/PyChaste/commit/{revision})'
+    else:
+        revision_text = ''
+
     output = []
     # Header
     regex = re.compile(r'(?!^)(?=[A-Z])', re.MULTILINE)
     ugly_file_name = os.path.splitext(os.path.basename(test_file_path))[0] 
     nice_file_name = re.sub(regex, " ", ugly_file_name)
+
+    root_dir = (
+        subprocess.check_output(["git", "rev-parse", "--show-toplevel"]).decode("ascii").strip()
+    )
+    link_path = os.path.relpath(os.path.abspath(test_file_path), root_dir)
+    link_path = f"https://github.com/Chaste/PyChaste/blob/develop/{link_path}"
 
     page_header = f"""
 ---
@@ -224,9 +234,8 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from the file {test_file_path} {revision}.
+This tutorial is automatically generated from [{ugly_file_name}]({link_path}){revision_text}.
 Note that the code is given in full at the bottom of the page.
-
 
 """
     
@@ -244,7 +253,7 @@ Note that the code is given in full at the bottom of the page.
         if file_code:
             other_code[other_file[0]] = file_code
     # Now output the C++ code for all files
-    output.append('\n\n# Code \nThe full code is given below\n')
+    output.append('\n\n## Full code \n')
     AddCodeOutput(os.path.basename(test_file_path), test_code, output)
     for filename, code in other_code.items():
         AddCodeOutput(filename, code, output)
