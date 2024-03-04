@@ -9,6 +9,11 @@ on:
       - develop
   workflow_dispatch:
 
+# Limit concurrent deployments to one per branch
+concurrency:
+  group: build-and-test-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   
   generate-pychaste-tutorials-markdown:
