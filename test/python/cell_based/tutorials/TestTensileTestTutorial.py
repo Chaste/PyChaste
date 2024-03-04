@@ -33,7 +33,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef
 #define TRIGGER_WIKI
 
-## # Introduction
+## ## Introduction
 ## In this tutorial we will demonstrate a simulated tensile test on an epithelial sheet. This test
 ## demonstrates:
 ## * Working with vertex based off lattice populations
@@ -53,7 +53,7 @@ chaste.init()  # Set up MPI
 
 class TestTensileTestTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
 
-    ## ## Test 1 - A 2d test
+    ## ### Test 1 - A 2D test
 
     def test_monolayer(self):
 

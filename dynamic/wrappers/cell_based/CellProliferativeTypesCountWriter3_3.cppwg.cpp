@@ -9,6 +9,7 @@
 #include "AbstractCellPopulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "CaBasedCellPopulation.hpp"
+#include "ImmersedBoundaryCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
@@ -58,6 +59,13 @@ class CellProliferativeTypesCountWriter3_3_Overloads : public CellProliferativeT
             Visit,
             pCellPopulation);
     }
+    void Visit(::ImmersedBoundaryCellPopulation<3> * pCellPopulation) override {
+        PYBIND11_OVERRIDE(
+            void,
+            CellProliferativeTypesCountWriter3_3,
+            Visit,
+            pCellPopulation);
+    }
 
 };
 void register_CellProliferativeTypesCountWriter3_3_class(py::module &m){
@@ -86,6 +94,10 @@ py::class_<CellProliferativeTypesCountWriter3_3 , CellProliferativeTypesCountWri
         .def(
             "Visit", 
             (void(CellProliferativeTypesCountWriter3_3::*)(::VertexBasedCellPopulation<3> *)) &CellProliferativeTypesCountWriter3_3::Visit, 
+            " " , py::arg("pCellPopulation") )
+        .def(
+            "Visit", 
+            (void(CellProliferativeTypesCountWriter3_3::*)(::ImmersedBoundaryCellPopulation<3> *)) &CellProliferativeTypesCountWriter3_3::Visit, 
             " " , py::arg("pCellPopulation") )
     ;
 }

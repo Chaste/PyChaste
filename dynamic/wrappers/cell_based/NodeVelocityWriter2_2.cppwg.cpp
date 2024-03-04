@@ -9,6 +9,7 @@
 #include "AbstractCellPopulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "CaBasedCellPopulation.hpp"
+#include "ImmersedBoundaryCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
@@ -58,6 +59,13 @@ class NodeVelocityWriter2_2_Overloads : public NodeVelocityWriter2_2{
             Visit,
             pCellPopulation);
     }
+    void Visit(::ImmersedBoundaryCellPopulation<2> * pCellPopulation) override {
+        PYBIND11_OVERRIDE(
+            void,
+            NodeVelocityWriter2_2,
+            Visit,
+            pCellPopulation);
+    }
 
 };
 void register_NodeVelocityWriter2_2_class(py::module &m){
@@ -82,6 +90,10 @@ py::class_<NodeVelocityWriter2_2 , NodeVelocityWriter2_2_Overloads , boost::shar
         .def(
             "Visit", 
             (void(NodeVelocityWriter2_2::*)(::VertexBasedCellPopulation<2> *)) &NodeVelocityWriter2_2::Visit, 
+            " " , py::arg("pCellPopulation") )
+        .def(
+            "Visit", 
+            (void(NodeVelocityWriter2_2::*)(::ImmersedBoundaryCellPopulation<2> *)) &NodeVelocityWriter2_2::Visit, 
             " " , py::arg("pCellPopulation") )
     ;
 }

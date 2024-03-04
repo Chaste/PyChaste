@@ -33,7 +33,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef
 #define TRIGGER_WIKI
 
-## # Introduction
+## ## Introduction
 ## This test is a demonstration of cell sorting using a Cellular Potts based framework.
 ## It shows:
 ## * How to set up a Potts simulation
@@ -52,7 +52,7 @@ import chaste.visualization # Visualization tools
 
 class TestCellSortingTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
     
-    ## ## Test 1 - Cell sorting
+    ## ### Test 1 - Cell sorting
     ## The next test generates a collection of cells, there are two types of cells, labelled ones and non labelled ones, 
     ## there is differential adhesion between the cell types. For the parameters specified, the cells sort into separate types.
     

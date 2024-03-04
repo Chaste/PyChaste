@@ -9,6 +9,7 @@
 #include "AbstractCellPopulation.hpp"
 #include "MeshBasedCellPopulation.hpp"
 #include "CaBasedCellPopulation.hpp"
+#include "ImmersedBoundaryCellPopulation.hpp"
 #include "NodeBasedCellPopulation.hpp"
 #include "PottsBasedCellPopulation.hpp"
 #include "VertexBasedCellPopulation.hpp"
@@ -58,6 +59,13 @@ class HeterotypicBoundaryLengthWriter3_3_Overloads : public HeterotypicBoundaryL
             Visit,
             pCellPopulation);
     }
+    void Visit(::ImmersedBoundaryCellPopulation<3> * pCellPopulation) override {
+        PYBIND11_OVERRIDE(
+            void,
+            HeterotypicBoundaryLengthWriter3_3,
+            Visit,
+            pCellPopulation);
+    }
 
 };
 void register_HeterotypicBoundaryLengthWriter3_3_class(py::module &m){
@@ -82,6 +90,10 @@ py::class_<HeterotypicBoundaryLengthWriter3_3 , HeterotypicBoundaryLengthWriter3
         .def(
             "Visit", 
             (void(HeterotypicBoundaryLengthWriter3_3::*)(::VertexBasedCellPopulation<3> *)) &HeterotypicBoundaryLengthWriter3_3::Visit, 
+            " " , py::arg("pCellPopulation") )
+        .def(
+            "Visit", 
+            (void(HeterotypicBoundaryLengthWriter3_3::*)(::ImmersedBoundaryCellPopulation<3> *)) &HeterotypicBoundaryLengthWriter3_3::Visit, 
             " " , py::arg("pCellPopulation") )
     ;
 }

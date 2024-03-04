@@ -33,7 +33,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef
 #define TRIGGER_WIKI
 
-## # Introduction
+## ## Introduction
 ## In this tutorial we show how Chaste can be used to create, run and visualize Potts-based simulations. 
 ## Full details of the mathematical model can be found in Graner, F. and Glazier, J. A. (1992). 
 ##
@@ -48,7 +48,7 @@ chaste.init()  # Set up MPI
 
 
 class TestRunningPottsBasedSimulationsTutorial(chaste.cell_based.AbstractCellBasedTestSuite):
-    ## ## Test 1 - A basic node-based simulation
+    ## ### Test 1 - A basic node-based simulation
     ## In the first test, we run a simple Potts-based simulation, in which we create a monolayer of cells, using a Potts mesh. 
     ## Each cell is assigned a stochastic cell-cycle model.
 
@@ -159,7 +159,7 @@ class TestRunningPottsBasedSimulationsTutorial(chaste.cell_based.AbstractCellBas
 
         # JUPYTER_TEARDOWN
 
-    ## ## Test 2 - Cell sorting
+    ## ### Test 2 - Cell sorting
     ## The next test generates a collection of cells, there are two types of cells, labelled ones and non labelled ones, 
     ## there is differential adhesion between the cell types. For the parameters specified, the cells sort into separate types.
 
@@ -239,7 +239,7 @@ class TestRunningPottsBasedSimulationsTutorial(chaste.cell_based.AbstractCellBas
 
         # JUPYTER_TEARDOWN 
 
-    ## ## Test 3 - 3D Cell Sorting
+    ## ### Test 3 - 3D Cell Sorting
     ## The next test extends the previous example to three dimensions.
 
     def test_potts_spheroid_cell_sorting(self):
