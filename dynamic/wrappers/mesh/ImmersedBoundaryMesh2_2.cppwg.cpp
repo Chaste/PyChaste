@@ -24,21 +24,21 @@ class ImmersedBoundaryMesh2_2_Overloads : public ImmersedBoundaryMesh2_2{
     public:
     using ImmersedBoundaryMesh2_2::ImmersedBoundaryMesh;
     unsigned int GetNumNodes() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ImmersedBoundaryMesh2_2,
             GetNumNodes,
             );
     }
     unsigned int GetNumElements() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ImmersedBoundaryMesh2_2,
             GetNumElements,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetVectorFromAtoB(::boost::numeric::ublas::c_vector<double, 2> const & rLocation1, ::boost::numeric::ublas::c_vector<double, 2> const & rLocation2) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             ImmersedBoundaryMesh2_2,
             GetVectorFromAtoB,
@@ -46,42 +46,42 @@ class ImmersedBoundaryMesh2_2_Overloads : public ImmersedBoundaryMesh2_2{
 rLocation2);
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetCentroidOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             ImmersedBoundaryMesh2_2,
             GetCentroidOfElement,
             index);
     }
     void Clear() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryMesh2_2,
             Clear,
             );
     }
     double GetVolumeOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryMesh2_2,
             GetVolumeOfElement,
             index);
     }
     double GetSurfaceAreaOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryMesh2_2,
             GetSurfaceAreaOfElement,
             index);
     }
     ::boost::numeric::ublas::c_vector<double, 3> CalculateMomentsOfElement(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_3_gt_,
             ImmersedBoundaryMesh2_2,
             CalculateMomentsOfElement,
             index);
     }
     unsigned int SolveNodeMapping(unsigned int index) const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ImmersedBoundaryMesh2_2,
             SolveNodeMapping,

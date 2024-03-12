@@ -18,7 +18,7 @@ class AbstractElement2_2_Overloads : public AbstractElement2_2{
     public:
     using AbstractElement2_2::AbstractElement;
     void UpdateNode(unsigned int const & rIndex, ::Node<2> * pNode) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractElement2_2,
             UpdateNode,
@@ -26,14 +26,14 @@ class AbstractElement2_2_Overloads : public AbstractElement2_2{
 pNode);
     }
     void MarkAsDeleted() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractElement2_2,
             MarkAsDeleted,
             );
     }
     void RegisterWithNodes() override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractElement2_2,
             RegisterWithNodes,

@@ -18,14 +18,14 @@ class ImmersedBoundarySimulationModifier2_Overloads : public ImmersedBoundarySim
     public:
     using ImmersedBoundarySimulationModifier2::ImmersedBoundarySimulationModifier;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundarySimulationModifier2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundarySimulationModifier2,
             SetupSolve,
@@ -33,7 +33,7 @@ class ImmersedBoundarySimulationModifier2_Overloads : public ImmersedBoundarySim
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundarySimulationModifier2,
             OutputSimulationModifierParameters,

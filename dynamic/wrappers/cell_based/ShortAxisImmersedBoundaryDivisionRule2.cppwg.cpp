@@ -19,7 +19,7 @@ class ShortAxisImmersedBoundaryDivisionRule2_Overloads : public ShortAxisImmerse
     public:
     using ShortAxisImmersedBoundaryDivisionRule2::ShortAxisImmersedBoundaryDivisionRule;
     ::boost::numeric::ublas::c_vector<double, 2> CalculateCellDivisionVector(::CellPtr pParentCell, ::ImmersedBoundaryCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             ShortAxisImmersedBoundaryDivisionRule2,
             CalculateCellDivisionVector,

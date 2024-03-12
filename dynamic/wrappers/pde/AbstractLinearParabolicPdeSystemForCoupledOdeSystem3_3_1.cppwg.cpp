@@ -19,7 +19,7 @@ class AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1_Overloads : publi
     public:
     using AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1::AbstractLinearParabolicPdeSystemForCoupledOdeSystem;
     double ComputeDuDtCoefficientFunction(::ChastePoint<3> const & rX, unsigned int pdeIndex) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1,
             ComputeDuDtCoefficientFunction,
@@ -27,7 +27,7 @@ class AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1_Overloads : publi
 pdeIndex);
     }
     double ComputeSourceTerm(::ChastePoint<3> const & rX, ::boost::numeric::ublas::c_vector<double, 1> & rU, ::std::vector<double> & rOdeSolution, unsigned int pdeIndex) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             double,
             AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1,
             ComputeSourceTerm,
@@ -37,7 +37,7 @@ rOdeSolution,
 pdeIndex);
     }
     double ComputeSourceTermAtNode(::Node<3> const & rNode, ::boost::numeric::ublas::c_vector<double, 1> & rU, ::std::vector<double> & rOdeSolution, unsigned int pdeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1,
             ComputeSourceTermAtNode,
@@ -47,7 +47,7 @@ rOdeSolution,
 pdeIndex);
     }
     ::boost::numeric::ublas::c_matrix<double, 3, 3> ComputeDiffusionTerm(::ChastePoint<3> const & rX, unsigned int pdeIndex, ::Element<3, 3> * pElement) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_matrix_lt_double_3_3_gt_,
             AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1,
             ComputeDiffusionTerm,

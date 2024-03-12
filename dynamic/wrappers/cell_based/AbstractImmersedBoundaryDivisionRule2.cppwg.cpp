@@ -19,7 +19,7 @@ class AbstractImmersedBoundaryDivisionRule2_Overloads : public AbstractImmersedB
     public:
     using AbstractImmersedBoundaryDivisionRule2::AbstractImmersedBoundaryDivisionRule;
     ::boost::numeric::ublas::c_vector<double, 2> CalculateCellDivisionVector(::CellPtr pParentCell, ::ImmersedBoundaryCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             AbstractImmersedBoundaryDivisionRule2,
             CalculateCellDivisionVector,
@@ -27,7 +27,7 @@ class AbstractImmersedBoundaryDivisionRule2_Overloads : public AbstractImmersedB
 rCellPopulation);
     }
     void OutputCellImmersedBoundaryDivisionRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractImmersedBoundaryDivisionRule2,
             OutputCellImmersedBoundaryDivisionRuleParameters,

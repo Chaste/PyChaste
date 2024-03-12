@@ -18,14 +18,14 @@ class ImmersedBoundarySvgWriter2_Overloads : public ImmersedBoundarySvgWriter2{
     public:
     using ImmersedBoundarySvgWriter2::ImmersedBoundarySvgWriter;
     void UpdateAtEndOfTimeStep(::AbstractCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundarySvgWriter2,
             UpdateAtEndOfTimeStep,
             rCellPopulation);
     }
     void SetupSolve(::AbstractCellPopulation<2> & rCellPopulation, ::std::string outputDirectory) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundarySvgWriter2,
             SetupSolve,
@@ -33,7 +33,7 @@ class ImmersedBoundarySvgWriter2_Overloads : public ImmersedBoundarySvgWriter2{
 outputDirectory);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundarySvgWriter2,
             OutputSimulationModifierParameters,

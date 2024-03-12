@@ -18,14 +18,14 @@ class NormallyDistributedTargetAreaModifier2_Overloads : public NormallyDistribu
     public:
     using NormallyDistributedTargetAreaModifier2::NormallyDistributedTargetAreaModifier;
     void UpdateTargetAreaOfCell(::CellPtr const pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NormallyDistributedTargetAreaModifier2,
             UpdateTargetAreaOfCell,
             pCell);
     }
     void OutputSimulationModifierParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             NormallyDistributedTargetAreaModifier2,
             OutputSimulationModifierParameters,

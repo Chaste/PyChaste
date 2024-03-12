@@ -19,7 +19,7 @@ class AbstractCentreBasedDivisionRule3_3_Overloads : public AbstractCentreBasedD
     public:
     using AbstractCentreBasedDivisionRule3_3::AbstractCentreBasedDivisionRule;
     ::std::pair<boost::numeric::ublas::c_vector<double, 3>, boost::numeric::ublas::c_vector<double, 3>> CalculateCellDivisionVector(::CellPtr pParentCell, ::AbstractCentreBasedCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             _std_pair_lt_boost_numeric_ublas_c_vector_lt_double_3_gt__boost_numeric_ublas_c_vector_lt_double_3_gt__gt_,
             AbstractCentreBasedDivisionRule3_3,
             CalculateCellDivisionVector,
@@ -27,7 +27,7 @@ class AbstractCentreBasedDivisionRule3_3_Overloads : public AbstractCentreBasedD
 rCellPopulation);
     }
     void OutputCellCentreBasedDivisionRuleParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             AbstractCentreBasedDivisionRule3_3,
             OutputCellCentreBasedDivisionRuleParameters,

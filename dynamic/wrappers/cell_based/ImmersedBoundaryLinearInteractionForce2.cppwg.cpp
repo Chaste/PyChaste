@@ -18,7 +18,7 @@ class ImmersedBoundaryLinearInteractionForce2_Overloads : public ImmersedBoundar
     public:
     using ImmersedBoundaryLinearInteractionForce2::ImmersedBoundaryLinearInteractionForce;
     void AddImmersedBoundaryForceContribution(::std::vector<std::pair<Node<2> *, Node<2> *>> & rNodePairs, ::ImmersedBoundaryCellPopulation<2> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryLinearInteractionForce2,
             AddImmersedBoundaryForceContribution,
@@ -26,7 +26,7 @@ class ImmersedBoundaryLinearInteractionForce2_Overloads : public ImmersedBoundar
 rCellPopulation);
     }
     void OutputImmersedBoundaryForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryLinearInteractionForce2,
             OutputImmersedBoundaryForceParameters,

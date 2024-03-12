@@ -18,7 +18,7 @@ class ImmersedBoundaryLinearDifferentialAdhesionForce3_Overloads : public Immers
     public:
     using ImmersedBoundaryLinearDifferentialAdhesionForce3::ImmersedBoundaryLinearDifferentialAdhesionForce;
     void AddImmersedBoundaryForceContribution(::std::vector<std::pair<Node<3> *, Node<3> *>> & rNodePairs, ::ImmersedBoundaryCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryLinearDifferentialAdhesionForce3,
             AddImmersedBoundaryForceContribution,
@@ -26,7 +26,7 @@ class ImmersedBoundaryLinearDifferentialAdhesionForce3_Overloads : public Immers
 rCellPopulation);
     }
     void OutputImmersedBoundaryForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryLinearDifferentialAdhesionForce3,
             OutputImmersedBoundaryForceParameters,

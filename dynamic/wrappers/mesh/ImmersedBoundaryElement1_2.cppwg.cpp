@@ -18,7 +18,7 @@ class ImmersedBoundaryElement1_2_Overloads : public ImmersedBoundaryElement1_2{
     public:
     using ImmersedBoundaryElement1_2::ImmersedBoundaryElement;
     bool IsElementOnBoundary() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ImmersedBoundaryElement1_2,
             IsElementOnBoundary,

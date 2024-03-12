@@ -18,7 +18,7 @@ class AbstractImmersedBoundaryForce3_Overloads : public AbstractImmersedBoundary
     public:
     using AbstractImmersedBoundaryForce3::AbstractImmersedBoundaryForce;
     void AddImmersedBoundaryForceContribution(::std::vector<std::pair<Node<3> *, Node<3> *>> & rNodePairs, ::ImmersedBoundaryCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractImmersedBoundaryForce3,
             AddImmersedBoundaryForceContribution,
@@ -26,7 +26,7 @@ class AbstractImmersedBoundaryForce3_Overloads : public AbstractImmersedBoundary
 rCellPopulation);
     }
     void OutputImmersedBoundaryForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD_PURE(
+        PYBIND11_OVERRIDE_PURE(
             void,
             AbstractImmersedBoundaryForce3,
             OutputImmersedBoundaryForceParameters,

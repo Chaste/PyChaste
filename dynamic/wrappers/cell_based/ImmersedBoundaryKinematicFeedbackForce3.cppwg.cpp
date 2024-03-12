@@ -18,7 +18,7 @@ class ImmersedBoundaryKinematicFeedbackForce3_Overloads : public ImmersedBoundar
     public:
     using ImmersedBoundaryKinematicFeedbackForce3::ImmersedBoundaryKinematicFeedbackForce;
     void AddImmersedBoundaryForceContribution(::std::vector<std::pair<Node<3> *, Node<3> *>> & rNodePairs, ::ImmersedBoundaryCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryKinematicFeedbackForce3,
             AddImmersedBoundaryForceContribution,
@@ -26,7 +26,7 @@ class ImmersedBoundaryKinematicFeedbackForce3_Overloads : public ImmersedBoundar
 rCellPopulation);
     }
     void OutputImmersedBoundaryForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryKinematicFeedbackForce3,
             OutputImmersedBoundaryForceParameters,

@@ -18,7 +18,7 @@ class ImmersedBoundaryMorseInteractionForce3_Overloads : public ImmersedBoundary
     public:
     using ImmersedBoundaryMorseInteractionForce3::ImmersedBoundaryMorseInteractionForce;
     void AddImmersedBoundaryForceContribution(::std::vector<std::pair<Node<3> *, Node<3> *>> & rNodePairs, ::ImmersedBoundaryCellPopulation<3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryMorseInteractionForce3,
             AddImmersedBoundaryForceContribution,
@@ -26,7 +26,7 @@ class ImmersedBoundaryMorseInteractionForce3_Overloads : public ImmersedBoundary
 rCellPopulation);
     }
     void OutputImmersedBoundaryForceParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryMorseInteractionForce3,
             OutputImmersedBoundaryForceParameters,

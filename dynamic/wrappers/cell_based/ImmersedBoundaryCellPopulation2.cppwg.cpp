@@ -62,56 +62,56 @@ class ImmersedBoundaryCellPopulation2_Overloads : public ImmersedBoundaryCellPop
     public:
     using ImmersedBoundaryCellPopulation2::ImmersedBoundaryCellPopulation;
     double GetDampingConstant(unsigned int nodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryCellPopulation2,
             GetDampingConstant,
             nodeIndex);
     }
     unsigned int GetNumNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ImmersedBoundaryCellPopulation2,
             GetNumNodes,
             );
     }
     ::boost::numeric::ublas::c_vector<double, 2> GetLocationOfCellCentre(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _boost_numeric_ublas_c_vector_lt_double_2_gt_,
             ImmersedBoundaryCellPopulation2,
             GetLocationOfCellCentre,
             pCell);
     }
     ::Node<2> * GetNode(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _Node_lt_2_gt_Ptr,
             ImmersedBoundaryCellPopulation2,
             GetNode,
             index);
     }
     ::std::set<unsigned int> GetNeighbouringLocationIndices(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_gt_,
             ImmersedBoundaryCellPopulation2,
             GetNeighbouringLocationIndices,
             pCell);
     }
     unsigned int AddNode(::Node<2> * pNewNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ImmersedBoundaryCellPopulation2,
             AddNode,
             pNewNode);
     }
     void UpdateNodeLocations(double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             UpdateNodeLocations,
             dt);
     }
     void SetNode(unsigned int index, ::ChastePoint<2> & rNewLocation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             SetNode,
@@ -119,7 +119,7 @@ class ImmersedBoundaryCellPopulation2_Overloads : public ImmersedBoundaryCellPop
 rNewLocation);
     }
     ::CellPtr AddCell(::CellPtr pNewCell, ::CellPtr pParentCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _CellPtr,
             ImmersedBoundaryCellPopulation2,
             AddCell,
@@ -127,56 +127,56 @@ rNewLocation);
 pParentCell);
     }
     unsigned int RemoveDeadCells() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             unsignedint,
             ImmersedBoundaryCellPopulation2,
             RemoveDeadCells,
             );
     }
     bool IsCellAssociatedWithADeletedLocation(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ImmersedBoundaryCellPopulation2,
             IsCellAssociatedWithADeletedLocation,
             pCell);
     }
     void Update(bool hasHadBirthsOrDeaths) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             Update,
             hasHadBirthsOrDeaths);
     }
     void OpenWritersFiles(::OutputFileHandler & rOutputFileHandler) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             OpenWritersFiles,
             rOutputFileHandler);
     }
     void AcceptPopulationWriter(::boost::shared_ptr<AbstractCellPopulationWriter<2, 2>> pPopulationWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             AcceptPopulationWriter,
             pPopulationWriter);
     }
     void AcceptPopulationEventWriter(::boost::shared_ptr<AbstractCellPopulationEventWriter<2, 2>> pPopulationEventWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             AcceptPopulationEventWriter,
             pPopulationEventWriter);
     }
     void AcceptPopulationCountWriter(::boost::shared_ptr<AbstractCellPopulationCountWriter<2, 2>> pPopulationCountWriter) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             AcceptPopulationCountWriter,
             pPopulationCountWriter);
     }
     void AcceptCellWriter(::boost::shared_ptr<AbstractCellWriter<2, 2>> pCellWriter, ::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             AcceptCellWriter,
@@ -184,49 +184,49 @@ pParentCell);
 pCell);
     }
     double GetVolumeOfCell(::CellPtr pCell) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryCellPopulation2,
             GetVolumeOfCell,
             pCell);
     }
     void OutputCellPopulationParameters(::out_stream & rParamsFile) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             OutputCellPopulationParameters,
             rParamsFile);
     }
     double GetWidth(unsigned int const & rDimension) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryCellPopulation2,
             GetWidth,
             rDimension);
     }
     ::std::set<unsigned int> GetNeighbouringNodeIndices(unsigned int index) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_set_lt_unsignedint_gt_,
             ImmersedBoundaryCellPopulation2,
             GetNeighbouringNodeIndices,
             index);
     }
     ::TetrahedralMesh<2, 2> * GetTetrahedralMeshForPdeModifier() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _TetrahedralMesh_lt_2_2_gt_Ptr,
             ImmersedBoundaryCellPopulation2,
             GetTetrahedralMeshForPdeModifier,
             );
     }
     bool IsPdeNodeAssociatedWithNonApoptoticCell(unsigned int pdeNodeIndex) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             ImmersedBoundaryCellPopulation2,
             IsPdeNodeAssociatedWithNonApoptoticCell,
             pdeNodeIndex);
     }
     double GetCellDataItemAtPdeNode(unsigned int pdeNodeIndex, ::std::string & rVariableName, bool dirichletBoundaryConditionApplies, double dirichletBoundaryValue) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryCellPopulation2,
             GetCellDataItemAtPdeNode,
@@ -236,7 +236,7 @@ dirichletBoundaryConditionApplies,
 dirichletBoundaryValue);
     }
     void CheckForStepSizeException(unsigned int nodeIndex, ::boost::numeric::ublas::c_vector<double, 2> & rDisplacement, double dt) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryCellPopulation2,
             CheckForStepSizeException,
@@ -245,7 +245,7 @@ rDisplacement,
 dt);
     }
     double GetDefaultTimeStep() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryCellPopulation2,
             GetDefaultTimeStep,

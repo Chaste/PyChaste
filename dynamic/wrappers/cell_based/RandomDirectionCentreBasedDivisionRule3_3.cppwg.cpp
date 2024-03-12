@@ -19,7 +19,7 @@ class RandomDirectionCentreBasedDivisionRule3_3_Overloads : public RandomDirecti
     public:
     using RandomDirectionCentreBasedDivisionRule3_3::RandomDirectionCentreBasedDivisionRule;
     ::std::pair<boost::numeric::ublas::c_vector<double, 3>, boost::numeric::ublas::c_vector<double, 3>> CalculateCellDivisionVector(::CellPtr pParentCell, ::AbstractCentreBasedCellPopulation<3, 3> & rCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             _std_pair_lt_boost_numeric_ublas_c_vector_lt_double_3_gt__boost_numeric_ublas_c_vector_lt_double_3_gt__gt_,
             RandomDirectionCentreBasedDivisionRule3_3,
             CalculateCellDivisionVector,

@@ -19,7 +19,7 @@ class ImmersedBoundaryBoundaryCellWriter3_3_Overloads : public ImmersedBoundaryB
     public:
     using ImmersedBoundaryBoundaryCellWriter3_3::ImmersedBoundaryBoundaryCellWriter;
     double GetCellDataForVtkOutput(::CellPtr pCell, ::AbstractCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             double,
             ImmersedBoundaryBoundaryCellWriter3_3,
             GetCellDataForVtkOutput,
@@ -27,7 +27,7 @@ class ImmersedBoundaryBoundaryCellWriter3_3_Overloads : public ImmersedBoundaryB
 pCellPopulation);
     }
     void VisitCell(::CellPtr pCell, ::AbstractCellPopulation<3> * pCellPopulation) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             ImmersedBoundaryBoundaryCellWriter3_3,
             VisitCell,
