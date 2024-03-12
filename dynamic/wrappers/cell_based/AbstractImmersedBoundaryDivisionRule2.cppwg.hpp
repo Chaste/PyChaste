@@ -1,0 +1,6 @@
+#ifndef AbstractImmersedBoundaryDivisionRule2_hpp__pyplusplus_wrapper
+#define AbstractImmersedBoundaryDivisionRule2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_AbstractImmersedBoundaryDivisionRule2_class(py::module &m);
+#endif // AbstractImmersedBoundaryDivisionRule2_hpp__pyplusplus_wrapper

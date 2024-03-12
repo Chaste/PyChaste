@@ -1,0 +1,6 @@
+#ifndef AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1_hpp__pyplusplus_wrapper
+#define AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1_class(py::module &m);
+#endif // AbstractLinearParabolicPdeSystemForCoupledOdeSystem3_3_1_hpp__pyplusplus_wrapper

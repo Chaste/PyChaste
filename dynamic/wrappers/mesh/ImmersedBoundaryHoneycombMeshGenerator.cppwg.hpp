@@ -1,0 +1,6 @@
+#ifndef ImmersedBoundaryHoneycombMeshGenerator_hpp__pyplusplus_wrapper
+#define ImmersedBoundaryHoneycombMeshGenerator_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ImmersedBoundaryHoneycombMeshGenerator_class(py::module &m);
+#endif // ImmersedBoundaryHoneycombMeshGenerator_hpp__pyplusplus_wrapper

@@ -1,0 +1,6 @@
+#ifndef ImmersedBoundaryKinematicFeedbackForce3_hpp__pyplusplus_wrapper
+#define ImmersedBoundaryKinematicFeedbackForce3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ImmersedBoundaryKinematicFeedbackForce3_class(py::module &m);
+#endif // ImmersedBoundaryKinematicFeedbackForce3_hpp__pyplusplus_wrapper

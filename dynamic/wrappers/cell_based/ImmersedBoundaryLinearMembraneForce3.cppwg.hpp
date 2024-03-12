@@ -1,0 +1,6 @@
+#ifndef ImmersedBoundaryLinearMembraneForce3_hpp__pyplusplus_wrapper
+#define ImmersedBoundaryLinearMembraneForce3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ImmersedBoundaryLinearMembraneForce3_class(py::module &m);
+#endif // ImmersedBoundaryLinearMembraneForce3_hpp__pyplusplus_wrapper

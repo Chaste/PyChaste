@@ -1,0 +1,6 @@
+#ifndef RandomDirectionCentreBasedDivisionRule2_2_hpp__pyplusplus_wrapper
+#define RandomDirectionCentreBasedDivisionRule2_2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_RandomDirectionCentreBasedDivisionRule2_2_class(py::module &m);
+#endif // RandomDirectionCentreBasedDivisionRule2_2_hpp__pyplusplus_wrapper

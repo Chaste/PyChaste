@@ -1,0 +1,6 @@
+#ifndef FixedCentreBasedDivisionRule3_3_hpp__pyplusplus_wrapper
+#define FixedCentreBasedDivisionRule3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_FixedCentreBasedDivisionRule3_3_class(py::module &m);
+#endif // FixedCentreBasedDivisionRule3_3_hpp__pyplusplus_wrapper

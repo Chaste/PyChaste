@@ -1,0 +1,6 @@
+#ifndef ShortAxisImmersedBoundaryDivisionRule3_hpp__pyplusplus_wrapper
+#define ShortAxisImmersedBoundaryDivisionRule3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ShortAxisImmersedBoundaryDivisionRule3_class(py::module &m);
+#endif // ShortAxisImmersedBoundaryDivisionRule3_hpp__pyplusplus_wrapper
