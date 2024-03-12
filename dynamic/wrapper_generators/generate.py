@@ -47,9 +47,12 @@ if __name__ == "__main__":
     castxml_binary = sys.argv[4]
     includes = sys.argv[5:]
 
-    generator = CppWrapperGenerator(source_root,
-                                    includes,
-                                    wrapper_root,
-                                    castxml_binary,
-                                    package_info_path)
+    generator = CppWrapperGenerator(
+        source_root,
+        includes,
+        wrapper_root,
+        castxml_binary,
+        package_info_path,
+        castxml_cflags="-std=c++17",
+    )
     generator.generate_wrapper()
