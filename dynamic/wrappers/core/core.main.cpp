@@ -1,6 +1,4 @@
 #include <pybind11/pybind11.h>
-#include <petsc/private/matimpl.h>
-#include <petsc/private/vecimpl.h>
 #include "Identifiable.cppwg.hpp"
 #include "PetscTools.cppwg.hpp"
 #include "ReplicatableVector.cppwg.hpp"
@@ -17,9 +15,6 @@ namespace py = pybind11;
 
 PYBIND11_MODULE(_chaste_project_PyChaste_core, m)
 {
-    py::class_<_p_Mat>(m, "_p_Mat", py::module_local());
-    py::class_<_p_Vec>(m, "_p_Vec", py::module_local());
-
     register_Identifiable_class(m);
     register_PetscTools_class(m);
     register_ReplicatableVector_class(m);
