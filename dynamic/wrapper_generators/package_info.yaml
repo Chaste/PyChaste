@@ -24,7 +24,7 @@ template_substitutions:
   - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
     replacement: [[2, 2], [3, 3]]
   - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM=ELEMENT_DIM>
-    replacement: [[2], [3]]
+    replacement: [[2, 2], [3, 3]]
 
 modules:
   - name: core

@@ -233,12 +233,12 @@
 #include "ShovingCaBasedDivisionRule3.cppwg.hpp"
 #include "ExclusionCaBasedDivisionRule2.cppwg.hpp"
 #include "ExclusionCaBasedDivisionRule3.cppwg.hpp"
-#include "RandomDirectionCentreBasedDivisionRule2.cppwg.hpp"
-#include "RandomDirectionCentreBasedDivisionRule3.cppwg.hpp"
-#include "FixedCentreBasedDivisionRule2.cppwg.hpp"
-#include "FixedCentreBasedDivisionRule3.cppwg.hpp"
-#include "AbstractCentreBasedDivisionRule2.cppwg.hpp"
-#include "AbstractCentreBasedDivisionRule3.cppwg.hpp"
+#include "RandomDirectionCentreBasedDivisionRule2_2.cppwg.hpp"
+#include "RandomDirectionCentreBasedDivisionRule3_3.cppwg.hpp"
+#include "FixedCentreBasedDivisionRule2_2.cppwg.hpp"
+#include "FixedCentreBasedDivisionRule3_3.cppwg.hpp"
+#include "AbstractCentreBasedDivisionRule2_2.cppwg.hpp"
+#include "AbstractCentreBasedDivisionRule3_3.cppwg.hpp"
 #include "ShortAxisVertexBasedDivisionRule2.cppwg.hpp"
 #include "ShortAxisVertexBasedDivisionRule3.cppwg.hpp"
 #include "AbstractImmersedBoundaryDivisionRule2.cppwg.hpp"
@@ -617,12 +617,12 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_ShovingCaBasedDivisionRule3_class(m);
     register_ExclusionCaBasedDivisionRule2_class(m);
     register_ExclusionCaBasedDivisionRule3_class(m);
-    register_RandomDirectionCentreBasedDivisionRule2_class(m);
-    register_RandomDirectionCentreBasedDivisionRule3_class(m);
-    register_FixedCentreBasedDivisionRule2_class(m);
-    register_FixedCentreBasedDivisionRule3_class(m);
-    register_AbstractCentreBasedDivisionRule2_class(m);
-    register_AbstractCentreBasedDivisionRule3_class(m);
+    register_RandomDirectionCentreBasedDivisionRule2_2_class(m);
+    register_RandomDirectionCentreBasedDivisionRule3_3_class(m);
+    register_FixedCentreBasedDivisionRule2_2_class(m);
+    register_FixedCentreBasedDivisionRule3_3_class(m);
+    register_AbstractCentreBasedDivisionRule2_2_class(m);
+    register_AbstractCentreBasedDivisionRule3_3_class(m);
     register_ShortAxisVertexBasedDivisionRule2_class(m);
     register_ShortAxisVertexBasedDivisionRule3_class(m);
     register_AbstractImmersedBoundaryDivisionRule2_class(m);
