@@ -26,9 +26,13 @@
 #include "TetrahedralMesh3_3.cppwg.hpp"
 #include "MutableMesh2_2.cppwg.hpp"
 #include "MutableMesh3_3.cppwg.hpp"
+#include "AbstractElement1_2.cppwg.hpp"
 #include "AbstractElement2_2.cppwg.hpp"
+#include "AbstractElement2_3.cppwg.hpp"
 #include "AbstractElement3_3.cppwg.hpp"
+#include "MutableElement1_2.cppwg.hpp"
 #include "MutableElement2_2.cppwg.hpp"
+#include "MutableElement2_3.cppwg.hpp"
 #include "MutableElement3_3.cppwg.hpp"
 #include "NodesOnlyMesh2.cppwg.hpp"
 #include "NodesOnlyMesh3.cppwg.hpp"
@@ -38,7 +42,9 @@
 #include "PottsMesh3.cppwg.hpp"
 #include "FluidSource2.cppwg.hpp"
 #include "FluidSource3.cppwg.hpp"
+#include "ImmersedBoundaryElement1_2.cppwg.hpp"
 #include "ImmersedBoundaryElement2_2.cppwg.hpp"
+#include "ImmersedBoundaryElement2_3.cppwg.hpp"
 #include "ImmersedBoundaryElement3_3.cppwg.hpp"
 #include "PottsMeshGenerator2.cppwg.hpp"
 #include "PottsMeshGenerator3.cppwg.hpp"
@@ -96,9 +102,13 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_TetrahedralMesh3_3_class(m);
     register_MutableMesh2_2_class(m);
     register_MutableMesh3_3_class(m);
+    register_AbstractElement1_2_class(m);
     register_AbstractElement2_2_class(m);
+    register_AbstractElement2_3_class(m);
     register_AbstractElement3_3_class(m);
+    register_MutableElement1_2_class(m);
     register_MutableElement2_2_class(m);
+    register_MutableElement2_3_class(m);
     register_MutableElement3_3_class(m);
     register_NodesOnlyMesh2_class(m);
     register_NodesOnlyMesh3_class(m);
@@ -108,7 +118,9 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_PottsMesh3_class(m);
     register_FluidSource2_class(m);
     register_FluidSource3_class(m);
+    register_ImmersedBoundaryElement1_2_class(m);
     register_ImmersedBoundaryElement2_2_class(m);
+    register_ImmersedBoundaryElement2_3_class(m);
     register_ImmersedBoundaryElement3_3_class(m);
     register_PottsMeshGenerator2_class(m);
     register_PottsMeshGenerator3_class(m);

@@ -122,7 +122,13 @@ modules:
           - SplitLongEdges # can't work with vec<c_vec>
           - RescaleMeshFromBoundaryNode # method not found!
       - name: AbstractElement
+        template_substitutions:
+          - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+            replacement: [[1, 2], [2, 2], [2, 3], [3, 3]]
       - name: MutableElement
+        template_substitutions:
+          - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+            replacement: [[1, 2], [2, 2], [2, 3], [3, 3]]
       - name: NodesOnlyMesh
       - name: PottsElement
       - name: PottsMesh
@@ -131,6 +137,8 @@ modules:
         template_substitutions:
           - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
             replacement: [[1, 2], [2, 2], [2, 3], [3, 3]]
+        excluded_methods:
+            AddCornerNode # not implemented in 1D
       - name: PottsMeshGenerator
       - name: VertexMesh
         excluded_methods:
@@ -701,6 +709,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
@@ -741,6 +750,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
@@ -782,6 +792,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
@@ -818,6 +829,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
@@ -861,6 +873,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
@@ -904,6 +917,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
@@ -944,6 +958,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
@@ -982,6 +997,7 @@ modules:
           - CellDeltaNotchWriter.hpp
           - CellDivisionLocationsWriter.hpp
           - CellIdWriter.hpp
+          - CellLabelWriter.hpp
           - CellLocationIndexWriter.hpp
           - CellMutationStatesCountWriter.hpp
           - CellMutationStatesWriter.hpp
