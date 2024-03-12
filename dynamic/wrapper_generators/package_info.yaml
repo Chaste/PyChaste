@@ -126,6 +126,9 @@ modules:
           - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
             replacement: [[1, 2], [2, 2], [2, 3], [3, 3]]
       - name: MutableElement
+        template_substitutions:
+          - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+            replacement: [[1, 2], [2, 2], [2, 3], [3, 3]]
       - name: NodesOnlyMesh
       - name: PottsElement
       - name: PottsMesh

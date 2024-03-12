@@ -30,7 +30,9 @@
 #include "AbstractElement2_2.cppwg.hpp"
 #include "AbstractElement2_3.cppwg.hpp"
 #include "AbstractElement3_3.cppwg.hpp"
+#include "MutableElement1_2.cppwg.hpp"
 #include "MutableElement2_2.cppwg.hpp"
+#include "MutableElement2_3.cppwg.hpp"
 #include "MutableElement3_3.cppwg.hpp"
 #include "NodesOnlyMesh2.cppwg.hpp"
 #include "NodesOnlyMesh3.cppwg.hpp"
@@ -104,7 +106,9 @@ PYBIND11_MODULE(_chaste_project_PyChaste_mesh, m)
     register_AbstractElement2_2_class(m);
     register_AbstractElement2_3_class(m);
     register_AbstractElement3_3_class(m);
+    register_MutableElement1_2_class(m);
     register_MutableElement2_2_class(m);
+    register_MutableElement2_3_class(m);
     register_MutableElement3_3_class(m);
     register_NodesOnlyMesh2_class(m);
     register_NodesOnlyMesh3_class(m);
