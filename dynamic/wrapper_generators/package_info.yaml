@@ -128,6 +128,9 @@ modules:
       - name: PottsMesh
       - name: FluidSource
       - name: ImmersedBoundaryElement
+        template_substitutions:
+          - signature: <unsigned ELEMENT_DIM, unsigned SPACE_DIM>
+            replacement: [[1, 2], [2, 2], [2, 3], [3, 3]]
       - name: PottsMeshGenerator
       - name: VertexMesh
         excluded_methods:
@@ -729,6 +732,7 @@ modules:
           - GetTetrahedralMeshForPdeModifier
         custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
         source_includes:
+          - AbstractImmersedBoundaryDivisionRule.hpp
           - CellAgesWriter.hpp
           - CellAncestorWriter.hpp
           - CellAppliedForceWriter.hpp
