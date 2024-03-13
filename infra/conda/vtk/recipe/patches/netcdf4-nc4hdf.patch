@@ -1,0 +1,11 @@
+--- a/ThirdParty/netcdf/vtknetcdf/libsrc4/nc4hdf.c
++++ b/ThirdParty/netcdf/vtknetcdf/libsrc4/nc4hdf.c
+@@ -13,6 +13,8 @@
+   $Id: nc4hdf.c,v 1.273 2010/05/27 21:34:14 dmh Exp $
+ */
+ 
++#define H5_USE_110_API
++
+ #include "config.h"
+ #include "nc4internal.h"
+ #include <H5DSpublic.h>

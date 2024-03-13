@@ -1,0 +1,11 @@
+--- a/ThirdParty/netcdf/vtknetcdf/libsrc4/nc4file.c
++++ b/ThirdParty/netcdf/vtknetcdf/libsrc4/nc4file.c
+@@ -8,6 +8,8 @@
+   COPYRIGHT file for copying and redistribution conditions.
+ */
+ 
++#define H5_USE_110_API
++
+ #include "nc4internal.h"
+ #include "nc.h"
+ #include <H5DSpublic.h>
