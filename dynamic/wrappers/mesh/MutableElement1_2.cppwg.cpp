@@ -50,7 +50,6 @@ pNode);
 };
 void register_MutableElement1_2_class(py::module &m){
 py::class_<MutableElement1_2 , MutableElement1_2_Overloads , boost::shared_ptr<MutableElement1_2 >  , AbstractElement<1, 2>  >(m, "MutableElement1_2")
-        .def(py::init<unsigned int >(), py::arg("index"))
         .def(py::init<unsigned int, ::std::vector<Node<2> *> const & >(), py::arg("index"), py::arg("rNodes"))
         .def(
             "RegisterWithNodes", 
