@@ -181,6 +181,7 @@ modules:
       - name: AbstractSimpleCellCycleModel
       - name: AbstractSimplePhaseBasedCellCycleModel
       - name: AbstractSimpleGenerationalCellCycleModel
+      - name: AbstractCellCycleModelOdeSolver
       - name: UniformCellCycleModel
       - name: SimpleOxygenBasedCellCycleModel
       - name: UniformG1GenerationalCellCycleModel
@@ -199,7 +200,6 @@ modules:
       - name: FixedSequenceCellCycleModel
       - name: BernoulliTrialCellCycleModel
       - name: FixedG1GenerationalCellCycleModel
-      - name: AbstractCellCycleModelOdeSolver
       ## - name: CellCycleModelOdeSolver
       - name: AbstractCellProperty
         excluded_methods:
@@ -604,28 +604,28 @@ modules:
           - AbstractCellPopulation.hpp
       - name: AbstractUpdateRule
       - name: AbstractCaUpdateRule
-      - name: DiffusionCaUpdateRule
       - name: AbstractPottsUpdateRule
+      - name: AbstractCentreBasedDivisionRule
+      - name: AbstractCaBasedDivisionRule
+      - name: AbstractCaSwitchingUpdateRule
+      - name: AbstractImmersedBoundaryDivisionRule
+      - name: AbstractVertexBasedDivisionRule
+      - name: DiffusionCaUpdateRule
       - name: VolumeConstraintPottsUpdateRule
       - name: SurfaceAreaConstraintPottsUpdateRule
       - name: AdhesionPottsUpdateRule
       - name: DifferentialAdhesionPottsUpdateRule
-      - name: AbstractVertexBasedDivisionRule
       - name: RandomDirectionVertexBasedDivisionRule
       - name: VonMisesVertexBasedDivisionRule
       - name: FixedVertexBasedDivisionRule
-      - name: AbstractCaBasedDivisionRule
       - name: ShovingCaBasedDivisionRule
       - name: ExclusionCaBasedDivisionRule
       - name: RandomDirectionCentreBasedDivisionRule
       - name: FixedCentreBasedDivisionRule
-      - name: AbstractCentreBasedDivisionRule
       - name: ShortAxisVertexBasedDivisionRule
-      - name: AbstractImmersedBoundaryDivisionRule
       - name: ShortAxisImmersedBoundaryDivisionRule
       - name: RandomCaSwitchingUpdateRule
       - name: ChemotaxisPottsUpdateRule
-      - name: AbstractCaSwitchingUpdateRule
       - name: AbstractForce
       - name: AbstractTwoBodyInteractionForce
       - name: BuskeAdhesiveForce
@@ -692,7 +692,6 @@ modules:
           - GetNodeCorrespondingToCell
           - MarkSpring
           - UnmarkSpring
-      - name: NodeBasedCellPopulationWithParticles
       - name: CaBasedCellPopulation
         excluded_methods:
           - rGetMesh
@@ -947,6 +946,45 @@ modules:
         excluded_methods:
           - rGetNodePairs
           - GetTetrahedralMeshForPdeModifier
+          - rGetMesh
+        custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
+        source_includes:
+          - CellAgesWriter.hpp
+          - CellAncestorWriter.hpp
+          - CellAppliedForceWriter.hpp
+          - CellCycleModelProteinConcentrationsWriter.hpp
+          - CellDataItemWriter.hpp
+          - CellDeltaNotchWriter.hpp
+          - CellDivisionLocationsWriter.hpp
+          - CellIdWriter.hpp
+          - CellLabelWriter.hpp
+          - CellLocationIndexWriter.hpp
+          - CellMutationStatesCountWriter.hpp
+          - CellMutationStatesWriter.hpp
+          - CellPopulationAdjacencyMatrixWriter.hpp
+          - CellPopulationAreaWriter.hpp
+          - CellPopulationElementWriter.hpp
+          - CellProliferativePhasesCountWriter.hpp
+          - CellProliferativePhasesWriter.hpp
+          - CellProliferativeTypesCountWriter.hpp
+          - CellProliferativeTypesWriter.hpp
+          - CellRadiusWriter.hpp
+          - CellRemovalLocationsWriter.hpp
+          - CellRosetteRankWriter.hpp
+          - CellVolumesWriter.hpp
+          - HeterotypicBoundaryLengthWriter.hpp
+          - LegacyCellProliferativeTypesWriter.hpp
+          - NodeLocationWriter.hpp
+          - NodeVelocityWriter.hpp
+          - PottsMeshWriter.hpp
+          - RadialCellDataDistributionWriter.hpp
+          - VertexIntersectionSwapLocationsWriter.hpp
+          - VertexT1SwapLocationsWriter.hpp
+          - VertexT2SwapLocationsWriter.hpp
+          - VertexT3SwapLocationsWriter.hpp
+          - VoronoiDataWriter.hpp
+      - name: NodeBasedCellPopulationWithParticles
+        excluded_methods:
           - rGetMesh
         custom_generator: CPPWG_SOURCEROOT/projects/PyChaste/dynamic/wrapper_generators/PopulationWriter_custom.py
         source_includes:
