@@ -33,7 +33,7 @@ class AbstractNumericalMethod3_Overrides : public AbstractNumericalMethod3_3{
     }
 
 };
-void register_AbstractNumericalMethod3_class(py::module &m){
+void register_AbstractNumericalMethod3_3_class(py::module &m){
 py::class_<AbstractNumericalMethod3_3 , AbstractNumericalMethod3_Overrides , boost::shared_ptr<AbstractNumericalMethod3_3 >   >(m, "AbstractNumericalMethod3_3")
         .def(py::init< >())
         .def(

@@ -33,7 +33,7 @@ class ForwardEulerNumericalMethod3_Overrides : public ForwardEulerNumericalMetho
     }
 
 };
-void register_ForwardEulerNumericalMethod3_class(py::module &m){
+void register_ForwardEulerNumericalMethod3_3_class(py::module &m){
 py::class_<ForwardEulerNumericalMethod3_3 , ForwardEulerNumericalMethod3_Overrides , boost::shared_ptr<ForwardEulerNumericalMethod3_3 >  , AbstractNumericalMethod<3>  >(m, "ForwardEulerNumericalMethod3_3")
         .def(py::init< >())
         .def(

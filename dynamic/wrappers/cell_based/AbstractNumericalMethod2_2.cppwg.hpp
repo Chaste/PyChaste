@@ -3,5 +3,5 @@
 
 #include <pybind11/pybind11.h>
 
-void register_AbstractNumericalMethod2_class(pybind11::module &m);
+void register_AbstractNumericalMethod2_2_class(pybind11::module &m);
 #endif // AbstractNumericalMethod2_hpp__cppwg_wrapper

@@ -33,7 +33,7 @@ class ForwardEulerNumericalMethod2_Overrides : public ForwardEulerNumericalMetho
     }
 
 };
-void register_ForwardEulerNumericalMethod2_class(py::module &m){
+void register_ForwardEulerNumericalMethod2_2_class(py::module &m){
 py::class_<ForwardEulerNumericalMethod2_2 , ForwardEulerNumericalMethod2_Overrides , boost::shared_ptr<ForwardEulerNumericalMethod2_2 >  , AbstractNumericalMethod<2>  >(m, "ForwardEulerNumericalMethod2_2")
         .def(py::init< >())
         .def(
