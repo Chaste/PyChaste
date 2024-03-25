@@ -75,7 +75,7 @@ import chaste.visualization
 
 class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
-    ## ### Simple Immersed Boundary Simulations
+    ## ### 1. Simple Immersed Boundary Simulations
     ## We begin by exploring simulations containing a single cell. This will
     ## familiarise you with how to generate immersed boundary cells, the steps
     ## involved in setting up an immersed boundary simulation, and the options
@@ -193,7 +193,7 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         SimulationTime.Instance().Destroy()
         TearDownNotebookTest()
 
-    ## ### Adding More Cells
+    ## ### 2. Adding More Cells
 
     def test_multicell_immersed_boundary_simulation(self):
         ## #### Multiple Cells
@@ -229,7 +229,7 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
         # Set the start time for the simulation
         SimulationTime.Instance().SetStartTime(0.0)
-        
+
         # Generate the cells
         cell_type = DifferentiatedCellProliferativeType()
         cell_generator = CellsGeneratorUniformCellCycleModel_2()
@@ -282,7 +282,7 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         SimulationTime.Instance().Destroy()
         TearDownNotebookTest()
 
-    ## ### Adding Fluid Sources
+    ## ### 3. Adding Fluid Sources
     ## Now that we are familiar with how to generate the cells, we will
     ## introduce fluid sources.
 

@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [3964667c](https://github.com/Chaste/PyChaste/commit/3964667c5f950bbbb77687d2024795105278294b).
+This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [5e0d0a44](https://github.com/Chaste/PyChaste/commit/5e0d0a44af4a3ba6db0eb8a89f7a538f4c6d6656).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -55,7 +55,7 @@ import chaste.visualization
 class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
 ```
-### Simple Immersed Boundary Simulations
+### 1. Simple Immersed Boundary Simulations
 We begin by exploring simulations containing a single cell. This will
 familiarise you with how to generate immersed boundary cells, the steps
 involved in setting up an immersed boundary simulation, and the options
@@ -191,7 +191,7 @@ Finally, we set up the simulation properties and run it.
         TearDownNotebookTest()
 
 ```
-### Adding More Cells
+### 2. Adding More Cells
 
 ```python
     def test_multicell_immersed_boundary_simulation(self):
@@ -288,7 +288,7 @@ also be modified using the `SetRestLength` method.
         TearDownNotebookTest()
 
 ```
-### Adding Fluid Sources
+### 3. Adding Fluid Sources
 Now that we are familiar with how to generate the cells, we will
 introduce fluid sources.
 
