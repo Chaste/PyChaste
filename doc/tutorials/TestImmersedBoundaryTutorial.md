@@ -8,7 +8,7 @@ toc: true
 layout: "single"
 ---
 
-This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [d74e09e9](https://github.com/Chaste/PyChaste/commit/d74e09e98ea2ab270cb232748ef3531258079d75).
+This tutorial is automatically generated from [TestImmersedBoundaryTutorial](https://github.com/Chaste/PyChaste/blob/develop/test/python/cell_based/tutorials/TestImmersedBoundaryTutorial.py) at revision [404a4809](https://github.com/Chaste/PyChaste/commit/404a4809c03088c8dd7592267a990ae8522fd7af).
 Note that the code is given in full at the bottom of the page.
 
 
@@ -20,9 +20,9 @@ in a fluid. There is a two-way coupling between the fluid and the structure:
 the flow of the fluid exerts a force on the structure, and the structure
 influences the flow of the fluid.
 
-In this tutorial, we demonstrate how to:
-1. Building single cell immersed boundary capable simulations.
-2. Multi-cellular simulations.
+In this tutorial, we demonstrate:
+1. Building single-cell immersed boundary capable simulations.
+2. Building multi-cellular simulations.
 3. Adding and manipulating fluid sources.
 
 ## Imports
@@ -31,7 +31,8 @@ In this tutorial, we demonstrate how to:
 import unittest
 
 import chaste
-chaste.init() # setup MPI
+
+chaste.init()  # setup MPI
 
 from chaste.cell_based import (
     AbstractCellBasedTestSuite,
@@ -39,6 +40,7 @@ from chaste.cell_based import (
     DifferentiatedCellProliferativeType,
     ForwardEulerNumericalMethod2_2,
     ImmersedBoundaryCellPopulation2,
+    ImmersedBoundaryLinearInteractionForce2,
     ImmersedBoundaryLinearMembraneForce2,
     ImmersedBoundarySimulationModifier2,
     OffLatticeSimulation2_2,
@@ -66,12 +68,8 @@ forces are also transmitted across these boundaries.
  **Tip** Make sure all your coordinates are between `0` and `1`.
 
 ```python
-    def test_single_cell_immersed_boundary(self):
-```
-#### The First Cell
-
-```python
-        #Set the start time for the simulation
+    def test_simple_immersed_boundary_simulation(self):
+        # Set the start time for the simulation
         SimulationTime.Instance().SetStartTime(0.0)
 
 ```
@@ -99,7 +97,7 @@ We now set the fluid grid resolution. The following code specifies
 that we are using a 64x64 grid to simulate our fluid over.
 
 ```python
-        #Set the fluid grid resolution
+        # Set the fluid grid resolution
         mesh.SetNumGridPtsXAndY(64)
 
 ```
@@ -192,7 +190,104 @@ Finally, we set up the simulation properties and run it.
         SimulationTime.Instance().Destroy()
         TearDownNotebookTest()
 
-if __name__ == '__main__':
+```
+### Adding More Cells
+
+```python
+    def test_multicell_immersed_boundary_simulation(self):
+        # Set the start time for the simulation
+        SimulationTime.Instance().SetStartTime(0.0)
+
+```
+#### Multiple Cells
+We can use the mesh generator to generate multiple cells. The first
+parameter of the mesh generator constructor controls the number of
+cells. Try increasing the number of cells by adjusting the parameter
+value. A sensible range for this tutorial is 4-10 cells.
+
+```python
+        # Create a mesh generator
+        gen = ImmersedBoundaryPalisadeMeshGenerator(1, 128, 0.1, 2.0, 0.0, False)
+
+```
+#### Laminas
+In addition to the cells we have seen so far, we can introduce
+laminas to the simulation. Laminas are surfaces with reduced
+dimensionality. For 3D elements, a lamina is a 2D surface. For the
+2D elements we are working with, laminas are lines. Changing the last
+parameter of the mesh generator constructor from `False` to `True`
+will generate a basal lamina spanning the palisade cells.
+Laminas can also interact with the fluid field, and can be made
+'leaky' to allow some flow across their boundary. This can be used
+to model a permeable boundary.
+
+#### Cell Variations
+Apart from using the 3rd and 4th constructor parameters to modify
+the cell shapes, we can also introduce variation between cells by
+modifying the 5th parameter.
+
+```python
+        # Generate the mesh
+        mesh = gen.GetMesh()
+
+        # Set the fluid grid resolution
+        mesh.SetNumGridPtsXAndY(64)
+
+        # Generate the cells
+        cell_type = DifferentiatedCellProliferativeType()
+        cell_generator = CellsGeneratorUniformCellCycleModel_2()
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), cell_type)
+
+        # Set up the cell population
+        cell_population = ImmersedBoundaryCellPopulation2(mesh, cells)
+
+        # Specify whether the population has active fluid sources
+        cell_population.SetIfPopulationHasActiveSources(False)
+
+        # Create a simulator to manage our simulation
+        simulator = OffLatticeSimulation2_2(cell_population)
+        numerical_method = ForwardEulerNumericalMethod2_2()
+        numerical_method.SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(numerical_method)
+
+        # Add an immersed boundary simulation modifier.
+        main_modifier = ImmersedBoundarySimulationModifier2()
+        simulator.AddSimulationModifier(main_modifier)
+
+        # Add a force law to model the behaviour of the cell membrane
+        boundary_force = ImmersedBoundaryLinearMembraneForce2()
+        boundary_force.SetElementSpringConst(1.0 * 1e7)
+        main_modifier.AddImmersedBoundaryForce(boundary_force)
+
+```
+#### Intercellular Interactions
+So far, we have encountered forces that act to maintain the shape
+of the cell membrane. We can also introduce forces that apply
+between cells using `ImmersedBoundaryLinearInteractionForce`. I
+Instead of the `SetElementSpringConst` method, it has a
+`SetSpringConst` method which we should use. The rest length can
+also be modified using the `SetRestLength` method.
+
+```python
+        # Add a new intercellular force law
+        interaction_force = ImmersedBoundaryLinearInteractionForce2()
+        interaction_force.SetSpringConst(1.0 * 1e6)
+        main_modifier.AddImmersedBoundaryForce(interaction_force)
+
+        # Set simulation properties
+        dt = 0.05
+        simulator.SetOutputDirectory("Python/TestImmersedBoundary")
+        simulator.SetDt(dt)
+        simulator.SetSamplingTimestepMultiple(4)
+        simulator.SetEndTime(1000 * dt)
+
+        # Perform the simulation
+        simulator.Solve()
+
+        SimulationTime.Instance().Destroy()
+        TearDownNotebookTest()
+
+if __name__ == "__main__":
     unittest.main(verbosity=2)
 
 ```
@@ -207,7 +302,8 @@ if __name__ == '__main__':
 import unittest
 
 import chaste
-chaste.init() # setup MPI
+
+chaste.init()  # setup MPI
 
 from chaste.cell_based import (
     AbstractCellBasedTestSuite,
@@ -215,6 +311,7 @@ from chaste.cell_based import (
     DifferentiatedCellProliferativeType,
     ForwardEulerNumericalMethod2_2,
     ImmersedBoundaryCellPopulation2,
+    ImmersedBoundaryLinearInteractionForce2,
     ImmersedBoundaryLinearMembraneForce2,
     ImmersedBoundarySimulationModifier2,
     OffLatticeSimulation2_2,
@@ -226,15 +323,15 @@ import chaste.visualization
 
 class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
-    def test_single_cell_immersed_boundary(self):
-        #Set the start time for the simulation
+    def test_simple_immersed_boundary_simulation(self):
+        # Set the start time for the simulation
         SimulationTime.Instance().SetStartTime(0.0)
 
         # Generate a mesh containing a single cell
         gen = ImmersedBoundaryPalisadeMeshGenerator(1, 128, 0.1, 2.0, 0.0, False)
         mesh = gen.GetMesh()
 
-        #Set the fluid grid resolution
+        # Set the fluid grid resolution
         mesh.SetNumGridPtsXAndY(64)
 
         # Generate the cells
@@ -278,7 +375,64 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         SimulationTime.Instance().Destroy()
         TearDownNotebookTest()
 
-if __name__ == '__main__':
+    def test_multicell_immersed_boundary_simulation(self):
+        # Set the start time for the simulation
+        SimulationTime.Instance().SetStartTime(0.0)
+
+        # Create a mesh generator
+        gen = ImmersedBoundaryPalisadeMeshGenerator(1, 128, 0.1, 2.0, 0.0, False)
+
+        # Generate the mesh
+        mesh = gen.GetMesh()
+
+        # Set the fluid grid resolution
+        mesh.SetNumGridPtsXAndY(64)
+
+        # Generate the cells
+        cell_type = DifferentiatedCellProliferativeType()
+        cell_generator = CellsGeneratorUniformCellCycleModel_2()
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), cell_type)
+
+        # Set up the cell population
+        cell_population = ImmersedBoundaryCellPopulation2(mesh, cells)
+
+        # Specify whether the population has active fluid sources
+        cell_population.SetIfPopulationHasActiveSources(False)
+
+        # Create a simulator to manage our simulation
+        simulator = OffLatticeSimulation2_2(cell_population)
+        numerical_method = ForwardEulerNumericalMethod2_2()
+        numerical_method.SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(numerical_method)
+
+        # Add an immersed boundary simulation modifier.
+        main_modifier = ImmersedBoundarySimulationModifier2()
+        simulator.AddSimulationModifier(main_modifier)
+
+        # Add a force law to model the behaviour of the cell membrane
+        boundary_force = ImmersedBoundaryLinearMembraneForce2()
+        boundary_force.SetElementSpringConst(1.0 * 1e7)
+        main_modifier.AddImmersedBoundaryForce(boundary_force)
+
+        # Add a new intercellular force law
+        interaction_force = ImmersedBoundaryLinearInteractionForce2()
+        interaction_force.SetSpringConst(1.0 * 1e6)
+        main_modifier.AddImmersedBoundaryForce(interaction_force)
+
+        # Set simulation properties
+        dt = 0.05
+        simulator.SetOutputDirectory("Python/TestImmersedBoundary")
+        simulator.SetDt(dt)
+        simulator.SetSamplingTimestepMultiple(4)
+        simulator.SetEndTime(1000 * dt)
+
+        # Perform the simulation
+        simulator.Solve()
+
+        SimulationTime.Instance().Destroy()
+        TearDownNotebookTest()
+
+if __name__ == "__main__":
     unittest.main(verbosity=2)
 
 ```
