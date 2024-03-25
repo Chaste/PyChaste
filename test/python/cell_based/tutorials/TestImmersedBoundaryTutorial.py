@@ -43,8 +43,8 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ##
 ## In this tutorial, we demonstrate:
 ## 1. Building single-cell immersed boundary capable simulations.
-## 2. Building multi-cellular simulations.
-## 3. Adding and manipulating fluid sources.
+## 2. Building multi-cellular immersed boundary simulations.
+## 3. Adding and manipulating immersed boundary fluid sources.
 ##
 ## ## Imports
 
@@ -59,7 +59,6 @@ from chaste.cell_based import (
     CellsGeneratorUniformCellCycleModel_2,
     DifferentiatedCellProliferativeType,
     ForwardEulerNumericalMethod2_2,
-    FluidSource2,
     ImmersedBoundaryCellPopulation2,
     ImmersedBoundaryLinearInteractionForce2,
     ImmersedBoundaryLinearMembraneForce2,
@@ -68,7 +67,9 @@ from chaste.cell_based import (
     SimulationTime,
     TearDownNotebookTest,
 )
-from chaste.mesh import ImmersedBoundaryPalisadeMeshGenerator
+
+from chaste.mesh import FluidSource2, ImmersedBoundaryPalisadeMeshGenerator
+
 import chaste.visualization
 
 
@@ -156,10 +157,8 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         ## the fluid.
 
         # Add an immersed boundary simulation modifier.
-        # The modifier is responsible for managing the fluid simulation
-        # and propagating forces between the fluid & cell.
-        main_modifier = ImmersedBoundarySimulationModifier2()
-        simulator.AddSimulationModifier(main_modifier)
+        ib_modifier = ImmersedBoundarySimulationModifier2()
+        simulator.AddSimulationModifier(ib_modifier)
 
         ## We must also provide the modifier with a force model to govern
         ## interactions between the nodes forming the boundary of the cells.
@@ -169,7 +168,7 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         # Add a force law to model the behaviour of the cell membrane
         boundary_force = ImmersedBoundaryLinearMembraneForce2()
         boundary_force.SetElementSpringConst(1.0 * 1e7)
-        main_modifier.AddImmersedBoundaryForce(boundary_force)
+        ib_modifier.AddImmersedBoundaryForce(boundary_force)
 
         ## The spring constant(`1.0 * 1e7`) defines how stiff the cell boundary
         ## is. You can experiment with adjusting the spring constant to change
@@ -228,6 +227,9 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         # Set the fluid grid resolution
         mesh.SetNumGridPtsXAndY(64)
 
+        # Set the start time for the simulation
+        SimulationTime.Instance().SetStartTime(0.0)
+        
         # Generate the cells
         cell_type = DifferentiatedCellProliferativeType()
         cell_generator = CellsGeneratorUniformCellCycleModel_2()
@@ -239,23 +241,20 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         # Specify whether the population has active fluid sources
         cell_population.SetIfPopulationHasActiveSources(False)
 
-        # Set the start time for the simulation
-        SimulationTime.Instance().SetStartTime(0.0)
-
         # Create a simulator to manage our simulation
         simulator = OffLatticeSimulation2_2(cell_population)
         numerical_method = ForwardEulerNumericalMethod2_2()
         numerical_method.SetUseUpdateNodeLocation(True)
         simulator.SetNumericalMethod(numerical_method)
 
-        # Add an immersed boundary simulation modifier.
-        main_modifier = ImmersedBoundarySimulationModifier2()
-        simulator.AddSimulationModifier(main_modifier)
+        # Add an immersed boundary simulation modifier
+        ib_modifier = ImmersedBoundarySimulationModifier2()
+        simulator.AddSimulationModifier(ib_modifier)
 
         # Add a force law to model the behaviour of the cell membrane
         boundary_force = ImmersedBoundaryLinearMembraneForce2()
         boundary_force.SetElementSpringConst(1.0 * 1e7)
-        main_modifier.AddImmersedBoundaryForce(boundary_force)
+        ib_modifier.AddImmersedBoundaryForce(boundary_force)
 
         ## #### Intercellular Interactions
         ## So far, we have encountered forces that act to maintain the shape
@@ -268,7 +267,7 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         # Add a new intercellular force law
         interaction_force = ImmersedBoundaryLinearInteractionForce2()
         interaction_force.SetSpringConst(1.0 * 1e6)
-        main_modifier.AddImmersedBoundaryForce(interaction_force)
+        ib_modifier.AddImmersedBoundaryForce(interaction_force)
 
         # Set simulation properties
         dt = 0.05
@@ -318,6 +317,7 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         ## Finally, we must tell the cell population that fluid sources are present.
 
         # Set up the cell population
+        SimulationTime.Instance().SetStartTime(0.0)
         cell_type = DifferentiatedCellProliferativeType()
         cell_generator = CellsGeneratorUniformCellCycleModel_2()
         cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), cell_type)
@@ -335,15 +335,14 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         ## the cell shapes.
 
         # Create a simulator
-        SimulationTime.Instance().SetStartTime(0.0)
         simulator = OffLatticeSimulation2_2(cell_population)
         numerical_method = ForwardEulerNumericalMethod2_2()
         numerical_method.SetUseUpdateNodeLocation(True)
         simulator.SetNumericalMethod(numerical_method)
 
         # Add an immersed boundary simulation modifier
-        main_modifier = ImmersedBoundarySimulationModifier2()
-        simulator.AddSimulationModifier(main_modifier)
+        ib_modifier = ImmersedBoundarySimulationModifier2()
+        simulator.AddSimulationModifier(ib_modifier)
 
         ## #### Fluid-Cell Interaction
         ## Have a go at modifying the spring constant of the
@@ -352,11 +351,11 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
         boundary_force = ImmersedBoundaryLinearMembraneForce2()
         boundary_force.SetElementSpringConst(1.0 * 1e7)
-        main_modifier.AddImmersedBoundaryForce(boundary_force)
+        ib_modifier.AddImmersedBoundaryForce(boundary_force)
 
         interaction_force = ImmersedBoundaryLinearInteractionForce2()
         interaction_force.SetSpringConst(1.0 * 1e6)
-        main_modifier.AddImmersedBoundaryForce(interaction_force)
+        ib_modifier.AddImmersedBoundaryForce(interaction_force)
 
         ## #### Adding More Sources
         ## Try adding second fluid source. You will need to use a unique index,
