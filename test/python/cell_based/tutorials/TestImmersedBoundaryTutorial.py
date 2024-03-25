@@ -29,6 +29,7 @@ HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT
 OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
+
 #ifndef
 #define TRIGGER_WIKI
 
@@ -58,6 +59,7 @@ from chaste.cell_based import (
     CellsGeneratorUniformCellCycleModel_2,
     DifferentiatedCellProliferativeType,
     ForwardEulerNumericalMethod2_2,
+    FluidSource2,
     ImmersedBoundaryCellPopulation2,
     ImmersedBoundaryLinearInteractionForce2,
     ImmersedBoundaryLinearMembraneForce2,
@@ -195,9 +197,6 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
     ## ### Adding More Cells
 
     def test_multicell_immersed_boundary_simulation(self):
-        # Set the start time for the simulation
-        SimulationTime.Instance().SetStartTime(0.0)
-
         ## #### Multiple Cells
         ## We can use the mesh generator to generate multiple cells. The first
         ## parameter of the mesh generator constructor controls the number of
@@ -240,6 +239,9 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
         # Specify whether the population has active fluid sources
         cell_population.SetIfPopulationHasActiveSources(False)
 
+        # Set the start time for the simulation
+        SimulationTime.Instance().SetStartTime(0.0)
+
         # Create a simulator to manage our simulation
         simulator = OffLatticeSimulation2_2(cell_population)
         numerical_method = ForwardEulerNumericalMethod2_2()
@@ -280,6 +282,105 @@ class TestImmersedBoundaryTutorial(AbstractCellBasedTestSuite):
 
         SimulationTime.Instance().Destroy()
         TearDownNotebookTest()
+
+    ## ### Adding Fluid Sources
+    ## Now that we are familiar with how to generate the cells, we will
+    ## introduce fluid sources.
+
+    def test_fluid_source_immersed_boundary_simulation(self):
+
+        ## #### Adding a Fluid Source
+        ## We begin by constructing a fluid source object.
+
+        source = FluidSource2(0, 0.5, 0.7)
+
+        ## This constructs a `FluidSource` object in 2 dimensions. The first
+        ## parameter gives the index of the fluid source. Each source you
+        ## create must have a unique index. The next parameters are the
+        ## `x` and `y` coordinates of the source. Fluid sources in chaste are
+        ## point-like, that is to say they do not have any area/volume.
+        ##
+        ## Having created the fluid source, we set its strength:
+
+        source.SetStrength(0.012)
+
+        ## Now, we must associate the source with an element in the simulation
+        ## so that the simulation is aware of the source.
+
+        # Create the mesh
+        gen = ImmersedBoundaryPalisadeMeshGenerator(5, 128, 0.1, 2.0, 0.0, False)
+        mesh = gen.GetMesh()
+        mesh.SetNumGridPtsXAndY(64)
+
+        # Associate the fluid source with an element in the mesh
+        mesh.GetElement(0).SetFluidSource(source)
+
+        ## Finally, we must tell the cell population that fluid sources are present.
+
+        # Set up the cell population
+        cell_type = DifferentiatedCellProliferativeType()
+        cell_generator = CellsGeneratorUniformCellCycleModel_2()
+        cells = cell_generator.GenerateBasicRandom(mesh.GetNumElements(), cell_type)
+        cell_population = ImmersedBoundaryCellPopulation2(mesh, cells)
+
+        # Specify that fluid sources are present
+        cell_population.SetIfPopulationHasActiveSources(True)
+
+        ## #### Varying the Source Location
+        ## You can experiment with the source location. Try moving it closer to
+        ## and further away from the cells.
+        ##
+        ## #### Varying the Source Strength
+        ## Try modifying the source strength to see what impact this has on
+        ## the cell shapes.
+
+        # Create a simulator
+        SimulationTime.Instance().SetStartTime(0.0)
+        simulator = OffLatticeSimulation2_2(cell_population)
+        numerical_method = ForwardEulerNumericalMethod2_2()
+        numerical_method.SetUseUpdateNodeLocation(True)
+        simulator.SetNumericalMethod(numerical_method)
+
+        # Add an immersed boundary simulation modifier
+        main_modifier = ImmersedBoundarySimulationModifier2()
+        simulator.AddSimulationModifier(main_modifier)
+
+        ## #### Fluid-Cell Interaction
+        ## Have a go at modifying the spring constant of the
+        ## `ImmersedBoundaryLinearMembraneForce` to see how this changes the
+        ## effect of the fluid source on the cells.
+
+        boundary_force = ImmersedBoundaryLinearMembraneForce2()
+        boundary_force.SetElementSpringConst(1.0 * 1e7)
+        main_modifier.AddImmersedBoundaryForce(boundary_force)
+
+        interaction_force = ImmersedBoundaryLinearInteractionForce2()
+        interaction_force.SetSpringConst(1.0 * 1e6)
+        main_modifier.AddImmersedBoundaryForce(interaction_force)
+
+        ## #### Adding More Sources
+        ## Try adding second fluid source. You will need to use a unique index,
+        ## and attach it to a different element as each element can only manage
+        ## a single fluid source.
+
+        # Set simulation properties
+        dt = 0.05
+        simulator.SetOutputDirectory("Python/TestImmersedBoundary")
+        simulator.SetDt(dt)
+        simulator.SetSamplingTimestepMultiple(4)
+        simulator.SetEndTime(1000 * dt)
+
+        # Perform the simulation
+        simulator.Solve()
+
+        SimulationTime.Instance().Destroy()
+        TearDownNotebookTest()
+
+        ## #### Further Exercises
+        ## * Try integrating a different cell cycle model to introduce cell
+        ##   division. See how the presence of a fluid source impacts the
+        ##   structure that is formed.
+        ## * Use one of the cell writers to collect some statistics
 
 
 if __name__ == "__main__":
