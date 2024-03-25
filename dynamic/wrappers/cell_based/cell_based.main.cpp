@@ -753,6 +753,10 @@ PYBIND11_MODULE(_chaste_project_PyChaste_cell_based, m)
     register_ImmersedBoundarySvgWriter3_class(m);
     register_NormallyDistributedTargetAreaModifier2_class(m);
     register_NormallyDistributedTargetAreaModifier3_class(m);
+    register_AbstractNumericalMethod2_2_class(m);
+    register_AbstractNumericalMethod3_3_class(m);
+    register_ForwardEulerNumericalMethod2_2_class(m);
+    register_ForwardEulerNumericalMethod3_3_class(m);
     register_AbstractCellBasedSimulation2_2_class(m);
     register_AbstractCellBasedSimulation3_3_class(m);
     register_SimulationTime_class(m);
