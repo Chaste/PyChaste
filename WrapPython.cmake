@@ -105,6 +105,7 @@ add_custom_command(
         -w ${CMAKE_CURRENT_SOURCE_DIR}/dynamic/wrappers
         -p ${CMAKE_CURRENT_SOURCE_DIR}/dynamic/wrapper_generators/package_info.yaml
         -i ${PYCHASTE_INCLUDE_DIRS} ${Chaste_INCLUDE_DIRS} ${Chaste_THIRD_PARTY_INCLUDE_DIRS}
+        --std c++17
 )
 
 # Loop through each module and create the shared library targets
