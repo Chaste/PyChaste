@@ -1,0 +1,6 @@
+#ifndef ImmersedBoundaryLinearDifferentialAdhesionForce3_hpp__pyplusplus_wrapper
+#define ImmersedBoundaryLinearDifferentialAdhesionForce3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ImmersedBoundaryLinearDifferentialAdhesionForce3_class(py::module &m);
+#endif // ImmersedBoundaryLinearDifferentialAdhesionForce3_hpp__pyplusplus_wrapper

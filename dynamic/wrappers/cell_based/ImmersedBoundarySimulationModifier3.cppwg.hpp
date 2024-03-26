@@ -1,0 +1,6 @@
+#ifndef ImmersedBoundarySimulationModifier3_hpp__pyplusplus_wrapper
+#define ImmersedBoundarySimulationModifier3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ImmersedBoundarySimulationModifier3_class(py::module &m);
+#endif // ImmersedBoundarySimulationModifier3_hpp__pyplusplus_wrapper

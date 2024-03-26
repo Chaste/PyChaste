@@ -18,21 +18,21 @@ class MutableElement2_2_Overloads : public MutableElement2_2{
     public:
     using MutableElement2_2::MutableElement;
     void RegisterWithNodes() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableElement2_2,
             RegisterWithNodes,
             );
     }
     void MarkAsDeleted() override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableElement2_2,
             MarkAsDeleted,
             );
     }
     void UpdateNode(unsigned int const & rIndex, ::Node<2> * pNode) override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             void,
             MutableElement2_2,
             UpdateNode,
@@ -40,7 +40,7 @@ class MutableElement2_2_Overloads : public MutableElement2_2{
 pNode);
     }
     bool IsElementOnBoundary() const  override {
-        PYBIND11_OVERLOAD(
+        PYBIND11_OVERRIDE(
             bool,
             MutableElement2_2,
             IsElementOnBoundary,

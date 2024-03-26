@@ -1,0 +1,6 @@
+#ifndef NormallyDistributedTargetAreaModifier2_hpp__pyplusplus_wrapper
+#define NormallyDistributedTargetAreaModifier2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_NormallyDistributedTargetAreaModifier2_class(py::module &m);
+#endif // NormallyDistributedTargetAreaModifier2_hpp__pyplusplus_wrapper

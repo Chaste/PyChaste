@@ -1,0 +1,6 @@
+#ifndef AbstractImmersedBoundaryForce3_hpp__pyplusplus_wrapper
+#define AbstractImmersedBoundaryForce3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_AbstractImmersedBoundaryForce3_class(py::module &m);
+#endif // AbstractImmersedBoundaryForce3_hpp__pyplusplus_wrapper

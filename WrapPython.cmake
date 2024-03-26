@@ -35,9 +35,6 @@ add_compile_options(-Wno-unused-local-typedefs)
 # Add any cmake modules defined in this project
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR} PARENT_SCOPE)
 
-# Used for binding generation
-set(CASTXML_EXE_LOC "/usr/bin/castxml" CACHE FILEPATH "Path to the castxml executable.")
-
 # Find the Chaste and third party dependency header files.
 include_directories(${Chaste_INCLUDE_DIRS} ${Chaste_THIRD_PARTY_INCLUDE_DIRS})
 
@@ -102,14 +99,14 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/doc/ DESTINATION ${CMAKE_CURRENT_BINARY_DI
 
 # Target to generate bindings
 add_custom_target(project_PyChaste_Python_Bindings)
-SET(arguments ${CMAKE_SOURCE_DIR}/)
-LIST(APPEND arguments ${CMAKE_CURRENT_SOURCE_DIR}/dynamic/wrappers/)
-LIST(APPEND arguments ${CMAKE_CURRENT_SOURCE_DIR}/dynamic/wrapper_generators/package_info.yaml)
-LIST(APPEND arguments ${CASTXML_EXE_LOC})
-LIST(APPEND arguments ${PYCHASTE_INCLUDE_DIRS})
-LIST(APPEND arguments ${Chaste_INCLUDE_DIRS})
-LIST(APPEND arguments ${Chaste_THIRD_PARTY_INCLUDE_DIRS})
-add_custom_command(TARGET project_PyChaste_Python_Bindings COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/dynamic/wrapper_generators/generate.py ${arguments})
+add_custom_command(
+    TARGET project_PyChaste_Python_Bindings
+    COMMAND cppwg ${CMAKE_SOURCE_DIR}
+        -w ${CMAKE_CURRENT_SOURCE_DIR}/dynamic/wrappers
+        -p ${CMAKE_CURRENT_SOURCE_DIR}/dynamic/wrapper_generators/package_info.yaml
+        -i ${PYCHASTE_INCLUDE_DIRS} ${Chaste_INCLUDE_DIRS} ${Chaste_THIRD_PARTY_INCLUDE_DIRS}
+        --std c++17
+)
 
 # Loop through each module and create the shared library targets
 list(LENGTH PYCHASTE_PYTHON_MODULES len1)

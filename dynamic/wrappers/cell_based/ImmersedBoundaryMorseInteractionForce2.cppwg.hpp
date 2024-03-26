@@ -1,0 +1,6 @@
+#ifndef ImmersedBoundaryMorseInteractionForce2_hpp__pyplusplus_wrapper
+#define ImmersedBoundaryMorseInteractionForce2_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ImmersedBoundaryMorseInteractionForce2_class(py::module &m);
+#endif // ImmersedBoundaryMorseInteractionForce2_hpp__pyplusplus_wrapper

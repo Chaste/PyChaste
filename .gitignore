@@ -19,3 +19,5 @@ src/python/dist*
 src/python/chaste.egg-info*
 # No api docs
 doc/api/build*
+# Build folder
+build/

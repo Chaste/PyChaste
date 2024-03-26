@@ -1,0 +1,6 @@
+#ifndef ImmersedBoundaryNeighbourNumberWriter3_3_hpp__pyplusplus_wrapper
+#define ImmersedBoundaryNeighbourNumberWriter3_3_hpp__pyplusplus_wrapper
+
+namespace py = pybind11;
+void register_ImmersedBoundaryNeighbourNumberWriter3_3_class(py::module &m);
+#endif // ImmersedBoundaryNeighbourNumberWriter3_3_hpp__pyplusplus_wrapper
