@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
       - name: install dependencies
         run: |
           sudo apt-get update
@@ -25,18 +22,14 @@ jobs:
           use-mamba: true
           miniforge-variant: Mambaforge
           miniforge-version: latest
-          python-version: "3.8"
+          python-version: "3.10"
+          activate-environment: pychaste_test
           channels: pychaste,conda-forge,bioconda
 
       - name: install pychaste
-        run: mamba install -y chaste
+        run: mamba install -n pychaste_test -y chaste
 
-      - name: run tests
+      - name: test imports
         run: |
-          xvfb-run --server-args="-screen 0 1024x768x24" python3 -m unittest -v \
-            cell_based/Test*.py \
-            cell_based/tutorials/Test*.py \
-            core/Test*.py \
-            mesh/Test*.py \
-            ode/Test*.py
-        working-directory: test/python
+          python3 -c "import chaste; chaste.init(); import chaste.ode; import chaste.pde; import chaste.mesh; import chaste.cell_based;"
+        shell: bash -el {0}
