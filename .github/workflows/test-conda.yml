@@ -1,0 +1,42 @@
+name: test-conda
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "19 04 * * 6"
+
+jobs:
+  test-conda:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+
+      - name: setup conda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          use-mamba: true
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+          python-version: "3.8"
+          channels: pychaste,conda-forge,bioconda
+
+      - name: install pychaste
+        run: mamba install -y chaste
+
+      - name: run tests
+        run: |
+          xvfb-run --server-args="-screen 0 1024x768x24" python3 -m unittest -v \
+            cell_based/Test*.py \
+            cell_based/tutorials/Test*.py \
+            core/Test*.py \
+            mesh/Test*.py \
+            ode/Test*.py
+        working-directory: test/python
