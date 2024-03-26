@@ -25,11 +25,12 @@ jobs:
           use-mamba: true
           miniforge-variant: Mambaforge
           miniforge-version: latest
-          python-version: "3.8"
+          python-version: "3.10"
+          activate-environment: pychaste_test
           channels: pychaste,conda-forge,bioconda
 
       - name: install pychaste
-        run: mamba install -y chaste
+        run: mamba install -n pychaste_test -y chaste
 
       - name: run tests
         run: |
