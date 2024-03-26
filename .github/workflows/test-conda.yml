@@ -41,3 +41,4 @@ jobs:
             mesh/Test*.py \
             ode/Test*.py
         working-directory: test/python
+        shell: bash -el {0}
