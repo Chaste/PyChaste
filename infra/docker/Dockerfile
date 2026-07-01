@@ -33,9 +33,8 @@ RUN apt-get update && \
     rm -rf /var/tmp/* && \
     rm -rf /tmp/*
 
-ENV ENV_NAME=pychaste-env
 USER $MAMBA_USER
-RUN micromamba create -y -n $ENV_NAME -c pychaste -c conda-forge \
+RUN micromamba install -y -n base -c pychaste -c conda-forge \
         python=3.12 \
         "chaste=${CHASTE_VERSION}" \
         "jupyterlab=${JUPYTERLAB_VERSION}" && \
